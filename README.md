@@ -1,4 +1,4 @@
-# CTIME #
+﻿# CTIME #
 
 
 ### What is this repository for? ###
@@ -13,8 +13,8 @@
 * Prvni commit
 * Tutorial na markdown
 * Rešerše problémů:
- + fractal stromu
- + základy DX
- + promýšlení indexování vertexů
- + zkoumání shaderů
- + přemýšlení nad využitím možností jazyka c++11
+	+ fractal stromu
+ 	+ základy DX
+ 	+ promýšlení indexování vertexů
+ 	+ zkoumání shaderů
+ 	+ přemýšlení nad využitím možností jazyka c++11
