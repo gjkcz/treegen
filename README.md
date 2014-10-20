@@ -4,7 +4,7 @@
 ### What is this repository for? ###
 
 * Zde bude se upravovati a k závěru se odebéře můj finální projekt.
-* Verse 0.1
+* Verze 0.1
 
 ### How do I get set up? ###
 
