@@ -25,3 +25,9 @@
 
 * Repo owner or admin
 * Other community or team contact
+
+### Changelog ###
+
+* 20.10.2014 - první commit
+* Code review
+* Other guidelines
