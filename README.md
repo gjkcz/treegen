@@ -6,6 +6,14 @@
 * Zde bude se upravovati a k závěru se odebéře můj finální projekt.
 * Verze 0.1
 
+### Ovladani: ###
+
+* w, s, a, d - dopredu, dozadu, doleva, doprava
+* q, e - nahoru, dolu
+* ↑, ↓ - pohled nahoru, dolu
+* 1, 2 - přidat auto otáčení
+* 3, 4 - otočit
+
 ### Changelog: ###
 
 **20.10.2014>>**
