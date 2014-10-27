@@ -26,3 +26,8 @@
  	+ promýšlení indexování vertexů
  	+ zkoumání shaderů
  	+ přemýšlení nad využitím možností jazyka c++11
+
+**27.10.2014>>**
+
+* Hledání existujících prací:
+	+ [Creation and Rendering of Realistic Trees (Jason Weber, Joseph Penn)](http://www.cs.duke.edu/courses/fall02/cps124/resources/p119-weber.pdf)
