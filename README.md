@@ -37,4 +37,3 @@
 * Instalace codeblocks
 * Řešení problémů s knihovnami DX
 * Instalace GitBash na ntb
-* Přidání zdrojáků do Bitbucket repa
