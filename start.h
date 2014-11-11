@@ -5,14 +5,16 @@
 
 #ifndef _START_H_
 #define _START_H_
+
 #include <d3d11.h>
+#include <d3dx9.h>
 #include <d3dx10math.h>
 #include <fstream>
 #include <iosfwd>
 #include <windows.h>
+#include <strsafe.h>
 #include <d3d11.h>
 #include <d3dx11.h>
-
 #include <xnamath.h>
 #include <d3dcompiler.h>
 #include <dinput.h>
@@ -20,15 +22,15 @@ using namespace std;
 struct SimpleVertex
 {
     XMFLOAT3 Pos;  // Position
-	XMFLOAT3 Normal; // Light Normal
-	XMFLOAT4 Color; // Color
-	//XMFLOAT2 Tex; // Texture Co
+    XMFLOAT3 Normal; // Light Normal
+    XMFLOAT4 Color; // Color
+    //XMFLOAT2 Tex; // Texture Co
 };
 struct tType
 {
-	int _iSType;
-	int _iRType;
-	int _iDType;
+    int _iSType;
+    int _iRType;
+    int _iDType;
 };
 
 int GenerateTree(int iPater, tType _tType);
