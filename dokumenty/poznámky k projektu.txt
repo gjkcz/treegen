@@ -1,0 +1,10 @@
+objekty:
+	model
+	view
+		- to bude okno, 
+	controler:
+		- to bude myš, klávesnice
+
+- asi bych oddělil main od ostatního
+
+- místo nové isic bych si mohl pujčit něčí
