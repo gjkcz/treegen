@@ -1,7 +1,5 @@
 # depslib dependency file v1.0
-1415535610 source:h:\local new\programování\cb\struktury stromu\treegen\matrices.cpp
-	<d3dx9.h>
-	<strsafe.h>
+1415736459 source:h:\local new\programování\cb\struktury stromu\treegen\matrices.cpp
 	"start.h"
 
 1274305017 h:\microsoft directx sdk (june 2010)\include\d3dx9.h
@@ -59,12 +57,14 @@
 
 1274305017 h:\microsoft directx sdk (june 2010)\include\d3dx9anim.h
 
-1415535562 h:\local new\programování\cb\struktury stromu\treegen\start.h
+1415736459 h:\local new\programování\cb\struktury stromu\treegen\start.h
 	<d3d11.h>
+	<d3dx9.h>
 	<d3dx10math.h>
 	<fstream>
 	<iosfwd>
 	<windows.h>
+	<strsafe.h>
 	<d3d11.h>
 	<d3dx11.h>
 	<xnamath.h>
@@ -240,5 +240,25 @@
 	<objbase.h>
 
 1363548858 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
+	"start.h"
+
+1415535610 source:c:\local new\local new v c3\programování\cb\struktury stromu\treegen\matrices.cpp
+	<d3dx9.h>
+	<strsafe.h>
+	"start.h"
+
+1415535562 c:\local new\local new v c3\programování\cb\struktury stromu\treegen\start.h
+	<d3d11.h>
+	<d3dx10math.h>
+	<fstream>
+	<iosfwd>
+	<windows.h>
+	<d3d11.h>
+	<d3dx11.h>
+	<xnamath.h>
+	<d3dcompiler.h>
+	<dinput.h>
+
+1363548858 source:c:\local new\local new v c3\programování\cb\struktury stromu\treegen\tree.cpp
 	"start.h"
 

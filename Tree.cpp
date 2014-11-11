@@ -1057,6 +1057,20 @@ void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklo
     iVx=iVx;
 }
 
+float random()
+{
+    float _rndm=0.f;
+    //_rndm = abs(sin((timeGetTime() % 360)*(rand()/32767.f)*D3DX_PI/180));
+    /*while(_rndm<0.998f)
+    {*/
+    while(timeGetTime()%1000>=999)
+    {
+        srand(timeGetTime());
+    }
+    _rndm = rand()/32767.f;
+    return _rndm;
+}
+
 int integratePower(int _zakl, float _doMocniny)
 {
     int _v = 0;
