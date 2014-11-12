@@ -1,0 +1,2104 @@
+﻿Build started 27.10.2012 17:35:08.
+     1>Project "H:\Projects\Projects\tree v1.0\Tutorial01_2010.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "x64\Release\Start.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\DXUT11\Core /I..\..\..\DXUT11\Optional /Zi /nologo /W4 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D D3DXFX_LARGEADDRESS_HANDLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:fast /Zc:wchar_t /Zc:forScope /openmp- /Fo"x64\Release\\" /Fd"x64\Release\vc100.pdb" /Gd /TP /errorReport:prompt Tree.cpp  
+         Tree.cpp
+         C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+     1>Tree.cpp(40): warning C4100: 'nVetvi' : unreferenced formal parameter
+     1>Tree.cpp(57): warning C4189: 'Ttextcoords' : local variable is initialized but not referenced
+     1>Tree.cpp(56): warning C4189: 'Tpositions' : local variable is initialized but not referenced
+     1>Tree.cpp(58): warning C4189: 'Tnormals' : local variable is initialized but not referenced
+     1>Tree.cpp(224): warning C4189: 'Rorigin' : local variable is initialized but not referenced
+     1>Tree.cpp(216): warning C4189: 'Zkoord' : local variable is initialized but not referenced
+     1>Tree.cpp(331): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>Tree.cpp(277): warning C4100: 'delka' : unreferenced formal parameter
+     1>Tree.cpp(312): warning C4189: 'konec' : local variable is initialized but not referenced
+     1>Tree.cpp(299): warning C4189: 'Zkoord' : local variable is initialized but not referenced
+     1>Tree.cpp(294): warning C4189: 'AxeRotace1' : local variable is initialized but not referenced
+     1>Tree.cpp(579): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>Tree.cpp(608): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>Tree.cpp(634): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>Tree.cpp(418): warning C4100: 'tU' : unreferenced formal parameter
+     1>Tree.cpp(418): warning C4100: 'sklonY1' : unreferenced formal parameter
+     1>Tree.cpp(418): warning C4100: 'radiusZ' : unreferenced formal parameter
+     1>Tree.cpp(440): warning C4101: 'MezoY1' : unreferenced local variable
+     1>Tree.cpp(440): warning C4101: 'MezoX1' : unreferenced local variable
+       ResourceCompile:
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"H:\Projects\Projects\tree v1.0\x64\Release\Start.exe" /VERBOSE /INCREMENTAL /NOLOGO d3d11.lib d3dcompiler.lib d3dx11.lib d3dx9.lib dxerr.lib dxguid.lib winmm.lib comctl32.lib dinput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"x64\Release\Start.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"H:\Projects\Projects\tree v1.0\x64\Release\Start.pdb" /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\Projects\Projects\tree v1.0\x64\Release\Start.lib" /MACHINE:X64 x64\Release\Tutorial01.res
+         x64\Release\Start.exe.embed.manifest.res
+         x64\Release\Start.obj
+         x64\Release\Tree.obj  
+     1>LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+         
+         Starting pass 1
+         Processed /DEFAULTLIB:uuid.lib
+         Processed /DEFAULTLIB:msvcprt
+         Processed /DEFAULTLIB:MSVCRT
+         Processed /DEFAULTLIB:OLDNAMES
+         
+         Searching libraries
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3d11.lib:
+               Found D3D11CreateDeviceAndSwapChain
+                 Referenced in Start.obj
+                 Loaded d3d11.lib(d3d11.dll)
+               Found __IMPORT_DESCRIPTOR_d3d11
+                 Referenced in d3d11.lib(d3d11.dll)
+                 Loaded d3d11.lib(d3d11.dll)
+               Found __NULL_IMPORT_DESCRIPTOR
+                 Referenced in d3d11.lib(d3d11.dll)
+                 Loaded d3d11.lib(d3d11.dll)
+               Found d3d11_NULL_THUNK_DATA
+                 Referenced in d3d11.lib(d3d11.dll)
+                 Loaded d3d11.lib(d3d11.dll)
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dcompiler.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dx11.lib:
+               Found D3DX11CompileFromFileW
+                 Referenced in Start.obj
+                 Loaded d3dx11.lib(d3dx11_43.dll)
+               Found __IMPORT_DESCRIPTOR_d3dx11_43
+                 Referenced in d3dx11.lib(d3dx11_43.dll)
+                 Loaded d3dx11.lib(d3dx11_43.dll)
+               Found d3dx11_43_NULL_THUNK_DATA
+                 Referenced in d3dx11.lib(d3dx11_43.dll)
+                 Loaded d3dx11.lib(d3dx11_43.dll)
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dx9.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dxerr.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dxguid.lib:
+               Found GUID_SysMouse
+                 Referenced in Start.obj
+                 Loaded dxguid.lib(dxguid.obj)
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\winmm.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\comctl32.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dinput8.lib:
+               Found c_dfDIKeyboard
+                 Referenced in Start.obj
+                 Loaded dinput8.lib(dilib2.obj)
+               Found DirectInput8Create
+                 Referenced in Start.obj
+                 Loaded dinput8.lib(DINPUT8.dll)
+               Found c_dfDIMouse2
+                 Referenced in Start.obj
+                 Loaded dinput8.lib(dilib5.obj)
+               Found __IMPORT_DESCRIPTOR_DINPUT8
+                 Referenced in dinput8.lib(DINPUT8.dll)
+                 Loaded dinput8.lib(DINPUT8.dll)
+               Found DINPUT8_NULL_THUNK_DATA
+                 Referenced in dinput8.lib(DINPUT8.dll)
+                 Loaded dinput8.lib(DINPUT8.dll)
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\kernel32.lib:
+               Found __imp_GetModuleHandleW
+                 Referenced in Start.obj
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_GetTickCount
+                 Referenced in Start.obj
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_OutputDebugStringA
+                 Referenced in Start.obj
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __IMPORT_DESCRIPTOR_KERNEL32
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found KERNEL32_NULL_THUNK_DATA
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Loaded kernel32.lib(KERNEL32.dll)
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\user32.lib:
+               Found __imp_DispatchMessageW
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_DefWindowProcW
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_AdjustWindowRect
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_MessageBoxW
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_CreateWindowExW
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_ShowWindow
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_PeekMessageW
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_LoadIconW
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_RegisterClassExW
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_TranslateMessage
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_BeginPaint
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_GetClientRect
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_LoadCursorW
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_PostQuitMessage
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __imp_EndPaint
+                 Referenced in Start.obj
+                 Loaded user32.lib(USER32.dll)
+               Found __IMPORT_DESCRIPTOR_USER32
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Referenced in user32.lib(USER32.dll)
+                 Loaded user32.lib(USER32.dll)
+               Found USER32_NULL_THUNK_DATA
+                 Referenced in user32.lib(USER32.dll)
+                 Loaded user32.lib(USER32.dll)
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\gdi32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\winspool.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\comdlg32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\advapi32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\shell32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\ole32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\oleaut32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\uuid.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\odbc32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64\msvcprt.lib:
+               Found "__declspec(dllimport) __int64 const std::_BADOFF" (__imp_?_BADOFF@std@@3_JB)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: static class std::locale::id std::codecvt<wchar_t,char,int>::id" (__imp_?id@?$codecvt@_WDH@std@@2V0locale@2@A)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) void __cdecl std::_Xout_of_range(char const *)" (__imp_?_Xout_of_range@std@@YAXPEBD@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: __cdecl std::_Lockit::~_Lockit(void)" (__imp_??1_Lockit@std@@QEAA@XZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: __cdecl std::_Lockit::_Lockit(int)" (__imp_??0_Lockit@std@@QEAA@H@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) void __cdecl std::_Xlength_error(char const *)" (__imp_?_Xlength_error@std@@YAXPEBD@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "private: static void __cdecl std::locale::facet::_Facet_Register(class std::locale::facet *)" (?_Facet_Register@facet@locale@std@@CAXPEAV123@@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(locale0_implib.obj)
+               Found "__declspec(dllimport) private: static class std::locale::_Locimp * __cdecl std::locale::_Getgloballocale(void)" (__imp_?_Getgloballocale@locale@std@@CAPEAV_Locimp@12@XZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) struct _iobuf * __cdecl std::_Fiopen(wchar_t const *,int,int)" (__imp_?_Fiopen@std@@YAPEAU_iobuf@@PEB_WHH@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "void * __cdecl operator new[](unsigned __int64)" (??_U@YAPEAX_K@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(newaop_s.obj)
+               Found "__declspec(dllimport) const std::basic_istream<wchar_t,struct std::char_traits<wchar_t> >::`vftable'" (__imp_??_7?$basic_istream@_WU?$char_traits@_W@std@@@std@@6B@)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: void __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::setp(wchar_t *,wchar_t *)" (__imp_?setp@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEA_W0@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: void __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Init(wchar_t * *,wchar_t * *,int *,wchar_t * *,wchar_t * *,int *)" (__imp_?_Init@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEAPEA_W0PEAH001@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: void __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Init(void)" (__imp_?_Init@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: void __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::setg(wchar_t *,wchar_t *,wchar_t *)" (__imp_?setg@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEA_W00@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: class std::locale __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::getloc(void)const " (__imp_?getloc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@QEBA?AVlocale@2@XZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >(void)" (__imp_??0?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAA@XZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: __cdecl std::basic_istream<wchar_t,struct std::char_traits<wchar_t> >::basic_istream<wchar_t,struct std::char_traits<wchar_t> >(class std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> > *,bool)" (__imp_??0?$basic_istream@_WU?$char_traits@_W@std@@@std@@QEAA@PEAV?$basic_streambuf@_WU?$char_traits@_W@std@@@1@_N@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: __cdecl std::basic_ios<wchar_t,struct std::char_traits<wchar_t> >::basic_ios<wchar_t,struct std::char_traits<wchar_t> >(void)" (__imp_??0?$basic_ios@_WU?$char_traits@_W@std@@@std@@IEAA@XZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: void __cdecl std::basic_ios<wchar_t,struct std::char_traits<wchar_t> >::clear(int,bool)" (__imp_?clear@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEAAXH_N@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Pninc(void)" (__imp_?_Pninc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Gninc(void)" (__imp_?_Gninc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Gndec(void)" (__imp_?_Gndec@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::epptr(void)const " (__imp_?epptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::egptr(void)const " (__imp_?egptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::pptr(void)const " (__imp_?pptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::gptr(void)const " (__imp_?gptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::eback(void)const " (__imp_?eback@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: virtual __cdecl std::basic_istream<wchar_t,struct std::char_traits<wchar_t> >::~basic_istream<wchar_t,struct std::char_traits<wchar_t> >(void)" (__imp_??1?$basic_istream@_WU?$char_traits@_W@std@@@std@@UEAA@XZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: void __cdecl std::basic_ios<wchar_t,struct std::char_traits<wchar_t> >::setstate(int,bool)" (__imp_?setstate@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEAAXH_N@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: virtual __cdecl std::basic_ios<wchar_t,struct std::char_traits<wchar_t> >::~basic_ios<wchar_t,struct std::char_traits<wchar_t> >(void)" (__imp_??1?$basic_ios@_WU?$char_traits@_W@std@@@std@@UEAA@XZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: virtual __int64 __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::xsputn(wchar_t const *,__int64)" (__imp_?xsputn@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JPEB_W_J@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: virtual __int64 __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::xsgetn(wchar_t *,__int64)" (__imp_?xsgetn@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JPEA_W_J@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) protected: virtual __int64 __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::showmanyc(void)" (__imp_?showmanyc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: virtual __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::~basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >(void)" (__imp_??1?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@UEAA@XZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: static unsigned __int64 __cdecl std::codecvt<wchar_t,char,int>::_Getcat(class std::locale::facet const * *,class std::locale const *)" (__imp_?_Getcat@?$codecvt@_WDH@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: int __cdecl std::codecvt<wchar_t,char,int>::unshift(int &,char *,char *,char * &)const " (__imp_?unshift@?$codecvt@_WDH@std@@QEBAHAEAHPEAD1AEAPEAD@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: int __cdecl std::codecvt<wchar_t,char,int>::out(int &,wchar_t const *,wchar_t const *,wchar_t const * &,char *,char *,char * &)const " (__imp_?out@?$codecvt@_WDH@std@@QEBAHAEAHPEB_W1AEAPEB_WPEAD3AEAPEAD@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: int __cdecl std::codecvt<wchar_t,char,int>::in(int &,char const *,char const *,char const * &,wchar_t *,wchar_t *,wchar_t * &)const " (__imp_?in@?$codecvt@_WDH@std@@QEBAHAEAHPEBD1AEAPEBDPEA_W3AEAPEA_W@Z)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: bool __cdecl std::codecvt_base::always_noconv(void)const " (__imp_?always_noconv@codecvt_base@std@@QEBA_NXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: class std::locale::facet * __cdecl std::locale::facet::_Decref(void)" (__imp_?_Decref@facet@locale@std@@QEAAPEAV123@XZ)
+                 Referenced in Start.obj
+                 Referenced in msvcprt.lib(locale0_implib.obj)
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: void __cdecl std::locale::facet::_Incref(void)" (__imp_?_Incref@facet@locale@std@@QEAAXXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found "__declspec(dllimport) public: __cdecl std::locale::id::operator unsigned __int64(void)" (__imp_??Bid@locale@std@@QEAA_KXZ)
+                 Referenced in Start.obj
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found __IMPORT_DESCRIPTOR_MSVCP100
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Loaded msvcprt.lib(MSVCP100.dll)
+               Found MSVCP100_NULL_THUNK_DATA
+                 Referenced in msvcprt.lib(MSVCP100.dll)
+                 Loaded msvcprt.lib(MSVCP100.dll)
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64\MSVCRT.lib:
+               Found __security_check_cookie
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(amdsecgs.obj)
+               Found "__declspec(dllimport) public: virtual __cdecl std::bad_cast::~bad_cast(void)" (__imp_??1bad_cast@std@@UEAA@XZ)
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "__declspec(dllimport) public: __cdecl std::bad_cast::bad_cast(char const *)" (__imp_??0bad_cast@std@@QEAA@PEBD@Z)
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "__declspec(dllimport) public: __cdecl std::bad_cast::bad_cast(class std::bad_cast const &)" (__imp_??0bad_cast@std@@QEAA@AEBV01@@Z)
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "__declspec(dllimport) public: virtual char const * __cdecl std::exception::what(void)const " (__imp_?what@exception@std@@UEBAPEBDXZ)
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "__declspec(dllimport) public: virtual __cdecl std::exception::~exception(void)" (__imp_??1exception@std@@UEAA@XZ)
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "__declspec(dllimport) public: __cdecl std::exception::exception(char const * const &)" (__imp_??0exception@std@@QEAA@AEBQEBD@Z)
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "__declspec(dllimport) public: __cdecl std::exception::exception(class std::exception const &)" (__imp_??0exception@std@@QEAA@AEBV01@@Z)
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_memmove
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_fputwc
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp__unlock_file
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_ungetwc
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_ungetc
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_fgetpos
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp__fseeki64
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_fflush
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_fgetc
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_fsetpos
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_setvbuf
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp__lock_file
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "void __cdecl operator delete[](void *)" (??_V@YAXPEAX@Z)
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "void __cdecl operator delete(void *)" (??3@YAXPEAX@Z)
+                 Referenced in Start.obj
+                 Referenced in msvcprt.lib(locale0_implib.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_fgetwc
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_memcpy_s
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_fwrite
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "const type_info::`vftable'" (??_7type_info@@6B@)
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(ti_inst.obj)
+               Found __imp_fclose
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "void * __cdecl operator new(unsigned __int64)" (??2@YAPEAX_K@Z)
+                 Referenced in Start.obj
+                 Referenced in msvcprt.lib(locale0_implib.obj)
+                 Referenced in msvcprt.lib(newaop_s.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found wWinMainCRTStartup
+                 Loaded MSVCRT.lib(wcrtexew.obj)
+               Found __CxxFrameHandler3
+                 Referenced in msvcprt.lib(locale0_implib.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found atexit
+                 Referenced in msvcprt.lib(locale0_implib.obj)
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(atonexit.obj)
+               Found __security_cookie
+                 Referenced in MSVCRT.lib(amdsecgs.obj)
+                 Loaded MSVCRT.lib(gs_cookie.obj)
+               Found __report_gsfailure
+                 Referenced in MSVCRT.lib(amdsecgs.obj)
+                 Loaded MSVCRT.lib(gs_report.obj)
+               Found __IMPORT_DESCRIPTOR_MSVCR100
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "void __cdecl `eh vector destructor iterator'(void *,unsigned __int64,int,void (__cdecl*)(void *))" (??_M@YAXPEAX_KHP6AX0@Z@Z)
+                 Referenced in MSVCRT.lib(ti_inst.obj)
+                 Loaded MSVCRT.lib(ehvecdtr.obj)
+               Found "public: virtual __cdecl type_info::~type_info(void)" (??1type_info@@UEAA@XZ)
+                 Referenced in MSVCRT.lib(ti_inst.obj)
+                 Loaded MSVCRT.lib(typeinfo_dtor_64.obj)
+               Found __CxxSetUnhandledExceptionFilter
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(unhandld.obj)
+               Found _amsg_exit
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp___wgetmainargs
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found _dowildcard
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(wildcard.obj)
+               Found _newmode
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(_newmode.obj)
+               Found _RTC_Terminate
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(_initsect_.obj)
+               Found __C_specific_handler
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Referenced in MSVCRT.lib(atonexit.obj)
+                 Referenced in MSVCRT.lib(ehvecdtr.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found _XcptFilter
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp__exit
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp__cexit
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp_exit
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp__wcmdln
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found _IsNonwritableInCurrentImage
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(pesect.obj)
+               Found _initterm
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __xc_a
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(cinitexe.obj)
+         Processed /DEFAULTLIB:kernel32.lib
+          Processed /DISALLOWLIB:libcmt.lib
+          Processed /DISALLOWLIB:libcmtd.lib
+          Processed /DISALLOWLIB:msvcrtd.lib
+               Found _initterm_e
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __native_startup_state
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(natstart.obj)
+               Found __imp__configthreadlocale
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __globallocalestatus
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(xthdloc.obj)
+               Found __imp___setusermatherr
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found _matherr
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(merr.obj)
+               Found _wsetargv
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(wdllargv.obj)
+               Found _commode
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(xncommod.obj)
+               Found __imp__commode
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found _fmode
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(xtxtmode.obj)
+               Found __imp__fmode
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp___set_app_type
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __security_init_cookie
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded MSVCRT.lib(gs_support.obj)
+               Found _unlock
+                 Referenced in MSVCRT.lib(atonexit.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __dllonexit
+                 Referenced in MSVCRT.lib(atonexit.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found _lock
+                 Referenced in MSVCRT.lib(atonexit.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __imp__onexit
+                 Referenced in MSVCRT.lib(atonexit.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __crt_debugger_hook
+                 Referenced in MSVCRT.lib(gs_report.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found MSVCR100_NULL_THUNK_DATA
+                 Referenced in MSVCRT.lib(MSVCR100.dll)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "void __cdecl terminate(void)" (?terminate@@YAXXZ)
+                 Referenced in MSVCRT.lib(ehvecdtr.obj)
+                 Referenced in MSVCRT.lib(unhandld.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found "public: void __cdecl type_info::_type_info_dtor_internal_method(void)" (?_type_info_dtor_internal_method@type_info@@QEAAXXZ)
+                 Referenced in MSVCRT.lib(typeinfo_dtor_64.obj)
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64\OLDNAMES.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3d11.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dcompiler.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dx11.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dx9.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dxerr.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dxguid.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\winmm.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\comctl32.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dinput8.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\kernel32.lib:
+               Found __imp_Sleep
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_GetStartupInfoW
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_EncodePointer
+                 Referenced in MSVCRT.lib(wcrtexew.obj)
+                 Referenced in MSVCRT.lib(atonexit.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_DecodePointer
+                 Referenced in MSVCRT.lib(atonexit.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_TerminateProcess
+                 Referenced in MSVCRT.lib(gs_report.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_GetCurrentProcess
+                 Referenced in MSVCRT.lib(gs_report.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_UnhandledExceptionFilter
+                 Referenced in MSVCRT.lib(gs_report.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_SetUnhandledExceptionFilter
+                 Referenced in MSVCRT.lib(gs_report.obj)
+                 Referenced in MSVCRT.lib(unhandld.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_IsDebuggerPresent
+                 Referenced in MSVCRT.lib(gs_report.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found RtlVirtualUnwind
+                 Referenced in MSVCRT.lib(gs_report.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found RtlLookupFunctionEntry
+                 Referenced in MSVCRT.lib(gs_report.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_RtlCaptureContext
+                 Referenced in MSVCRT.lib(gs_report.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_QueryPerformanceCounter
+                 Referenced in MSVCRT.lib(gs_support.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_GetCurrentThreadId
+                 Referenced in MSVCRT.lib(gs_support.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_GetCurrentProcessId
+                 Referenced in MSVCRT.lib(gs_support.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp_GetSystemTimeAsFileTime
+                 Referenced in MSVCRT.lib(gs_support.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\user32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\gdi32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\winspool.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\comdlg32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\advapi32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\shell32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\ole32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\oleaut32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\uuid.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\odbc32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64\msvcprt.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64\MSVCRT.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64\OLDNAMES.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3d11.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dcompiler.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dx11.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dx9.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dxerr.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dxguid.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\winmm.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\comctl32.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dinput8.lib:
+         
+         Finished searching libraries
+         
+         Finished pass 1
+         
+         Generating code
+     1>h:\projects\projects\tree v1.0\tree.cpp(275): warning C4715: 'RostVetev' : not all control paths return a value
+         Finished generating code
+         
+         Searching libraries
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3d11.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dcompiler.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dx11.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dx9.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dxerr.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dxguid.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\winmm.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\comctl32.lib:
+             Searching C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\dinput8.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\kernel32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\user32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\gdi32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\winspool.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\comdlg32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\advapi32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\shell32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\ole32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\oleaut32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\uuid.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\odbc32.lib:
+             Searching C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib\x64\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64\msvcprt.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64\MSVCRT.lib:
+               Found _fltused
+                 Referenced in Tree.obj
+                 Loaded MSVCRT.lib(dllsupp.obj)
+               Found powf
+                 Referenced in Tree.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found atanf
+                 Referenced in Tree.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __GSHandlerCheck
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(gshandler.obj)
+               Found sinf
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found cosf
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found memset
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found memcpy
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found asinf
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found acosf
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found _CxxThrowException
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(MSVCR100.dll)
+               Found __GSHandlerCheck_EH
+                 Referenced in Start.obj
+                 Loaded MSVCRT.lib(gshandlereh.obj)
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64\OLDNAMES.lib:
+         
+         Finished searching libraries
+         
+         Invoking CVTRES.EXE:
+          /machine:amd64
+          /verbose
+          /out:"C:\Users\JUSERC~1\AppData\Local\Temp\lnk7514.tmp"
+          /readonly
+          "x64\Release\Tutorial01.res"
+          "x64\Release\Start.exe.embed.manifest.res"
+         Microsoft (R) Windows Resource To Object Converter Version 10.00.30319.01
+         Copyright (C) Microsoft Corporation.  All rights reserved.
+         
+         adding resource. type:ICON, name:1, language:0x0409, flags:0x1010, size:1640
+         adding resource. type:ICON, name:2, language:0x0409, flags:0x1010, size:744
+         adding resource. type:ICON, name:3, language:0x0409, flags:0x1010, size:296
+         adding resource. type:ICON, name:4, language:0x0409, flags:0x1010, size:3752
+         adding resource. type:ICON, name:5, language:0x0409, flags:0x1010, size:2216
+         adding resource. type:ICON, name:6, language:0x0409, flags:0x1010, size:1384
+         adding resource. type:ICON, name:7, language:0x0409, flags:0x1010, size:9640
+         adding resource. type:ICON, name:8, language:0x0409, flags:0x1010, size:4264
+         adding resource. type:ICON, name:9, language:0x0409, flags:0x1010, size:1128
+         adding resource. type:GROUP_ICON, name:107, language:0x0409, flags:0x1030, size:132
+         adding resource. type:MENU, name:109, language:0x0409, flags:0x1030, size:74
+         adding resource. type:ACCELERATOR, name:109, language:0x0409, flags:0x30, size:16
+         adding resource. type:DIALOG, name:103, language:0x0409, flags:0x1030, size:246
+         adding resource. type:STRING, name:7, language:0x0409, flags:0x1030, size:72
+         adding resource. type:MANIFEST, name:1, language:0x0409, flags:0x30, size:667
+         
+         Processing /ORDER options
+             External code objects not listed in the /ORDER file:
+         
+                 ?epptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ		; msvcprt.lib(MSVCP100.dll)
+                 ??_Etype_info@@UEAAPEAXI@Z		; MSVCRT.lib(ti_inst.obj)
+                 ??_G_Fac_node@std@@QEAAPEAXI@Z		; msvcprt.lib(locale0_implib.obj)
+                 ??0bad_cast@std@@QEAA@PEBD@Z		; MSVCRT.lib(MSVCR100.dll)
+                 GetSystemTimeAsFileTime		; kernel32.lib(KERNEL32.dll)
+                 RegisterClassExW		; user32.lib(USER32.dll)
+                 ungetc		; MSVCRT.lib(MSVCR100.dll)
+                 _unlock_file		; MSVCRT.lib(MSVCR100.dll)
+                 ??0_Lockit@std@@QEAA@H@Z		; msvcprt.lib(MSVCP100.dll)
+                 ??0?$basic_istream@_WU?$char_traits@_W@std@@@std@@QEAA@PEAV?$basic_streambuf@_WU?$char_traits@_W@std@@@1@_N@Z		; msvcprt.lib(MSVCP100.dll)
+                 fputwc		; MSVCRT.lib(MSVCR100.dll)
+                 ??1_Fac_node@std@@QEAA@XZ		; msvcprt.lib(locale0_implib.obj)
+                 memset		; MSVCRT.lib(MSVCR100.dll)
+                 _cexit		; MSVCRT.lib(MSVCR100.dll)
+                 atexit		; MSVCRT.lib(atonexit.obj)
+                 ??0exception@std@@QEAA@AEBV01@@Z		; MSVCRT.lib(MSVCR100.dll)
+                 GetCurrentProcessId		; kernel32.lib(KERNEL32.dll)
+                 ??0exception@std@@QEAA@AEBQEBD@Z		; MSVCRT.lib(MSVCR100.dll)
+                 QueryPerformanceCounter		; kernel32.lib(KERNEL32.dll)
+                 ?_Fiopen@std@@YAPEAU_iobuf@@PEB_WHH@Z		; msvcprt.lib(MSVCP100.dll)
+                 ?eback@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ		; msvcprt.lib(MSVCP100.dll)
+                 ?pptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ		; msvcprt.lib(MSVCP100.dll)
+                 _RTC_Terminate		; MSVCRT.lib(_initsect_.obj)
+                 ?_Gndec@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ		; msvcprt.lib(MSVCP100.dll)
+                 ??1?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@UEAA@XZ		; msvcprt.lib(MSVCP100.dll)
+                 ??Bid@locale@std@@QEAA_KXZ		; msvcprt.lib(MSVCP100.dll)
+                 DirectInput8Create		; dinput8.lib(DINPUT8.dll)
+                 ??4type_info@@AEAAAEAV0@AEBV0@@Z		; MSVCRT.lib(ti_inst.obj)
+                 __CxxSetUnhandledExceptionFilter		; MSVCRT.lib(unhandld.obj)
+                 fgetpos		; MSVCRT.lib(MSVCR100.dll)
+                 ??_U@YAPEAX_K@Z		; msvcprt.lib(newaop_s.obj)
+                 D3DX11CompileFromFileW		; d3dx11.lib(d3dx11_43.dll)
+                 _XcptFilter		; MSVCRT.lib(MSVCR100.dll)
+                 _fseeki64		; MSVCRT.lib(MSVCR100.dll)
+                 D3D11CreateDeviceAndSwapChain		; d3d11.lib(d3d11.dll)
+                 DefWindowProcW		; user32.lib(USER32.dll)
+                 ??_M@YAXPEAX_KHP6AX0@Z@Z		; MSVCRT.lib(ehvecdtr.obj)
+                 ungetwc		; MSVCRT.lib(MSVCR100.dll)
+                 _initterm		; MSVCRT.lib(MSVCR100.dll)
+                 ?setp@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEA_W0@Z		; msvcprt.lib(MSVCP100.dll)
+                 _IsNonwritableInCurrentImage		; MSVCRT.lib(pesect.obj)
+                 ?_Decref@facet@locale@std@@QEAAPEAV123@XZ		; msvcprt.lib(MSVCP100.dll)
+                 RtlVirtualUnwind		; kernel32.lib(KERNEL32.dll)
+                 ?gptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ		; msvcprt.lib(MSVCP100.dll)
+                 DecodePointer		; kernel32.lib(KERNEL32.dll)
+                 LoadCursorW		; user32.lib(USER32.dll)
+                 _onexit		; MSVCRT.lib(atonexit.obj)
+                 ?setstate@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEAAXH_N@Z		; msvcprt.lib(MSVCP100.dll)
+                 RtlLookupFunctionEntry		; kernel32.lib(KERNEL32.dll)
+                 __setusermatherr		; MSVCRT.lib(MSVCR100.dll)
+                 fwrite		; MSVCRT.lib(MSVCR100.dll)
+                 ??0?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAA@XZ		; msvcprt.lib(MSVCP100.dll)
+                 _FindPESection		; MSVCRT.lib(pesect.obj)
+                 __dllonexit		; MSVCRT.lib(MSVCR100.dll)
+                 _initterm_e		; MSVCRT.lib(MSVCR100.dll)
+                 PostQuitMessage		; user32.lib(USER32.dll)
+                 ?showmanyc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JXZ		; msvcprt.lib(MSVCP100.dll)
+                 ?terminate@@YAXXZ		; MSVCRT.lib(MSVCR100.dll)
+                 ?egptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ		; msvcprt.lib(MSVCP100.dll)
+                 __GSHandlerCheckCommon		; MSVCRT.lib(gshandler.obj)
+                 _ValidateImageBase		; MSVCRT.lib(pesect.obj)
+                 _unlock		; MSVCRT.lib(MSVCR100.dll)
+                 memcpy		; MSVCRT.lib(MSVCR100.dll)
+                 CreateWindowExW		; user32.lib(USER32.dll)
+                 ?xsgetn@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JPEA_W_J@Z		; msvcprt.lib(MSVCP100.dll)
+                 __set_app_type		; MSVCRT.lib(MSVCR100.dll)
+                 ??_V@YAXPEAX@Z		; MSVCRT.lib(MSVCR100.dll)
+                 IsDebuggerPresent		; kernel32.lib(KERNEL32.dll)
+                 DispatchMessageW		; user32.lib(USER32.dll)
+                 BeginPaint		; user32.lib(USER32.dll)
+                 ??1?$basic_ios@_WU?$char_traits@_W@std@@@std@@UEAA@XZ		; msvcprt.lib(MSVCP100.dll)
+                 __C_specific_handler		; MSVCRT.lib(MSVCR100.dll)
+                 ?_Pninc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ		; msvcprt.lib(MSVCP100.dll)
+                 __GSHandlerCheck_EH		; MSVCRT.lib(gshandlereh.obj)
+                 LoadIconW		; user32.lib(USER32.dll)
+                 __crt_debugger_hook		; MSVCRT.lib(MSVCR100.dll)
+                 ?xsputn@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JPEB_W_J@Z		; msvcprt.lib(MSVCP100.dll)
+                 ?out@?$codecvt@_WDH@std@@QEBAHAEAHPEB_W1AEAPEB_WPEAD3AEAPEAD@Z		; msvcprt.lib(MSVCP100.dll)
+                 TerminateProcess		; kernel32.lib(KERNEL32.dll)
+                 OutputDebugStringA		; kernel32.lib(KERNEL32.dll)
+                 ?getloc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@QEBA?AVlocale@2@XZ		; msvcprt.lib(MSVCP100.dll)
+                 MessageBoxW		; user32.lib(USER32.dll)
+                 TranslateMessage		; user32.lib(USER32.dll)
+                 _lock_file		; MSVCRT.lib(MSVCR100.dll)
+                 __report_gsfailure		; MSVCRT.lib(gs_report.obj)
+                 ?_Gninc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ		; msvcprt.lib(MSVCP100.dll)
+                 memcpy_s		; MSVCRT.lib(MSVCR100.dll)
+                 ?_Facet_Register@facet@locale@std@@CAXPEAV123@@Z		; msvcprt.lib(locale0_implib.obj)
+                 ?_Init@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXXZ		; msvcprt.lib(MSVCP100.dll)
+                 memmove		; MSVCRT.lib(MSVCR100.dll)
+                 ShowWindow		; user32.lib(USER32.dll)
+                 GetStartupInfoW		; kernel32.lib(KERNEL32.dll)
+                 EndPaint		; user32.lib(USER32.dll)
+                 ?always_noconv@codecvt_base@std@@QEBA_NXZ		; msvcprt.lib(MSVCP100.dll)
+                 ??0type_info@@AEAA@AEBV0@@Z		; MSVCRT.lib(ti_inst.obj)
+                 ?_Xlength_error@std@@YAXPEBD@Z		; msvcprt.lib(MSVCP100.dll)
+                 ?what@exception@std@@UEBAPEBDXZ		; MSVCRT.lib(MSVCR100.dll)
+                 ?_Xout_of_range@std@@YAXPEBD@Z		; msvcprt.lib(MSVCP100.dll)
+                 ?_Getgloballocale@locale@std@@CAPEAV_Locimp@12@XZ		; msvcprt.lib(MSVCP100.dll)
+                 _configthreadlocale		; MSVCRT.lib(MSVCR100.dll)
+                 AdjustWindowRect		; user32.lib(USER32.dll)
+                 fclose		; MSVCRT.lib(MSVCR100.dll)
+                 sinf		; MSVCRT.lib(MSVCR100.dll)
+                 cosf		; MSVCRT.lib(MSVCR100.dll)
+                 GetCurrentProcess		; kernel32.lib(KERNEL32.dll)
+                 exit		; MSVCRT.lib(MSVCR100.dll)
+                 powf		; MSVCRT.lib(MSVCR100.dll)
+                 __GSHandlerCheck		; MSVCRT.lib(gshandler.obj)
+                 ?_Incref@facet@locale@std@@QEAAXXZ		; msvcprt.lib(MSVCP100.dll)
+                 ??1exception@std@@UEAA@XZ		; MSVCRT.lib(MSVCR100.dll)
+                 _amsg_exit		; MSVCRT.lib(MSVCR100.dll)
+                 acosf		; MSVCRT.lib(MSVCR100.dll)
+                 __wgetmainargs		; MSVCRT.lib(MSVCR100.dll)
+                 GetModuleHandleW		; kernel32.lib(KERNEL32.dll)
+                 atanf		; MSVCRT.lib(MSVCR100.dll)
+                 ?unshift@?$codecvt@_WDH@std@@QEBAHAEAHPEAD1AEAPEAD@Z		; msvcprt.lib(MSVCP100.dll)
+                 NtCurrentTeb		; MSVCRT.lib(wcrtexew.obj)
+                 PeekMessageW		; user32.lib(USER32.dll)
+                 fgetc		; MSVCRT.lib(MSVCR100.dll)
+                 ?__CxxUnhandledExceptionFilter@@YAJPEAU_EXCEPTION_POINTERS@@@Z		; MSVCRT.lib(unhandld.obj)
+                 _RTC_Initialize		; MSVCRT.lib(_initsect_.obj)
+                 ??1_Fac_tidy_reg_t@std@@QEAA@XZ		; msvcprt.lib(locale0_implib.obj)
+                 ??0bad_cast@std@@QEAA@AEBV01@@Z		; MSVCRT.lib(MSVCR100.dll)
+                 _matherr		; MSVCRT.lib(merr.obj)
+                 UnhandledExceptionFilter		; kernel32.lib(KERNEL32.dll)
+                 GetCurrentThreadId		; kernel32.lib(KERNEL32.dll)
+                 ??1_Lockit@std@@QEAA@XZ		; msvcprt.lib(MSVCP100.dll)
+                 _CxxThrowException		; MSVCRT.lib(MSVCR100.dll)
+                 ?clear@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEAAXH_N@Z		; msvcprt.lib(MSVCP100.dll)
+                 __security_init_cookie		; MSVCRT.lib(gs_support.obj)
+                 __CxxFrameHandler3		; MSVCRT.lib(MSVCR100.dll)
+                 ??3@YAXPEAX@Z		; MSVCRT.lib(MSVCR100.dll)
+                 SetUnhandledExceptionFilter		; kernel32.lib(KERNEL32.dll)
+                 fflush		; MSVCRT.lib(MSVCR100.dll)
+                 ?setg@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEA_W00@Z		; msvcprt.lib(MSVCP100.dll)
+                 fgetwc		; MSVCRT.lib(MSVCR100.dll)
+                 GetClientRect		; user32.lib(USER32.dll)
+                 ??0?$basic_ios@_WU?$char_traits@_W@std@@@std@@IEAA@XZ		; msvcprt.lib(MSVCP100.dll)
+                 ?_Init@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEAPEA_W0PEAH001@Z		; msvcprt.lib(MSVCP100.dll)
+                 ?_Getcat@?$codecvt@_WDH@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z		; msvcprt.lib(MSVCP100.dll)
+                 ??1bad_cast@std@@UEAA@XZ		; MSVCRT.lib(MSVCR100.dll)
+                 ??0_Fac_node@std@@QEAA@PEAU01@PEAVfacet@locale@1@@Z		; msvcprt.lib(locale0_implib.obj)
+                 Sleep		; kernel32.lib(KERNEL32.dll)
+                 setvbuf		; MSVCRT.lib(MSVCR100.dll)
+                 asinf		; MSVCRT.lib(MSVCR100.dll)
+                 ?__ArrayUnwind@@YAXPEAX_KHP6AX0@Z@Z		; MSVCRT.lib(ehvecdtr.obj)
+                 GetTickCount		; kernel32.lib(KERNEL32.dll)
+                 wWinMainCRTStartup		; MSVCRT.lib(wcrtexew.obj)
+                 ??2@YAPEAX_K@Z		; MSVCRT.lib(MSVCR100.dll)
+                 ?in@?$codecvt@_WDH@std@@QEBAHAEAHPEBD1AEAPEBDPEA_W3AEAPEA_W@Z		; msvcprt.lib(MSVCP100.dll)
+                 _wsetargv		; MSVCRT.lib(wdllargv.obj)
+                 fsetpos		; MSVCRT.lib(MSVCR100.dll)
+                 ??1?$basic_istream@_WU?$char_traits@_W@std@@@std@@UEAA@XZ		; msvcprt.lib(MSVCP100.dll)
+                 RtlCaptureContext		; kernel32.lib(KERNEL32.dll)
+                 _lock		; MSVCRT.lib(MSVCR100.dll)
+                 _exit		; MSVCRT.lib(MSVCR100.dll)
+                 EncodePointer		; kernel32.lib(KERNEL32.dll)
+                 ?_type_info_dtor_internal_method@type_info@@QEAAXXZ		; MSVCRT.lib(MSVCR100.dll)
+         
+         Finished processing /ORDER options
+             Discarded "__declspec(dllimport) void __cdecl std::_Xout_of_range(char const *)" (__imp_?_Xout_of_range@std@@YAXPEBD@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) protected: void __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::setp(wchar_t *,wchar_t *)" (__imp_?setp@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEA_W0@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) protected: void __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Init(wchar_t * *,wchar_t * *,int *,wchar_t * *,wchar_t * *,int *)" (__imp_?_Init@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEAPEA_W0PEAH001@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Pninc(void)" (__imp_?_Pninc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Gninc(void)" (__imp_?_Gninc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Gndec(void)" (__imp_?_Gndec@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::epptr(void)const " (__imp_?epptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::egptr(void)const " (__imp_?egptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::pptr(void)const " (__imp_?pptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::gptr(void)const " (__imp_?gptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::eback(void)const " (__imp_?eback@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "__declspec(dllimport) void __cdecl operator delete[](void *)" (__imp_??_V@YAXPEAX@Z) from MSVCRT.lib(MSVCR100.dll)
+             Discarded GUID_MAX_POWER_SAVINGS from dxguid.lib(dxguid.obj)
+             Discarded GUID_MIN_POWER_SAVINGS from dxguid.lib(dxguid.obj)
+             Discarded GUID_TYPICAL_POWER_SAVINGS from dxguid.lib(dxguid.obj)
+             Discarded NO_SUBGROUP_GUID from dxguid.lib(dxguid.obj)
+             Discarded ALL_POWERSCHEMES_GUID from dxguid.lib(dxguid.obj)
+             Discarded GUID_POWERSCHEME_PERSONALITY from dxguid.lib(dxguid.obj)
+             Discarded GUID_ACTIVE_POWERSCHEME from dxguid.lib(dxguid.obj)
+             Discarded GUID_VIDEO_SUBGROUP from dxguid.lib(dxguid.obj)
+             Discarded GUID_VIDEO_POWERDOWN_TIMEOUT from dxguid.lib(dxguid.obj)
+             Discarded GUID_VIDEO_ANNOYANCE_TIMEOUT from dxguid.lib(dxguid.obj)
+             Discarded GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE from dxguid.lib(dxguid.obj)
+             Discarded GUID_VIDEO_DIM_TIMEOUT from dxguid.lib(dxguid.obj)
+             Discarded GUID_VIDEO_ADAPTIVE_POWERDOWN from dxguid.lib(dxguid.obj)
+             Discarded GUID_MONITOR_POWER_ON from dxguid.lib(dxguid.obj)
+             Discarded GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS from dxguid.lib(dxguid.obj)
+             Discarded GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS from dxguid.lib(dxguid.obj)
+             Discarded GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS from dxguid.lib(dxguid.obj)
+             Discarded GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS from dxguid.lib(dxguid.obj)
+             Discarded GUID_SESSION_DISPLAY_STATE from dxguid.lib(dxguid.obj)
+             Discarded GUID_CONSOLE_DISPLAY_STATE from dxguid.lib(dxguid.obj)
+             Discarded GUID_ALLOW_DISPLAY_REQUIRED from dxguid.lib(dxguid.obj)
+             Discarded GUID_DISK_SUBGROUP from dxguid.lib(dxguid.obj)
+             Discarded GUID_DISK_POWERDOWN_TIMEOUT from dxguid.lib(dxguid.obj)
+             Discarded GUID_DISK_BURST_IGNORE_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_DISK_ADAPTIVE_POWERDOWN from dxguid.lib(dxguid.obj)
+             Discarded GUID_SLEEP_SUBGROUP from dxguid.lib(dxguid.obj)
+             Discarded GUID_SLEEP_IDLE_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_STANDBY_TIMEOUT from dxguid.lib(dxguid.obj)
+             Discarded GUID_UNATTEND_SLEEP_TIMEOUT from dxguid.lib(dxguid.obj)
+             Discarded GUID_HIBERNATE_TIMEOUT from dxguid.lib(dxguid.obj)
+             Discarded GUID_HIBERNATE_FASTS4_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_CRITICAL_POWER_TRANSITION from dxguid.lib(dxguid.obj)
+             Discarded GUID_SYSTEM_AWAYMODE from dxguid.lib(dxguid.obj)
+             Discarded GUID_ALLOW_AWAYMODE from dxguid.lib(dxguid.obj)
+             Discarded GUID_ALLOW_STANDBY_STATES from dxguid.lib(dxguid.obj)
+             Discarded GUID_ALLOW_RTC_WAKE from dxguid.lib(dxguid.obj)
+             Discarded GUID_ALLOW_SYSTEM_REQUIRED from dxguid.lib(dxguid.obj)
+             Discarded GUID_SYSTEM_BUTTON_SUBGROUP from dxguid.lib(dxguid.obj)
+             Discarded GUID_POWERBUTTON_ACTION from dxguid.lib(dxguid.obj)
+             Discarded GUID_POWERBUTTON_ACTION_FLAGS from dxguid.lib(dxguid.obj)
+             Discarded GUID_SLEEPBUTTON_ACTION from dxguid.lib(dxguid.obj)
+             Discarded GUID_SLEEPBUTTON_ACTION_FLAGS from dxguid.lib(dxguid.obj)
+             Discarded GUID_USERINTERFACEBUTTON_ACTION from dxguid.lib(dxguid.obj)
+             Discarded GUID_LIDCLOSE_ACTION from dxguid.lib(dxguid.obj)
+             Discarded GUID_LIDCLOSE_ACTION_FLAGS from dxguid.lib(dxguid.obj)
+             Discarded GUID_LIDOPEN_POWERSTATE from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_SUBGROUP from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_ACTION_0 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_LEVEL_0 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_FLAGS_0 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_ACTION_1 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_LEVEL_1 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_FLAGS_1 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_ACTION_2 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_LEVEL_2 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_FLAGS_2 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_ACTION_3 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_LEVEL_3 from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_DISCHARGE_FLAGS_3 from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_SETTINGS_SUBGROUP from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_THROTTLE_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_THROTTLE_MAXIMUM from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_THROTTLE_MINIMUM from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_ALLOW_THROTTLING from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_IDLESTATE_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PERFSTATE_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PERF_INCREASE_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PERF_DECREASE_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PERF_INCREASE_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PERF_DECREASE_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PERF_INCREASE_TIME from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PERF_DECREASE_TIME from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PERF_TIME_CHECK from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PERF_BOOST_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_IDLE_ALLOW_SCALING from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_IDLE_DISABLE from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_IDLE_TIME_CHECK from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_MAX_CORES from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_MIN_CORES from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PARKING_CORE_OVERRIDE from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PARKING_PERF_STATE from dxguid.lib(dxguid.obj)
+             Discarded GUID_PROCESSOR_PERF_HISTORY from dxguid.lib(dxguid.obj)
+             Discarded GUID_SYSTEM_COOLING_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_LOCK_CONSOLE_ON_WAKE from dxguid.lib(dxguid.obj)
+             Discarded GUID_DEVICE_IDLE_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_ACDC_POWER_SOURCE from dxguid.lib(dxguid.obj)
+             Discarded GUID_LIDSWITCH_STATE_CHANGE from dxguid.lib(dxguid.obj)
+             Discarded GUID_BATTERY_PERCENTAGE_REMAINING from dxguid.lib(dxguid.obj)
+             Discarded GUID_IDLE_BACKGROUND_TASK from dxguid.lib(dxguid.obj)
+             Discarded GUID_BACKGROUND_TASK_NOTIFICATION from dxguid.lib(dxguid.obj)
+             Discarded GUID_APPLAUNCH_BUTTON from dxguid.lib(dxguid.obj)
+             Discarded GUID_PCIEXPRESS_SETTINGS_SUBGROUP from dxguid.lib(dxguid.obj)
+             Discarded GUID_PCIEXPRESS_ASPM_POLICY from dxguid.lib(dxguid.obj)
+             Discarded GUID_ENABLE_SWITCH_FORCED_SHUTDOWN from dxguid.lib(dxguid.obj)
+             Discarded PPM_PERFSTATE_CHANGE_GUID from dxguid.lib(dxguid.obj)
+             Discarded PPM_PERFSTATE_DOMAIN_CHANGE_GUID from dxguid.lib(dxguid.obj)
+             Discarded PPM_IDLESTATE_CHANGE_GUID from dxguid.lib(dxguid.obj)
+             Discarded PPM_PERFSTATES_DATA_GUID from dxguid.lib(dxguid.obj)
+             Discarded PPM_IDLESTATES_DATA_GUID from dxguid.lib(dxguid.obj)
+             Discarded PPM_IDLE_ACCOUNTING_GUID from dxguid.lib(dxguid.obj)
+             Discarded PPM_IDLE_ACCOUNTING_EX_GUID from dxguid.lib(dxguid.obj)
+             Discarded PPM_THERMALCONSTRAINT_GUID from dxguid.lib(dxguid.obj)
+             Discarded PPM_PERFMON_PERFSTATE_GUID from dxguid.lib(dxguid.obj)
+             Discarded PPM_THERMAL_POLICY_CHANGE_GUID from dxguid.lib(dxguid.obj)
+             Discarded NETWORK_MANAGER_FIRST_IP_ADDRESS_ARRIVAL_GUID from dxguid.lib(dxguid.obj)
+             Discarded NETWORK_MANAGER_LAST_IP_ADDRESS_REMOVAL_GUID from dxguid.lib(dxguid.obj)
+             Discarded DOMAIN_JOIN_GUID from dxguid.lib(dxguid.obj)
+             Discarded DOMAIN_LEAVE_GUID from dxguid.lib(dxguid.obj)
+             Discarded FIREWALL_PORT_OPEN_GUID from dxguid.lib(dxguid.obj)
+             Discarded FIREWALL_PORT_CLOSE_GUID from dxguid.lib(dxguid.obj)
+             Discarded MACHINE_POLICY_PRESENT_GUID from dxguid.lib(dxguid.obj)
+             Discarded USER_POLICY_PRESENT_GUID from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectDraw from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectDraw7 from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectDrawClipper from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDraw from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDraw2 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDraw4 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDraw7 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawSurface from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawSurface2 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawSurface3 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawSurface4 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawSurface7 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawSurfaceNew from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectDrawFactory2 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawFactory2 from dxguid.lib(dxguid.obj)
+             Discarded GUID_DirectDrawSurfaceStream from dxguid.lib(dxguid.obj)
+             Discarded GUID_DirectDrawPaletteStream from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawOptSurface from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawPalette2 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawPalette from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawClipper from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawColorControl from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawGammaControl from dxguid.lib(dxguid.obj)
+             Discarded GUID_MiscellaneousCallbacks from dxguid.lib(dxguid.obj)
+             Discarded GUID_VideoPortCallbacks from dxguid.lib(dxguid.obj)
+             Discarded GUID_ColorControlCallbacks from dxguid.lib(dxguid.obj)
+             Discarded GUID_VideoPortCaps from dxguid.lib(dxguid.obj)
+             Discarded GUID_D3DCallbacks2 from dxguid.lib(dxguid.obj)
+             Discarded GUID_D3DCallbacks3 from dxguid.lib(dxguid.obj)
+             Discarded GUID_NonLocalVidMemCaps from dxguid.lib(dxguid.obj)
+             Discarded GUID_KernelCallbacks from dxguid.lib(dxguid.obj)
+             Discarded GUID_KernelCaps from dxguid.lib(dxguid.obj)
+             Discarded GUID_D3DExtendedCaps from dxguid.lib(dxguid.obj)
+             Discarded GUID_ZPixelFormats from dxguid.lib(dxguid.obj)
+             Discarded GUID_DDMoreSurfaceCaps from dxguid.lib(dxguid.obj)
+             Discarded GUID_DDStereoMode from dxguid.lib(dxguid.obj)
+             Discarded GUID_OptSurfaceKmodeInfo from dxguid.lib(dxguid.obj)
+             Discarded GUID_OptSurfaceUmodeInfo from dxguid.lib(dxguid.obj)
+             Discarded GUID_UserModeDriverInfo from dxguid.lib(dxguid.obj)
+             Discarded GUID_UserModeDriverPassword from dxguid.lib(dxguid.obj)
+             Discarded GUID_D3DParseUnknownCommandCallback from dxguid.lib(dxguid.obj)
+             Discarded GUID_MotionCompCallbacks from dxguid.lib(dxguid.obj)
+             Discarded GUID_NTCallbacks from dxguid.lib(dxguid.obj)
+             Discarded GUID_Miscellaneous2Callbacks from dxguid.lib(dxguid.obj)
+             Discarded GUID_DDMoreCaps from dxguid.lib(dxguid.obj)
+             Discarded IID_IDDVideoPortContainer from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawVideoPort from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectDrawVideoPortNotify from dxguid.lib(dxguid.obj)
+             Discarded DDVPTYPE_E_HREFH_VREFH from dxguid.lib(dxguid.obj)
+             Discarded DDVPTYPE_E_HREFH_VREFL from dxguid.lib(dxguid.obj)
+             Discarded DDVPTYPE_E_HREFL_VREFH from dxguid.lib(dxguid.obj)
+             Discarded DDVPTYPE_E_HREFL_VREFL from dxguid.lib(dxguid.obj)
+             Discarded DDVPTYPE_CCIR656 from dxguid.lib(dxguid.obj)
+             Discarded DDVPTYPE_BROOKTREE from dxguid.lib(dxguid.obj)
+             Discarded DDVPTYPE_PHILIPS from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMInfo from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMesh from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMVector from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMeshFace from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMaterial from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMaterialArray from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMFrame from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMFrameTransformMatrix from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMeshMaterialList from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMeshTextureCoords from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMeshNormals from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMCoords2d from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMatrix4x4 from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMAnimation from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMAnimationSet from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMAnimationKey from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMFloatKeys from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMaterialAmbientColor from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMaterialDiffuseColor from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMaterialSpecularColor from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMaterialEmissiveColor from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMaterialPower from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMColorRGBA from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMColorRGB from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMGuid from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMTextureFilename from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMTextureReference from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMIndexedColor from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMeshVertexColors from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMaterialWrap from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMBoolean from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMMeshFaceWraps from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMBoolean2d from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMTimedFloatKeys from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMAnimationOptions from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMFramePosition from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMFrameVelocity from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMFrameRotation from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMLight from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMCamera from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMAppData from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMLightUmbra from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMLightRange from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMLightPenumbra from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMLightAttenuation from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMInlineData from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMUrl from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMProgressiveMesh from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMExternalVisual from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMStringProperty from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMPropertyBag from dxguid.lib(dxguid.obj)
+             Discarded TID_D3DRMRightHanded from dxguid.lib(dxguid.obj)
+             Discarded CLSID_CDirectXFile from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectXFile from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectXFileEnumObject from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectXFileSaveObject from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectXFileObject from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectXFileData from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectXFileDataReference from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectXFileBinary from dxguid.lib(dxguid.obj)
+             Discarded TID_DXFILEHeader from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectInput from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectInputDevice from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectInput8 from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectInputDevice8 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputA from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputW from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInput2A from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInput2W from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInput7A from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInput7W from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInput8A from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputDeviceA from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputDeviceW from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputDevice2A from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputDevice2W from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputDevice7A from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputDevice7W from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputDevice8A from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputDevice8W from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputEffect from dxguid.lib(dxguid.obj)
+             Discarded GUID_RxAxis from dxguid.lib(dxguid.obj)
+             Discarded GUID_RyAxis from dxguid.lib(dxguid.obj)
+             Discarded GUID_RzAxis from dxguid.lib(dxguid.obj)
+             Discarded GUID_Slider from dxguid.lib(dxguid.obj)
+             Discarded GUID_Button from dxguid.lib(dxguid.obj)
+             Discarded GUID_POV from dxguid.lib(dxguid.obj)
+             Discarded GUID_Unknown from dxguid.lib(dxguid.obj)
+             Discarded GUID_Joystick from dxguid.lib(dxguid.obj)
+             Discarded GUID_SysMouseEm from dxguid.lib(dxguid.obj)
+             Discarded GUID_SysMouseEm2 from dxguid.lib(dxguid.obj)
+             Discarded GUID_SysKeyboardEm from dxguid.lib(dxguid.obj)
+             Discarded GUID_SysKeyboardEm2 from dxguid.lib(dxguid.obj)
+             Discarded GUID_ConstantForce from dxguid.lib(dxguid.obj)
+             Discarded GUID_RampForce from dxguid.lib(dxguid.obj)
+             Discarded GUID_Square from dxguid.lib(dxguid.obj)
+             Discarded GUID_Sine from dxguid.lib(dxguid.obj)
+             Discarded GUID_Triangle from dxguid.lib(dxguid.obj)
+             Discarded GUID_SawtoothUp from dxguid.lib(dxguid.obj)
+             Discarded GUID_SawtoothDown from dxguid.lib(dxguid.obj)
+             Discarded GUID_Spring from dxguid.lib(dxguid.obj)
+             Discarded GUID_Damper from dxguid.lib(dxguid.obj)
+             Discarded GUID_Inertia from dxguid.lib(dxguid.obj)
+             Discarded GUID_Friction from dxguid.lib(dxguid.obj)
+             Discarded GUID_CustomForce from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputEffectDriver from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputJoyConfig from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputPIDDriver from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectInputJoyConfig8 from dxguid.lib(dxguid.obj)
+             Discarded GUID_KeyboardClass from dxguid.lib(dxguid.obj)
+             Discarded GUID_MediaClass from dxguid.lib(dxguid.obj)
+             Discarded GUID_MouseClass from dxguid.lib(dxguid.obj)
+             Discarded GUID_HIDClass from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectSound from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectSound8 from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectSoundCapture from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectSoundCapture8 from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DirectSoundFullDuplex from dxguid.lib(dxguid.obj)
+             Discarded DSDEVID_DefaultPlayback from dxguid.lib(dxguid.obj)
+             Discarded DSDEVID_DefaultCapture from dxguid.lib(dxguid.obj)
+             Discarded DSDEVID_DefaultVoicePlayback from dxguid.lib(dxguid.obj)
+             Discarded DSDEVID_DefaultVoiceCapture from dxguid.lib(dxguid.obj)
+             Discarded IID_IReferenceClock from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSound from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSound8 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundBuffer from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundBuffer8 from dxguid.lib(dxguid.obj)
+             Discarded GUID_All_Objects from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSound3DListener from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSound3DBuffer from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundCapture from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundCaptureBuffer from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundCaptureBuffer8 from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundNotify from dxguid.lib(dxguid.obj)
+             Discarded IID_IKsPropertySet from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundFXGargle from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundFXChorus from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundFXFlanger from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundFXEcho from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundFXDistortion from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundFXCompressor from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundFXParamEq from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundFXI3DL2Reverb from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundFXWavesReverb from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundCaptureFXAec from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundCaptureFXNoiseSuppress from dxguid.lib(dxguid.obj)
+             Discarded IID_IDirectSoundFullDuplex from dxguid.lib(dxguid.obj)
+             Discarded DS3DALG_NO_VIRTUALIZATION from dxguid.lib(dxguid.obj)
+             Discarded DS3DALG_HRTF_FULL from dxguid.lib(dxguid.obj)
+             Discarded DS3DALG_HRTF_LIGHT from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSFX_STANDARD_GARGLE from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSFX_STANDARD_CHORUS from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSFX_STANDARD_FLANGER from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSFX_STANDARD_ECHO from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSFX_STANDARD_DISTORTION from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSFX_STANDARD_COMPRESSOR from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSFX_STANDARD_PARAMEQ from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSFX_STANDARD_I3DL2REVERB from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSFX_WAVES_REVERB from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSCFX_CLASS_AEC from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSCFX_MS_AEC from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSCFX_SYSTEM_AEC from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSCFX_CLASS_NS from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSCFX_MS_NS from dxguid.lib(dxguid.obj)
+             Discarded GUID_DSCFX_SYSTEM_NS from dxguid.lib(dxguid.obj)
+             Discarded CLSID_DxDiagProvider from dxguid.lib(dxguid.obj)
+             Discarded IID_IDxDiagProvider from dxguid.lib(dxguid.obj)
+             Discarded IID_IDxDiagContainer from dxguid.lib(dxguid.obj)
+             Discarded _GUID_bcc782bc_6492_4c22_8c35_f5d72fe73c6e from dxguid.lib(dxguid.obj)
+             Discarded _GUID_9ecdd80d_0e81_40d8_8903_2bf7b131ac43 from dxguid.lib(dxguid.obj)
+             Discarded _GUID_02860630_bf3b_42a8_b14e_91eda2f51ea5 from dxguid.lib(dxguid.obj)
+             Discarded _GUID_b1ee676a_d9cd_4d2a_89a8_fa53eb9e480b from dxguid.lib(dxguid.obj)
+             Discarded _GUID_5a508685_a254_4fba_9b82_9a24b00306af from dxguid.lib(dxguid.obj)
+             Discarded _GUID_db05ea35_0329_4d4b_a53a_6dead03d3852 from dxguid.lib(dxguid.obj)
+             Discarded _GUID_8bcf1f58_9fe7_4583_8ac6_e2adc465c8bb from dxguid.lib(dxguid.obj)
+             Discarded _GUID_cac1105f_619b_4d04_831a_44e1cbf12d57 from dxguid.lib(dxguid.obj)
+             Discarded _GUID_2d9a0f9c_e67b_4b24_ab44_92b3e770c020 from dxguid.lib(dxguid.obj)
+             Discarded _GUID_6a93130e_1d53_41d1_a9cf_e758800bb179 from dxguid.lib(dxguid.obj)
+             Discarded _GUID_c4f82dd4_cb4e_4ce1_8bdb_ee32d4198269 from dxguid.lib(dxguid.obj)
+             Discarded '.rdata' from msvcprt.lib(locale0_implib.obj)
+             Discarded "private: static unsigned int const <CrtImplementationDetails>::NativeDll::ProcessDetach" (?ProcessDetach@NativeDll@<CrtImplementationDetails>@@0IB) from MSVCRT.lib(unhandld.obj)
+             Discarded "private: static unsigned int const <CrtImplementationDetails>::NativeDll::ProcessAttach" (?ProcessAttach@NativeDll@<CrtImplementationDetails>@@0IB) from MSVCRT.lib(unhandld.obj)
+             Discarded "private: static unsigned int const <CrtImplementationDetails>::NativeDll::ThreadAttach" (?ThreadAttach@NativeDll@<CrtImplementationDetails>@@0IB) from MSVCRT.lib(unhandld.obj)
+             Discarded "private: static unsigned int const <CrtImplementationDetails>::NativeDll::ThreadDetach" (?ThreadDetach@NativeDll@<CrtImplementationDetails>@@0IB) from MSVCRT.lib(unhandld.obj)
+             Discarded "private: static unsigned int const <CrtImplementationDetails>::NativeDll::ProcessVerifier" (?ProcessVerifier@NativeDll@<CrtImplementationDetails>@@0IB) from MSVCRT.lib(unhandld.obj)
+             Discarded "public: static bool const std::tr1::integral_constant<bool,0>::value" (?value@?$integral_constant@_N$0A@@tr1@std@@2_NB) from Start.obj
+             Discarded "public: static bool const std::tr1::integral_constant<bool,1>::value" (?value@?$integral_constant@_N$00@tr1@std@@2_NB) from Start.obj
+             Discarded "public: static unsigned __int64 const std::tr1::integral_constant<unsigned __int64,0>::value" (?value@?$integral_constant@_K$0A@@tr1@std@@2_KB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<bool>::_Rank" (?_Rank@?$_Arithmetic_traits@_N@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<char>::_Rank" (?_Rank@?$_Arithmetic_traits@D@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<signed char>::_Rank" (?_Rank@?$_Arithmetic_traits@C@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<unsigned char>::_Rank" (?_Rank@?$_Arithmetic_traits@E@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<short>::_Rank" (?_Rank@?$_Arithmetic_traits@F@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<unsigned short>::_Rank" (?_Rank@?$_Arithmetic_traits@G@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<int>::_Rank" (?_Rank@?$_Arithmetic_traits@H@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<unsigned int>::_Rank" (?_Rank@?$_Arithmetic_traits@I@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<long>::_Rank" (?_Rank@?$_Arithmetic_traits@J@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<unsigned long>::_Rank" (?_Rank@?$_Arithmetic_traits@K@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<__int64>::_Rank" (?_Rank@?$_Arithmetic_traits@_J@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<unsigned __int64>::_Rank" (?_Rank@?$_Arithmetic_traits@_K@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<float>::_Rank" (?_Rank@?$_Arithmetic_traits@M@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<double>::_Rank" (?_Rank@?$_Arithmetic_traits@N@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Arithmetic_traits<long double>::_Rank" (?_Rank@?$_Arithmetic_traits@O@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Locbase<int>::collate" (?collate@?$_Locbase@H@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Locbase<int>::ctype" (?ctype@?$_Locbase@H@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Locbase<int>::monetary" (?monetary@?$_Locbase@H@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Locbase<int>::numeric" (?numeric@?$_Locbase@H@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Locbase<int>::time" (?time@?$_Locbase@H@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Locbase<int>::messages" (?messages@?$_Locbase@H@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Locbase<int>::all" (?all@?$_Locbase@H@std@@2HB) from Start.obj
+             Discarded "public: static int const std::_Locbase<int>::none" (?none@?$_Locbase@H@std@@2HB) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::skipws" (?skipws@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::unitbuf" (?unitbuf@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::uppercase" (?uppercase@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::showbase" (?showbase@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::showpoint" (?showpoint@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::showpos" (?showpos@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::left" (?left@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::right" (?right@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::internal" (?internal@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::dec" (?dec@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::oct" (?oct@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::hex" (?hex@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::scientific" (?scientific@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::fixed" (?fixed@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::hexfloat" (?hexfloat@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::boolalpha" (?boolalpha@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::_Stdio" (?_Stdio@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::adjustfield" (?adjustfield@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::basefield" (?basefield@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Fmtflags const std::_Iosb<int>::floatfield" (?floatfield@?$_Iosb@H@std@@2W4_Fmtflags@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Iostate const std::_Iosb<int>::goodbit" (?goodbit@?$_Iosb@H@std@@2W4_Iostate@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Iostate const std::_Iosb<int>::eofbit" (?eofbit@?$_Iosb@H@std@@2W4_Iostate@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Iostate const std::_Iosb<int>::failbit" (?failbit@?$_Iosb@H@std@@2W4_Iostate@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Iostate const std::_Iosb<int>::badbit" (?badbit@?$_Iosb@H@std@@2W4_Iostate@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Iostate const std::_Iosb<int>::_Hardfail" (?_Hardfail@?$_Iosb@H@std@@2W4_Iostate@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Openmode const std::_Iosb<int>::in" (?in@?$_Iosb@H@std@@2W4_Openmode@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Openmode const std::_Iosb<int>::out" (?out@?$_Iosb@H@std@@2W4_Openmode@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Openmode const std::_Iosb<int>::ate" (?ate@?$_Iosb@H@std@@2W4_Openmode@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Openmode const std::_Iosb<int>::app" (?app@?$_Iosb@H@std@@2W4_Openmode@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Openmode const std::_Iosb<int>::trunc" (?trunc@?$_Iosb@H@std@@2W4_Openmode@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Openmode const std::_Iosb<int>::_Nocreate" (?_Nocreate@?$_Iosb@H@std@@2W4_Openmode@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Openmode const std::_Iosb<int>::_Noreplace" (?_Noreplace@?$_Iosb@H@std@@2W4_Openmode@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Openmode const std::_Iosb<int>::binary" (?binary@?$_Iosb@H@std@@2W4_Openmode@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Seekdir const std::_Iosb<int>::beg" (?beg@?$_Iosb@H@std@@2W4_Seekdir@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Seekdir const std::_Iosb<int>::cur" (?cur@?$_Iosb@H@std@@2W4_Seekdir@12@B) from Start.obj
+             Discarded "public: static enum std::_Iosb<int>::_Seekdir const std::_Iosb<int>::end" (?end@?$_Iosb@H@std@@2W4_Seekdir@12@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMSinCoefficients0" (?g_XMSinCoefficients0@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMSinCoefficients1" (?g_XMSinCoefficients1@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMSinCoefficients2" (?g_XMSinCoefficients2@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMCosCoefficients0" (?g_XMCosCoefficients0@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMCosCoefficients1" (?g_XMCosCoefficients1@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMCosCoefficients2" (?g_XMCosCoefficients2@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMASinCoefficients0" (?g_XMASinCoefficients0@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMASinCoefficients1" (?g_XMASinCoefficients1@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMASinCoefficients2" (?g_XMASinCoefficients2@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMSinEstCoefficients" (?g_XMSinEstCoefficients@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMCosEstCoefficients" (?g_XMCosEstCoefficients@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMTanEstCoefficients" (?g_XMTanEstCoefficients@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMATanEstCoefficients" (?g_XMATanEstCoefficients@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMASinEstCoefficients" (?g_XMASinEstCoefficients@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMASinEstConstants" (?g_XMASinEstConstants@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMNegIdentityR3" (?g_XMNegIdentityR3@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMNegativeZero" (?g_XMNegativeZero@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMNegate3" (?g_XMNegate3@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMask3" (?g_XMMask3@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskX" (?g_XMMaskX@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskZ" (?g_XMMaskZ@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskW" (?g_XMMaskW@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMOne" (?g_XMOne@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMOne3" (?g_XMOne3@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMZero" (?g_XMZero@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMNegativeOne" (?g_XMNegativeOne@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMOneHalf" (?g_XMOneHalf@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMNegativePi" (?g_XMNegativePi@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMHalfPi" (?g_XMHalfPi@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMPi" (?g_XMPi@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMTwoPi" (?g_XMTwoPi@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMReciprocalTwoPi" (?g_XMReciprocalTwoPi@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMEpsilon" (?g_XMEpsilon@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMInfinity" (?g_XMInfinity@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMQNaN" (?g_XMQNaN@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMQNaNTest" (?g_XMQNaNTest@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMAbsMask" (?g_XMAbsMask@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMNegOneMask" (?g_XMNegOneMask@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskA8R8G8B8" (?g_XMMaskA8R8G8B8@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMFlipA8R8G8B8" (?g_XMFlipA8R8G8B8@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMFixAA8R8G8B8" (?g_XMFixAA8R8G8B8@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMNormalizeA8R8G8B8" (?g_XMNormalizeA8R8G8B8@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskA2B10G10R10" (?g_XMMaskA2B10G10R10@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMFlipA2B10G10R10" (?g_XMFlipA2B10G10R10@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMFixAA2B10G10R10" (?g_XMFixAA2B10G10R10@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMNormalizeA2B10G10R10" (?g_XMNormalizeA2B10G10R10@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskX16Y16" (?g_XMMaskX16Y16@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMFlipX16Y16" (?g_XMFlipX16Y16@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMFixX16Y16" (?g_XMFixX16Y16@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMNormalizeX16Y16" (?g_XMNormalizeX16Y16@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskX16Y16Z16W16" (?g_XMMaskX16Y16Z16W16@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMFlipX16Y16Z16W16" (?g_XMFlipX16Y16Z16W16@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMFixX16Y16Z16W16" (?g_XMFixX16Y16Z16W16@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMNormalizeX16Y16Z16W16" (?g_XMNormalizeX16Y16Z16W16@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMNoFraction" (?g_XMNoFraction@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMOneHalfMinusEpsilon" (?g_XMOneHalfMinusEpsilon@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMFixupY16" (?g_XMFixupY16@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMFixupY16W16" (?g_XMFixupY16W16@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMFlipY" (?g_XMFlipY@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMFlipZ" (?g_XMFlipZ@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMFlipW" (?g_XMFlipW@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMFlipYZ" (?g_XMFlipYZ@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMFlipZW" (?g_XMFlipZW@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMFlipYW" (?g_XMFlipYW@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskHenD3" (?g_XMMaskHenD3@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskDHen3" (?g_XMMaskDHen3@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMAddUHenD3" (?g_XMAddUHenD3@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMAddHenD3" (?g_XMAddHenD3@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMAddDHen3" (?g_XMAddDHen3@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMMulHenD3" (?g_XMMulHenD3@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMMulDHen3" (?g_XMMulDHen3@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMXorHenD3" (?g_XMXorHenD3@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMXorDHen3" (?g_XMXorDHen3@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskIco4" (?g_XMMaskIco4@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMXorXIco4" (?g_XMXorXIco4@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMXorIco4" (?g_XMXorIco4@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMAddXIco4" (?g_XMAddXIco4@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMAddUIco4" (?g_XMAddUIco4@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMAddIco4" (?g_XMAddIco4@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMMulIco4" (?g_XMMulIco4@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskDec4" (?g_XMMaskDec4@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMXorDec4" (?g_XMXorDec4@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMAddUDec4" (?g_XMAddUDec4@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMAddDec4" (?g_XMAddDec4@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMMulDec4" (?g_XMMulDec4@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMMaskByte4" (?g_XMMaskByte4@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORI32 const g_XMXorByte4" (?g_XMXorByte4@@3UXMVECTORI32@@B) from Start.obj
+             Discarded "struct XMVECTORF32 const g_XMAddByte4" (?g_XMAddByte4@@3UXMVECTORF32@@B) from Start.obj
+             Discarded "`string'" (??_C@_0BI@CFPLBAOH@invalid?5string?5position?$AA@) from Start.obj
+             Discarded "public: static unsigned __int64 const std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::npos" (?npos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@2_KB) from Start.obj
+             Discarded "private: static int const std::fpos<int>::_Stz" (?_Stz@?$fpos@H@std@@0HB) from Start.obj
+             Discarded '.rdata' from Start.obj
+             Discarded '.rdata' from Start.obj
+             Discarded '.xdata' from msvcprt.lib(locale0_implib.obj)
+             Discarded '.xdata' from msvcprt.lib(locale0_implib.obj)
+             Discarded '.xdata' from msvcprt.lib(locale0_implib.obj)
+             Discarded '.xdata' from msvcprt.lib(locale0_implib.obj)
+             Discarded '.xdata' from msvcprt.lib(locale0_implib.obj)
+             Discarded '.xdata' from MSVCRT.lib(ehvecdtr.obj)
+             Discarded '.xdata' from Tree.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.xdata' from Start.obj
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$4' from MSVCRT.lib(MSVCR100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from msvcprt.lib(MSVCP100.dll)
+             Discarded '.idata$6' from MSVCRT.lib(MSVCR100.dll)
+             Discarded CLSID_XACTEngine from dxguid.lib(dxguid.obj)
+             Discarded CLSID_XACTAuditionEngine from dxguid.lib(dxguid.obj)
+             Discarded CLSID_XACTDebugEngine from dxguid.lib(dxguid.obj)
+             Discarded IID_IXACT3Engine from dxguid.lib(dxguid.obj)
+             Discarded CLSID_XAudio2 from dxguid.lib(dxguid.obj)
+             Discarded CLSID_XAudio2_Debug from dxguid.lib(dxguid.obj)
+             Discarded IID_IXAudio2 from dxguid.lib(dxguid.obj)
+             Discarded CLSID_AudioVolumeMeter from dxguid.lib(dxguid.obj)
+             Discarded CLSID_AudioVolumeMeter_Debug from dxguid.lib(dxguid.obj)
+             Discarded CLSID_AudioReverb from dxguid.lib(dxguid.obj)
+             Discarded CLSID_AudioReverb_Debug from dxguid.lib(dxguid.obj)
+             Discarded '.pdata' from msvcprt.lib(locale0_implib.obj)
+             Discarded '.pdata' from msvcprt.lib(locale0_implib.obj)
+             Discarded '.pdata' from msvcprt.lib(locale0_implib.obj)
+             Discarded '.pdata' from MSVCRT.lib(ehvecdtr.obj)
+             Discarded '.pdata' from Tree.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded '.pdata' from Start.obj
+             Discarded "float __cdecl acos(float)" (?acos@@YAMM@Z) from Start.obj
+             Discarded "float __cdecl asin(float)" (?asin@@YAMM@Z) from Start.obj
+             Discarded "float __cdecl cos(float)" (?cos@@YAMM@Z) from Start.obj
+             Discarded "float __cdecl sin(float)" (?sin@@YAMM@Z) from Start.obj
+             Discarded "float __cdecl sqrt(float)" (?sqrt@@YAMM@Z) from Start.obj
+             Discarded "public: __cdecl std::bad_alloc::bad_alloc(char const *)" (??0bad_alloc@std@@QEAA@PEBD@Z) from Start.obj
+             Discarded "public: static wchar_t __cdecl std::char_traits<wchar_t>::to_char_type(unsigned short const &)" (?to_char_type@?$char_traits@_W@std@@SA_WAEBG@Z) from Start.obj
+             Discarded "public: static unsigned short __cdecl std::char_traits<wchar_t>::to_int_type(wchar_t const &)" (?to_int_type@?$char_traits@_W@std@@SAGAEB_W@Z) from Start.obj
+             Discarded "public: static bool __cdecl std::char_traits<wchar_t>::eq_int_type(unsigned short const &,unsigned short const &)" (?eq_int_type@?$char_traits@_W@std@@SA_NAEBG0@Z) from Start.obj
+             Discarded "public: static unsigned short __cdecl std::char_traits<wchar_t>::not_eof(unsigned short const &)" (?not_eof@?$char_traits@_W@std@@SAGAEBG@Z) from Start.obj
+             Discarded "public: static unsigned short __cdecl std::char_traits<wchar_t>::eof(void)" (?eof@?$char_traits@_W@std@@SAGXZ) from Start.obj
+             Discarded "public: static char * __cdecl std::char_traits<char>::copy(char *,char const *,unsigned __int64)" (?copy@?$char_traits@D@std@@SAPEADPEADPEBD_K@Z) from Start.obj
+             Discarded "public: static char * __cdecl std::char_traits<char>::move(char *,char const *,unsigned __int64)" (?move@?$char_traits@D@std@@SAPEADPEADPEBD_K@Z) from Start.obj
+             Discarded "public: static char * __cdecl std::char_traits<char>::assign(char *,unsigned __int64,char)" (?assign@?$char_traits@D@std@@SAPEADPEAD_KD@Z) from Start.obj
+             Discarded "public: static void __cdecl std::char_traits<char>::assign(char &,char const &)" (?assign@?$char_traits@D@std@@SAXAEADAEBD@Z) from Start.obj
+             Discarded "public: void __cdecl std::_Iterator_base0::_Adopt(void const *)" (?_Adopt@_Iterator_base0@std@@QEAAXPEBX@Z) from Start.obj
+             Discarded "public: void __cdecl std::locale::facet::_Register(void)" (?_Register@facet@locale@std@@QEAAXXZ) from Start.obj
+             Discarded "public: class std::locale::facet const * __cdecl std::locale::_Getfacet(unsigned __int64)const " (?_Getfacet@locale@std@@QEBAPEBVfacet@12@_K@Z) from Start.obj
+             Discarded "bool __cdecl std::_Fgetc<wchar_t>(wchar_t &,struct _iobuf *)" (??$_Fgetc@_W@std@@YA_NAEA_WPEAU_iobuf@@@Z) from Start.obj
+             Discarded "bool __cdecl std::_Fputc<wchar_t>(wchar_t,struct _iobuf *)" (??$_Fputc@_W@std@@YA_N_WPEAU_iobuf@@@Z) from Start.obj
+             Discarded "bool __cdecl std::_Ungetc<wchar_t>(wchar_t const &,struct _iobuf *)" (??$_Ungetc@_W@std@@YA_NAEB_WPEAU_iobuf@@@Z) from Start.obj
+             Discarded "public: __cdecl XMVECTORF32::operator union __m128(void)const " (??BXMVECTORF32@@QEBA?AT__m128@@XZ) from Start.obj
+             Discarded "public: __cdecl XMVECTORI32::operator union __m128(void)const " (??BXMVECTORI32@@QEBA?AT__m128@@XZ) from Start.obj
+             Discarded "public: __cdecl _XMMATRIX::_XMMATRIX(void)" (??0_XMMATRIX@@QEAA@XZ) from Start.obj
+             Discarded "public: __cdecl _XMFLOAT2::_XMFLOAT2(void)" (??0_XMFLOAT2@@QEAA@XZ) from Start.obj
+             Discarded "public: __cdecl _XMFLOAT3::_XMFLOAT3(void)" (??0_XMFLOAT3@@QEAA@XZ) from Start.obj
+             Discarded "public: __cdecl _XMFLOAT4::_XMFLOAT4(void)" (??0_XMFLOAT4@@QEAA@XZ) from Start.obj
+             Discarded "public: __cdecl _XMFLOAT4::_XMFLOAT4(float,float,float,float)" (??0_XMFLOAT4@@QEAA@MMMM@Z) from Start.obj
+             Discarded "union __m128 __cdecl XMLoadFloat4(struct _XMFLOAT4 const *)" (?XMLoadFloat4@@YA?AT__m128@@PEBU_XMFLOAT4@@@Z) from Start.obj
+             Discarded "void __cdecl XMStoreFloat4(struct _XMFLOAT4 *,union __m128 const &)" (?XMStoreFloat4@@YAXPEAU_XMFLOAT4@@AEBT__m128@@@Z) from Start.obj
+             Discarded "union __m128 __cdecl XMVectorSet(float,float,float,float)" (?XMVectorSet@@YA?AT__m128@@MMMM@Z) from Start.obj
+             Discarded "union __m128 __cdecl XMVector3Transform(union __m128 const &,struct _XMMATRIX const &)" (?XMVector3Transform@@YA?AT__m128@@AEBT1@AEBU_XMMATRIX@@@Z) from Start.obj
+             Discarded "struct _XMMATRIX __cdecl XMMatrixMultiply(struct _XMMATRIX const &,struct _XMMATRIX const &)" (?XMMatrixMultiply@@YA?AU_XMMATRIX@@AEBU1@0@Z) from Start.obj
+             Discarded "struct _XMMATRIX __cdecl XMMatrixTranspose(struct _XMMATRIX const &)" (?XMMatrixTranspose@@YA?AU_XMMATRIX@@AEBU1@@Z) from Start.obj
+             Discarded "struct _XMMATRIX __cdecl XMMatrixIdentity(void)" (?XMMatrixIdentity@@YA?AU_XMMATRIX@@XZ) from Start.obj
+             Discarded "struct _XMMATRIX __cdecl XMMatrixTranslation(float,float,float)" (?XMMatrixTranslation@@YA?AU_XMMATRIX@@MMM@Z) from Start.obj
+             Discarded "struct _XMMATRIX __cdecl XMMatrixScaling(float,float,float)" (?XMMatrixScaling@@YA?AU_XMMATRIX@@MMM@Z) from Start.obj
+             Discarded "struct _XMMATRIX __cdecl XMMatrixRotationX(float)" (?XMMatrixRotationX@@YA?AU_XMMATRIX@@M@Z) from Start.obj
+             Discarded "struct _XMMATRIX __cdecl XMMatrixRotationY(float)" (?XMMatrixRotationY@@YA?AU_XMMATRIX@@M@Z) from Start.obj
+             Discarded "struct _XMMATRIX __cdecl XMMatrixRotationZ(float)" (?XMMatrixRotationZ@@YA?AU_XMMATRIX@@M@Z) from Start.obj
+             Discarded "struct _XMMATRIX __cdecl XMMatrixPerspectiveFovLH(float,float,float,float)" (?XMMatrixPerspectiveFovLH@@YA?AU_XMMATRIX@@MMMM@Z) from Start.obj
+             Discarded "public: struct _XMMATRIX & __cdecl _XMMATRIX::operator=(struct _XMMATRIX const &)" (??4_XMMATRIX@@QEAAAEAU0@AEBU0@@Z) from Start.obj
+             Discarded "public: struct _XMMATRIX __cdecl _XMMATRIX::operator*(struct _XMMATRIX const &)const " (??D_XMMATRIX@@QEBA?AU0@AEBU0@@Z) from Start.obj
+             Discarded "void __cdecl XMScalarSinCos(float *,float *,float)" (?XMScalarSinCos@@YAXPEAM0M@Z) from Start.obj
+             Discarded "void __cdecl `vector constructor iterator'(void *,unsigned __int64,int,void * (__cdecl*)(void *))" (??_H@YAXPEAX_KHP6APEAX0@Z@Z) from Start.obj
+             Discarded "long __cdecl CompileShaderFromFile(wchar_t *,char const *,char const *,struct ID3D10Blob * *)" (?CompileShaderFromFile@@YAJPEA_WPEBD1PEAPEAUID3D10Blob@@@Z) from Start.obj
+             Discarded "public: __cdecl SimpleVertex::SimpleVertex(void)" (??0SimpleVertex@@QEAA@XZ) from Start.obj
+             Discarded "public: __cdecl CBChangeOnResize::CBChangeOnResize(void)" (??0CBChangeOnResize@@QEAA@XZ) from Start.obj
+             Discarded "public: __cdecl CBChangesEveryFrame::CBChangesEveryFrame(void)" (??0CBChangesEveryFrame@@QEAA@XZ) from Start.obj
+             Discarded "public: void __cdecl std::basic_ifstream<wchar_t,struct std::char_traits<wchar_t> >::open(wchar_t const *,int,int)" (?open@?$basic_ifstream@_WU?$char_traits@_W@std@@@std@@QEAAXPEB_WHH@Z) from Start.obj
+             Discarded "public: virtual __cdecl std::basic_ifstream<wchar_t,struct std::char_traits<wchar_t> >::~basic_ifstream<wchar_t,struct std::char_traits<wchar_t> >(void)" (??1?$basic_ifstream@_WU?$char_traits@_W@std@@@std@@UEAA@XZ) from Start.obj
+             Discarded "public: void __cdecl std::basic_ifstream<wchar_t,struct std::char_traits<wchar_t> >::close(void)" (?close@?$basic_ifstream@_WU?$char_traits@_W@std@@@std@@QEAAXXZ) from Start.obj
+             Discarded "public: __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >(void)" (??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ) from Start.obj
+             Discarded "public: __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >(unsigned __int64,char)" (??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@_KD@Z) from Start.obj
+             Discarded "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > & __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::append(unsigned __int64,char)" (?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@_KD@Z) from Start.obj
+             Discarded "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > & __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::erase(unsigned __int64,unsigned __int64)" (?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@_K0@Z) from Start.obj
+             Discarded "public: class std::_String_iterator<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::begin(void)" (?begin@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA?AV?$_String_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@2@XZ) from Start.obj
+             Discarded "public: unsigned __int64 __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::size(void)const " (?size@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBA_KXZ) from Start.obj
+             Discarded "public: void __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::_Tidy(bool,unsigned __int64)" (?_Tidy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAX_N_K@Z) from Start.obj
+             Discarded "public: __cdecl std::_String_val<char,class std::allocator<char> >::_String_val<char,class std::allocator<char> >(class std::allocator<char>)" (??0?$_String_val@DV?$allocator@D@std@@@std@@QEAA@V?$allocator@D@1@@Z) from Start.obj
+             Discarded "public: __cdecl std::_String_val<char,class std::allocator<char> >::~_String_val<char,class std::allocator<char> >(void)" (??1?$_String_val@DV?$allocator@D@std@@@std@@QEAA@XZ) from Start.obj
+             Discarded "public: __cdecl std::allocator<char>::allocator<char>(void)" (??0?$allocator@D@std@@QEAA@XZ) from Start.obj
+             Discarded "public: __cdecl std::basic_filebuf<wchar_t,struct std::char_traits<wchar_t> >::basic_filebuf<wchar_t,struct std::char_traits<wchar_t> >(struct _iobuf *)" (??0?$basic_filebuf@_WU?$char_traits@_W@std@@@std@@QEAA@PEAU_iobuf@@@Z) from Start.obj
+             Discarded "protected: void __cdecl std::basic_filebuf<wchar_t,struct std::char_traits<wchar_t> >::_Init(struct _iobuf *,enum std::basic_filebuf<wchar_t,struct std::char_traits<wchar_t> >::_Initfl)" (?_Init@?$basic_filebuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEAU_iobuf@@W4_Initfl@12@@Z) from Start.obj
+             Discarded "protected: void __cdecl std::basic_filebuf<wchar_t,struct std::char_traits<wchar_t> >::_Initcvt(class std::codecvt<wchar_t,char,int> const *)" (?_Initcvt@?$basic_filebuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEBV?$codecvt@_WDH@2@@Z) from Start.obj
+             Discarded "private: void __cdecl std::basic_filebuf<wchar_t,struct std::char_traits<wchar_t> >::_Set_back(void)" (?_Set_back@?$basic_filebuf@_WU?$char_traits@_W@std@@@std@@AEAAXXZ) from Start.obj
+             Discarded "public: __cdecl std::fpos<int>::fpos<int>(__int64)" (??0?$fpos@H@std@@QEAA@_J@Z) from Start.obj
+             Discarded "public: __cdecl std::fpos<int>::fpos<int>(int,__int64)" (??0?$fpos@H@std@@QEAA@H_J@Z) from Start.obj
+             Discarded "public: int __cdecl std::fpos<int>::state(void)const " (?state@?$fpos@H@std@@QEBAHXZ) from Start.obj
+             Discarded "public: __int64 __cdecl std::fpos<int>::seekpos(void)const " (?seekpos@?$fpos@H@std@@QEBA_JXZ) from Start.obj
+             Discarded "public: __cdecl std::fpos<int>::operator __int64(void)const " (??B?$fpos@H@std@@QEBA_JXZ) from Start.obj
+             Discarded "public: char & __cdecl std::_String_iterator<char,struct std::char_traits<char>,class std::allocator<char> >::operator*(void)const " (??D?$_String_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBAAEADXZ) from Start.obj
+             Discarded "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > & __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::assign(unsigned __int64,char)" (?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@_KD@Z) from Start.obj
+             Discarded "public: void __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::_Chassign(unsigned __int64,unsigned __int64,char)" (?_Chassign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAX_K0D@Z) from Start.obj
+             Discarded "public: void __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::_Eos(unsigned __int64)" (?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAX_K@Z) from Start.obj
+             Discarded "public: bool __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::_Grow(unsigned __int64,bool)" (?_Grow@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA_N_K_N@Z) from Start.obj
+             Discarded "public: char * __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::_Myptr(void)" (?_Myptr@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAPEADXZ) from Start.obj
+             Discarded "public: void __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::_Xlen(void)const " (?_Xlen@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBAXXZ) from Start.obj
+             Discarded "public: void __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::_Xran(void)const " (?_Xran@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBAXXZ) from Start.obj
+             Discarded "public: __cdecl std::allocator<char>::allocator<char>(class std::allocator<char> const &)" (??0?$allocator@D@std@@QEAA@AEBV01@@Z) from Start.obj
+             Discarded "public: void __cdecl std::allocator<char>::deallocate(char *,unsigned __int64)" (?deallocate@?$allocator@D@std@@QEAAXPEAD_K@Z) from Start.obj
+             Discarded "public: char const & __cdecl std::_String_const_iterator<char,struct std::char_traits<char>,class std::allocator<char> >::operator*(void)const " (??D?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBAAEBDXZ) from Start.obj
+             Discarded "public: __cdecl std::_String_iterator<char,struct std::char_traits<char>,class std::allocator<char> >::_String_iterator<char,struct std::char_traits<char>,class std::allocator<char> >(char *,struct std::_Container_base0 const *)" (??0?$_String_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@PEADPEBU_Container_base0@1@@Z) from Start.obj
+             Discarded "public: unsigned __int64 __cdecl std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::max_size(void)const " (?max_size@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBA_KXZ) from Start.obj
+             Discarded "public: __cdecl std::_String_const_iterator<char,struct std::char_traits<char>,class std::allocator<char> >::_String_const_iterator<char,struct std::char_traits<char>,class std::allocator<char> >(char const *,struct std::_Container_base0 const *)" (??0?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@PEBDPEBU_Container_base0@1@@Z) from Start.obj
+             Discarded "public: unsigned __int64 __cdecl std::allocator<char>::max_size(void)const " (?max_size@?$allocator@D@std@@QEBA_KXZ) from Start.obj
+             Discarded "char * __cdecl std::_Allocate<char>(unsigned __int64,char *)" (??$_Allocate@D@std@@YAPEAD_KPEAD@Z) from Start.obj
+             Discarded "float __cdecl atan(float)" (?atan@@YAMM@Z) from Tree.obj
+             Discarded "float __cdecl pow(float,float)" (?pow@@YAMMM@Z) from Tree.obj
+             Discarded "float __cdecl pow(float,int)" (?pow@@YAMMH@Z) from Tree.obj
+             Discarded "public: __cdecl _XMFLOAT3::_XMFLOAT3(float,float,float)" (??0_XMFLOAT3@@QEAA@MMM@Z) from Tree.obj
+             Discarded "public: struct _XMFLOAT3 & __cdecl _XMFLOAT3::operator=(struct _XMFLOAT3 const &)" (??4_XMFLOAT3@@QEAAAEAU0@AEBU0@@Z) from Tree.obj
+             Discarded "public: struct _XMFLOAT4 & __cdecl _XMFLOAT4::operator=(struct _XMFLOAT4 const &)" (??4_XMFLOAT4@@QEAAAEAU0@AEBU0@@Z) from Tree.obj
+             Discarded "public: __cdecl paramsVetve::paramsVetve(void)" (??0paramsVetve@@QEAA@XZ) from Tree.obj
+             Discarded "public: __cdecl tuplParamsVetve::tuplParamsVetve(void)" (??0tuplParamsVetve@@QEAA@XZ) from Tree.obj
+             Discarded "public: struct paramsVetve & __cdecl paramsVetve::operator=(struct paramsVetve const &)" (??4paramsVetve@@QEAAAEAU0@AEBU0@@Z) from Tree.obj
+             Discarded "public: struct tuplParamsVetve & __cdecl tuplParamsVetve::operator=(struct tuplParamsVetve const &)" (??4tuplParamsVetve@@QEAAAEAU0@AEBU0@@Z) from Tree.obj
+             Discarded "unsigned int * __cdecl GenerateTIndices(void)" (?GenerateTIndices@@YAPEAIXZ) from Tree.obj
+             Discarded "float __cdecl _Pow_int<float>(float,int)" (??$_Pow_int@M@@YAMMH@Z) from Tree.obj
+             Discarded D3D11CreateDeviceAndSwapChain from d3d11.lib(d3d11.dll)
+             Discarded D3DX11CompileFromFileW from d3dx11.lib(d3dx11_43.dll)
+             Discarded DirectInput8Create from dinput8.lib(DINPUT8.dll)
+             Discarded GetModuleHandleW from kernel32.lib(KERNEL32.dll)
+             Discarded GetTickCount from kernel32.lib(KERNEL32.dll)
+             Discarded OutputDebugStringA from kernel32.lib(KERNEL32.dll)
+             Discarded DispatchMessageW from user32.lib(USER32.dll)
+             Discarded DefWindowProcW from user32.lib(USER32.dll)
+             Discarded AdjustWindowRect from user32.lib(USER32.dll)
+             Discarded MessageBoxW from user32.lib(USER32.dll)
+             Discarded CreateWindowExW from user32.lib(USER32.dll)
+             Discarded ShowWindow from user32.lib(USER32.dll)
+             Discarded PeekMessageW from user32.lib(USER32.dll)
+             Discarded LoadIconW from user32.lib(USER32.dll)
+             Discarded RegisterClassExW from user32.lib(USER32.dll)
+             Discarded TranslateMessage from user32.lib(USER32.dll)
+             Discarded BeginPaint from user32.lib(USER32.dll)
+             Discarded GetClientRect from user32.lib(USER32.dll)
+             Discarded LoadCursorW from user32.lib(USER32.dll)
+             Discarded PostQuitMessage from user32.lib(USER32.dll)
+             Discarded EndPaint from user32.lib(USER32.dll)
+             Discarded "void __cdecl std::_Xout_of_range(char const *)" (?_Xout_of_range@std@@YAXPEBD@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: __cdecl std::_Lockit::~_Lockit(void)" (??1_Lockit@std@@QEAA@XZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: __cdecl std::_Lockit::_Lockit(int)" (??0_Lockit@std@@QEAA@H@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "void __cdecl std::_Xlength_error(char const *)" (?_Xlength_error@std@@YAXPEBD@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: __cdecl std::_Fac_node::_Fac_node(struct std::_Fac_node *,class std::locale::facet *)" (??0_Fac_node@std@@QEAA@PEAU01@PEAVfacet@locale@1@@Z) from msvcprt.lib(locale0_implib.obj)
+             Discarded "public: __cdecl std::_Fac_node::~_Fac_node(void)" (??1_Fac_node@std@@QEAA@XZ) from msvcprt.lib(locale0_implib.obj)
+             Discarded "public: void * __cdecl std::_Fac_node::`scalar deleting destructor'(unsigned int)" (??_G_Fac_node@std@@QEAAPEAXI@Z) from msvcprt.lib(locale0_implib.obj)
+             Discarded "void __cdecl _Fac_tidy(void)" (?_Fac_tidy@@YAXXZ) from msvcprt.lib(locale0_implib.obj)
+             Discarded "private: static class std::locale::_Locimp * __cdecl std::locale::_Getgloballocale(void)" (?_Getgloballocale@locale@std@@CAPEAV_Locimp@12@XZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "struct _iobuf * __cdecl std::_Fiopen(wchar_t const *,int,int)" (?_Fiopen@std@@YAPEAU_iobuf@@PEB_WHH@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: void __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::setp(wchar_t *,wchar_t *)" (?setp@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEA_W0@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: void __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Init(wchar_t * *,wchar_t * *,int *,wchar_t * *,wchar_t * *,int *)" (?_Init@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEAPEA_W0PEAH001@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: void __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Init(void)" (?_Init@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: void __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::setg(wchar_t *,wchar_t *,wchar_t *)" (?setg@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAXPEA_W00@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: class std::locale __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::getloc(void)const " (?getloc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@QEBA?AVlocale@2@XZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >(void)" (??0?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAA@XZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: __cdecl std::basic_istream<wchar_t,struct std::char_traits<wchar_t> >::basic_istream<wchar_t,struct std::char_traits<wchar_t> >(class std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> > *,bool)" (??0?$basic_istream@_WU?$char_traits@_W@std@@@std@@QEAA@PEAV?$basic_streambuf@_WU?$char_traits@_W@std@@@1@_N@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: __cdecl std::basic_ios<wchar_t,struct std::char_traits<wchar_t> >::basic_ios<wchar_t,struct std::char_traits<wchar_t> >(void)" (??0?$basic_ios@_WU?$char_traits@_W@std@@@std@@IEAA@XZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: void __cdecl std::basic_ios<wchar_t,struct std::char_traits<wchar_t> >::clear(int,bool)" (?clear@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEAAXH_N@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Pninc(void)" (?_Pninc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Gninc(void)" (?_Gninc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::_Gndec(void)" (?_Gndec@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEAAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::epptr(void)const " (?epptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::egptr(void)const " (?egptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::pptr(void)const " (?pptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::gptr(void)const " (?gptr@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "protected: wchar_t * __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::eback(void)const " (?eback@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@IEBAPEA_WXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: virtual __cdecl std::basic_istream<wchar_t,struct std::char_traits<wchar_t> >::~basic_istream<wchar_t,struct std::char_traits<wchar_t> >(void)" (??1?$basic_istream@_WU?$char_traits@_W@std@@@std@@UEAA@XZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: void __cdecl std::basic_ios<wchar_t,struct std::char_traits<wchar_t> >::setstate(int,bool)" (?setstate@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEAAXH_N@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: virtual __cdecl std::basic_ios<wchar_t,struct std::char_traits<wchar_t> >::~basic_ios<wchar_t,struct std::char_traits<wchar_t> >(void)" (??1?$basic_ios@_WU?$char_traits@_W@std@@@std@@UEAA@XZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: virtual __cdecl std::basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >::~basic_streambuf<wchar_t,struct std::char_traits<wchar_t> >(void)" (??1?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@UEAA@XZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: static unsigned __int64 __cdecl std::codecvt<wchar_t,char,int>::_Getcat(class std::locale::facet const * *,class std::locale const *)" (?_Getcat@?$codecvt@_WDH@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: int __cdecl std::codecvt<wchar_t,char,int>::unshift(int &,char *,char *,char * &)const " (?unshift@?$codecvt@_WDH@std@@QEBAHAEAHPEAD1AEAPEAD@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: int __cdecl std::codecvt<wchar_t,char,int>::out(int &,wchar_t const *,wchar_t const *,wchar_t const * &,char *,char *,char * &)const " (?out@?$codecvt@_WDH@std@@QEBAHAEAHPEB_W1AEAPEB_WPEAD3AEAPEAD@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: int __cdecl std::codecvt<wchar_t,char,int>::in(int &,char const *,char const *,char const * &,wchar_t *,wchar_t *,wchar_t * &)const " (?in@?$codecvt@_WDH@std@@QEBAHAEAHPEBD1AEAPEBDPEA_W3AEAPEA_W@Z) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: bool __cdecl std::codecvt_base::always_noconv(void)const " (?always_noconv@codecvt_base@std@@QEBA_NXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: class std::locale::facet * __cdecl std::locale::facet::_Decref(void)" (?_Decref@facet@locale@std@@QEAAPEAV123@XZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: void __cdecl std::locale::facet::_Incref(void)" (?_Incref@facet@locale@std@@QEAAXXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: __cdecl std::locale::id::operator unsigned __int64(void)" (??Bid@locale@std@@QEAA_KXZ) from msvcprt.lib(MSVCP100.dll)
+             Discarded "public: __cdecl std::bad_cast::bad_cast(char const *)" (??0bad_cast@std@@QEAA@PEBD@Z) from MSVCRT.lib(MSVCR100.dll)
+             Discarded "public: virtual __cdecl std::exception::~exception(void)" (??1exception@std@@UEAA@XZ) from MSVCRT.lib(MSVCR100.dll)
+             Discarded "public: __cdecl std::exception::exception(char const * const &)" (??0exception@std@@QEAA@AEBQEBD@Z) from MSVCRT.lib(MSVCR100.dll)
+             Discarded memmove from MSVCRT.lib(MSVCR100.dll)
+             Discarded fputwc from MSVCRT.lib(MSVCR100.dll)
+             Discarded _unlock_file from MSVCRT.lib(MSVCR100.dll)
+             Discarded ungetwc from MSVCRT.lib(MSVCR100.dll)
+             Discarded ungetc from MSVCRT.lib(MSVCR100.dll)
+             Discarded fgetpos from MSVCRT.lib(MSVCR100.dll)
+             Discarded _fseeki64 from MSVCRT.lib(MSVCR100.dll)
+             Discarded fflush from MSVCRT.lib(MSVCR100.dll)
+             Discarded fgetc from MSVCRT.lib(MSVCR100.dll)
+             Discarded fsetpos from MSVCRT.lib(MSVCR100.dll)
+             Discarded setvbuf from MSVCRT.lib(MSVCR100.dll)
+             Discarded _lock_file from MSVCRT.lib(MSVCR100.dll)
+             Discarded "void __cdecl operator delete[](void *)" (??_V@YAXPEAX@Z) from MSVCRT.lib(MSVCR100.dll)
+             Discarded fgetwc from MSVCRT.lib(MSVCR100.dll)
+             Discarded memcpy_s from MSVCRT.lib(MSVCR100.dll)
+             Discarded fwrite from MSVCRT.lib(MSVCR100.dll)
+             Discarded "private: __cdecl type_info::type_info(class type_info const &)" (??0type_info@@AEAA@AEBV0@@Z) from MSVCRT.lib(ti_inst.obj)
+             Discarded "private: class type_info & __cdecl type_info::operator=(class type_info const &)" (??4type_info@@AEAAAEAV0@AEBV0@@Z) from MSVCRT.lib(ti_inst.obj)
+             Discarded fclose from MSVCRT.lib(MSVCR100.dll)
+             Discarded NtCurrentTeb from MSVCRT.lib(wcrtexew.obj)
+             Discarded check_managed_app from MSVCRT.lib(wcrtexew.obj)
+             Discarded "int __cdecl ArrayUnwindFilter(struct _EXCEPTION_POINTERS *)" (?ArrayUnwindFilter@@YAHPEAU_EXCEPTION_POINTERS@@@Z) from MSVCRT.lib(ehvecdtr.obj)
+             Discarded __wgetmainargs from MSVCRT.lib(MSVCR100.dll)
+             Discarded _exit from MSVCRT.lib(MSVCR100.dll)
+             Discarded _cexit from MSVCRT.lib(MSVCR100.dll)
+             Discarded exit from MSVCRT.lib(MSVCR100.dll)
+             Discarded _configthreadlocale from MSVCRT.lib(MSVCR100.dll)
+             Discarded __setusermatherr from MSVCRT.lib(MSVCR100.dll)
+             Discarded __set_app_type from MSVCRT.lib(MSVCR100.dll)
+             Discarded Sleep from kernel32.lib(KERNEL32.dll)
+             Discarded GetStartupInfoW from kernel32.lib(KERNEL32.dll)
+             Discarded EncodePointer from kernel32.lib(KERNEL32.dll)
+             Discarded DecodePointer from kernel32.lib(KERNEL32.dll)
+             Discarded TerminateProcess from kernel32.lib(KERNEL32.dll)
+             Discarded GetCurrentProcess from kernel32.lib(KERNEL32.dll)
+             Discarded UnhandledExceptionFilter from kernel32.lib(KERNEL32.dll)
+             Discarded SetUnhandledExceptionFilter from kernel32.lib(KERNEL32.dll)
+             Discarded IsDebuggerPresent from kernel32.lib(KERNEL32.dll)
+             Discarded RtlCaptureContext from kernel32.lib(KERNEL32.dll)
+             Discarded QueryPerformanceCounter from kernel32.lib(KERNEL32.dll)
+             Discarded GetCurrentThreadId from kernel32.lib(KERNEL32.dll)
+             Discarded GetCurrentProcessId from kernel32.lib(KERNEL32.dll)
+             Discarded GetSystemTimeAsFileTime from kernel32.lib(KERNEL32.dll)
+             Discarded '.text$x' from msvcprt.lib(locale0_implib.obj)
+             Discarded '.text$x' from Start.obj
+             Discarded '.text$x' from Start.obj
+         
+             Selected symbol:
+                 _matherr from MSVCRT.lib(merr.obj)
+             Replaced symbol(s):
+                 _wsetargv from MSVCRT.lib(wdllargv.obj)
+         
+             Selected symbol:
+                 '.text$x' from Start.obj
+             Replaced symbol(s):
+                 '.text$x' from Start.obj
+         
+             Selected symbol:
+                 '.text$x' from Start.obj
+             Replaced symbol(s):
+                 '.text$x' from Start.obj
+         
+             Selected symbol:
+                 '.xdata' from MSVCRT.lib(wcrtexew.obj)
+             Replaced symbol(s):
+                 '.xdata' from MSVCRT.lib(gshandler.obj)
+                 '.xdata' from MSVCRT.lib(unhandld.obj)
+                 '.xdata' from Start.obj
+                 '.xdata' from Start.obj
+                 '.xdata' from Start.obj
+                 '.xdata' from Start.obj
+                 '.xdata' from MSVCRT.lib(atonexit.obj)
+                 '.xdata' from MSVCRT.lib(wcrtexew.obj)
+                 '.xdata' from MSVCRT.lib(unhandld.obj)
+         
+             Selected symbol:
+                 '.xdata' from MSVCRT.lib(ehvecdtr.obj)
+             Replaced symbol(s):
+                 '.xdata' from MSVCRT.lib(atonexit.obj)
+                 '.xdata' from MSVCRT.lib(pesect.obj)
+                 '.xdata' from MSVCRT.lib(ehvecdtr.obj)
+                 '.xdata' from MSVCRT.lib(wcrtexew.obj)
+                 '.xdata' from Start.obj
+         
+             Selected symbol:
+                 '.xdata' from Start.obj
+             Replaced symbol(s):
+                 '.xdata' from MSVCRT.lib(gshandler.obj)
+                 '.xdata' from msvcprt.lib(locale0_implib.obj)
+                 '.xdata' from Start.obj
+                 '.xdata' from Start.obj
+         
+             Selected symbol:
+                 '.xdata' from Start.obj
+             Replaced symbol(s):
+                 '.xdata' from Start.obj
+                 '.xdata' from MSVCRT.lib(_initsect_.obj)
+                 '.xdata' from Start.obj
+                 '.xdata' from Start.obj
+                 '.xdata' from MSVCRT.lib(_initsect_.obj)
+         
+             Selected symbol:
+                 '.xdata' from Start.obj
+             Replaced symbol(s):
+                 '.xdata' from MSVCRT.lib(ti_inst.obj)
+                 '.xdata' from Start.obj
+         
+             Selected symbol:
+                 '.xdata' from Start.obj
+             Replaced symbol(s):
+                 '.xdata' from Start.obj
+         
+             Selected symbol:
+                 '.xdata' from Start.obj
+             Replaced symbol(s):
+                 '.xdata' from Start.obj
+         
+             ICF total savings: 292 bytes
+         
+         Starting pass 2
+               CIL library( CIL module)
+              Tutorial01.res
+              d3d11.lib(d3d11.dll)
+              d3d11.lib(d3d11.dll)
+              d3d11.lib(d3d11.dll)
+              d3d11.lib(d3d11.dll)
+              d3dx11.lib(d3dx11_43.dll)
+              d3dx11.lib(d3dx11_43.dll)
+              d3dx11.lib(d3dx11_43.dll)
+              dxguid.lib(dxguid.obj)
+              dinput8.lib(DINPUT8.dll)
+              dinput8.lib(DINPUT8.dll)
+              dinput8.lib(DINPUT8.dll)
+              dinput8.lib(dilib2.obj)
+              dinput8.lib(dilib5.obj)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              user32.lib(USER32.dll)
+              msvcprt.lib(locale0_implib.obj)
+              msvcprt.lib(newaop_s.obj)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              msvcprt.lib(MSVCP100.dll)
+              MSVCRT.lib(ehvecdtr.obj)
+              MSVCRT.lib(unhandld.obj)
+              MSVCRT.lib(atonexit.obj)
+              MSVCRT.lib(cinitexe.obj)
+              MSVCRT.lib(gs_cookie.obj)
+              MSVCRT.lib(gs_report.obj)
+              MSVCRT.lib(gs_support.obj)
+              MSVCRT.lib(merr.obj)
+              MSVCRT.lib(natstart.obj)
+              MSVCRT.lib(pesect.obj)
+              MSVCRT.lib(ti_inst.obj)
+              MSVCRT.lib(wcrtexew.obj)
+              MSVCRT.lib(wdllargv.obj)
+              MSVCRT.lib(wildcard.obj)
+              MSVCRT.lib(dllsupp.obj)
+              MSVCRT.lib(amdsecgs.obj)
+              MSVCRT.lib(gshandler.obj)
+              MSVCRT.lib(gshandlereh.obj)
+              MSVCRT.lib(_newmode.obj)
+              MSVCRT.lib(xncommod.obj)
+              MSVCRT.lib(xtxtmode.obj)
+              MSVCRT.lib(xthdloc.obj)
+              MSVCRT.lib(typeinfo_dtor_64.obj)
+              MSVCRT.lib(_initsect_.obj)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+              MSVCRT.lib(MSVCR100.dll)
+         Finished pass 2
+         Tutorial01_2010.vcxproj -> H:\Projects\Projects\tree v1.0\x64\Release\Start.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"x64\Release\Start.exe.embed.manifest" /manifest x64\Release\Start.exe.intermediate.manifest "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+         All outputs are up-to-date.
+       LinkEmbedManifest:
+         All outputs are up-to-date.
+         Tutorial01_2010.vcxproj -> H:\Projects\Projects\tree v1.0\x64\Release\Start.exe
+       FinalizeBuildStatus:
+         Deleting file "x64\Release\Start.unsuccessfulbuild".
+         Touching "x64\Release\Start.lastbuildstate".
+     1>Done Building Project "H:\Projects\Projects\tree v1.0\Tutorial01_2010.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.04

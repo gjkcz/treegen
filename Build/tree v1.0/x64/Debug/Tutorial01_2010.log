@@ -1,0 +1,57 @@
+﻿Build started 10.11.2012 18:05:48.
+     1>Project "E:\Build\tree v1.0\Tutorial01_2010.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "x64\Debug\Start.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\DXUT11\Core /I..\..\..\DXUT11\Optional /Zi /nologo /W4 /WX- /Od /Oi /D WIN32 /D _DEBUG /D DEBUG /D PROFILE /D _WINDOWS /D D3DXFX_LARGEADDRESS_HANDLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:fast /Zc:wchar_t /Zc:forScope /openmp- /Fo"x64\Debug\\" /Fd"x64\Debug\vc100.pdb" /Gd /TP /errorReport:prompt Tree.cpp  
+         Tree.cpp
+         C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+     1>Tree.cpp(41): warning C4100: 'nVetvi' : unreferenced formal parameter
+     1>Tree.cpp(58): warning C4189: 'Ttextcoords' : local variable is initialized but not referenced
+     1>Tree.cpp(57): warning C4189: 'Tpositions' : local variable is initialized but not referenced
+     1>Tree.cpp(59): warning C4189: 'Tnormals' : local variable is initialized but not referenced
+     1>Tree.cpp(267): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>Tree.cpp(274): warning C4189: 'Rorigin' : local variable is initialized but not referenced
+     1>Tree.cpp(266): warning C4189: 'Zkoord' : local variable is initialized but not referenced
+     1>Tree.cpp(442): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>Tree.cpp(384): warning C4100: 'delka' : unreferenced formal parameter
+     1>Tree.cpp(419): warning C4189: 'konec' : local variable is initialized but not referenced
+     1>Tree.cpp(406): warning C4189: 'Zkoord' : local variable is initialized but not referenced
+     1>Tree.cpp(401): warning C4189: 'AxeRotace1' : local variable is initialized but not referenced
+     1>Tree.cpp(693): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>Tree.cpp(722): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>Tree.cpp(748): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>Tree.cpp(532): warning C4100: 'tU' : unreferenced formal parameter
+     1>Tree.cpp(532): warning C4100: 'sklonY1' : unreferenced formal parameter
+     1>Tree.cpp(532): warning C4100: 'radiusZ' : unreferenced formal parameter
+     1>Tree.cpp(554): warning C4101: 'MezoY1' : unreferenced local variable
+     1>Tree.cpp(554): warning C4101: 'MezoX1' : unreferenced local variable
+     1>e:\build\tree v1.0\tree.cpp(382): warning C4715: 'RostVetev' : not all control paths return a value
+       ResourceCompile:
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Build\tree v1.0\x64\Debug\Start.exe" /VERBOSE /INCREMENTAL /NOLOGO d3d11.lib d3dcompiler.lib d3dx11d.lib d3dx9d.lib dxerr.lib dxguid.lib winmm.lib comctl32.lib dinput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"x64\Debug\Start.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Build\tree v1.0\x64\Debug\Start.pdb" /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Build\tree v1.0\x64\Debug\Start.lib" /MACHINE:X64 x64\Debug\Tutorial01.res
+         x64\Debug\Start.exe.embed.manifest.res
+         x64\Debug\Start.obj
+         x64\Debug\Tree.obj  
+         Starting pass 2
+              Tree.obj
+         Finished pass 2
+         Tutorial01_2010.vcxproj -> E:\Build\tree v1.0\x64\Debug\Start.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"x64\Debug\Start.exe.embed.manifest" /manifest x64\Debug\Start.exe.intermediate.manifest "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+         All outputs are up-to-date.
+       LinkEmbedManifest:
+         All outputs are up-to-date.
+         Tutorial01_2010.vcxproj -> E:\Build\tree v1.0\x64\Debug\Start.exe
+       FinalizeBuildStatus:
+         Deleting file "x64\Debug\Start.unsuccessfulbuild".
+         Touching "x64\Debug\Start.lastbuildstate".
+     1>Done Building Project "E:\Build\tree v1.0\Tutorial01_2010.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.38
