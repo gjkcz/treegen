@@ -26,12 +26,6 @@ struct SimpleVertex
     XMFLOAT4 Color; // Color
     //XMFLOAT2 Tex; // Texture Co
 };
-struct tType
-{
-    int _iSType;
-    int _iRType;
-    int _iDType;
-};
 
 int GenerateTree(int iPater, tType _tType);
 SimpleVertex* UnpackTree();
@@ -41,7 +35,6 @@ HRESULT ReadInputState();
 int GenerateRndm(int Obor,int Obor1);
 float random();
 int zaokrouhli(float _f);
-int integratePower(int _zakl, float _doMocniny);
 //#include "DXUT.h"
 //#include "DXUTcamera.h"
 //#include "DXUTgui.h"

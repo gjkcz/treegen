@@ -1,5 +1,7 @@
 #ifndef __SVERTEX__
 #define __SVERTEX__
+#include <xnamath.h>
+
 struct SimpleVertex
 {
     XMFLOAT3 Pos;  // Position

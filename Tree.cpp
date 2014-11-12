@@ -12,9 +12,6 @@ float per, gonx; //, height;
 int sum;
 int countEm;
 bool bVlnit=false;
-void RostClanek(float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ);
-void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklony, float sklonX1, float sklonY1, float sklonz,float rotace, float Dens, float Uzk, float posunX, float posunY, float posunZ, float tU);
-void RostOsy();
 
 struct objRust
 {
@@ -1055,20 +1052,6 @@ void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklo
         //}
     }
     iVx=iVx;
-}
-
-float random()
-{
-    float _rndm=0.f;
-    //_rndm = abs(sin((timeGetTime() % 360)*(rand()/32767.f)*D3DX_PI/180));
-    /*while(_rndm<0.998f)
-    {*/
-    while(timeGetTime()%1000>=999)
-    {
-        srand(timeGetTime());
-    }
-    _rndm = rand()/32767.f;
-    return _rndm;
 }
 
 int integratePower(int _zakl, float _doMocniny)
