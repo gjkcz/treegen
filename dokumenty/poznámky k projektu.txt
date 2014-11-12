@@ -1,0 +1,14 @@
+objekty:
+	model
+	view
+		- to bude okno, 
+	controler:
+		- to bude myš, klávesnice
+
+- asi bych oddělil main od ostatního
+- inits budou init geometry, init input, init D3D
+	x to je spatny koncept, mel bych mit objekt controler, ktery se inituje sam 
+
+- Tmatx jsou taky ve vice souborech globalne pouzivany
+
+- místo nové isic bych si mohl pujčit něčí

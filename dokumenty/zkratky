@@ -1,0 +1,50 @@
+Zkratky: {
+	ctrl+d			=	zdvoj řádek
+	ctrl+shift+d	=	smaž řádek
+	shift+enter		=	nový řádek odkudkoliv
+	ctrl+{}			=	odsadí aktuálně zaměřený řádek ### Není v CodeBlocks
+	ctrl+shift+↑	=	přesune řádek ↑
+	ctrl+shift+↓	=	přesune řádek ↓
+
+	pro sublime: {
+		alt+číslo	=	přehodí zaměření na jiný tab
+	}
+
+	pro VS10: {
+
+	}
+
+	pro CodeBlocks: {
+		ctrl+e 		=	vybere další vyskytlý prvek
+		class ctrl+j
+		do
+		for
+		forb
+		guard
+		if
+		ifb
+		ife
+		ifei
+		now
+		nowl
+		nowlu
+		nowu
+		struct
+		wsitch
+		tday
+		tdayu
+		today
+		todayu
+		wdu
+		while
+		whileb
+
+		fungují na:
+		C3 CodeBlocks
+	}
+
+	pro UnrealCommander: {
+		windows + backspace = globalni volani
+		F8 					= symlink
+	}
+}

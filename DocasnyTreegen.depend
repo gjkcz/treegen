@@ -1,7 +1,5 @@
 # depslib dependency file v1.0
-1415535610 source:h:\local new\programování\cb\struktury stromu\treegen\matrices.cpp
-	<d3dx9.h>
-	<strsafe.h>
+1415736459 source:h:\local new\programování\cb\struktury stromu\treegen\matrices.cpp
 	"start.h"
 
 1274305017 h:\microsoft directx sdk (june 2010)\include\d3dx9.h
@@ -59,12 +57,14 @@
 
 1274305017 h:\microsoft directx sdk (june 2010)\include\d3dx9anim.h
 
-1415535562 h:\local new\programování\cb\struktury stromu\treegen\start.h
+1415739088 h:\local new\programování\cb\struktury stromu\treegen\start.h
 	<d3d11.h>
+	<d3dx9.h>
 	<d3dx10math.h>
 	<fstream>
 	<iosfwd>
 	<windows.h>
+	<strsafe.h>
 	<d3d11.h>
 	<d3dx11.h>
 	<xnamath.h>
@@ -239,6 +239,89 @@
 1274305018 h:\microsoft directx sdk (june 2010)\include\dinput.h
 	<objbase.h>
 
-1363548858 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
+1415739153 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
+	"Tree.h"
+
+1415535610 source:c:\local new\local new v c3\programování\cb\struktury stromu\treegen\matrices.cpp
+	<d3dx9.h>
+	<strsafe.h>
 	"start.h"
+
+1415535562 c:\local new\local new v c3\programování\cb\struktury stromu\treegen\start.h
+	<d3d11.h>
+	<d3dx10math.h>
+	<fstream>
+	<iosfwd>
+	<windows.h>
+	<d3d11.h>
+	<d3dx11.h>
+	<xnamath.h>
+	<d3dcompiler.h>
+	<dinput.h>
+
+1363548858 source:c:\local new\local new v c3\programování\cb\struktury stromu\treegen\tree.cpp
+	"start.h"
+
+1415742416 h:\local new\programování\cb\struktury stromu\treegen\tree.h
+	<d3d11.h>
+	<d3dx9.h>
+	<d3dx10math.h>
+	<fstream>
+	<iosfwd>
+	<windows.h>
+	<strsafe.h>
+	<d3d11.h>
+	<d3dx11.h>
+	<xnamath.h>
+	<d3dcompiler.h>
+	<dinput.h>
+
+1415742229 source:h:\local new\programování\cb\struktury stromu\treegen\inits.cpp
+	"inits.h"
+
+1415746752 h:\local new\programování\cb\struktury stromu\treegen\inits.h
+	<d3d11.h>
+	<d3dx9.h>
+	<d3dx10math.h>
+	<fstream>
+	<iosfwd>
+	<windows.h>
+	<strsafe.h>
+	<d3d11.h>
+	<d3dx11.h>
+	<d3dcompiler.h>
+	<dinput.h>
+	"JednoduchyVertex.h"
+	"globals.h"
+
+1415746062 h:\local new\programování\cb\struktury stromu\treegen\jednoduchyvertex.h
+	<xnamath.h>
+
+1415745790 source:h:\local new\programování\cb\struktury stromu\treegen\controler.cpp
+	"controler.h"
+
+1415745766 h:\local new\programování\cb\struktury stromu\treegen\controler.h
+	<windows.h>
+	<dinput.h>
+
+1415745977 source:h:\local new\programování\cb\struktury stromu\treegen\main.cpp
+	<windows.h>
+	<strsafe.h>
+	"msgProc.h"
+	"inits.h"
+	"view.h"
+	"controler.h"
+	"globals.h"
+
+1415746531 h:\local new\programování\cb\struktury stromu\treegen\msgproc.h
+	"windows.h"
+
+1415746753 h:\local new\programování\cb\struktury stromu\treegen\view.h
+	<windows.h>
+	<d3dx9.h>
+	<dinput.h>
+	<xnamath.h>
+	"globals.h"
+
+1415745977 h:\local new\programování\cb\struktury stromu\treegen\globals.h
 

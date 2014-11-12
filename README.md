@@ -29,7 +29,11 @@
 
 **27.10.2014>>**
 
-- [ ]
-
 * Hledání a čtení existujících prací:
 	+ [Creation and Rendering of Realistic Trees (Jason Weber, Joseph Penn)](http://www.cs.duke.edu/courses/fall02/cps124/resources/p119-weber.pdf)
+
+**10.11.2014>>**
+
+* Instalace codeblocks
+* Řešení problémů s knihovnami DX
+* Instalace GitBash na ntb
