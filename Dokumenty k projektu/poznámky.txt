@@ -1,0 +1,6 @@
+Co je potřeba?
+	- Rozhodnout se v případech nějakých věcí
+	- rozdělit si do souborů
+	v zprovoznit v codeblocs
+	- komentář?
+	- 
