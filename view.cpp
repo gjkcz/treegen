@@ -1,6 +1,6 @@
 #include "view.h"
 
-int gRndm = 1; //rozhoduje o barve pozadi... 0=cerna, 1=bila
+int gRndm = 0; //rozhoduje o barve pozadi... 0=cerna, 1=bila
 bool bFScreen=false;
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 float							 v_X, v_Y, v_Z, vt_X, vt_Y, vt_Z;
