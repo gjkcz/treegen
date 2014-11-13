@@ -12,9 +12,6 @@ float per, gonx; //, height;
 int sum;
 int countEm;
 bool bVlnit=false;
-void RostClanek(float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ);
-void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklony, float sklonX1, float sklonY1, float sklonz,float rotace, float Dens, float Uzk, float posunX, float posunY, float posunZ, float tU);
-void RostOsy();
 
 struct objRust
 {

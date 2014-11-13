@@ -6,5 +6,35 @@ objekty:
 		- to bude myš, klávesnice
 
 - asi bych oddělil main od ostatního
+- inits budou init geometry, init input, init D3D
+	x to je spatny koncept, mel bych mit objekt controler, ktery se inituje sam 
+
+- Tmatx jsou taky ve vice souborech globalne pouzivany
+- g_pd3dDevice musi byt predavana pointrem
+- pole musel sem inicializovat v main
+
+- chtelo by to konzoli s vystupem
+- pozor, nefunguje win32 debug, ani release > to bude asi nejaka include
+- tak nejaky problem je v readInputState
+	> mel jsem v main axs = new long[2]; pritom v controler.cpp pouzivam ten ptr pro pristup k 4em.
+Project build options
+- linkerSettings>
+	d3d9.lib
+	d3dx10d.lib
+	d3dx9d.lib
+	dxerr.lib
+	dxuid.lib
+	winmm.lib
+	comctl32.lib
+	dinput8.lib
+	kernel32.lib
+	user32.lib
+	shell32.lib
+- searchDirs>compiler>
+	$(DXSDK_DIR)Include
+	$(IncludePath)
+	DXUT\Core
+- searchDirs>linker>
+	$(DXSDK_DIR)Lib\x86
 
 - místo nové isic bych si mohl pujčit něčí
