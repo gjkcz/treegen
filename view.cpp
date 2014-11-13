@@ -1,16 +1,11 @@
 #include "view.h"
 
-int gRndm = 0; //rozhoduje o barve pozadi... 0=cerna, 1=bila
+int gRndm = 1; //rozhoduje o barve pozadi... 0=cerna, 1=bila
 bool bFScreen=false;
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
-LPDIRECT3DDEVICE9       g_pd3dDevice = NULL; // Our rendering device
-LPDIRECT3DVERTEXBUFFER9* g_pVB = new LPDIRECT3DVERTEXBUFFER9[iObsah]; // Buffer to hold vertices
-D3DXMATRIXA16* TMatX = new D3DXMATRIXA16[iObsah];
-int* i_aPocetV = new int[iObsah];
 float							 v_X, v_Y, v_Z, vt_X, vt_Y, vt_Z;
 bool							 v_XY = true;
 float  CamRotRad = iPatra*iObsah*9000.f; //78000
-float fDalka=950000.f; //0
 float  RotUp=D3DX_PI/18.3f, CamRot = -D3DX_PI; //D3DX_PI/2.5;
 float CamRotVel = 0.0f;
 float fVel=iObsah * 500.8; //5000
@@ -22,7 +17,7 @@ XMFLOAT3 velocity[10];
 // Name: InitD3D()
 // Desc: Initializes Direct3D
 //-----------------------------------------------------------------------------
-HRESULT InitD3D( HWND hWnd )
+HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX )
 {
     // Create the D3D object.
     if( NULL == ( g_pD3D = Direct3DCreate9( D3D_SDK_VERSION ) ) )
@@ -38,7 +33,7 @@ HRESULT InitD3D( HWND hWnd )
     d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
     d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
 
-
+    g_pd3dDevice = NULL;
     // Create the D3DDevice
     if( FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
                                      D3DCREATE_HARDWARE_VERTEXPROCESSING,
@@ -80,6 +75,11 @@ HRESULT InitD3D( HWND hWnd )
     // Turn off D3D lighting, since we are providing our own vertex colors
     g_pd3dDevice->SetRenderState( D3DRS_LIGHTING, FALSE );
 
+    //TMatX = new D3DXMATRIXA16[iObsah];
+
+    if( g_pD3D != NULL )
+        g_pD3D->Release();
+
     return S_OK;
 }
 
@@ -89,7 +89,7 @@ HRESULT InitD3D( HWND hWnd )
 // Name: Render()
 // Desc: Draws the scene
 //-----------------------------------------------------------------------------
-VOID render(int* Pocet, byte * Keys, long* axs)
+VOID render( LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, long* axs, D3DXMATRIXA16* TMatX, LPDIRECT3DVERTEXBUFFER9* g_pVB)
 {
 
     // Clear the backbuffer to a black color
@@ -276,7 +276,3 @@ VOID render(int* Pocet, byte * Keys, long* axs)
     g_pd3dDevice->Present( NULL, NULL, NULL, NULL );
 }
 
-
-
-#include <iostream>
-namespace s=std;

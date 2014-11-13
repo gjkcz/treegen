@@ -4,11 +4,13 @@
 #include <xnamath.h>
 #include "globals.h"
 
-// Our custom FVF, which describes our custom vertex structure
-#define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZ|D3DFVF_DIFFUSE)
 
 #ifndef __CUSTOMVERTEX_H__
 #define __CUSTOMVERTEX_H__
+
+// Our custom FVF, which describes our custom vertex structure
+#define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZ|D3DFVF_DIFFUSE)
+
 // A structure for our custom vertex type
 struct CUSTOMVERTEX
 {
@@ -17,5 +19,5 @@ struct CUSTOMVERTEX
 };
 #endif // __CUSTOMVERTEX_H__
 
-HRESULT InitD3D( HWND hWnd );
-VOID render(int* Pocet, byte* Keys, long * axs);
+HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX );
+VOID render( LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte* Keys, long * axs, D3DXMATRIXA16* TMatX, LPDIRECT3DVERTEXBUFFER9* g_pVB );

@@ -3,7 +3,7 @@ bool Buttons[8];
 LPDIRECTINPUT8          diiDI = NULL; // DirectInput interface
 LPDIRECTINPUTDEVICE8    diMouse = NULL; // Device interface
 LPDIRECTINPUTDEVICE8    diKeybrd = NULL; // Device interface
-byte Keys[256];
+//byte cKeys[256];
 long axX, axY, axZ, nmX, nmY;
 float PI = 3.14159265358979323846;
 
@@ -35,7 +35,7 @@ HRESULT InitInputDevice(HWND hInstance)
 }
 
 
-byte* ReadInputState(long* axs)
+HRESULT ReadInputState(long* axs, byte* cKeys)
 {
     HRESULT hr;
     DIMOUSESTATE2 ms;
@@ -64,7 +64,7 @@ byte* ReadInputState(long* axs)
     }
     if(Buttons[1])      //melo odejit
     {
-        return Keys;
+        return WM_QUIT;
     }
     nmX+=ms.lX;
     nmY+=ms.lY;
@@ -76,7 +76,7 @@ byte* ReadInputState(long* axs)
     axs[3] = nmX;
     axs[4] = nmY;
 
-    hr = diKeybrd->Poll();
+    hr = diKeybrd->Poll();																//Klavesnice
     if (FAILED(hr))
     {
         hr = diKeybrd->Acquire();
@@ -84,6 +84,6 @@ byte* ReadInputState(long* axs)
             hr = diKeybrd->Acquire();
         return S_OK;
     }
-    diKeybrd->GetDeviceState(256, &Keys);
-    return Keys;
+    diKeybrd->GetDeviceState( 256, cKeys );
+    return S_OK;
 }

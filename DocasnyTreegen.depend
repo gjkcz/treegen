@@ -239,7 +239,7 @@
 1274305018 h:\microsoft directx sdk (june 2010)\include\dinput.h
 	<objbase.h>
 
-1415739153 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
+1415826166 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
 	"Tree.h"
 
 1415535610 source:c:\local new\local new v c3\programování\cb\struktury stromu\treegen\matrices.cpp
@@ -276,10 +276,10 @@
 	<d3dcompiler.h>
 	<dinput.h>
 
-1415742229 source:h:\local new\programování\cb\struktury stromu\treegen\inits.cpp
+1415823188 source:h:\local new\programování\cb\struktury stromu\treegen\inits.cpp
 	"inits.h"
 
-1415746752 h:\local new\programování\cb\struktury stromu\treegen\inits.h
+1415821251 h:\local new\programování\cb\struktury stromu\treegen\inits.h
 	<d3d11.h>
 	<d3dx9.h>
 	<d3dx10math.h>
@@ -297,14 +297,14 @@
 1415746062 h:\local new\programování\cb\struktury stromu\treegen\jednoduchyvertex.h
 	<xnamath.h>
 
-1415745790 source:h:\local new\programování\cb\struktury stromu\treegen\controler.cpp
+1415824267 source:h:\local new\programování\cb\struktury stromu\treegen\controler.cpp
 	"controler.h"
 
-1415745766 h:\local new\programování\cb\struktury stromu\treegen\controler.h
+1415824238 h:\local new\programování\cb\struktury stromu\treegen\controler.h
 	<windows.h>
 	<dinput.h>
 
-1415745977 source:h:\local new\programování\cb\struktury stromu\treegen\main.cpp
+1415908609 source:h:\local new\programování\cb\struktury stromu\treegen\main.cpp
 	<windows.h>
 	<strsafe.h>
 	"msgProc.h"
@@ -313,15 +313,21 @@
 	"controler.h"
 	"globals.h"
 
-1415746531 h:\local new\programování\cb\struktury stromu\treegen\msgproc.h
+1415814934 h:\local new\programování\cb\struktury stromu\treegen\msgproc.h
 	"windows.h"
 
-1415746753 h:\local new\programování\cb\struktury stromu\treegen\view.h
+1415823718 h:\local new\programování\cb\struktury stromu\treegen\view.h
 	<windows.h>
 	<d3dx9.h>
 	<dinput.h>
 	<xnamath.h>
 	"globals.h"
 
-1415745977 h:\local new\programování\cb\struktury stromu\treegen\globals.h
+1415908815 h:\local new\programování\cb\struktury stromu\treegen\globals.h
+
+1415824522 source:h:\local new\programování\cb\struktury stromu\treegen\view.cpp
+	"view.h"
+
+1415740740 source:h:\local new\programování\cb\struktury stromu\treegen\msgproc.cpp
+	"msgProc.h"
 

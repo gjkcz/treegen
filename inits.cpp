@@ -6,6 +6,7 @@
 
 bool bRust=false;
 float fDalka=950000.f; //0
+int* i_aPocetV = new int[iObsah];
 
 
 
@@ -14,7 +15,7 @@ float fDalka=950000.f; //0
 // Name: InitGeometry()
 // Desc: Creates the scene geometry
 //-----------------------------------------------------------------------------
-int* InitGeometry()
+int* InitGeometry( LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX, LPDIRECT3DVERTEXBUFFER9* g_pVB )
 {
     /*while(gRndm==0)
     	gRndm=zaokrouhli(random()*1.0);
@@ -22,6 +23,7 @@ int* InitGeometry()
     int vPocet, iPocetV=0;
     CUSTOMVERTEX* g_Vertices;
 
+    //g_pVB = new LPDIRECT3DVERTEXBUFFER9[iObsah];
     float xoffset = -2*fDalka;
     float yoffset = -2*fDalka;
     UINT uiTime=0;
@@ -56,7 +58,7 @@ int* InitGeometry()
         type._iRType=5;
         type._iDType=4;
         vPocet = GenerateTree(iPatra, type);
-        iPatra+=bRust?1:0;
+        //iPatra+=bRust?1:0;    nejde s makro konstantou
         iPocetV+=vPocet;
         i_aPocetV[i] = vPocet;
         g_Vertices = new CUSTOMVERTEX[vPocet];

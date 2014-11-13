@@ -2,4 +2,4 @@
 #include <dinput.h>
 
 HRESULT InitInputDevice(HWND hInstance);
-byte* ReadInputState(long* axs);
+HRESULT ReadInputState( long* axs, byte* cKeys );

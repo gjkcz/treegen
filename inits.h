@@ -14,6 +14,10 @@
 
 #ifndef __CUSTOMVERTEX_H__
 #define __CUSTOMVERTEX_H__
+
+// Our custom FVF, which describes our custom vertex structure
+#define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZ|D3DFVF_DIFFUSE)
+
 // A structure for our custom vertex type
 struct CUSTOMVERTEX
 {
@@ -29,7 +33,7 @@ struct tType
     int _iDType;
 };
 
-int* InitGeometry();
+int* InitGeometry( LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX, LPDIRECT3DVERTEXBUFFER9* g_pVB );
 int GenerateTree(int iPater, tType _tType);
 SimpleVertex* UnpackTree();
 float random();
