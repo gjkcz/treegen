@@ -37,3 +37,7 @@
 * Instalace codeblocks
 * Řešení problémů s knihovnami DX
 * Instalace GitBash na ntb
+
+**18.11.2014>>**
+
+* Přidání konzole k GUI
