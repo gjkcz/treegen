@@ -41,3 +41,8 @@
 **18.11.2014>>**
 
 * Přidání konzole k GUI
+![screenshot.jpg](https://bitbucket.org/repo/xG7A9k/images/3861489895-screenshot.jpg)
+
+**25.11.2014>>**
+
+* Přidání ovládání kamery myší + volný pohyb ve směrech hledícího vektoru.
