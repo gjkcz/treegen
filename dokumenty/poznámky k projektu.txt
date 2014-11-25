@@ -13,10 +13,15 @@ objekty:
 - g_pd3dDevice musi byt predavana pointrem
 - pole musel sem inicializovat v main
 
+-blur je vazne peknej, uvodni obrazovka by mela byt blurem
 - chtelo by to konzoli s vystupem
 - pozor, nefunguje win32 debug, ani release > to bude asi nejaka include
 - tak nejaky problem je v readInputState
-	> mel jsem v main axs = new long[2]; pritom v controler.cpp pouzivam ten ptr pro pristup k 4em.
+	> mel jsem v main axs = new long[2]; pritom v controler.cpp pouzivam ten ptr pro pristup k 4em. Divny je, ze VS mi to vzalo
+- jestli nejde zapisovat do exe, podivej se do jinyho compu, zda-li neni tam zapnut, git divni
+- limit nevim #define iObsah 5000
+		#define iPatra 7 zabira 1.5gb ram
+
 Project build options
 - linkerSettings>
 	d3d9.lib
