@@ -46,3 +46,7 @@
 **25.11.2014>>**
 
 * Přidání ovládání kamery myší + volný pohyb ve směrech hledícího vektoru.
+
+**8.12.2014>>**
+
+* Jetbrains CLion IDE
