@@ -55,8 +55,9 @@ int* InitGeometry( LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX, LPDIRE
             l = 0;
             bIAm = false;
         }
-        type._iRType=5;
-        type._iDType=4;
+//        type._iRType=5;
+//        type._iDType=4;
+
         vPocet = GenerateTree(iPatra, type);
         //iPatra+=bRust?1:0;    nejde s makro konstantou
         iPocetV+=vPocet;
@@ -110,6 +111,8 @@ int* InitGeometry( LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX, LPDIRE
         g_pVB[i]->Unlock();
     }
     uiTime=timeGetTime()-uiTime;
+
+    std::cout << "Cas generovani: " << uiTime << "ms\n";
     return i_aPocetV;
 }
 

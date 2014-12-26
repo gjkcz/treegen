@@ -1,9 +1,10 @@
+#include <iostream>
 #include <windows.h>
 #include <d3dx9.h>
 #include <dinput.h>
 #include <xnamath.h>
 #include "globals.h"
-
+using namespace std;
 
 #ifndef __CUSTOMVERTEX_H__
 #define __CUSTOMVERTEX_H__
@@ -21,3 +22,4 @@ struct CUSTOMVERTEX
 
 HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX );
 VOID render( LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte* Keys, long * axs, D3DXMATRIXA16* TMatX, LPDIRECT3DVERTEXBUFFER9* g_pVB );
+void clearScreen();

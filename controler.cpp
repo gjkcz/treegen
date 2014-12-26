@@ -56,10 +56,10 @@ HRESULT ReadInputState(long* axs, byte* cKeys)
         else
             Buttons[i] = false;
     }
-    if(Buttons[2])
+    if(true || Buttons[2])          //timto zpusobuji kontrolu pohybu mysi tlacitkem
     {
-        axX += ms.lX;																	//Mouse
-        axY += (ms.lY)*PI/180;
+        axX -= ms.lX;																	//Mouse
+        axY -= (ms.lY);//*PI/180;
         axZ += ms.lZ;
     }
     if(Buttons[1])      //melo odejit

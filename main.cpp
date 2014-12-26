@@ -1,5 +1,7 @@
 #include <windows.h>
 #include <strsafe.h>
+#include <iostream>
+#include <string>
 #include "msgProc.h"
 #include "inits.h"
 #include "view.h"
@@ -11,13 +13,68 @@ LPDIRECT3DDEVICE9 g_pd3dDevice; // Our rendering device, lp= neco pointr
 D3DXMATRIXA16* TMatX = new D3DXMATRIXA16[iObsah];
 LPDIRECT3DVERTEXBUFFER9* g_pVB = new LPDIRECT3DVERTEXBUFFER9[iObsah]; // Buffer to hold vertices
 
+//int main()
+//{
+//    std::cout << "Hello!";
+//
+//    HINSTANCE hInst = GetModuleHandle(0);
+//    WNDCLASS cls = { CS_HREDRAW|CS_VREDRAW, MsgProc, 0, 0, hInst, LoadIcon(hInst,MAKEINTRESOURCE(IDI_APPLICATION)),
+//        LoadCursor(hInst,MAKEINTRESOURCE(IDC_ARROW)), GetSysColorBrush(COLOR_WINDOW),0,"Window" };
+//    RegisterClass( &cls );
+//    HWND window = CreateWindow("Window","Hello World",WS_OVERLAPPEDWINDOW|WS_VISIBLE,64,64,640,480,0,0,hInst,0);
+//
+//    // Initialize Direct3D
+//    if( SUCCEEDED( InitD3D( window, g_pd3dDevice, TMatX ) ) )
+//    {
+//        // Show the window
+//        ShowWindow( window, SW_SHOWDEFAULT );
+//        UpdateWindow( window );
+//
+//        // Inicializace mysi a klavesnice
+//        if(SUCCEEDED( InitInputDevice( window )) )
+//        {
+//            // Create the scene geometry
+//            int* Pocet = InitGeometry( g_pd3dDevice, TMatX, g_pVB );
+//            HRESULT bQuit=NULL;
+//
+//            // Enter the message loop
+//            MSG msg;
+//            ZeroMemory( &msg, sizeof( msg ) );
+//            while( msg.message != WM_QUIT )
+//            {
+//
+//                if( PeekMessage( &msg, NULL, 0U, 0U, PM_REMOVE ) )  //mame msg?
+//                {
+//                    if( bQuit==WM_QUIT )
+//                    {
+//                        msg.message = WM_DESTROY;
+//                        TranslateMessage( &msg );
+//                        DispatchMessage( &msg );
+//                        msg.message = WM_QUIT;
+//                    }
+//                    TranslateMessage( &msg );
+//                    DispatchMessage( &msg );
+//                }
+//                else    //nemame msg..
+//                {
+//                    bQuit = ReadInputState( axs, Keys );
+//                    render( g_pd3dDevice, Pocet, Keys, axs, TMatX, g_pVB );
+//                }
+//            }
+//        }
+//    }
+//
+//    UnregisterClass( "Tree", cls.hInstance );
+//    return 0;
+//}
+
 //-----------------------------------------------------------------------------
 // Name: WinMain()
 // Desc: The application's entry point
 //-----------------------------------------------------------------------------
 INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
 {
-    UNREFERENCED_PARAMETER( hInst );
+    UNREFERENCED_PARAMETER( hInst ); // fakt nevim co to dela
 
     // Register the window class
     WNDCLASSEX wc =
@@ -30,10 +87,12 @@ INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
 
     // Create the application's window
     HWND hWnd = CreateWindow( "Tree", "Tree",
-                              WS_OVERLAPPEDWINDOW, 0, 0, width, height, //screen
+                              WS_OVERLAPPEDWINDOW, screenX, screenY, width, height, //screen
                               NULL, NULL, wc.hInstance, NULL );
 
 
+    // Presmeruj IO do nasi nove konzole
+    RedirectIOToConsole();
     // Initialize Direct3D
     if( SUCCEEDED( InitD3D( hWnd, g_pd3dDevice, TMatX ) ) )
     {
@@ -104,7 +163,7 @@ float random()
     {
         srand(timeGetTime());
     }
-    _rndm = rand()/32767.f;
+    _rndm = rand()/32000.f;
     return _rndm;
 }
 
