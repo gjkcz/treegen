@@ -9,7 +9,7 @@
 #include "globals.h"
 byte* Keys = new byte[256];
 long* axs = new long[4];
-LPDIRECT3DDEVICE9 g_pd3dDevice; // Our rendering device, lp= neco pointr
+LPDIRECT3DDEVICE9 g_pd3dDevice; // Our rendering device, lp= neco pointer
 D3DXMATRIXA16* TMatX = new D3DXMATRIXA16[iObsah];
 LPDIRECT3DVERTEXBUFFER9* g_pVB = new LPDIRECT3DVERTEXBUFFER9[iObsah]; // Buffer to hold vertices
 
