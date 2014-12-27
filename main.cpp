@@ -3,7 +3,7 @@
 //#include <iostream>
 //#include <string>
 
-#include "msgProc.h"
+//#include "msgProc.h"
 #include "inits.h"
 #include "view.h"
 #include "controler.h"
