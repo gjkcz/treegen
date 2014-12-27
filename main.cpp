@@ -1,12 +1,14 @@
 #include <windows.h>
-#include <strsafe.h>
-#include <iostream>
-#include <string>
+#include "SWU/Okno.hpp"
+//#include <iostream>
+//#include <string>
+
 #include "msgProc.h"
 #include "inits.h"
 #include "view.h"
 #include "controler.h"
 #include "globals.h"
+
 byte* Keys = new byte[256];
 long* axs = new long[4];
 LPDIRECT3DDEVICE9 g_pd3dDevice; // Our rendering device, lp= neco pointer
@@ -15,7 +17,8 @@ LPDIRECT3DVERTEXBUFFER9* g_pVB = new LPDIRECT3DVERTEXBUFFER9[iObsah]; // Buffer 
 
 INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
 {
-    UNREFERENCED_PARAMETER( hInst ); // fakt nevim co to dela
+    //    UNREFERENCED_PARAMETER( hInst ); // fakt nevim co to dela, ale funguje to i bez toho
+    sw::Okno okno1();
 
     // Register the window class
     WNDCLASSEX wc =
@@ -25,7 +28,6 @@ INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
         "Tree", NULL
     };
     RegisterClassEx( &wc );
-
     // Create the application's window
     HWND hWnd = CreateWindow( "Tree", "Tree",
                               WS_OVERLAPPEDWINDOW, screenX, screenY, width, height, //screen
@@ -74,8 +76,8 @@ INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
             }
         }
     }
-
     UnregisterClass( "Tree", wc.hInstance );
+
     return 0;
 }
 

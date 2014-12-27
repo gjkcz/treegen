@@ -2,7 +2,7 @@ Zkratky: {
 	ctrl+d			=	zdvoj řádek
 	ctrl+shift+d	=	smaž řádek
 	shift+enter		=	nový řádek odkudkoliv
-	ctrl+shift+enter=	nový řádek nad kurzor odkudkoliv
+	ctrl+shift+enter=	nový řádek nad kurzor odkudkoliv  ### Není v CodeBlocks
 	ctrl+{}			=	odsadí aktuálně zaměřený řádek ### Není v CodeBlocks
 	ctrl+shift+↑	=	přesune řádek ↑
 	ctrl+shift+↓	=	přesune řádek ↓
@@ -32,6 +32,7 @@ Zkratky: {
 		alt+v 		=	vloz pred aktualni radek
 		ctrl+num-	=	zabal vse
 		ctrl+num+	=	rozbal vse
+		ctrl+k		=	naformatuj vyber 
 
 		class ctrl+j
 		do
@@ -47,7 +48,7 @@ Zkratky: {
 		nowlu
 		nowu
 		struct
-		wsitch
+		switch
 		tday
 		tdayu
 		today

@@ -5,7 +5,7 @@
 #include <fstream>
 #include <iosfwd>
 #include <windows.h>
-#include <strsafe.h>
+//#include <strsafe.h>
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <d3dcompiler.h>
