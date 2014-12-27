@@ -18,65 +18,58 @@ LPDIRECT3DVERTEXBUFFER9* g_pVB = new LPDIRECT3DVERTEXBUFFER9[iObsah]; // Buffer 
 INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
 {
     //    UNREFERENCED_PARAMETER( hInst ); // fakt nevim co to dela, ale funguje to i bez toho
-    sw::Okno okno1();
+    //vytvor okno
+    sw::Okno okno1 = sw::Okno(sw::Pozice(screenX, screenY), sw::Rozmery(width, height), "Tree");
 
-    // Register the window class
-    WNDCLASSEX wc =
-    {
-        sizeof( WNDCLASSEX ), CS_CLASSDC, MsgProc, 0L, 0L,
-        GetModuleHandle( NULL ), NULL, NULL, NULL, NULL,
-        "Tree", NULL
-    };
-    RegisterClassEx( &wc );
-    // Create the application's window
-    HWND hWnd = CreateWindow( "Tree", "Tree",
-                              WS_OVERLAPPEDWINDOW, screenX, screenY, width, height, //screen
-                              NULL, NULL, wc.hInstance, NULL );
 
 
     // Presmeruj IO do nasi nove konzole
     RedirectIOToConsole();
     // Initialize Direct3D
-    if( SUCCEEDED( InitD3D( hWnd, g_pd3dDevice, TMatX ) ) )
+    if( SUCCEEDED( InitD3D( okno1.hWnd, g_pd3dDevice, TMatX ) ) )
     {
-        // Show the window
-        ShowWindow( hWnd, SW_SHOWDEFAULT );
-        UpdateWindow( hWnd );
+//        UpdateWindow( okno1.hWnd );
 
         // Inicializace mysi a klavesnice
-        if(SUCCEEDED( InitInputDevice( hWnd )) )
+        if(SUCCEEDED( InitInputDevice( okno1.hWnd )) )
         {
             // Create the scene geometry
             int* Pocet = InitGeometry( g_pd3dDevice, TMatX, g_pVB );
+
+            // Show the window, az po inicializaci dx
+            okno1.ukaz();
+
             HRESULT bQuit=NULL;
-
-            // Enter the message loop
-            MSG msg;
-            ZeroMemory( &msg, sizeof( msg ) );
-            while( msg.message != WM_QUIT )
+//
+//            // Enter the message loop
+//            MSG msg;
+//            ZeroMemory( &msg, sizeof( msg ) );
+            while( okno1.jeOtevrene() )
             {
-
-                if( PeekMessage( &msg, NULL, 0U, 0U, PM_REMOVE ) )  //mame msg?
-                {
-                    if( bQuit==WM_QUIT )
-                    {
-                        msg.message = WM_DESTROY;
-                        TranslateMessage( &msg );
-                        DispatchMessage( &msg );
-                        msg.message = WM_QUIT;
-                    }
-                    TranslateMessage( &msg );
-                    DispatchMessage( &msg );
-                }
-                else    //nemame msg..
-                {
+                    //TODO:"kdyz klepnu na krizek, program prestal pracovat. Je to neco s konzoli?
+                    okno1.postarejSeOZpravy();
+//                if( PeekMessage( &msg, NULL, 0U, 0U, PM_REMOVE ) )  //mame msg?
+//                {
+//                    if( bQuit==WM_QUIT )
+//                    {
+//                        msg.message = WM_DESTROY;
+//                        TranslateMessage( &msg );
+//                        DispatchMessage( &msg );
+//                        msg.message = WM_QUIT;
+//                    }
+//                    TranslateMessage( &msg );
+//                    DispatchMessage( &msg );
+//                }
+//                else    //nemame msg..
+//                {
                     bQuit = ReadInputState( axs, Keys );
+                    if(bQuit == WM_QUIT) okno1.~Okno();
+
                     render( g_pd3dDevice, Pocet, Keys, axs, TMatX, g_pVB );
-                }
+//                }
             }
         }
     }
-    UnregisterClass( "Tree", wc.hInstance );
 
     return 0;
 }

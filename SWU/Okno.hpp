@@ -1,34 +1,55 @@
 #include <windows.h>
-
+#include "../msgProc.h"
+#include <iostream>
+#include <string>
 namespace sw
 {
 
-struct rozmery {
+struct Rozmery {
 public:
     float x;
     float y;
-    rozmery(float _x = 320, float _y = 480)
+    Rozmery() : x(320), y(480) {}
+    Rozmery(float _x, float _y)
     {
         x=_x;
         y=_y;
     }
 };
 
-struct pozice{
+struct Pozice {
 public:
     int x, y;
-    pozice(int _x = 0, int _y = 0) : x(_x), y(_y) {}
+    Pozice() : x(0), y(0) {}
+    Pozice(int _x, int _y) : x(_x), y(_y) {}
 };
 
 
 class Okno
 {
 public:
-    Okno(pozice, rozmery, LPCWSTR);
+    HWND hWnd;
+    Okno()
+    {
+        std::cout << "";
+    }
+    Okno(Pozice x, Rozmery y, LPCSTR);
     ~Okno();
-    static void init();
+    void ukaz();
+    bool jeOtevrene() const
+    {
+        return otevreno;
+    }
+    void postarejSeOZpravy();
 protected:
 private:
+    bool otevreno;
+    WNDCLASSEX wc;
+    Pozice pozice;
+    Rozmery rozmer;
+    LPCSTR nazev;
+    HRESULT bQuit;
+    MSG msg;
 };
 
 }
