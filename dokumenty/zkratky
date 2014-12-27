@@ -2,6 +2,7 @@ Zkratky: {
 	ctrl+d			=	zdvoj řádek
 	ctrl+shift+d	=	smaž řádek
 	shift+enter		=	nový řádek odkudkoliv
+	ctrl+shift+enter=	nový řádek nad kurzor odkudkoliv
 	ctrl+{}			=	odsadí aktuálně zaměřený řádek ### Není v CodeBlocks
 	ctrl+shift+↑	=	přesune řádek ↑
 	ctrl+shift+↓	=	přesune řádek ↓
@@ -16,6 +17,22 @@ Zkratky: {
 
 	pro CodeBlocks: {
 		ctrl+e 		=	vybere další vyskytlý prvek
+		F1			=	zkompiluj soubor
+		F2			= 	log
+		F3			=	najdi dalsi
+		F4			=	bez ke kurzoru
+		F7			=  	dalsi radek
+		F8			= 	build
+		F9			= 	build a spust
+		F10			= 	rebuild
+		F11			=	prehod hlavicku/zdrojak
+		F12			= 	prehod aktualni blok
+		alt+x		= 	vyjmi radek
+		alt+c 		= 	zkopiruj radek
+		alt+v 		=	vloz pred aktualni radek
+		ctrl+num-	=	zabal vse
+		ctrl+num+	=	rozbal vse
+
 		class ctrl+j
 		do
 		for
