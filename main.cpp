@@ -1,9 +1,6 @@
 #include <windows.h>
 #include "SWU/Okno.hpp"
-//#include <iostream>
-//#include <string>
 
-//#include "msgProc.h"
 #include "inits.h"
 #include "view.h"
 #include "controler.h"
@@ -17,19 +14,16 @@ LPDIRECT3DVERTEXBUFFER9* g_pVB = new LPDIRECT3DVERTEXBUFFER9[iObsah]; // Buffer 
 
 INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
 {
-    //    UNREFERENCED_PARAMETER( hInst ); // fakt nevim co to dela, ale funguje to i bez toho
     //vytvor okno
+    HRESULT bQuit=NULL;
     sw::Okno okno1 = sw::Okno(sw::Pozice(screenX, screenY), sw::Rozmery(width, height), "Tree");
-
-
 
     // Presmeruj IO do nasi nove konzole
     RedirectIOToConsole();
+
     // Initialize Direct3D
     if( SUCCEEDED( InitD3D( okno1.hWnd, g_pd3dDevice, TMatX ) ) )
     {
-//        UpdateWindow( okno1.hWnd );
-
         // Inicializace mysi a klavesnice
         if(SUCCEEDED( InitInputDevice( okno1.hWnd )) )
         {
@@ -38,35 +32,13 @@ INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
 
             // Show the window, az po inicializaci dx
             okno1.ukaz();
-
-            HRESULT bQuit=NULL;
-//
-//            // Enter the message loop
-//            MSG msg;
-//            ZeroMemory( &msg, sizeof( msg ) );
-            while( okno1.jeOtevrene() )
+            while ( okno1.jeOtevrene() )
             {
                     //TODO:"kdyz klepnu na krizek, program prestal pracovat. Je to neco s konzoli?
                     okno1.postarejSeOZpravy();
-//                if( PeekMessage( &msg, NULL, 0U, 0U, PM_REMOVE ) )  //mame msg?
-//                {
-//                    if( bQuit==WM_QUIT )
-//                    {
-//                        msg.message = WM_DESTROY;
-//                        TranslateMessage( &msg );
-//                        DispatchMessage( &msg );
-//                        msg.message = WM_QUIT;
-//                    }
-//                    TranslateMessage( &msg );
-//                    DispatchMessage( &msg );
-//                }
-//                else    //nemame msg..
-//                {
                     bQuit = ReadInputState( axs, Keys );
                     if(bQuit == WM_QUIT) okno1.~Okno();
-
                     render( g_pd3dDevice, Pocet, Keys, axs, TMatX, g_pVB );
-//                }
             }
         }
     }
