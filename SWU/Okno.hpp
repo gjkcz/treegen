@@ -1,3 +1,7 @@
+#ifndef __OKNO_H_INCLUDED__
+#define __OKNO_H_INCLUDED__
+
+
 #include <windows.h>
 #include "../msgProc.h"
 #include <iostream>
@@ -53,3 +57,4 @@ private:
 };
 
 }
+#endif // __OKNO_H_INCLUDED__
