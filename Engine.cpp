@@ -8,6 +8,12 @@ Engine::Engine(const sw::Okno& _okno) : okno(_okno), oInput(okno.hWnd)
 
 Engine::~Engine()
 {
+    for(int i = 0; i < iObsah; i++) {
+        if( treeVertexBuffers[i] != NULL )
+            treeVertexBuffers[i]->Release();
+    }
+    if( g_pd3dDevice != NULL )
+        g_pd3dDevice->Release();
     delete treeMatrix;
     delete treeVertexBuffers;
     delete aPocetVrcholuStromu;
@@ -17,6 +23,7 @@ void Engine::priprav()
 {
     pripravView();
     pripravGeometrii();
+//    oInput.prepareInputDevices(okno.hWnd);
 }
 
 void Engine::pripravView()
@@ -178,6 +185,11 @@ void Engine::pripravGeometrii()
     uiTime=timeGetTime()-uiTime;
 
     std::cout << "Cas generovani: " << uiTime << "ms\n";
+}
+
+void Engine::prectiVstup()
+{
+    stav = oInput.prectiStavVstupu();
 }
 
 

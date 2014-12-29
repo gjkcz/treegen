@@ -2,13 +2,21 @@
 namespace si
 {
 
+//Input::Input()
+//{
+//    Keys = new byte[256];
+//    axs = new long[4];
+//}
 
-Input::Input(HWND hWnd)
+Input::Input(HWND _hWnd)
 {
-    prepareInputDevices(hWnd);
+    Keys = new byte[256];
+    axs = new long[4];
+    hWnd = _hWnd;
+    prepareInputDevices();
 }
 
-void Input::prepareInputDevices(HWND hWnd)
+void Input::prepareInputDevices()
 {
     HRESULT hr;
     for (int i = 8; i < 8; i++)
@@ -30,12 +38,72 @@ void Input::prepareInputDevices(HWND hWnd)
     if (FAILED (hr=diKeybrd->SetCooperativeLevel(hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE)))
         std::cout << hr;
 
+//        axs = new long[4];
+//            Keys = new byte[256];
+
     std::cout << S_OK;
 }
 
 Input::~Input()
 {
+    delete Keys;
+    delete axs;
 }
 
+HRESULT Input::prectiStavVstupu()
+{
+//        axs = new long[4];
+//            Keys = new byte[256];
+
+    HRESULT hr;
+    DIMOUSESTATE2 ms;
+    hr = diMouse->Poll();
+    if (FAILED(hr))
+    {
+        hr = diMouse->Acquire();
+        while(hr == DIERR_INPUTLOST)
+            hr = diMouse->Acquire();
+        return S_OK;
+    }
+    diMouse->GetDeviceState(sizeof(DIMOUSESTATE2), &ms);
+
+    for (int i = 0; i < 8; i++)
+    {
+        if (ms.rgbButtons[i])
+            Buttons[i] = true;
+        else
+            Buttons[i] = false;
+    }
+    if(true || Buttons[2])          //timto zpusobuji kontrolu pohybu mysi tlacitkem
+    {
+        axX -= ms.lX;																	//Mouse
+        axY -= (ms.lY);//*PI/180;
+        axZ += ms.lZ;
+    }
+    if(Buttons[1])      //melo odejit
+    {
+        return WM_QUIT;
+    }
+    nmX+=ms.lX;
+    nmY+=ms.lY;
+    //axX += ms.lX;
+
+    axs[0] = axX;
+    axs[1] = axY;
+    axs[2] = axZ;
+    axs[3] = nmX;
+    axs[4] = nmY;
+
+    hr = diKeybrd->Poll();																//Klavesnice
+    if (FAILED(hr))
+    {
+        hr = diKeybrd->Acquire();
+        while(hr == DIERR_INPUTLOST)
+            hr = diKeybrd->Acquire();
+        return S_OK;
+    }
+    diKeybrd->GetDeviceState( 256, Keys );
+    return S_OK;
+}
 
 }

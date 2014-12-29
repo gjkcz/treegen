@@ -13,18 +13,21 @@ namespace si
 
 class Input
 {
-
 public:
+    byte* Keys;     // array holding status of each keyboard key
+    long* axs;      // aray to hold values of each mouse axis
+    Input();
     Input(HWND hWnd);
     ~Input();
-    HRESULT ReadInputState( long* axs, byte* cKeys );
+    HRESULT prectiStavVstupu();
 private:
+    HWND hWnd;
     bool Buttons[8];
     LPDIRECTINPUT8 diiDI;            // DirectInput interface
     LPDIRECTINPUTDEVICE8 diMouse;    // mouse device interface
     LPDIRECTINPUTDEVICE8 diKeybrd;   // keyboard device interface
     long axX, axY, axZ, nmX, nmY;
-    void prepareInputDevices(HWND);
+    void prepareInputDevices();
 };
 
 

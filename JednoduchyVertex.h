@@ -1,5 +1,7 @@
-#ifndef __SVERTEX__
-#define __SVERTEX__
+#ifndef __SIMPLEVERTEX_H_INCLUDED__
+#define __SIMPLEVERTEX_H_INCLUDED__
+
+
 #include <xnamath.h>
 
 struct SimpleVertex
@@ -9,4 +11,6 @@ struct SimpleVertex
     XMFLOAT4 Color; // Color
     //XMFLOAT2 Tex; // Texture Co
 };
-#endif // __SVERTEX__
+
+
+#endif // __SIMPLEVERTEX_H_INCLUDED__
