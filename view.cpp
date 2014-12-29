@@ -90,7 +90,7 @@ HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* tree
 // Name: Render()
 // Desc: Draws the scene
 //-----------------------------------------------------------------------------
-VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, long* axs, D3DXMATRIXA16* treeMatrix, LPDIRECT3DVERTEXBUFFER9* treeVertexBuffers)
+VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, float* axs, D3DXMATRIXA16* treeMatrix, LPDIRECT3DVERTEXBUFFER9* treeVertexBuffers)
 {
 
     // Clear the backbuffer to a black color

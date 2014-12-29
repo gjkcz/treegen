@@ -10,8 +10,11 @@ namespace si
 
 Input::Input(HWND _hWnd)
 {
+    axX = 0;
+    axY = 0;
+    axZ = 0;
     Keys = new byte[256];
-    axs = new long[4];
+    axs = new float[4];
     hWnd = _hWnd;
     prepareInputDevices();
 }
@@ -44,6 +47,15 @@ void Input::prepareInputDevices()
     std::cout << S_OK;
 }
 
+void Input::reset()
+{
+    axs[0] = 0.f;
+    axs[1] = 0.f;
+    axs[2] = 0.f;
+    axs[3] = 0.f;
+    axs[4] = 0.f;
+}
+
 Input::~Input()
 {
     delete Keys;
@@ -58,8 +70,7 @@ HRESULT Input::prectiStavVstupu()
     HRESULT hr;
     DIMOUSESTATE2 ms;
     hr = diMouse->Poll();
-    if (FAILED(hr))
-    {
+    if (FAILED(hr)) {
         hr = diMouse->Acquire();
         while(hr == DIERR_INPUTLOST)
             hr = diMouse->Acquire();
@@ -67,25 +78,22 @@ HRESULT Input::prectiStavVstupu()
     }
     diMouse->GetDeviceState(sizeof(DIMOUSESTATE2), &ms);
 
-    for (int i = 0; i < 8; i++)
-    {
+    for (int i = 0; i < 8; i++) {
         if (ms.rgbButtons[i])
             Buttons[i] = true;
         else
             Buttons[i] = false;
     }
-    if(true || Buttons[2])          //timto zpusobuji kontrolu pohybu mysi tlacitkem
-    {
+    if(true || Buttons[2]) {        //timto zpusobuji kontrolu pohybu mysi tlacitkem
         axX -= ms.lX;																	//Mouse
         axY -= (ms.lY);//*PI/180;
         axZ += ms.lZ;
     }
-    if(Buttons[1])      //melo odejit
-    {
+    if(Buttons[1]) {    //melo odejit
         return WM_QUIT;
     }
-    nmX+=ms.lX;
-    nmY+=ms.lY;
+//    nmX+=ms.lX;
+//    nmY+=ms.lY;
     //axX += ms.lX;
 
     axs[0] = axX;
@@ -95,8 +103,7 @@ HRESULT Input::prectiStavVstupu()
     axs[4] = nmY;
 
     hr = diKeybrd->Poll();																//Klavesnice
-    if (FAILED(hr))
-    {
+    if (FAILED(hr)) {
         hr = diKeybrd->Acquire();
         while(hr == DIERR_INPUTLOST)
             hr = diKeybrd->Acquire();

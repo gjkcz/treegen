@@ -28,7 +28,7 @@ public:
     D3DXMATRIXA16* vemTreeMatrixy(){return treeMatrix;}
     LPDIRECT3DVERTEXBUFFER9* vemTreeVertexBuffers(){return treeVertexBuffers;}
     byte* vemKeys(){return oInput.Keys;}
-    long* vemAxs(){return oInput.axs;}
+    float* vemAxs(){return oInput.axs;}
 private:
     void pripravView();
     void pripravGeometrii();
