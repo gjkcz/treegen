@@ -2,6 +2,11 @@
 namespace sw
 {
 
+Okno::Okno()
+{
+//        std::cout << "";
+}
+
 Okno::Okno(Pozice P, Rozmery R, LPCSTR jmeno = "Default")
 {
     this->nazev = (LPCSTR)jmeno;

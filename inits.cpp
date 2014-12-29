@@ -6,7 +6,7 @@
 
 bool bRust=false;
 float fDalka=950000.f; //0
-int* i_aPocetV = new int[iObsah];
+int* aPocetVrcholuStromu = new int[iObsah];
 
 
 
@@ -15,7 +15,7 @@ int* i_aPocetV = new int[iObsah];
 // Name: InitGeometry()
 // Desc: Creates the scene geometry
 //-----------------------------------------------------------------------------
-int* InitGeometry( LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX, LPDIRECT3DVERTEXBUFFER9* g_pVB )
+int* InitGeometry( LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* treeMatrix, LPDIRECT3DVERTEXBUFFER9* treeVertexBuffers )
 {
     /*while(gRndm==0)
     	gRndm=zaokrouhli(random()*1.0);
@@ -33,7 +33,7 @@ int* InitGeometry( LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX, LPDIRE
     {
         xoffset = (i/sqrt((float)iObsah)) * fDalka-(sqrt((float)iObsah)/2)*fDalka+random()*fDalka-fDalka*0.5;
         yoffset = (i-(i/(int)sqrt((float)iObsah)*(int)sqrt((float)iObsah)))* fDalka-(sqrt((float)iObsah)/2)*fDalka+random()*fDalka-fDalka*0.5;
-        D3DXMatrixTranslation(&TMatX[i], xoffset, yoffset, 0.f);
+        D3DXMatrixTranslation(&treeMatrix[i], xoffset, yoffset, 0.f);
         int iTypu=8;
         int iTyp=0;
         bool bIAm = false;
@@ -61,19 +61,19 @@ int* InitGeometry( LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX, LPDIRE
         vPocet = GenerateTree(iPatra, type);
         //iPatra+=bRust?1:0;    nejde s makro konstantou
         iPocetV+=vPocet;
-        i_aPocetV[i] = vPocet;
+        aPocetVrcholuStromu[i] = vPocet;
         g_Vertices = new CUSTOMVERTEX[vPocet];
 
         // Create the vertex buffer.
         if( FAILED( g_pd3dDevice->CreateVertexBuffer( vPocet * sizeof( CUSTOMVERTEX ),
                     0, D3DFVF_CUSTOMVERTEX,
-                    D3DPOOL_DEFAULT, &g_pVB[i], NULL ) ) )
+                    D3DPOOL_DEFAULT, &treeVertexBuffers[i], NULL ) ) )
         {
             return NULL;
         }
 
         Tvertices = UnpackTree();
-        if( FAILED( g_pVB[i]->Lock( 0, 0, ( void** )&g_Vertices, 0 ) ) )
+        if( FAILED( treeVertexBuffers[i]->Lock( 0, 0, ( void** )&g_Vertices, 0 ) ) )
             return NULL; //pozor do pole nejde e_fail
         int tempColor;
         float colorK;
@@ -108,11 +108,11 @@ int* InitGeometry( LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX, LPDIRE
                 //tempColor=(colorK * 255)-(int)(colorK * 255/16)*16;
             }
         }
-        g_pVB[i]->Unlock();
+        treeVertexBuffers[i]->Unlock();
     }
     uiTime=timeGetTime()-uiTime;
 
     std::cout << "Cas generovani: " << uiTime << "ms\n";
-    return i_aPocetV;
+    return aPocetVrcholuStromu;
 }
 
