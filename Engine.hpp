@@ -30,12 +30,12 @@ public:
     byte* vemKeys(){return oInput.Keys;}
     float* vemAxs(){return oInput.axs;}
 private:
-    void pripravView();
-    void pripravGeometrii();
     sw::Okno okno;
     si::Input oInput;
     LPDIRECT3DDEVICE9 g_pd3dDevice; // Our rendering device, lp= neco pointer
     LPDIRECT3D9 g_pD3D; // Used to create the D3DDevice
+    void pripravView();
+    void pripravGeometrii();
 
     static const bool bRust=false;
     float fDalka; //0
