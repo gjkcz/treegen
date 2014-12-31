@@ -10,7 +10,7 @@
 #include <fstream>
 
 #include "globals.h"
-void RedirectIOToConsole();
+void presmerujIODoKonzole();
 
 #endif
 

@@ -285,24 +285,6 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
         }
 
 
-//	HANDLE hstdin  = GetStdHandle( STD_INPUT_HANDLE  );
-//
-//    cout << "'moo";
-//    cout << "'moo" << "\t\v";
-//    std::cout.put('d');
-//    std::cout << "\b\b\b";
-//    std::cout << "\r";
-//    long pos = cout.tellp();
-//    cout << pos << endl;
-//    bit 0 - foreground blue
-//bit 1 - foreground green
-//bit 2 - foreground red
-//bit 3 - foreground intensity
-//
-//bit 4 - background blue
-//bit 5 - background green
-//bit 6 - background red
-//bit 7 - background intensity
 
         g_View = translate * mRotateVZ * mRotateVY * mRotateVX;
 

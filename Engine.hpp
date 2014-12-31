@@ -1,8 +1,10 @@
 #ifndef __ENGINE_H_INCLUDED__
 #define __ENGINE_H_INCLUDED__
 
+#include <string>
 #include <d3dx9.h>
 #include "SWU/Okno.hpp"
+#include "SWU/Konzole.hpp"
 #include "Input.hpp"
 #include "CustomVertex.hpp"
 #include "JednoduchyVertex.h"
@@ -24,15 +26,17 @@ public:
     void priprav();
     void prectiVstup();
     void render3d();
+    void dejKonzoli(const sk::Konzole& x){iKonzole = x;}
     int* vemPocetVrcholuStromu() {return aPocetVrcholuStromu;}
     const LPDIRECT3DDEVICE9& vemG_pD3DDevice(){return g_pd3dDevice;}
     D3DXMATRIXA16* vemTreeMatrixy(){return treeMatrix;}
     LPDIRECT3DVERTEXBUFFER9* vemTreeVertexBuffers(){return treeVertexBuffers;}
-    byte* vemKeys(){return oInput.Keys;}
-    float* vemAxs(){return oInput.axs;}
+    byte* vemKeys(){return iInput.Keys;}
+    float* vemAxs(){return iInput.axs;}
 private:
     sw::Okno okno;
-    si::Input oInput;
+    si::Input iInput;
+    sk::Konzole iKonzole;
     LPDIRECT3DDEVICE9 g_pd3dDevice; // Our rendering device, lp= neco pointer
     LPDIRECT3D9 g_pD3D; // Used to create the D3DDevice
     void pripravView();

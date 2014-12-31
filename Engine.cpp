@@ -2,7 +2,7 @@
 namespace se {
 
 
-Engine::Engine(const sw::Okno& _okno) : okno(_okno), oInput(okno.hWnd)
+Engine::Engine(const sw::Okno& _okno) : okno(_okno), iInput(okno.hWnd)
 {
 }
 
@@ -23,6 +23,10 @@ Engine::~Engine()
 
 void Engine::priprav()
 {
+//    iKonzole.nastavBarvuPisma(sk::Barva::fbila);
+    iKonzole.vytiskniSablonu((std::string)"ok");
+//    iKonzole.nastavBarvuPisma(sk::Barva::fbila);
+//    iKonzole.zjistiSoucasnouBarvu();
     std::cout << "Pripravuji D3D" << '\n';
     pripravView();
     std::cout << "Ok" << '\n';
@@ -51,7 +55,7 @@ void Engine::pripravView()
                                      D3DCREATE_HARDWARE_VERTEXPROCESSING,
                                      &d3dpp, &g_pd3dDevice ) ) )
     {
-        std::cout << E_FAIL;
+//        std::cout << E_FAIL;
         if(FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, this->okno.hWnd,
                                         D3DCREATE_HARDWARE_VERTEXPROCESSING,
                                         &d3dpp, &g_pd3dDevice )))
@@ -195,7 +199,12 @@ void Engine::pripravGeometrii()
 
 void Engine::prectiVstup()
 {
-    stav = oInput.prectiStavVstupu();
+    stav = iInput.prectiStavVstupu();
+}
+
+void Engine::render3d()
+{
+
 }
 
 

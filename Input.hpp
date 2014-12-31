@@ -4,7 +4,7 @@
 
 #include <windows.h>
 #include <dinput.h>
-#include "guicon.h"
+#include <iostream>
 
 namespace si
 {

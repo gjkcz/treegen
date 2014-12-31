@@ -48,6 +48,7 @@ void Okno::postarejSeOZpravy()
                 {
                     if( this->bQuit==WM_QUIT )
                     {
+//                        std::cout << "okno zavreno krizkem";
                         this->otevreno = false;
 //                        this->~Okno(); // msgProc ma asi tezko pristup k oknu1
                         this->msg.message = WM_DESTROY; //vpodstate se zavola cleanup v msgProc

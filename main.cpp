@@ -5,15 +5,15 @@
 
 INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
 {
-    RedirectIOToConsole();  // Presmeruj IO do nasi nove konzole
-    string str;
-//    sw::Okno okno1(sw::Pozice(screenX, screenY), sw::Rozmery(width, height), "Tree");    //vytvor okno
-    sw::Okno okno1(sw::Pozice(512.f, screenY), sw::Rozmery(512, 726), "Tree");    //vytvor okno pro acer
-    se::Engine iEngine(okno1);
+    sk::Konzole iKonzole;
+    sw::Okno iOkno(sw::Pozice(screenX, screenY), sw::Rozmery(width, height), "Tree");    //vytvor okno
+//    sw::Okno iOkno(sw::Pozice(512.f, screenY), sw::Rozmery(512, 726), "Tree");    //vytvor okno pro acer
+    se::Engine iEngine(iOkno);
+    iEngine.dejKonzoli(iKonzole);
     iEngine.priprav();  //vytvori si d3d a z nej g_pd3dDevice
-    okno1.ukaz();               // Show the window, az po inicializaci dx
-    while ( okno1.jeOtevrene() ) {              // main loop
-        okno1.postarejSeOZpravy();
+    iOkno.ukaz();               // Show the window, az po inicializaci dx
+    while ( iOkno.jeOtevrene() ) {              // main loop
+        iOkno.postarejSeOZpravy();
         iEngine.prectiVstup();
         if( iEngine.stav == WM_QUIT )
             break;
