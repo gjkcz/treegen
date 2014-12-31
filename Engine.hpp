@@ -9,6 +9,7 @@
 #include "TreeType.hpp"
 #include "Helper.hpp"
 #include "Tree.h"
+#include "globals.h"
 
 namespace se
 {

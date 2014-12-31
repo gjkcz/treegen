@@ -20,6 +20,8 @@ struct CUSTOMVERTEX
 };
 #endif // __CUSTOMVERTEX_H__
 
-HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* treeMatrix );
-VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte* Keys, float * axs, D3DXMATRIXA16* treeMatrix, LPDIRECT3DVERTEXBUFFER9* treeVertexBuffers );
+//HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* treeMatrix );
+VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet,
+             byte* Keys, float * axs, D3DXMATRIXA16* treeMatrix,
+              LPDIRECT3DVERTEXBUFFER9* treeVertexBuffers );
 void clearScreen();

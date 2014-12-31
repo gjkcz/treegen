@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <dinput.h>
 #include "guicon.h"
+
 namespace si
 {
 

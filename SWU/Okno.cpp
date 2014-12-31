@@ -2,13 +2,14 @@
 namespace sw
 {
 
-Okno::Okno()
-{
-//        std::cout << "";
-}
+//Okno::Okno()
+//{
+////        std::cout << "";
+//}
 
-Okno::Okno(Pozice P, Rozmery R, LPCSTR jmeno = "Default")
+Okno::Okno(Pozice& P, Rozmery& R, LPCSTR jmeno = "Default")
 {
+//    std::cout << "Okno constructor called";
     this->nazev = (LPCSTR)jmeno;
     // Register the window class
     WNDCLASSEX _wc =
@@ -28,8 +29,10 @@ Okno::Okno(Pozice P, Rozmery R, LPCSTR jmeno = "Default")
 
 Okno::~Okno()
 {
-        this->otevreno = false;
+//        this->otevreno = false;
         UnregisterClass( nazev, this->wc.hInstance );
+        std::cout << "Zaviram a nicim iOkno.\n";
+//        system("pause");
 }
 
 void Okno::ukaz()
@@ -41,16 +44,12 @@ void Okno::ukaz()
 
 void Okno::postarejSeOZpravy()
 {
-
-//            while( msg.message != WM_QUIT )
-//            {
-
                 if( PeekMessage( &this->msg, NULL, 0U, 0U, PM_REMOVE ) )  //mame this->msg?
                 {
                     if( this->bQuit==WM_QUIT )
                     {
                         this->otevreno = false;
-                        this->~Okno(); // msgProc ma asi tezko pristup k oknu1
+//                        this->~Okno(); // msgProc ma asi tezko pristup k oknu1
                         this->msg.message = WM_DESTROY; //vpodstate se zavola cleanup v msgProc
                         TranslateMessage( &this->msg );
                         DispatchMessage( &this->msg );
@@ -61,10 +60,7 @@ void Okno::postarejSeOZpravy()
                 }
                 else    //nemame this->msg..
                 {
-//                    bQuit = ReadInputState( axs, Keys );
-//                    render( g_pd3dDevice, Pocet, Keys, axs, TMatX, g_pVB );
                 }
-//            }
 }
 
 }

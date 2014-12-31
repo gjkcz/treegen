@@ -140,12 +140,23 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Unit filename="CustomVertex.hpp" />
+		<Unit filename="Engine.cpp" />
+		<Unit filename="Engine.hpp" />
+		<Unit filename="Helper.cpp" />
+		<Unit filename="Helper.hpp" />
+		<Unit filename="Input.cpp" />
+		<Unit filename="Input.hpp" />
+		<Unit filename="JednoduchyVertex.h" />
+		<Unit filename="SWU/Okno.cpp" />
+		<Unit filename="SWU/Okno.hpp" />
+		<Unit filename="SimpleVertex.hpp" />
 		<Unit filename="Tree.cpp" />
-		<Unit filename="controler.cpp" />
-		<Unit filename="controler.h" />
+		<Unit filename="Tree.h" />
+		<Unit filename="TreeType.hpp" />
 		<Unit filename="globals.h" />
-		<Unit filename="inits.cpp" />
-		<Unit filename="inits.h" />
+		<Unit filename="guicon.cpp" />
+		<Unit filename="guicon.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="msgProc.cpp" />
 		<Unit filename="msgProc.h" />

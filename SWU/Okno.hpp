@@ -31,8 +31,8 @@ class Okno
 {
 public:
     HWND hWnd;
-    Okno();
-    Okno(Pozice x, Rozmery y, LPCSTR);
+//    Okno();
+    Okno(Pozice& x, Rozmery& y, LPCSTR);
     ~Okno();
     void ukaz();
     bool jeOtevrene() const

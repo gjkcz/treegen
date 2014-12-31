@@ -17,12 +17,18 @@ Engine::~Engine()
     delete treeMatrix;
     delete treeVertexBuffers;
     delete aPocetVrcholuStromu;
+    std::cout << "Engine destruktor dokoncil uvolnovani pameti alokovane jeho instanci iEngine.\n";
+//    system("pause");
 }
 
 void Engine::priprav()
 {
+    std::cout << "Pripravuji D3D" << '\n';
     pripravView();
+    std::cout << "Ok" << '\n';
+    std::cout << "Generuji stromy" << '\n';
     pripravGeometrii();
+    std::cout << "Ok" << '\n';
 //    oInput.prepareInputDevices(okno.hWnd);
 }
 
