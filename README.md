@@ -50,3 +50,9 @@
 **8.12.2014>>**
 
 * Jetbrains CLion IDE
+
+**5.1.2015>>**
+
+* Řešení problému s CodeBlocks a VC++2013
+
+* Úprava struktury programu
