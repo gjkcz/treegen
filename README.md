@@ -4,7 +4,7 @@
 ### What is this repository for? ###
 
 * Zde bude se upravovati a k závěru se odebéře můj finální projekt.
-* Verze 0.1
+* Verze 0.2
 
 ### Ovladani: ###
 
@@ -13,6 +13,7 @@
 * ↑, ↓ - pohled nahoru, dolu
 * 1, 2 - přidat auto otáčení
 * 3, 4 - otočit
+* myš
 
 ### Changelog: ###
 
@@ -50,3 +51,9 @@
 **8.12.2014>>**
 
 * Jetbrains CLion IDE
+
+**5.1.2015>>**
+
+* Řešení problému s CodeBlocks a VC++2013
+
+* Úprava struktury programu
