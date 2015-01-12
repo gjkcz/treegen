@@ -56,3 +56,7 @@
 * Řešení problému s CodeBlocks a VC++2013
 
 * Úprava struktury programu
+
+**12.1.2015>>**
+
+* Sem se zaseknul. Nejde mi rozchodit kompilátor VC++, který potřebuju kvůli podpoře knihoven DirectX. Kód se normálně zkompiluje, ale po chvíli se zaseknou Codeblocks. Vůbec nevim proč. Clion IDE nepodporuje VC++ zatim. 
