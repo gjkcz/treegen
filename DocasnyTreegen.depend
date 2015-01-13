@@ -704,7 +704,7 @@
 1419688978 source:c:\new\programování\treegen\inits.cpp
 	"inits.h"
 
-1419688978 c:\new\programování\treegen\inits.h
+1419723155 c:\new\programování\treegen\inits.h
 	<iostream>
 	<d3d11.h>
 	<d3dx9.h>
@@ -712,7 +712,6 @@
 	<fstream>
 	<iosfwd>
 	<windows.h>
-	<strsafe.h>
 	<d3d11.h>
 	<d3dx11.h>
 	<d3dcompiler.h>
