@@ -17,9 +17,6 @@
 					<Add option="/DPROFILE" />
 					<Add option="/D_WINDOWS" />
 					<Add directory="$(DXSDK_DIR)Include" />
-					<Add directory="$(IncludePath)" />
-					<Add directory="DXUT/Core" />
-					<Add directory="DXUT/Optional" />
 				</Compiler>
 				<Linker>
 					<Add option="/debug" />
@@ -31,6 +28,9 @@
 					<Add library="winmm.lib" />
 					<Add library="comctl32.lib" />
 					<Add library="dinput8.lib" />
+					<Add library="kernel32.lib" />
+					<Add library="user32.lib" />
+					<Add library="shell32.lib" />
 					<Add directory="$(DXSDK_DIR)Lib/x86" />
 				</Linker>
 			</Target>
@@ -140,10 +140,14 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Unit filename="SWU/Okno.cpp" />
+		<Unit filename="SWU/Okno.hpp" />
 		<Unit filename="Tree.cpp" />
 		<Unit filename="controler.cpp" />
 		<Unit filename="controler.h" />
 		<Unit filename="globals.h" />
+		<Unit filename="guicon.cpp" />
+		<Unit filename="guicon.h" />
 		<Unit filename="inits.cpp" />
 		<Unit filename="inits.h" />
 		<Unit filename="main.cpp" />
