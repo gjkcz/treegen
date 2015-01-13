@@ -71,7 +71,7 @@ paramsVetve generateParams(paramsVetve parent, int strana,tType _tType)
     {
     case 0:
     {
-        pVs.r.sklon = ((strana%2 == 0)?(random()*parent.rT.sklon):(random()*PI/2));
+        pVs.r.sklon = ((strana%2 == 0)?(helper::random()*parent.rT.sklon):(helper::random()*PI/2));
     }
     break;
     case 1:
@@ -82,22 +82,22 @@ paramsVetve generateParams(paramsVetve parent, int strana,tType _tType)
     break;
     case 2:
     {
-        pVs.r.sklon = ((strana%2 != 0)?(random()*parent.rT.sklon):(random()*PI/2));
+        pVs.r.sklon = ((strana%2 != 0)?(helper::random()*parent.rT.sklon):(helper::random()*PI/2));
     }
     break;
     case 3:
     {
-        pVs.r.sklon = ((strana%2 == 0)?(random()*PI/4):(random()*PI/2));
+        pVs.r.sklon = ((strana%2 == 0)?(helper::random()*PI/4):(helper::random()*PI/2));
     }
     break;
     case 4:
     {
-        pVs.r.sklon = ((strana%2 == 0)?(random()*PI/4+PI/4):(random()*PI/2));
+        pVs.r.sklon = ((strana%2 == 0)?(helper::random()*PI/4+PI/4):(helper::random()*PI/2));
     }
     break;
     case 5:
     {
-        pVs.r.sklon = ((strana%2 == 0)?(random()*PI/4+PI/4):(random()*PI/4+PI/4));
+        pVs.r.sklon = ((strana%2 == 0)?(helper::random()*PI/4+PI/4):(helper::random()*PI/4+PI/4));
     }
     break;
     case 6:
@@ -123,13 +123,13 @@ paramsVetve generateParams(paramsVetve parent, int strana,tType _tType)
     }
     case 10:
     {
-        k=((parent.rT.sklon==PI/2)?(-95.0f):(random()*15.f));
+        k=((parent.rT.sklon==PI/2)?(-95.0f):(helper::random()*15.f));
         pVs.r.sklon = ((strana%2 == 0)?(parent.rT.sklon+k*PI/180):(parent.rT.sklon+k*PI/180));
     }
 
     case 11:
     {
-        k=((parent.rT.sklon==PI/2)?(-45.0f):(random()*2.f));
+        k=((parent.rT.sklon==PI/2)?(-45.0f):(helper::random()*2.f));
         pVs.r.sklon = ((strana%2 == 0)?(parent.rT.sklon+k*PI/180):(parent.rT.sklon+k*PI/180));
     }
 
@@ -162,29 +162,29 @@ paramsVetve generateParams(paramsVetve parent, int strana,tType _tType)
     case 2:
     {
         pVs.r.rotace = ((strana%2 == 0)?
-                        (parent.rT.rotace+((parent.rT.sklon==PI/2)?0:(atan(cos(parent.rT.sklon)*sin(pVs.r.sklon)/cos(pVs.r.sklon))))-((parent.rT.sklon==PI/2)?(PI/2):(random()*PI/2))):
+                        (parent.rT.rotace+((parent.rT.sklon==PI/2)?0:(atan(cos(parent.rT.sklon)*sin(pVs.r.sklon)/cos(pVs.r.sklon))))-((parent.rT.sklon==PI/2)?(PI/2):(helper::random()*PI/2))):
                         (parent.rT.rotace-((parent.rT.sklon==PI/2)?0:(atan(cos(parent.rT.sklon)*sin(pVs.r.sklon)/cos(pVs.r.sklon))))+((parent.rT.sklon==PI/2)?(PI/2):(PI/4))) );
     }
     break;
     case 3:
     {
         pVs.r.rotace = ((strana%2 == 0)?
-                        (parent.rT.rotace-((parent.rT.sklon==PI/2)?(PI/2):(random()*PI/2))):
+                        (parent.rT.rotace-((parent.rT.sklon==PI/2)?(PI/2):(helper::random()*PI/2))):
                         (parent.rT.rotace+((parent.rT.sklon==PI/2)?(PI/2):(PI/4))) );
     }
     break;
     case 4:
     {
         pVs.r.rotace = ((strana%2 == 0)?
-                        (parent.rT.rotace-((parent.rT.sklon==PI/2)?(PI/2):(random()*PI+PI/2))):
+                        (parent.rT.rotace-((parent.rT.sklon==PI/2)?(PI/2):(helper::random()*PI+PI/2))):
                         (parent.rT.rotace+((parent.rT.sklon==PI/2)?(PI/2):(0))) );
     }
     break;
     case 5:
     {
         pVs.r.rotace = ((strana%2 == 0)?
-                        (parent.rT.rotace+((parent.rT.sklon==PI/2)?(PI/2):(random()*PI/2))):
-                        (parent.rT.rotace-((parent.rT.sklon==PI/2)?(PI/2):(random()*PI/2))) );
+                        (parent.rT.rotace+((parent.rT.sklon==PI/2)?(PI/2):(helper::random()*PI/2))):
+                        (parent.rT.rotace-((parent.rT.sklon==PI/2)?(PI/2):(helper::random()*PI/2))) );
     }
     break;
 
@@ -200,12 +200,12 @@ paramsVetve generateParams(paramsVetve parent, int strana,tType _tType)
     {
     case 6:
     {
-        pVs.d = ((strana%2 == 0)?(random()*19000+18277):(random()*19000+18277));
+        pVs.d = ((strana%2 == 0)?(helper::random()*19000+18277):(helper::random()*19000+18277));
     }
     break;
     case 1:
     {
-        pVs.d = ((strana%2 == 0)?(0.9*parent.d):(random()*19000+18277));
+        pVs.d = ((strana%2 == 0)?(0.9*parent.d):(helper::random()*19000+18277));
     }
     break;
     case 2:
@@ -220,7 +220,7 @@ paramsVetve generateParams(paramsVetve parent, int strana,tType _tType)
     break;
     case 4:
     {
-        pVs.d = ((strana%2 == 0)?((random()*0.1+0.9)*parent.d):((random()*0.02+0.98)*parent.d));
+        pVs.d = ((strana%2 == 0)?((helper::random()*0.1+0.9)*parent.d):((helper::random()*0.02+0.98)*parent.d));
     }
     break;
 
@@ -236,13 +236,13 @@ paramsVetve generateParams(paramsVetve parent, int strana,tType _tType)
 
     /*if(strana%2 == 0)				//když je sudá
     		{
-    			//pVs.r.sklon = parent.rT.sklon+k*PI/180;//-(zaokrouhli(random())*0+10)*PI/180;//random()*5*PI/180;//0.2f*pow(gonx*PI/180,2) ;
+    			//pVs.r.sklon = parent.rT.sklon+k*PI/180;//-(zaokrouhli(helper::random())*0+10)*PI/180;//helper::random()*5*PI/180;//0.2f*pow(gonx*PI/180,2) ;
     			//pVs.r.sklon =  parent.rT.sklon-k*PI/180;
-    			//pVs.r.sklon = random()*parent.rT.sklon;
-    			//pVs.r.rotace = parent.rT.rotace+((parent.rT.sklon==PI/2)?0:(atan(cos(parent.rT.sklon)*sin(pVs.r.sklon)/cos(pVs.r.sklon))))-((parent.rT.sklon==PI/2)?(PI/2):(PI/2));//+PI/2;//  + random()*90*PI/180;
-    			//pVs.rT.sklon = pVs.r.sklon;//random()*5*PI/180;//0.2f*pow(gonx*PI/180,2) ;
-    			//pVs.rT.r = parent.rT.r - random()*1;
-    			//pVs.d =random()*19000+18277;
+    			//pVs.r.sklon = helper::random()*parent.rT.sklon;
+    			//pVs.r.rotace = parent.rT.rotace+((parent.rT.sklon==PI/2)?0:(atan(cos(parent.rT.sklon)*sin(pVs.r.sklon)/cos(pVs.r.sklon))))-((parent.rT.sklon==PI/2)?(PI/2):(PI/2));//+PI/2;//  + helper::random()*90*PI/180;
+    			//pVs.rT.sklon = pVs.r.sklon;//helper::random()*5*PI/180;//0.2f*pow(gonx*PI/180,2) ;
+    			//pVs.rT.r = parent.rT.r - helper::random()*1;
+    			//pVs.d =helper::random()*19000+18277;
     			//pVs.aR = 0;
     			pVs.m = parent.m;
     			//pVs.de = parent.de;
@@ -253,14 +253,14 @@ paramsVetve generateParams(paramsVetve parent, int strana,tType _tType)
     			//pVs.aR = 0;
     			pVs.m = parent.m;
     			//pVs.de = parent.de;
-    			//pVs.r.sklon = parent.rT.sklon+k*PI/180;//45*PI/180-(zaokrouhli(random())*0+45)*PI/180;//- random()*5*PI/180;//0.2f*pow(gonx*PI/180,2) ;
+    			//pVs.r.sklon = parent.rT.sklon+k*PI/180;//45*PI/180-(zaokrouhli(helper::random())*0+45)*PI/180;//- helper::random()*5*PI/180;//0.2f*pow(gonx*PI/180,2) ;
     			//pVs.r.sklon =  parent.rT.sklon-k*PI/180;
-    			//pVs.r.sklon = random()*PI/2;
-    			//pVs.r.rotace = parent.rT.rotace-((parent.rT.sklon==PI/2)?0:(atan(cos(parent.rT.sklon)*sin(pVs.r.sklon)/cos(pVs.r.sklon))))+((parent.rT.sklon==PI/2)?(PI/2):(PI/2));//+PI/2;//  - random()*90*PI/180;
+    			//pVs.r.sklon = helper::random()*PI/2;
+    			//pVs.r.rotace = parent.rT.rotace-((parent.rT.sklon==PI/2)?0:(atan(cos(parent.rT.sklon)*sin(pVs.r.sklon)/cos(pVs.r.sklon))))+((parent.rT.sklon==PI/2)?(PI/2):(PI/2));//+PI/2;//  - helper::random()*90*PI/180;
 
-    			//pVs.rT.sklon = pVs.r.sklon;//- random()*5*PI/180;//0.2f*pow(gonx*PI/180,2) ;
-    			//pVs.rT.r = parent.rT.r - random()*1;
-    			//pVs.d =random()*20000+18277;
+    			//pVs.rT.sklon = pVs.r.sklon;//- helper::random()*5*PI/180;//0.2f*pow(gonx*PI/180,2) ;
+    			//pVs.rT.r = parent.rT.r - helper::random()*1;
+    			//pVs.d =helper::random()*20000+18277;
     		}*/
 
     return pVs;
@@ -284,10 +284,10 @@ int GenerateTree(int iPater,tType _tType)
     uiTime = timeGetTime();
     while(r==0||g==0||b==0){*/
 
-    //r = zaokrouhli(random());
-    //g = zaokrouhli(random());
-    //b = zaokrouhli(random());
-    if(zaokrouhli(random())==1)
+    //r = zaokrouhli(helper::random());
+    //g = zaokrouhli(helper::random());
+    //b = zaokrouhli(helper::random());
+    if(helper::zaokrouhli(helper::random())==1)
     {
         r=1;
         g=1;
@@ -393,17 +393,17 @@ int GenerateTree(int iPater,tType _tType)
                         klic[integratePower(2,z+1)+2*x]=0x0000;
                         klic[integratePower(2,z+1)+2*x+1]=0x0000;
                     }
-                    else if(zaokrouhli(random()*6)==1)
+                    else if(helper::zaokrouhli(helper::random()*6)==1)
                     {
                         klic[integratePower(2,z+1)+2*x]=0x0001;
                         klic[integratePower(2,z+1)+2*x+1]=0x0001;
                     }
-                    else if(zaokrouhli(random()*6)==1)
+                    else if(helper::zaokrouhli(helper::random()*6)==1)
                     {
                         klic[integratePower(2,z+1)+2*x]=0x0001;
                         klic[integratePower(2,z+1)+2*x+1]=0x0000;
                     }
-                    else if(zaokrouhli(random()*6)==1)
+                    else if(helper::zaokrouhli(helper::random()*6)==1)
                     {
                         klic[integratePower(2,z+1)+2*x]=0x0000;
                         klic[integratePower(2,z+1)+2*x+1]=0x0001;
@@ -447,11 +447,11 @@ int GenerateTree(int iPater,tType _tType)
     gpVs[0].rT.rotace= 0;
     gpVs[0].rT.sklon = PI/2;//+1*PI/180;//-89*PI/180;
     //gpVs[0].d = GenerateRndm(77*iPater,77*iPater)/1.f; //177max delka *pocet pater=maximalni vyska koruny
-    gpVs[0].d = random()*(100000+1111*iPater)+11111*iPater;
+    gpVs[0].d = helper::random()*(100000+1111*iPater)+11111*iPater;
     //gpVs[0].r.r = GenerateRndm(0.999*(iPater-1)+20,0.999*(iPater-1)+20);
     //gpVs[0].rT.r =gpVs[0].r.r * (GenerateRndm(111,155)/200.f);
     gpVs[0].r.r = 0.999*(iPater-1)+555;
-    gpVs[0].rT.r = gpVs[0].r.r *  (random()*1+0.5)/10.f;
+    gpVs[0].rT.r = gpVs[0].r.r *  (helper::random()*1+0.5)/10.f;
     gpVs[0].de =  50.f* PI/180;
     gfDensity=gpVs[0].de;
     gfDensityR= gpVs[0].r.r;

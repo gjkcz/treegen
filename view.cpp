@@ -2,7 +2,7 @@
 
 int gRndm = 0; //rozhoduje o barve pozadi... 0=cerna, 1=bila
 bool bFScreen=false;
-LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
+LPDIRECT3D9    g_pD3D = NULL; // Used to create the D3DDevice
 float							 v_X, v_Y, v_Z, vt_X, vt_Y, vt_Z;
 D3DXVECTOR3* vTranslace = new D3DXVECTOR3(0.f, 0.f, 0.f);
 bool							 v_XY = true;
@@ -18,7 +18,7 @@ XMFLOAT3 velocity[10];
 // Name: InitD3D()
 // Desc: Initializes Direct3D
 //-----------------------------------------------------------------------------
-HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMatX )
+HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* treeMatrix )
 {
     // Create the D3D object.
     if( NULL == ( g_pD3D = Direct3DCreate9( D3D_SDK_VERSION ) ) )
@@ -90,7 +90,7 @@ HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* TMat
 // Name: Render()
 // Desc: Draws the scene
 //-----------------------------------------------------------------------------
-VOID render( LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, long* axs, D3DXMATRIXA16* TMatX, LPDIRECT3DVERTEXBUFFER9* g_pVB)
+VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, float* axs, D3DXMATRIXA16* treeMatrix, LPDIRECT3DVERTEXBUFFER9* treeVertexBuffers)
 {
 
     // Clear the backbuffer to a black color
@@ -285,24 +285,6 @@ VOID render( LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, long* axs
         }
 
 
-//	HANDLE hstdin  = GetStdHandle( STD_INPUT_HANDLE  );
-//
-//    cout << "'moo";
-//    cout << "'moo" << "\t\v";
-//    std::cout.put('d');
-//    std::cout << "\b\b\b";
-//    std::cout << "\r";
-//    long pos = cout.tellp();
-//    cout << pos << endl;
-//    bit 0 - foreground blue
-//bit 1 - foreground green
-//bit 2 - foreground red
-//bit 3 - foreground intensity
-//
-//bit 4 - background blue
-//bit 5 - background green
-//bit 6 - background red
-//bit 7 - background intensity
 
         g_View = translate * mRotateVZ * mRotateVY * mRotateVX;
 
@@ -317,7 +299,7 @@ VOID render( LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, long* axs
         //D3DXVECTOR3 vEyePt( 10.0f, 50.0f,-50.0f );
         //D3DXVECTOR3 vLookatPt( 0.0f, 150.0f, 0.0f );
         //D3DXVECTOR3 vUpVec( 0.0f, 1.0f, 0.0f );
-        D3DXMATRIXA16 g_World1 = TMatX[0] * mScale * mRotateW;// * translate;
+        D3DXMATRIXA16 g_World1 = treeMatrix[0] * mScale * mRotateW;// * translate;
         //g_pd3dDevice->SetTransform( D3DTS_WORLD, &g_World1 );
 
         //g_pd3dDevice->SetTransform( D3DTS_VIEW, &g_View );
@@ -345,12 +327,12 @@ VOID render( LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, long* axs
         {
             // Setup the world, view, and projection Matrices
             //SetupMatrices(i);
-            D3DXMATRIXA16 g_World1 = TMatX[i] * mScale * mRotateW;// * translate;
+            D3DXMATRIXA16 g_World1 = treeMatrix[i] * mScale * mRotateW;// * translate;
             g_pd3dDevice->SetTransform( D3DTS_WORLD, &g_World1 );
 
 
             // Render the vertex buffer contents
-            g_pd3dDevice->SetStreamSource( 0, g_pVB[i], 0, sizeof( CUSTOMVERTEX ) );
+            g_pd3dDevice->SetStreamSource( 0, treeVertexBuffers[i], 0, sizeof( CUSTOMVERTEX ) );
 
             g_pd3dDevice->DrawPrimitive(
                 D3DPT_POINTLIST, 0, Pocet[i] );
