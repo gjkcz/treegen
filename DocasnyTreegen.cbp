@@ -2,144 +2,70 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="DocasnyTreegen" />
+		<Option title="mingwTreegen" />
 		<Option pch_mode="2" />
-		<Option compiler="msvc10" />
+		<Option compiler="gcc" />
 		<Build>
-			<Target title="Debug Win32">
-				<Option output="DocasnyTreegen" prefix_auto="1" extension_auto="1" />
-				<Option type="0" />
-				<Option compiler="msvc10" />
+			<Target title="Debug">
+				<Option output="bin/Debug/mingwTreegen" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="/DWIN32" />
-					<Add option="/D_DEBUG" />
-					<Add option="/DDEBUG" />
-					<Add option="/DPROFILE" />
-					<Add option="/D_WINDOWS" />
+					<Add option="-g" />
 					<Add directory="$(DXSDK_DIR)Include" />
-					<Add directory="$(IncludePath)" />
-					<Add directory="DXUT/Core" />
-					<Add directory="DXUT/Optional" />
 				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(DXSDK_DIR)Include" />
+				</ResourceCompiler>
 				<Linker>
-					<Add option="/debug" />
-					<Add library="d3d9.lib" />
-					<Add library="d3dx10d.lib" />
-					<Add library="d3dx9d.lib" />
-					<Add library="dxerr.lib" />
-					<Add library="dxguid.lib" />
-					<Add library="winmm.lib" />
-					<Add library="comctl32.lib" />
-					<Add library="dinput8.lib" />
+					<Add library="d3d9" />
+					<Add library="d3dx9" />
+					<Add library="dinput8" />
+					<Add library="dxguid" />
 					<Add directory="$(DXSDK_DIR)Lib/x86" />
 				</Linker>
 			</Target>
-			<Target title="Profile x64">
-				<Option output="DocasnyTreegen" prefix_auto="1" extension_auto="1" />
+			<Target title="Release">
+				<Option output="bin/Release/mingwTreegen" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
 				<Option type="0" />
-				<Option compiler="msvc10" />
-			</Target>
-			<Target title="Debug x64">
-				<Option output="DocasnyTreegen" prefix_auto="1" extension_auto="1" />
-				<Option type="0" />
-				<Option compiler="msvc10" />
+				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-O2" />
 					<Add directory="$(DXSDK_DIR)Include" />
 				</Compiler>
-				<Linker>
-					<Add library="d3d9.lib" />
-					<Add library="d3dx10d.lib" />
-					<Add library="d3dx9d.lib" />
-					<Add library="dxerr.lib" />
-					<Add library="dxguid.lib" />
-					<Add library="winmm.lib" />
-					<Add library="comctl32.lib" />
-					<Add library="dinput8.lib" />
-					<Add library="kernel32.lib" />
-					<Add library="user32.lib" />
-					<Add library="shell32.lib" />
-					<Add directory="$(DXSDK_DIR)Lib/x86" />
-				</Linker>
-			</Target>
-			<Target title="Release x64">
-				<Option output="DocasnyTreegen" prefix_auto="1" extension_auto="1" />
-				<Option type="0" />
-				<Option compiler="msvc10" />
-				<Compiler>
+				<ResourceCompiler>
 					<Add directory="$(DXSDK_DIR)Include" />
-					<Add directory="$(IncludePath)" />
-					<Add directory="DXUT/Core" />
-					<Add directory="DXUT/Optional" />
-				</Compiler>
+				</ResourceCompiler>
 				<Linker>
-					<Add library="d3d9.lib" />
-					<Add library="d3dx10d.lib" />
-					<Add library="d3dx9d.lib" />
-					<Add library="dxerr.lib" />
-					<Add library="dxguid.lib" />
-					<Add library="winmm.lib" />
-					<Add library="comctl32.lib" />
-					<Add library="dinput8.lib" />
-					<Add library="kernel32.lib" />
-					<Add library="user32.lib" />
-					<Add library="shell32.lib" />
-					<Add directory="$(DXSDK_DIR)Lib/x86" />
-				</Linker>
-			</Target>
-			<Target title="Profile Win32">
-				<Option output="DocasnyTreegen" prefix_auto="1" extension_auto="1" />
-				<Option type="0" />
-				<Option compiler="msvc10" />
-				<Compiler>
-					<Add option="/DWIN32" />
-					<Add option="/DNDEBUG" />
-					<Add option="/DPROFILE" />
-					<Add option="/D_WINDOWS" />
-					<Add directory="$(DXSDK_DIR)Include" />
-					<Add directory="$(IncludePath)" />
-					<Add directory="DXUT/Core" />
-					<Add directory="DXUT/Optional" />
-				</Compiler>
-				<Linker>
-					<Add option="/debug" />
-					<Add library="d3d9.lib" />
-					<Add library="d3dx10.lib" />
-					<Add library="d3dx9.lib" />
-					<Add library="dxerr.lib" />
-					<Add library="dxguid.lib" />
-					<Add library="winmm.lib" />
-					<Add library="comctl32.lib" />
-					<Add directory="$(DXSDK_DIR)Lib/x86" />
-					<Add directory="$(LibraryPath)" />
-				</Linker>
-			</Target>
-			<Target title="Release Win32">
-				<Option output="DocasnyTreegen" prefix_auto="1" extension_auto="1" />
-				<Option type="0" />
-				<Option compiler="msvc10" />
-				<Compiler>
-					<Add option="/DWIN32" />
-					<Add option="/DNDEBUG" />
-					<Add option="/D_WINDOWS" />
-					<Add directory="$(DXSDK_DIR)Include" />
-					<Add directory="$(IncludePath)" />
-					<Add directory="DXUT/Core" />
-					<Add directory="DXUT/Optional" />
-				</Compiler>
-				<Linker>
-					<Add option="/debug" />
-					<Add library="d3d9.lib" />
-					<Add library="d3dx10.lib" />
-					<Add library="d3dx9.lib" />
-					<Add library="dxerr.lib" />
-					<Add library="dxguid.lib" />
-					<Add library="winmm.lib" />
-					<Add library="comctl32.lib" />
-					<Add library="dinput8.lib" />
+					<Add option="-s" />
+					<Add library="d3dx9" />
+					<Add library="d3d9" />
+					<Add library="dinput8" />
+					<Add library="dxguid" />
 					<Add directory="$(DXSDK_DIR)Lib/x86" />
 				</Linker>
 			</Target>
 		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="$(DXSDK_DIR)Include" />
+		</Compiler>
+		<ResourceCompiler>
+			<Add directory="$(DXSDK_DIR)Include" />
+		</ResourceCompiler>
+		<Linker>
+			<Add library="gdi32" />
+			<Add library="user32" />
+			<Add library="kernel32" />
+			<Add library="comctl32" />
+			<Add library="d3d9" />
+			<Add library="d3dx9" />
+			<Add library="dinput8" />
+			<Add library="dxguid" />
+			<Add directory="$(DXSDK_DIR)Lib/x86" />
+		</Linker>
 		<Unit filename="CustomVertex.hpp" />
 		<Unit filename="Engine.cpp" />
 		<Unit filename="Engine.hpp" />
@@ -147,21 +73,21 @@
 		<Unit filename="Helper.hpp" />
 		<Unit filename="Input.cpp" />
 		<Unit filename="Input.hpp" />
-		<Unit filename="JednoduchyVertex.h" />
+		<Unit filename="JednoduchyVertex.hpp" />
+		<Unit filename="SWU/Konzole.cpp" />
+		<Unit filename="SWU/Konzole.hpp" />
 		<Unit filename="SWU/Okno.cpp" />
 		<Unit filename="SWU/Okno.hpp" />
 		<Unit filename="SimpleVertex.hpp" />
 		<Unit filename="Tree.cpp" />
-		<Unit filename="Tree.h" />
+		<Unit filename="Tree.hpp" />
 		<Unit filename="TreeType.hpp" />
-		<Unit filename="globals.h" />
-		<Unit filename="guicon.cpp" />
-		<Unit filename="guicon.h" />
+		<Unit filename="globals.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="msgProc.cpp" />
-		<Unit filename="msgProc.h" />
+		<Unit filename="msgProc.hpp" />
 		<Unit filename="view.cpp" />
-		<Unit filename="view.h" />
+		<Unit filename="view.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

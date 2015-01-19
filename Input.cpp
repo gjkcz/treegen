@@ -16,6 +16,7 @@ Input::Input(HWND _hWnd)
     Keys = new byte[256];
     axs = new float[4];
     hWnd = _hWnd;
+//    std::cout << "Volam fci prepareInputDevices.\n";
     prepareInputDevices();
 }
 

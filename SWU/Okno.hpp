@@ -3,7 +3,7 @@
 
 
 #include <windows.h>
-#include "../msgProc.h"
+#include "../msgProc.hpp"
 #include <iostream>
 #include <string>
 namespace sw
@@ -26,13 +26,12 @@ struct Pozice {
     Pozice(int _x, int _y) : x(_x), y(_y) {}
 };
 
-
 class Okno
 {
 public:
     HWND hWnd;
-//    Okno();
-    Okno(Pozice& x, Rozmery& y, LPCSTR);
+    Okno();
+    Okno(const Pozice& x,const Rozmery& y, LPCSTR);
     ~Okno();
     void ukaz();
     bool jeOtevrene() const

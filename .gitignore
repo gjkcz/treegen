@@ -1,3 +1,5 @@
 DocasnyTreegen.exe
 globals.h
 .objs/
+bin/Debug/
+obj/

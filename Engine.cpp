@@ -1,14 +1,41 @@
 #include "Engine.hpp"
-namespace se {
+namespace se
+{
+
+typedef std::chrono::high_resolution_clock stopky;
+typedef stopky::time_point Okamzik;
+typedef stopky::duration Doba;
 
 
 Engine::Engine(const sw::Okno& _okno) : okno(_okno), iInput(okno.hWnd)
 {
+//    std::cout << "Engine uniform initialized.";
+    Okamzik zacatek = stopky::now();
+
+
+
+
+    // obtain a seed from the timer
+    Doba d = stopky::now() - zacatek;
+    unsigned seminko = d.count();
+
+    std::minstd_rand0 generator (seminko);
+    std::uniform_int_distribution<int> distribution(50,255);
+    auto kostka = std::bind ( distribution, generator );
+    int i = kostka();
+
+    d = stopky::now() - zacatek;
+    seminko = d.count();
+    generator.seed(seminko);
+    int r = kostka();
+
+
 }
 
 Engine::~Engine()
 {
-    for(int i = 0; i < iObsah; i++) {
+    for(int i = 0; i < iObsah; i++)
+    {
         if( treeVertexBuffers[i] != NULL )
             treeVertexBuffers[i]->Release();
     }
@@ -23,9 +50,9 @@ Engine::~Engine()
 
 void Engine::priprav()
 {
-//    iKonzole.nastavBarvuPisma(sk::Barva::fbila);
+    iKonzole.nastavBarvuPisma(sk::Barva::fbila);
     iKonzole.vytiskniSablonu((std::string)"ok");
-//    iKonzole.nastavBarvuPisma(sk::Barva::fbila);
+    iKonzole.nastavBarvuPisma(sk::Barva::fbila);
 //    iKonzole.zjistiSoucasnouBarvu();
     std::cout << "Pripravuji D3D" << '\n';
     pripravView();
@@ -91,7 +118,7 @@ void Engine::pripravView()
     // Turn off D3D lighting, since we are providing our own vertex colors
     g_pd3dDevice->SetRenderState( D3DRS_LIGHTING, FALSE );
 
-    //TMatX = new D3DXMATRIXA16[iObsah];
+    //TMatX = new D3DXMATRIX[iObsah];
 
     if( g_pD3D != NULL )
         g_pD3D->Release();
@@ -99,7 +126,7 @@ void Engine::pripravView()
 
 void Engine::pripravGeometrii()
 {
-    treeMatrix = new D3DXMATRIXA16[iObsah];   // array of matrices to hold the rotation and position of each tree
+    treeMatrix = new D3DXMATRIX[iObsah];   // array of matrices to hold the rotation and position of each tree
     treeVertexBuffers = new LPDIRECT3DVERTEXBUFFER9[iObsah]; // array of Buffers to hold vertices
     aPocetVrcholuStromu = new int[iObsah];
     fDalka=950000.f;
@@ -108,9 +135,10 @@ void Engine::pripravGeometrii()
     CUSTOMVERTEX* g_Vertices;
     float xoffset = -2*fDalka;
     float yoffset = -2*fDalka;
-    UINT uiTime=0;
     SimpleVertex* Tvertices;
-    uiTime = timeGetTime();
+    Okamzik zacatek = stopky::now();
+//    UINT uiTime=0;
+//    uiTime = timeGetTime();
     for(int i = 0; i<iObsah; i++)
     {
         xoffset = (i/sqrt((float)iObsah)) * fDalka-(sqrt((float)iObsah)/2)*fDalka+helper::random()*fDalka-fDalka*0.5;
@@ -192,9 +220,10 @@ void Engine::pripravGeometrii()
         }
         treeVertexBuffers[i]->Unlock();
     }
-    uiTime=timeGetTime()-uiTime;
-
-    std::cout << "Cas generovani: " << uiTime << "ms\n";
+//    uiTime=timeGetTime()-uiTime;
+    Doba dobaGenerovani = (stopky::now() - zacatek);
+    int casVteriny = dobaGenerovani.count() / 1000;
+    std::cout << "Cas generovani: " << casVteriny << "ms\n";
 }
 
 void Engine::prectiVstup()

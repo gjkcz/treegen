@@ -1,4 +1,4 @@
-#include "guicon.h"
+#include "guicon.hpp"
 
 #ifndef _USE_OLD_IOSTREAMS
 

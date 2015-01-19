@@ -1,12 +1,12 @@
 #ifndef __KONZOLE_H_INCLUDED__
 #define __KONZOLE_H_INCLUDED__
 
-#include <windows.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <io.h>
+#include <windows.h>    // potreba pro konstanty v Barva, jako FOREGROUND_RED
+//#include <fcntl.h>
+//#include <io.h>
+//#include <stdio.h>
 #include <iostream>
-#include <fstream>
+//#include <fstream>
 #include <string>
 #include <map>
 namespace sk
@@ -51,14 +51,14 @@ public:
     Konzole();
     void nastavBarvuPisma(Barva);
     void nastavBarvuPisma(WORD);
-    void vytiskniSablonu(std::string& klic);
-    void vytiskniXMezer(int x);
+    void vytiskniSablonu(std::string klic);
+    void vytiskniXEnteru(int x);
 protected:
 private:
     void zjistiSoucasnouBarvu();
     WORD soucasnaBarva;
     static const WORD MAX_CONSOLE_LINES = 500;
-    void presmerujIODoKonzole();
+//    void presmerujIODoKonzole();
 };
 
 

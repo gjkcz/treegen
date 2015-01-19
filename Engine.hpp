@@ -2,16 +2,22 @@
 #define __ENGINE_H_INCLUDED__
 
 #include <string>
+#include <functional>   // aby fungoval bind
+#include <random>       // Generatory
+#include <chrono>       // Casove fce
+#include <windows.h>
+#include <d3d9.h>
 #include <d3dx9.h>
+//#include <d3dx9math.h>
 #include "SWU/Okno.hpp"
 #include "SWU/Konzole.hpp"
 #include "Input.hpp"
 #include "CustomVertex.hpp"
-#include "JednoduchyVertex.h"
+#include "JednoduchyVertex.hpp"
 #include "TreeType.hpp"
 #include "Helper.hpp"
-#include "Tree.h"
-#include "globals.h"
+#include "Tree.hpp"
+#include "globals.hpp"
 
 namespace se
 {
@@ -29,7 +35,7 @@ public:
     void dejKonzoli(const sk::Konzole& x){iKonzole = x;}
     int* vemPocetVrcholuStromu() {return aPocetVrcholuStromu;}
     const LPDIRECT3DDEVICE9& vemG_pD3DDevice(){return g_pd3dDevice;}
-    D3DXMATRIXA16* vemTreeMatrixy(){return treeMatrix;}
+    D3DXMATRIX* vemTreeMatrixy(){return treeMatrix;}
     LPDIRECT3DVERTEXBUFFER9* vemTreeVertexBuffers(){return treeVertexBuffers;}
     byte* vemKeys(){return iInput.Keys;}
     float* vemAxs(){return iInput.axs;}
@@ -45,7 +51,7 @@ private:
     static const bool bRust=false;
     float fDalka; //0
     int* aPocetVrcholuStromu;
-    D3DXMATRIXA16* treeMatrix;
+    D3DXMATRIX* treeMatrix;
     LPDIRECT3DVERTEXBUFFER9* treeVertexBuffers;
 };
 
