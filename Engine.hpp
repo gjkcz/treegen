@@ -5,6 +5,7 @@
 #include <functional>   // aby fungoval bind
 #include <random>       // Generatory
 #include <chrono>       // Casove fce
+#include <thread>
 #include <windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
