@@ -49,7 +49,7 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-Wall" />
+			<Add option="-w" />
 			<Add directory="$(DXSDK_DIR)Include" />
 		</Compiler>
 		<ResourceCompiler>

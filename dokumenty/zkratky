@@ -25,6 +25,13 @@ Zkratky: {
 		:wq				= 	write and quit
 	}
 
+	pro mingw32: {
+		compiler options:
+			-w 			=	inhibits all warnings
+			-fsyntax-only=	check code for syntax errors only
+			-Wall		=	all warnings on
+	}
+
 	pro VS10: {
 
 	}
