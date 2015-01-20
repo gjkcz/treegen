@@ -1,0 +1,389 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"sprav",
+				"spravnost"
+			],
+			[
+				"posl",
+				"klicPosledni"
+			],
+			[
+				"oloupa",
+				"oloupanaCast"
+			],
+			[
+				"olo",
+				"oloupany"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "*objekty:\n	model\n		- tree\n	view\n		- to bude okno, \n	controler:\n		- to bude myš, klávesnice\n\nv asi bych oddělil main od ostatního\n- inits budou init geometry, init input, init D3D\n	x to je spatny koncept, mel bych mit objekt controler, ktery se inituje sam\n\n- Tmatx jsou taky ve vice souborech globalne pouzivany\nv g_pd3dDevice musi byt predavana pointrem\n- pole musel sem inicializovat v main\n\n-blur je vazne peknej, uvodni obrazovka by mela byt blurem\nv chtelo by to konzoli s vystupem	OK\n	a vstupem\nv pozor, nefunguje win32 debug, ani release > to bude asi nejaka include\nv tak nejaky problem je v readInputState\n	> mel jsem v main axs = new long[2]; pritom v controler.cpp pouzivam ten ptr pro pristup k 4em. Divny je, ze VS mi to vzalo\n- jestli nejde zapisovat do exe, podivej se do jinyho compu, zda-li neni tam zapnut, git divni\n- limit nevim #define iObsah 5000\n		#define iPatra 7 zabira 1.5gb ram\n\nNovy compiler Visual C++13\n	-W 1 	.....	warning level 1(severe warnings)\n	{http://msdn.microsoft.com/en-us/library/thxezb7y.aspx}\n	-W4 -EHsc\n	\nProject build options\n- linkerSettings>\n	d3d9.lib\n	d3dx10d.lib\n	d3dx9d.lib\n	dxerr.lib\n	dxuid.lib\n	winmm.lib\n	comctl32.lib\n	dinput8.lib\n	kernel32.lib\n	user32.lib\n	shell32.lib\n- searchDirs>compiler>\n	$(DXSDK_DIR)Include\n	$(IncludePath)\n	DXUT\\Core\n- searchDirs>linker>\n	$(DXSDK_DIR)Lib\\x86\n\n- místo nové isic bych si mohl pujčit něčí\ndell inspiron 9400\n\n27.11.014\n- měl bych udělat multithreading\n- musím zabalit stávající balast do objektu, třeba objekt engine?\n - engine je nad všemi ostatními?\n\nengine:\n	public proměnné: engine.props\n	private proměnné: d3dxdevice\n	engine funkce:\n		- prep()\n		- set...\n		- start()\n		- spawn()\n		- reset()\n		- clean()\n	engine private funkce:\n		- ",
+			"file": "poznámky k projektu.txt",
+			"file_size": 1673,
+			"file_write_time": 130641730557879629,
+			"settings":
+			{
+				"buffer_size": 1727,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Zkratky: {\n	ctrl+d			=	zdvoj řádek\n	ctrl+shift+d	=	smaž řádek\n	shift+enter		=	nový řádek odkudkoliv\n	ctrl+shift+enter=	nový řádek nad kurzor odkudkoliv  ### Není v CodeBlocks\n	ctrl+{}			=	odsadí aktuálně zaměřený řádek ### Není v CodeBlocks\n	ctrl+shift+↑	=	přesune řádek ↑\n	ctrl+shift+↓	=	přesune řádek ↓\n\n	pro sublime: {\n		alt+číslo	=	přehodí zaměření na jiný tab\n	}\n\n	pro VS10: {\n\n	}\n\n	pro CodeBlocks: {\n		ctrl+e 		=	vybere další vyskytlý prvek\n		F1			=	zkompiluj soubor\n		F2			= 	log\n		F3			=	najdi dalsi\n		F4			=	bez ke kurzoru\n		F7			=  	dalsi radek\n		F8			= 	build\n		F9			= 	build a spust\n		F10			= 	rebuild\n		F11			=	prehod hlavicku/zdrojak\n		F12			= 	prehod aktualni blok\n		alt+x		= 	vyjmi radek\n		alt+c 		= 	zkopiruj radek\n		alt+v 		=	vloz pred aktualni radek\n		ctrl+num-	=	zabal vse\n		ctrl+num+	=	rozbal vse\n		ctrl+k		=	naformatuj vyber \n		ctrl+r      =	reparsuje projekt\n		alt+n  		= 	prejmenuj symbol\n		class ctrl+j\n		do\n		for\n		forb\n		guard\n		if\n		ifb\n		ife\n		ifei\n		now\n		nowl\n		nowlu\n		nowu\n		struct\n		switch\n		tday\n		tdayu\n		today\n		todayu\n		wdu\n		while\n		whileb\n\n		fungují na:\n		C3 CodeBlocks\n	}\n\n	pro UnrealCommander: {\n		windows + backspace = globalni volani\n		F8 					= symlink\n	}\n}\n",
+			"file": "zkratky",
+			"file_size": 1254,
+			"file_write_time": 130641853248807149,
+			"settings":
+			{
+				"buffer_size": 1203,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/H/local new/programování/CB/struktury stromu/Treegen/README.md",
+			"settings":
+			{
+				"buffer_size": 1096,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/H/local new/programování/CB/struktury stromu/Treegen VS/Treegen VS.vcxproj",
+			"settings":
+			{
+				"buffer_size": 4819,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"Snippet: ",
+				"Snippet: std::vector"
+			],
+			[
+				"",
+				"About"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/H/local new/programování/CB/codeBlockWorkspace/keys/zaznam.txt",
+		"/H/local new/programování/CB/codeBlockWorkspace/Countdown/void.o",
+		"/H/local new/schola/algoritmy/7. 10/Lisak.java",
+		"/H/local new/schola/algoritmy/7. 10/StatistickeHodnotyPole.java",
+		"/H/local new/schola/algoritmy/7. 10/poznamky.txt",
+		"/H/local new/programování/CB/testsublime.cpp",
+		"/H/local new/schola/prg/4.11",
+		"/H/local new/schola/prg/sítě 18.11",
+		"/H/local new/schola/prg/poznamky 23.9.",
+		"/H/local new/schola/prg/poznamky 14.10.txt",
+		"/A/Projects/Logo/dobre logo.txt",
+		"/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.depend",
+		"/H/local new/programování/CB/struktury stromu/Treegen/.git/config",
+		"/H/local new/programování/CB/struktury stromu/Treegen/.git/description",
+		"/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.layout",
+		"/H/local new/instalace/zdroje/icecast-2.4.0/etc/icecast.xml",
+		"/H/local new/programování/datkart/.git/config",
+		"/C/Users/JUser C3COINteinera/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/H/local new/nástroje/vlc.bat",
+		"/H/VLC/vlc-help.txt",
+		"/R/JURA VSECHNO/dokumenty/programovani/Klavesnice.txt",
+		"/R/JURA VSECHNO/dokumenty/programovani/adress.txt",
+		"/R/JURA VSECHNO/dokumenty/programovani/Casti ke hre/Cast!.txt",
+		"/H/local new/programování/datkart/public_html/.htaccess",
+		"/H/local new/hudba/Jablkoň/vse.xspf",
+		"/H/local new/instalace/zdroje/icecast-2.4.0/icecast.bat",
+		"/H/local new/instalace/zdroje/icecast-2.4.0/vlc.bat",
+		"/C/Users/JUser C3COINteinera/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/H/local new/programování/datkart/public_html/rozcesti.js",
+		"//C1COINTEINER/new/skola/twa/nec0/send.php",
+		"/H/Users/JUser C3COINteinera/workspace/Tetris!_15.1/src/com/tetristhe/TetrisMain.java",
+		"/H/schola/twa/pomeranc.php",
+		"/H/local new/programování/datkart/public_html/index.php",
+		"//C1COINTEINER/new/skola/twa/14.ledna2014/objekty.php",
+		"//C1COINTEINER/new/skola/twa/mojeFce/test.php",
+		"/H/dxsamples/BasicCompute11/BasicCompute11_2010.sln",
+		"//C1COINTEINER/new/skola/twa/index k funkcim.php",
+		"//C1COINTEINER/new/skola/twa/functions.php",
+		"//C1COINTEINER/new/skola/twa/index_objekt.php",
+		"//C1COINTEINER/new/skola/twa/index_funkce.php",
+		"//C1COINTEINER/new/skola/twa/podminky_akce_parametry.php",
+		"//C1COINTEINER/new/skola/twa/zacatek/podminky_akce_parametry.php",
+		"//C1COINTEINER/new/skola/twa/zacatek/index.php",
+		"//C1COINTEINER/new/skola/twa/18leden014/pomeranc.php",
+		"/H/Users/JUser C3COINteinera/workspace/Tetris!/src/com/tetristhe/TetrisMain.java",
+		"//C1COINTEINER/new/skola/twa/cojer/index k funkcim.php",
+		"//C1COINTEINER/new/skola/twa/nec2/extern.php",
+		"//C1COINTEINER/new/skola/twa/nec2/prevratit.php",
+		"//C1COINTEINER/new/skola/twa/nec2/index.php",
+		"//C1COINTEINER/new/skola/twa/cojer/podminky_akce_parametry.php",
+		"//C1COINTEINER/new/skola/twa/cojer/fapp/index_objekt.php",
+		"//C1COINTEINER/new/skola/twa/cojer/fapp/functions.php",
+		"//C1COINTEINER/new/skola/twa/nec0/index.php",
+		"//C1COINTEINER/new/skola/twa/nec0/save.php",
+		"//C1COINTEINER/new/skola/twa/nec0/test.php",
+		"//C1COINTEINER/new/skola/twa/nec1/dia4.php",
+		"//C1COINTEINER/new/skola/twa/18.ledna2014/18leden014.php",
+		"//C1COINTEINER/new/skola/twa/sendsms.php",
+		"//C1COINTEINER/new/skola/twa/nec2/save.php",
+		"//C1COINTEINER/new/skola/twa/nec2/send.php",
+		"//C1COINTEINER/new/skola/twa/nec2/t1.php",
+		"//C1COINTEINER/new/skola/twa/nec1/zipi.php",
+		"//C1COINTEINER/new/skola/twa/cojer/fapp/fapp/index.php",
+		"//C1COINTEINER/new/skola/twa/cojer/fapp/hodina.php",
+		"//C1COINTEINER/new/skola/twa/cojer/fapp/index1.php",
+		"//C1COINTEINER/new/skola/twa/cojer/fapp/index.php",
+		"//C1COINTEINER/new/skola/twa/cojer/indexH.php",
+		"//C1COINTEINER/new/skola/twa/komentare/functions.php",
+		"//C1COINTEINER/new/skola/twa/14.ledna2014/komentare/functions.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"spravnost=false",
+			"spravnost=true",
+			"ctrl+d"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"spravnost=0",
+			"spravnost=1"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "poznámky k projektu.txt",
+					"settings":
+					{
+						"buffer_size": 1727,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1046,
+								1037
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 39.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "zkratky",
+					"settings":
+					{
+						"buffer_size": 1203,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								912,
+								912
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 182.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/H/local new/programování/CB/struktury stromu/Treegen/README.md",
+					"settings":
+					{
+						"buffer_size": 1096,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								130,
+								130
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/H/local new/programování/CB/struktury stromu/Treegen VS/Treegen VS.vcxproj",
+					"settings":
+					{
+						"buffer_size": 4819,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								519,
+								519
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"//C1COINTEINER/new/skola/twa/nec0/send.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
