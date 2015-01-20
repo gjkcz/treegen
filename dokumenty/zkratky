@@ -28,8 +28,9 @@ Zkratky: {
 	pro mingw32: {
 		compiler options:
 			-w 			=	inhibits all warnings
-			-fsyntax-only=	check code for syntax errors only
+			-fsyntax-only=	check code for syntax errors only, neudela vubec nic vic, ani objekty
 			-Wall		=	all warnings on
+			-std=c++11	=	povoli podporu c++11
 	}
 
 	pro VS10: {
