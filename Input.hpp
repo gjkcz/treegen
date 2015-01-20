@@ -1,6 +1,13 @@
 #ifndef __INPUT_H_INCLUDED__
 #define __INPUT_H_INCLUDED__
 
+#define DIRECTINPUT_VERSION 0x0800
+
+#if defined(UNICODE) && !defined(_UNICODE)
+#define _UNICODE
+#elif defined(_UNICODE) && !defined(UNICODE)
+#define UNICODE
+#endif
 
 #include <windows.h>
 #include <dinput.h>
@@ -8,6 +15,8 @@
 
 namespace si
 {
+
+
 
 
 #define PI 3.14159265358979323846

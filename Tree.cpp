@@ -1,4 +1,4 @@
-#include "Tree.h"
+#include "Tree.hpp"
 
 SimpleVertex* Tvertices;
 int vPoradi = 0;
@@ -7,7 +7,7 @@ int iReality;
 int iGuess;
 float gfDensity;
 float gfDensityR;
-XMFLOAT4 Barva;
+D3DXVECTOR4 Barva;
 float per, gonx; //, height;
 int sum;
 int countEm;
@@ -22,7 +22,7 @@ struct objRust
 
 struct paramsVetve
 {
-    XMFLOAT3 x;
+    D3DXVECTOR3 x;
     objRust r;
     objRust rT;
     bool k;
@@ -41,7 +41,7 @@ struct tuplParamsVetve
 };
 
 void RostVetev(paramsVetve);
-tuplParamsVetve RostRozdvojeni(XMFLOAT3 start,objRust Rust,objRust RustTo,float delka,float AxeRotace, float mezera, float dens);
+tuplParamsVetve RostRozdvojeni(D3DXVECTOR3 start,objRust Rust,objRust RustTo,float delka,float AxeRotace, float mezera, float dens);
 paramsVetve generateParams(paramsVetve parent, int strana,tType _tType);
 
 
@@ -315,42 +315,42 @@ int GenerateTree(int iPater,tType _tType)
     {
     case 0:
     {
-        Barva = XMFLOAT4(0.f,0.f,0.f,1.f);
+        Barva = D3DXVECTOR4(0.f,0.f,0.f,1.f);
         break;
     }
     case 1:
     {
-        Barva = XMFLOAT4(0.f,0.f,1.f,1.f);
+        Barva = D3DXVECTOR4(0.f,0.f,1.f,1.f);
         break;
     }
     case 2:
     {
-        Barva = XMFLOAT4(0.f,1.f,0.f,1.f);
+        Barva = D3DXVECTOR4(0.f,1.f,0.f,1.f);
         break;
     }
     case 3:
     {
-        Barva = XMFLOAT4(0.f,1.f,1.f,1.f);
+        Barva = D3DXVECTOR4(0.f,1.f,1.f,1.f);
         break;
     }
     case 4:
     {
-        Barva = XMFLOAT4(1.f,0.f,0.f,1.f);
+        Barva = D3DXVECTOR4(1.f,0.f,0.f,1.f);
         break;
     }
     case 5:
     {
-        Barva = XMFLOAT4(1.f,0.f,1.f,1.f);
+        Barva = D3DXVECTOR4(1.f,0.f,1.f,1.f);
         break;
     }
     case 6:
     {
-        Barva = XMFLOAT4(1.f,1.f,0.f,1.f);
+        Barva = D3DXVECTOR4(1.f,1.f,0.f,1.f);
         break;
     }
     case 7:
     {
-        Barva = XMFLOAT4(1.f,1.f,1.f,1.f);
+        Barva = D3DXVECTOR4(1.f,1.f,1.f,1.f);
         break;
     }
     }
@@ -724,7 +724,7 @@ void RostVetev(paramsVetve pV)
 
 }
 
-tuplParamsVetve RostRozdvojeni(XMFLOAT3 start,objRust Rust,objRust RustTo,float delka,float AxeRotace, float mezera, float dens)
+tuplParamsVetve RostRozdvojeni(D3DXVECTOR3 start,objRust Rust,objRust RustTo,float delka,float AxeRotace, float mezera, float dens)
 {
     float PI = 3.14159265358979323846;
     float rp = 0.0f; //radius prechodu
@@ -737,7 +737,7 @@ tuplParamsVetve RostRozdvojeni(XMFLOAT3 start,objRust Rust,objRust RustTo,float 
     float sklonY1 = 0;
     float sklonz = 0;
     float Uzk; //uzkost
-    XMFLOAT3 start1;
+    D3DXVECTOR3 start1;
     objRust Rust1, Rust2;
     Rust1 = Rust;
     Rust2 = Rust;
@@ -838,8 +838,8 @@ void RostClanek(float r, float radiusZ, float sklony, float sklonz, float Dens, 
     posX=posunX;
     posY=posunY;
     posZ=posunZ;
-    Tvertices[vPoradi].Pos = XMFLOAT3(posX,posY,posZ);
-    //Tvertices[vPoradi].Color = XMFLOAT4(0.0f,a/5,1.0f,1.f);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3(posX,posY,posZ);
+    //Tvertices[vPoradi].Color = D3DXVECTOR4(0.0f,a/5,1.0f,1.f);
     Tvertices[vPoradi].Color = Barva;
     vPoradi++;
 
@@ -886,8 +886,8 @@ void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklo
         //OrigoY = cos(atan((OrigoY/*+(Uzk + cos(acos(Uzk/r))*rp)*/)/OrigoX))*(OrigoX/cos(atan((OrigoY/*+(Uzk + cos(acos(Uzk/r))*rp)*/)/OrigoX)));
         MezoX = cos(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))+rotace)*((OrigoX-(Uzk + cos(acos(Uzk/r))*rp))/cos(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))));
         MezoY = sin(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))+rotace)*((OrigoX-(Uzk + cos(acos(Uzk/r))*rp))/cos(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))));
-        Tvertices[vPoradi].Pos = XMFLOAT3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY, Zkoord+  sin(sklony)*MezoY + posunZ);
-        //Tvertices[vPoradi].Color = XMFLOAT4((a-(PI/2))/PI,1.f - (a-(PI/2))/PI,0.f,1.f);
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY, Zkoord+  sin(sklony)*MezoY + posunZ);
+        //Tvertices[vPoradi].Color = D3DXVECTOR4((a-(PI/2))/PI,1.f - (a-(PI/2))/PI,0.f,1.f);
         Tvertices[vPoradi].Color = Barva;
         vPoradi++;
     }
@@ -908,13 +908,13 @@ void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklo
             MezoY =  sin(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))+rotace)*((OrigoX-(Uzk + cos(acos(Uzk/r))*rp))/cos(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))));
             iReality++;
             reality1++;
-            Tvertices[vPoradi].Pos = XMFLOAT3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
+            Tvertices[vPoradi].Pos = D3DXVECTOR3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
                                               sin(sklony)*MezoY
                                               + Zkoord + posunZ);
             Tvertices[vPoradi].Color = Barva;
-            //Tvertices[vPoradi].Color = XMFLOAT4((a-PI-acos(Uzk/r))/(2*(PI-acos(Uzk/r))),1.f - (a-PI-acos(Uzk/r))/(2*(PI-acos(Uzk/r))),0.f,1.f);
+            //Tvertices[vPoradi].Color = D3DXVECTOR4((a-PI-acos(Uzk/r))/(2*(PI-acos(Uzk/r))),1.f - (a-PI-acos(Uzk/r))/(2*(PI-acos(Uzk/r))),0.f,1.f);
             //TempR=sqrt(pow(OrigoY, 2.f) + pow(OrigoX, 2.f));
-            //Tvertices[vPoradi].Pos = XMFLOAT3(OrigoX,OrigoY,sin(sklonx)*((cos((float)a)) * r2+ cos(acos(Uzk/r))*(r + rp)) + /*PosunX1+ posunX +*/ sin(sklonY1)*(sin((float)a)) * r2   + Zkoord + posunZ);
+            //Tvertices[vPoradi].Pos = D3DXVECTOR3(OrigoX,OrigoY,sin(sklonx)*((cos((float)a)) * r2+ cos(acos(Uzk/r))*(r + rp)) + /*PosunX1+ posunX +*/ sin(sklonY1)*(sin((float)a)) * r2   + Zkoord + posunZ);
 
         }
         else
@@ -926,13 +926,13 @@ void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklo
             MezoY =  sin(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))+rotace)*((OrigoX-(Uzk + cos(acos(Uzk/r))*rp))/cos(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))));
             iReality++;
             reality1++;
-            Tvertices[vPoradi].Pos = XMFLOAT3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
+            Tvertices[vPoradi].Pos = D3DXVECTOR3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
                                               sin(sklony)*MezoY
                                               + Zkoord + posunZ);
             Tvertices[vPoradi].Color = Barva;
-            //Tvertices[vPoradi].Color = XMFLOAT4(0.f,1.f - (a-PI-acos(Uzk/r))/(2*(PI-acos(Uzk/r))),(a-PI-acos(Uzk/r))/(2*(PI-acos(Uzk/r))),1.f);
+            //Tvertices[vPoradi].Color = D3DXVECTOR4(0.f,1.f - (a-PI-acos(Uzk/r))/(2*(PI-acos(Uzk/r))),(a-PI-acos(Uzk/r))/(2*(PI-acos(Uzk/r))),1.f);
             //TempR=sqrt(pow(OrigoY, 2.f) + pow(OrigoX, 2.f));
-            //Tvertices[vPoradi].Pos = XMFLOAT3(OrigoX,OrigoY,sin(sklonx)*((cos((float)a)) * r2+ cos(acos(Uzk/r))*(r + rp)) + /*PosunX1+ posunX +*/ sin(sklonY1)*(sin((float)a)) * r2   + Zkoord + posunZ);
+            //Tvertices[vPoradi].Pos = D3DXVECTOR3(OrigoX,OrigoY,sin(sklonx)*((cos((float)a)) * r2+ cos(acos(Uzk/r))*(r + rp)) + /*PosunX1+ posunX +*/ sin(sklonY1)*(sin((float)a)) * r2   + Zkoord + posunZ);
 
         }
         vPoradi++;
@@ -959,11 +959,11 @@ void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklo
         MezoY =  sin(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))+rotace)*((OrigoX-(Uzk + cos(acos(Uzk/r))*rp))/cos(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))));
         iReality++;
         reality++;
-        Tvertices[vPoradi].Pos = XMFLOAT3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
                                           sin(sklony)*MezoY
                                           + Zkoord + posunZ);
         Tvertices[vPoradi].Color = Barva;
-        //Tvertices[vPoradi].Color = XMFLOAT4((a-PI-acos(Uzk/r))/(0.5*PI-acos(Uzk/r)),1.f - (a-PI-acos(Uzk/r))/(0.5*PI-acos(Uzk/r)),0.f,1.f);
+        //Tvertices[vPoradi].Color = D3DXVECTOR4((a-PI-acos(Uzk/r))/(0.5*PI-acos(Uzk/r)),1.f - (a-PI-acos(Uzk/r))/(0.5*PI-acos(Uzk/r)),0.f,1.f);
         vPoradi++;
         //}
     }
@@ -988,11 +988,11 @@ void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklo
         MezoY =  sin(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))+rotace)*((OrigoX-(Uzk + cos(acos(Uzk/r))*rp))/cos(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))));
         iReality++;
         reality2++;
-        Tvertices[vPoradi].Pos = XMFLOAT3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
                                           sin(sklony)*MezoY
                                           + Zkoord + posunZ);
         Tvertices[vPoradi].Color = Barva;
-        //Tvertices[vPoradi].Color = XMFLOAT4(1.f-(a-PI*1.5)/asin(Uzk/r),0.f,(a-PI*1.5)/asin(Uzk/r),1.f);
+        //Tvertices[vPoradi].Color = D3DXVECTOR4(1.f-(a-PI*1.5)/asin(Uzk/r),0.f,(a-PI*1.5)/asin(Uzk/r),1.f);
         vPoradi++;
         //}
     }
@@ -1016,11 +1016,11 @@ void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklo
         MezoY =  sin(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))+rotace)*((OrigoX-(Uzk + cos(acos(Uzk/r))*rp))/cos(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))));
         iReality++;
         reality3++;
-        Tvertices[vPoradi].Pos = XMFLOAT3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
                                           sin(sklony)*MezoY
                                           + Zkoord + posunZ);
         Tvertices[vPoradi].Color = Barva;
-        //Tvertices[vPoradi].Color = XMFLOAT4(0.f,1.f-(a-PI*0.5+asin(Uzk/r))/asin(Uzk/r),(a-PI*0.5+asin(Uzk/r))/asin(Uzk/r),1.f);
+        //Tvertices[vPoradi].Color = D3DXVECTOR4(0.f,1.f-(a-PI*0.5+asin(Uzk/r))/asin(Uzk/r),(a-PI*0.5+asin(Uzk/r))/asin(Uzk/r),1.f);
         vPoradi++;
         //}
     }
@@ -1043,11 +1043,11 @@ void RostClanekRozdvojeni(float r, float rp, float r2, float radiusZ, float sklo
         MezoY =  sin(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))+rotace)*((OrigoX-(Uzk + cos(acos(Uzk/r))*rp))/cos(atan(OrigoY/(OrigoX-(Uzk + cos(acos(Uzk/r))*rp)))));
         iReality++;
         reality1++;
-        Tvertices[vPoradi].Pos = XMFLOAT3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(cos(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX))) + posunX,sin(atan((cos(sklony)*MezoY)/MezoX)+sklonz)*(MezoX/cos(atan((cos(sklony)*MezoY)/MezoX)))+ posunY,/*PosunX1+ posunX +*/
                                           sin(sklony)*MezoY
                                           + Zkoord + posunZ);
         Tvertices[vPoradi].Color = Barva;
-        //Tvertices[vPoradi].Color = XMFLOAT4((a-PI*0.5)/asin(Uzk/r),0.f,1.f-(a-PI*0.5)/asin(Uzk/r),1.f);
+        //Tvertices[vPoradi].Color = D3DXVECTOR4((a-PI*0.5)/asin(Uzk/r),0.f,1.f-(a-PI*0.5)/asin(Uzk/r),1.f);
         vPoradi++;
         //}
     }
@@ -1360,14 +1360,14 @@ void RostOsy()
     {
     //r = (sqrt((float)1+4*x)-1)/2;							// kvadraticka fce 4a
     //r2=r;
-    Tvertices[vPoradi].Pos = XMFLOAT3((float)a  *mer, fabs(pow((float)a, 2) - 1) *mer, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3((float)a  *mer, fabs(pow((float)a, 2) - 1) *mer, Zkoord);
     vPoradi++;
     }
     for (float a = -30.f; a<= 60; a+=0.001f)
     {
     //r = (sqrt((float)1+4*x)-1)/2;							// linearni fce 4a
     //r2=r;
-    Tvertices[vPoradi].Pos = XMFLOAT3((float)a  *mer, (float)a * 2 + 1 *mer, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3((float)a  *mer, (float)a * 2 + 1 *mer, Zkoord);
     vPoradi++;
     }*/
 
@@ -1375,28 +1375,28 @@ void RostOsy()
     {
     //r = (sqrt((float)1+4*x)-1)/2;							// kvadraticka fce 4c
     //r2=r;
-    Tvertices[vPoradi].Pos = XMFLOAT3((float)a  *mer, fabs((float)a + 2) + fabs((float)a - 2) *mer, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3((float)a  *mer, fabs((float)a + 2) + fabs((float)a - 2) *mer, Zkoord);
     vPoradi++;
     }
     for (float a = -30.f; a<= 60; a+=0.001f)									//4c
     {
     //r = (sqrt((float)1+4*x)-1)/2;							// kvadraticka fce 4c
     //r2=r;
-    Tvertices[vPoradi].Pos = XMFLOAT3((float)a  *mer, fabs((float)a + 2) *mer, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3((float)a  *mer, fabs((float)a + 2) *mer, Zkoord);
     vPoradi++;
     }
     for (float a = -30.f; a<= 60; a+=0.001f)									//4c
     {
     //r = (sqrt((float)1+4*x)-1)/2;							// kvadraticka fce 4c
     //r2=r;
-    Tvertices[vPoradi].Pos = XMFLOAT3((float)a  *mer, fabs((float)a - 2) *mer, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3((float)a  *mer, fabs((float)a - 2) *mer, Zkoord);
     vPoradi++;
     }
     for (float a = -30.f; a<= 60; a+=0.001f)
     {
     //r = (sqrt((float)1+4*x)-1)/2;							// linearni fce 4c
     //r2=r;
-    Tvertices[vPoradi].Pos = XMFLOAT3((float)a  *mer, 4.f *mer, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3((float)a  *mer, 4.f *mer, Zkoord);
     vPoradi++;
     }
 
@@ -1405,14 +1405,14 @@ void RostOsy()
     {
     //r = (sqrt((float)1+4*x)-1)/2;							// kvadraticka fce 4d
     //r2=r;
-    Tvertices[vPoradi].Pos = XMFLOAT3((float)a  *mer, (pow((float)a, 2) - (float)a*2 + 3) *mer, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3((float)a  *mer, (pow((float)a, 2) - (float)a*2 + 3) *mer, Zkoord);
     vPoradi++;
     }
     for (float a = -30.f; a<= 60; a+=0.001f)
     {
     //r = (sqrt((float)1+4*x)-1)/2;							// linearni fce 4d
     //r2=r;
-    Tvertices[vPoradi].Pos = XMFLOAT3((float)a  *mer, fabs((float)a - 4) *mer, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3((float)a  *mer, fabs((float)a - 4) *mer, Zkoord);
     vPoradi++;
     }*/
 
@@ -1421,30 +1421,30 @@ void RostOsy()
     {
     //r = (sqrt((float)1+4*x)-1)/2;							// kvadraticka fce 4d
     //r2=r;
-    Tvertices[vPoradi].Pos = XMFLOAT3((float)a  *mer, ((abs((float)a)-1)/(pow((float)a,2) - 1)) *mer, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3((float)a  *mer, ((abs((float)a)-1)/(pow((float)a,2) - 1)) *mer, Zkoord);
     vPoradi++;
     }
     for (float a = -30.f; a<= 60; a+=0.001f)
     {
     //r = (sqrt((float)1+4*x)-1)/2;							// linearni fce 4b
     //r2=r;
-    Tvertices[vPoradi].Pos = XMFLOAT3((float)a  *mer, 0.5f *mer, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3((float)a  *mer, 0.5f *mer, Zkoord);
     vPoradi++;
     }*/
 
 
     for (float a = origin; a <= delka; a+=1.f/axDens)												//osa x
     {
-        Tvertices[vPoradi].Pos = XMFLOAT3(a, 0.f, 0.0f);
-        Tvertices[vPoradi].Color = XMFLOAT4(1.f,0.f,0.f,1.f);
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(a, 0.f, 0.0f);
+        Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,0.f,0.f,1.f);
         vPoradi++;
 
         if((int)a%100 == 0 && ((int)((a-(int)a)*axDens) % (int)(axDens) == 0))
         {
             for (int b = 0; b <= 50; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(a , (float)b/100, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,0.5f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(a , (float)b/100, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,0.5f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1452,8 +1452,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 25; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(a, (float)b/100, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,1.0f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(a, (float)b/100, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,1.0f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1461,8 +1461,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 10; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(a, (float)b/100, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,0.6f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(a, (float)b/100, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,0.6f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1472,16 +1472,16 @@ void RostOsy()
 
     for (float a = origin; a <= delka; a+=1/axDens)												//osa y
     {
-        Tvertices[vPoradi].Pos = XMFLOAT3(0.f, a, 0.0f);
-        Tvertices[vPoradi].Color = XMFLOAT4(0.f,1.f,0.f,1.f);
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(0.f, a, 0.0f);
+        Tvertices[vPoradi].Color = D3DXVECTOR4(0.f,1.f,0.f,1.f);
         vPoradi++;
 
         if((int)a%100 == 0 && ((int)((a-(int)a)*axDens) % (int)(axDens) == 0))
         {
             for (int b = 0; b <= 50; b++)												//osa y
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3((float)b/100, a, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(0.f,1.f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3((float)b/100, a, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(0.f,1.f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1489,8 +1489,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 25; b++)												//osa y
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3((float)b/100, a, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,1.0f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3((float)b/100, a, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,1.0f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1498,8 +1498,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 10; b++)												//osa y
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3((float)b/100,a, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,0.6f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3((float)b/100,a, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,0.6f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1508,16 +1508,16 @@ void RostOsy()
 
     for (float a = origin; a <= delka; a+=1/axDens)												//osa x
     {
-        Tvertices[vPoradi].Pos = XMFLOAT3(0.f, 0.f, a);
-        Tvertices[vPoradi].Color = XMFLOAT4(0.f,0.f,1.f,1.f);
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(0.f, 0.f, a);
+        Tvertices[vPoradi].Color = D3DXVECTOR4(0.f,0.f,1.f,1.f);
         vPoradi++;
 
         if((int)a%100 == 0 && ((int)((a-(int)a)*axDens) % (int)(axDens) == 0))
         {
             for (int b = 0; b <= 50; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(0.f , (float)b/100, a);
-                Tvertices[vPoradi].Color = XMFLOAT4(0.f,0.f,1.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(0.f , (float)b/100, a);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(0.f,0.f,1.f,1.f);
                 vPoradi++;
             }
         }
@@ -1525,8 +1525,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 25; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(0.f, (float)b/100, a);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,1.0f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(0.f, (float)b/100, a);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,1.0f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1534,8 +1534,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 10; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(0.f, (float)b/100, a);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,0.6f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(0.f, (float)b/100, a);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,0.6f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1543,16 +1543,16 @@ void RostOsy()
 
     for (float a = origin; a >= -delka; a-=1.f/axDens)												//osa x
     {
-        Tvertices[vPoradi].Pos = XMFLOAT3(a, 0.f, 0.0f);
-        Tvertices[vPoradi].Color = XMFLOAT4(1.f,0.f,0.f,1.f);
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(a, 0.f, 0.0f);
+        Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,0.f,0.f,1.f);
         vPoradi++;
 
         if((int)a%100 == 0 && ((int)((a-(int)a)*axDens) % (int)(axDens) == 0))
         {
             for (int b = 0; b <= 50; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(a , (float)b/100, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,0.f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(a , (float)b/100, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,0.f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1560,8 +1560,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 25; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(a, (float)b/100, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,1.0f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(a, (float)b/100, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,1.0f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1569,8 +1569,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 10; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(a, (float)b/100, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,0.6f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(a, (float)b/100, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,0.6f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1580,16 +1580,16 @@ void RostOsy()
 
     for (float a = origin; a >= -delka; a-=1/axDens)												//osa x
     {
-        Tvertices[vPoradi].Pos = XMFLOAT3(0.f, a, 0.0f);
-        Tvertices[vPoradi].Color = XMFLOAT4(0.f,1.f,0.f,1.f);
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(0.f, a, 0.0f);
+        Tvertices[vPoradi].Color = D3DXVECTOR4(0.f,1.f,0.f,1.f);
         vPoradi++;
 
         if((int)a%100 == 0 && ((int)((a-(int)a)*axDens) % (int)(axDens) == 0))
         {
             for (int b = 0; b <= 50; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3((float)b/100, a, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(0.f,1.f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3((float)b/100, a, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(0.f,1.f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1597,8 +1597,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 25; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3((float)b/100, a, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,1.0f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3((float)b/100, a, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,1.0f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1606,8 +1606,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 10; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3((float)b/100,a, 0.0f);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,0.6f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3((float)b/100,a, 0.0f);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,0.6f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1616,16 +1616,16 @@ void RostOsy()
 
     for (float a = origin; a >= -delka; a-=1/axDens)												//osa x
     {
-        Tvertices[vPoradi].Pos = XMFLOAT3(0.f, 0.f, a);
-        Tvertices[vPoradi].Color = XMFLOAT4(0.f,0.f,1.f,1.f);
+        Tvertices[vPoradi].Pos = D3DXVECTOR3(0.f, 0.f, a);
+        Tvertices[vPoradi].Color = D3DXVECTOR4(0.f,0.f,1.f,1.f);
         vPoradi++;
 
         if((int)a%100 == 0 && ((int)((a-(int)a)*axDens) % (int)(axDens) == 0))
         {
             for (int b = 0; b <= 50; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(0.f , (float)b/100, a);
-                Tvertices[vPoradi].Color = XMFLOAT4(0.f,0.f,1.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(0.f , (float)b/100, a);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(0.f,0.f,1.f,1.f);
                 vPoradi++;
             }
         }
@@ -1633,8 +1633,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 25; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(0.f, (float)b/100, a);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,1.0f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(0.f, (float)b/100, a);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,1.0f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1642,8 +1642,8 @@ void RostOsy()
         {
             for (int b = 0; b <= 10; b++)												//osa x
             {
-                Tvertices[vPoradi].Pos = XMFLOAT3(0.f, (float)b/100, a);
-                Tvertices[vPoradi].Color = XMFLOAT4(1.f,0.6f,0.f,1.f);
+                Tvertices[vPoradi].Pos = D3DXVECTOR3(0.f, (float)b/100, a);
+                Tvertices[vPoradi].Color = D3DXVECTOR4(1.f,0.6f,0.f,1.f);
                 vPoradi++;
             }
         }
@@ -1651,7 +1651,7 @@ void RostOsy()
     /*
     for (int a = 0; a <= 600; a++)
     {
-    Tvertices[vPoradi].Pos = XMFLOAT3(a * axDens + Uzk, (tan(asin(Uzk/r)) *  a * -axDens) + tan(acos(Uzk/r))*Uzk, Zkoord);
+    Tvertices[vPoradi].Pos = D3DXVECTOR3(a * axDens + Uzk, (tan(asin(Uzk/r)) *  a * -axDens) + tan(acos(Uzk/r))*Uzk, Zkoord);
     vPoradi++;
     }*/
 }

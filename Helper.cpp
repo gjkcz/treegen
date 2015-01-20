@@ -9,9 +9,9 @@ float random()
     //_rndm = abs(sin((timeGetTime() % 360)*(rand()/32767.f)*D3DX_PI/180));
     /*while(_rndm<0.998f)
     {*/
-    while(timeGetTime()%1000>=999) {
-        srand(timeGetTime());
-    }
+//    while(timeGetTime()%1000>=999) {
+//        srand(timeGetTime());
+//    }
     _rndm = rand()/32000.f;
     return _rndm;
 }

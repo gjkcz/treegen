@@ -1,4 +1,4 @@
-#include "view.h"
+#include "view.hpp"
 
 int gRndm = 0; //rozhoduje o barve pozadi... 0=cerna, 1=bila
 bool bFScreen=false;
@@ -11,14 +11,14 @@ float  RotUp=D3DX_PI/18.3f, CamRot = -D3DX_PI; //D3DX_PI/2.5;
 float CamRotVel = 0.0f;
 float fVel=iObsah * 50.8; //5000
 float fFOV = D3DX_PI/3;
-XMFLOAT3 velocity[10];
+D3DXVECTOR3 velocity[10];
 
 
 //-----------------------------------------------------------------------------
 // Name: InitD3D()
 // Desc: Initializes Direct3D
 //-----------------------------------------------------------------------------
-HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* treeMatrix )
+HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIX* treeMatrix )
 {
     // Create the D3D object.
     if( NULL == ( g_pD3D = Direct3DCreate9( D3D_SDK_VERSION ) ) )
@@ -76,7 +76,7 @@ HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* tree
     // Turn off D3D lighting, since we are providing our own vertex colors
     g_pd3dDevice->SetRenderState( D3DRS_LIGHTING, FALSE );
 
-    //TMatX = new D3DXMATRIXA16[iObsah];
+    //TMatX = new D3DXMATRIX[iObsah];
 
     if( g_pD3D != NULL )
         g_pD3D->Release();
@@ -90,7 +90,7 @@ HRESULT InitD3D( HWND hWnd, LPDIRECT3DDEVICE9& g_pd3dDevice, D3DXMATRIXA16* tree
 // Name: Render()
 // Desc: Draws the scene
 //-----------------------------------------------------------------------------
-VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, float* axs, D3DXMATRIXA16* treeMatrix, LPDIRECT3DVERTEXBUFFER9* treeVertexBuffers)
+VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, float* axs, D3DXMATRIX* treeMatrix, LPDIRECT3DVERTEXBUFFER9* treeVertexBuffers)
 {
 
     // Clear the backbuffer to a black color
@@ -106,7 +106,7 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
         float x = 0.f;
         float y = 0.f;
         // For our world matrix, we will just rotate the object about the y-axis.
-        //D3DXMATRIXA16 matWorld= TMatX[iWorld];
+        //D3DXMATRIX matWorld= TMatX[iWorld];
 
         // Set up the rotation matrix to generate 1 full rotation (2*PI radians)
         // every 1000 ms. To avoid the loss of precision inherent in very high
@@ -175,8 +175,8 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
         }
 
 
-        D3DXMATRIXA16 mRotateVX, mRotateVY;
-        D3DXMATRIXA16 mRotateVZ;
+        D3DXMATRIX mRotateVX, mRotateVY;
+        D3DXMATRIX mRotateVZ;
         // Rotate the view
 //        axY+= D3DX_PI/180;
 //        D3DXMatrixRotationX(&mRotateVX,RotUp);
@@ -193,12 +193,12 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
         else
             CamRot = 0.f;
 
-//        D3DXMATRIXA16 mRotateVY;
+//        D3DXMATRIX mRotateVY;
         D3DXMatrixRotationY(&mRotateVY, -3.14159265358979323846/2 + CamRot + axs[0] * D3DX_PI/11520);
         //CamRot = 3.14159265358979323846/2;
-        D3DXMATRIXA16 mRotateW;
+        D3DXMATRIX mRotateW;
         D3DXMatrixRotationX(&mRotateW, -3.14159265358979323846/2);
-        D3DXMATRIXA16 g_View;
+        D3DXMATRIX g_View;
         D3DXVECTOR3* Eye = new D3DXVECTOR3( cos(CamRot) * CamRotRad, sin(CamRot) * CamRotRad, 0.0f);
 //        D3DXVECTOR3 vTranslace = *(new D3DXVECTOR3( cos(CamRot) * CamRotRad + cos((float)axs[0] * D3DX_PI/11520),
 //                                                  vt_Y,
@@ -206,25 +206,25 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
 
 //        D3DXVECTOR3* Eye = new D3DXVECTOR3( cos(CamRot) * CamRotRad, sin(CamRot) * CamRotRad, 0.0f);
 //        D3DXVECTOR3* Eye = vTranslace;
-//        D3DXMATRIXA16 posun;
+//        D3DXMATRIX posun;
 //        D3DXMatrixTranslation(&posun, , , );
         D3DXVECTOR3* Up = new D3DXVECTOR3( 1.0f, 0.0f, 0.0f);
         D3DXMatrixLookAtLH( &g_View, Eye, At, Up );
 
-        D3DXMATRIXA16 mScale;
+        D3DXMATRIX mScale;
         D3DXMatrixScaling(&mScale, 0.5f, 0.5f, 0.5f );
 
-//        D3DXMATRIXA16 mOrbitionx;
+//        D3DXMATRIX mOrbitionx;
 //        D3DXMatrixRotationY(&mOrbitionx, (velocity[1].x) / 4);
-//        D3DXMATRIXA16 mOrbition;
+//        D3DXMATRIX mOrbition;
 //        D3DXMatrixRotationX(&mOrbition, velocity[1].x);
-//        D3DXMATRIXA16 mTranslation;
+//        D3DXMATRIX mTranslation;
 //        D3DXMatrixTranslation(&mTranslation, 0.f,-(3.f + y), 0.f);
-//        D3DXMATRIXA16 mTranslationx;
+//        D3DXMATRIX mTranslationx;
 //        D3DXMatrixTranslation(&mTranslationx,-(-1.f + y/3),0.f, 0.f);
         //g_World1 = mScale * (mTranslation *  mOrbition) * mTranslationx * mOrbitionx;
 //        XMMATRIX translate = XMMatrixTranslation(vt_X, vt_Y, vt_Z);
-        D3DXMATRIXA16 translate;
+        D3DXMATRIX translate;
 //        D3DXMatrixTranslation(&translate, cos(CamRot) * CamRotRad + cos((float)axs[0] * D3DX_PI/11520) , vt_Y, sin(CamRot) * CamRotRad +sin((float)axs[0] * D3DX_PI/11520)+ vt_X);
 //        D3DXMatrixTranslation(&translate, 0.0f,0.0f,0.0f);
         D3DXMatrixTranslation(&translate, vTranslace->x, vTranslace->y, vTranslace->z);
@@ -299,7 +299,7 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
         //D3DXVECTOR3 vEyePt( 10.0f, 50.0f,-50.0f );
         //D3DXVECTOR3 vLookatPt( 0.0f, 150.0f, 0.0f );
         //D3DXVECTOR3 vUpVec( 0.0f, 1.0f, 0.0f );
-        D3DXMATRIXA16 g_World1 = treeMatrix[0] * mScale * mRotateW;// * translate;
+        D3DXMATRIX g_World1 = treeMatrix[0] * mScale * mRotateW;// * translate;
         //g_pd3dDevice->SetTransform( D3DTS_WORLD, &g_World1 );
 
         //g_pd3dDevice->SetTransform( D3DTS_VIEW, &g_View );
@@ -316,7 +316,7 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
         //cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
         //g_pImmediateContext->UpdateSubresource( g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0 );
         //CamRotRad = 2.f;
-        D3DXMATRIXA16 matProj;
+        D3DXMATRIX matProj;
         D3DXMatrixPerspectiveFovLH( &matProj, fFOV, width / (FLOAT)height, 1.0f, 102000000.0f );
 
         g_pd3dDevice->SetTransform( D3DTS_VIEW, &g_View );
@@ -327,7 +327,7 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
         {
             // Setup the world, view, and projection Matrices
             //SetupMatrices(i);
-            D3DXMATRIXA16 g_World1 = treeMatrix[i] * mScale * mRotateW;// * translate;
+            D3DXMATRIX g_World1 = treeMatrix[i] * mScale * mRotateW;// * translate;
             g_pd3dDevice->SetTransform( D3DTS_WORLD, &g_World1 );
 
 

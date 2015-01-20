@@ -1,14 +1,21 @@
 #include <windows.h>
+//#include <dinput.h>
 #include "Engine.hpp"
-#include "view.h"
-#include "globals.h"
+#include "view.hpp"
+#include "globals.hpp"
 
-INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
+int WINAPI WinMain (HINSTANCE hThisInstance,
+                    HINSTANCE hPrevInstance,
+                    LPSTR lpszArgument,
+                    int nCmdShow)
 {
     sk::Konzole iKonzole;
-    sw::Okno iOkno(sw::Pozice(screenX, screenY), sw::Rozmery(width, height), "Tree");    //vytvor okno
+    sw::Pozice iPozice {screenX, screenY};
+    sw::Rozmery iRozmery {width, height};
+    sw::Okno iOkno(iPozice, iRozmery, "Tree");    //vytvor okno
 //    sw::Okno iOkno(sw::Pozice(512.f, screenY), sw::Rozmery(512, 726), "Tree");    //vytvor okno pro acer
     se::Engine iEngine(iOkno);
+//    std::cout << "Ello!\n";
     iEngine.dejKonzoli(iKonzole);
     iEngine.priprav();  //vytvori si d3d a z nej g_pd3dDevice
     iOkno.ukaz();               // Show the window, az po inicializaci dx

@@ -2,14 +2,14 @@
 namespace sw
 {
 
-//Okno::Okno()
-//{
-////        std::cout << "";
-//}
-
-Okno::Okno(Pozice& P, Rozmery& R, LPCSTR jmeno = "Default")
+Okno::Okno()
 {
-//    std::cout << "Okno constructor called";
+//        std::cout << "";
+}
+
+Okno::Okno(const Pozice& P, const Rozmery& R, LPCSTR jmeno = "Default")
+{
+//    std::cout << "Okno constructor called\n";
     this->nazev = (LPCSTR)jmeno;
     // Register the window class
     WNDCLASSEX _wc =
@@ -24,6 +24,7 @@ Okno::Okno(Pozice& P, Rozmery& R, LPCSTR jmeno = "Default")
     this->hWnd = CreateWindow( nazev, (LPCSTR) jmeno,
                               WS_OVERLAPPEDWINDOW, P.x, P.y, R.x, R.y, //screen
                               NULL, NULL, wc.hInstance, NULL );
+//    std::cout << "Window created\n";
 //    this->ukaz();
 }
 
@@ -37,6 +38,7 @@ Okno::~Okno()
 
 void Okno::ukaz()
 {
+//        std::cout << "Ukazuji okno.";
         this->otevreno = true;
         ShowWindow( hWnd, SW_SHOWNORMAL );
         ZeroMemory( &this->msg, sizeof( MSG ) );
