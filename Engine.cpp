@@ -84,7 +84,7 @@ void Engine::pripravView()
     {
 //        std::cout << E_FAIL;
         if(FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, this->okno.hWnd,
-                                        D3DCREATE_HARDWARE_VERTEXPROCESSING,
+                                        D3DCREATE_SOFTWARE_VERTEXPROCESSING,
                                         &d3dpp, &g_pd3dDevice )))
         {
             if(FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, this->okno.hWnd,
