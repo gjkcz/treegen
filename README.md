@@ -10,7 +10,7 @@
 
 * w, s, a, d - dopredu, dozadu, doleva, doprava
 * q, e - nahoru, dolu
-* ↑, ↓ - pohled nahoru, dolu
+* ^, ˇ - pohled nahoru, dolu
 * 1, 2 - přidat auto otáčení
 * 3, 4 - otočit
 * myš
@@ -56,12 +56,8 @@
 
 * Řešení problému s CodeBlocks a VC++2013
 
-<<<<<<< HEAD
 * Úprava struktury programu
 
 **12.1.2015>>**
 
 * Sem se zaseknul. Nejde mi rozchodit kompilátor VC++, který potřebuju kvůli podpoře knihoven DirectX. Kód se normálně zkompiluje, ale po chvíli se zaseknou Codeblocks. Vůbec nevim proč. Clion IDE nepodporuje VC++ zatim. 
-=======
-* Úprava struktury programu
->>>>>>> 21eee9fc8b2d14941c1ee3fd0f19a92ba31042e4

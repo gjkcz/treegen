@@ -11,6 +11,20 @@ Zkratky: {
 		alt+číslo	=	přehodí zaměření na jiný tab
 	}
 
+	pro git: {
+		git mergetool	=	spustí vimdiff2
+		git config	
+		ve vimdiffu musis dat :, pro zadani prikazu
+		:qa				=	odejde, selze se zmenami 
+		:qa!
+		do				=	vezme zmeny z jineho okna
+		dp				=	da zmeny z aktivniho okna jinam
+		]c 				=	skoc na dalsi zmenu
+		[c 				=	--- na predchozi
+		d 				=	smaze radek
+		:wq				= 	write and quit
+	}
+
 	pro VS10: {
 
 	}
