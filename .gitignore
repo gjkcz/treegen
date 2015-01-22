@@ -1,4 +1,5 @@
 globals.*
+mingwTreegen.exe
 DocasnyTreegen.exe
 DocasnyTreegen.layout
 .objs/
