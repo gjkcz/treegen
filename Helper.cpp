@@ -32,7 +32,7 @@ int zaokrouhli(float _f)
 
 void pockej(int t)
 {
-    std::this_thread::sleep_for(std::chrono::seconds(o));
+    std::this_thread::sleep_for(std::chrono::seconds(t));
 
 }
 

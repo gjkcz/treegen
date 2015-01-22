@@ -1,5 +1,3 @@
-#define _GLIBCXX_USE_NANOSLEEP
-
 #include <windows.h>
 //#include <dinput.h>
 #include "Engine.hpp"

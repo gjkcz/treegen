@@ -47,6 +47,23 @@
 					<Add directory="$(DXSDK_DIR)Lib/x86" />
 				</Linker>
 			</Target>
+			<Target title="tdm">
+				<Option output="mingwTreegen" prefix_auto="1" extension_auto="1" />
+				<Option type="1" />
+				<Option compiler="twilight_dragon_media_compiler" />
+				<Option use_console_runner="0" />
+				<Option projectCompilerOptionsRelation="1" />
+				<Option projectLinkerOptionsRelation="1" />
+				<Option projectIncludeDirsRelation="1" />
+				<Option projectResourceIncludeDirsRelation="1" />
+				<Option projectLibDirsRelation="1" />
+				<Linker>
+					<Add library="d3d9" />
+					<Add library="d3dx9_43" />
+					<Add library="dinput8" />
+					<Add library="dxguid" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-w" />
