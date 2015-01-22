@@ -5,6 +5,7 @@
 #include <dinput.h>
 //#include <xnamath.h>
 #include "globals.hpp"
+#include "helper.hpp"
 using namespace std;
 
 #ifndef __CUSTOMVERTEX_H_INCLUDED__

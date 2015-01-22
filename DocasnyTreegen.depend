@@ -120,7 +120,7 @@
 
 1421832994 h:\local new\programování\cb\struktury stromu\treegen\globals.hpp
 
-1421960993 source:h:\local new\programování\cb\struktury stromu\treegen\helper.cpp
+1421961654 source:h:\local new\programování\cb\struktury stromu\treegen\helper.cpp
 	"Helper.hpp"
 	<iostream>
 	<chrono>
@@ -135,12 +135,13 @@
 	"view.hpp"
 	"globals.hpp"
 
-1421664696 h:\local new\programování\cb\struktury stromu\treegen\view.hpp
+1421961726 h:\local new\programování\cb\struktury stromu\treegen\view.hpp
 	<iostream>
 	<windows.h>
 	<d3dx9.h>
 	<dinput.h>
 	"globals.hpp"
+	"helper.hpp"
 
 1421618383 source:h:\local new\programování\cb\struktury stromu\treegen\msgproc.cpp
 	"msgProc.hpp"
@@ -154,7 +155,7 @@
 1421953801 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
 	"Tree.hpp"
 
-1421954059 source:h:\local new\programování\cb\struktury stromu\treegen\view.cpp
+1421961726 source:h:\local new\programování\cb\struktury stromu\treegen\view.cpp
 	"view.hpp"
 
 1421781277 source:c:\new\programování\treegen\engine.cpp

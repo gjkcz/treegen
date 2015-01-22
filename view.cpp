@@ -242,9 +242,9 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
             cout << "y: " << g_View._23 << "\n";
             cout << "z: " << g_View._33 << "\n";            // base
             D3DXVECTOR3* vZaxis = new D3DXVECTOR3( g_View._13,
-                                g_View._23,
-                                g_View._33 );           // toto je presne smer, kterym hledim
-                                                        //i.e.: zaxis = normal(Eye - At)
+                                                   g_View._23,
+                                                   g_View._33 );           // toto je presne smer, kterym hledim
+            //i.e.: zaxis = normal(Eye - At)
             (*vTranslace) += (*vZaxis) * -fVel;
 //            std::cout << "&g_View = " << g_View << "\n";
 
@@ -257,9 +257,9 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
             cout << "z: " << g_View._33 << "\n";            // base
 //            CamRotRad += fVel;
             D3DXVECTOR3* vZaxis = new D3DXVECTOR3( g_View._13,
-                                g_View._23,
-                                g_View._33 );           // toto je presne smer, kterym hledim
-                                                        //i.e.: zaxis = normal(Eye - At)
+                                                   g_View._23,
+                                                   g_View._33 );           // toto je presne smer, kterym hledim
+            //i.e.: zaxis = normal(Eye - At)
             (*vTranslace) += (*vZaxis) * fVel;
 
         }
@@ -338,12 +338,12 @@ VOID render(const LPDIRECT3DDEVICE9& g_pd3dDevice, int* Pocet, byte * Keys, floa
                 D3DPT_POINTLIST, 0, Pocet[i] );
 
         }
-            // End the scene
-            g_pd3dDevice->EndScene();
+        // End the scene
+        g_pd3dDevice->EndScene();
     }
 
-    // Present the backbuffer contents to the display
     g_pd3dDevice->Present( NULL, NULL, NULL, NULL );
+    // Present the backbuffer contents to the display
 }
 
 void clearScreen()
