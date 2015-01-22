@@ -11,7 +11,7 @@ D3DXVECTOR4 Barva;
 float per, gonx; //, height;
 int sum;
 int countEm;
-bool bVlnit=false;
+bool bVlnit=true;
 
 struct objRust
 {

@@ -6,6 +6,8 @@ namespace helper {
 
 float random();
 int zaokrouhli(float);
+void pockej(int);       // pocka x vterin
+
 
 }
 

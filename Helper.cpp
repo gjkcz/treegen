@@ -1,4 +1,8 @@
 #include "Helper.hpp"
+#include <iostream>
+#include <chrono>
+#include <thread>
+
 
 namespace helper {
 
@@ -24,6 +28,12 @@ int zaokrouhli(float _f)
     else
         _v = _f-(_f -(int)_f)+1;
     return _v;
+}
+
+void pockej(int t)
+{
+    std::this_thread::sleep_for(std::chrono::seconds(o));
+
 }
 
 

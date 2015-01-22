@@ -187,7 +187,7 @@ void Engine::pripravGeometrii()
             std::cout << NULL; //pozor do pole nejde e_fail
         int tempColor;
         float colorK;
-        for(int x=0; x<vPocet; x++)
+        for(int x=0; x<vPocet; x++)         // konverze barev
         {
             g_Vertices[x].x = Tvertices[x].Pos.x;
             g_Vertices[x].y = Tvertices[x].Pos.y;
@@ -215,7 +215,7 @@ void Engine::pripravGeometrii()
                 }
                 tempColor=(colorK * 255);
                 g_Vertices[x].color += DWORD(tempColor*(pow(float(16),b*2)));
-                //tempColor=(colorK * 255)-(int)(colorK * 255/16)*16;
+//                tempColor=(colorK * 255)-(int)(colorK * 255/16)*16;
             }
         }
         treeVertexBuffers[i]->Unlock();

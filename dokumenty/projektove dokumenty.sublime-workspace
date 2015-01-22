@@ -28,24 +28,42 @@
 	"buffers":
 	[
 		{
-			"contents": "*objekty:\n	model\n		- tree\n	view\n		- to bude okno, \n	controler:\n		- to bude myš, klávesnice\n\nv asi bych oddělil main od ostatního\n- inits budou init geometry, init input, init D3D\n	x to je spatny koncept, mel bych mit objekt controler, ktery se inituje sam\n\n- Tmatx jsou taky ve vice souborech globalne pouzivany\nv g_pd3dDevice musi byt predavana pointrem\n- pole musel sem inicializovat v main\n\n-blur je vazne peknej, uvodni obrazovka by mela byt blurem\nv chtelo by to konzoli s vystupem	OK\n	a vstupem\nv pozor, nefunguje win32 debug, ani release > to bude asi nejaka include\nv tak nejaky problem je v readInputState\n	> mel jsem v main axs = new long[2]; pritom v controler.cpp pouzivam ten ptr pro pristup k 4em. Divny je, ze VS mi to vzalo\n- jestli nejde zapisovat do exe, podivej se do jinyho compu, zda-li neni tam zapnut, git divni\n- limit nevim #define iObsah 5000\n		#define iPatra 7 zabira 1.5gb ram\n\nNovy compiler Visual C++13\n	-W 1 	.....	warning level 1(severe warnings)\n	{http://msdn.microsoft.com/en-us/library/thxezb7y.aspx}\n	-W4 -EHsc\n	\nProject build options\n- linkerSettings>\n	d3d9.lib\n	d3dx10d.lib\n	d3dx9d.lib\n	dxerr.lib\n	dxuid.lib\n	winmm.lib\n	comctl32.lib\n	dinput8.lib\n	kernel32.lib\n	user32.lib\n	shell32.lib\n- searchDirs>compiler>\n	$(DXSDK_DIR)Include\n	$(IncludePath)\n	DXUT\\Core\n- searchDirs>linker>\n	$(DXSDK_DIR)Lib\\x86\n\n- místo nové isic bych si mohl pujčit něčí\ndell inspiron 9400\n\n27.11.014\n- měl bych udělat multithreading\n- musím zabalit stávající balast do objektu, třeba objekt engine?\n - engine je nad všemi ostatními?\n\nengine:\n	public proměnné: engine.props\n	private proměnné: d3dxdevice\n	engine funkce:\n		- prep()\n		- set...\n		- start()\n		- spawn()\n		- reset()\n		- clean()\n	engine private funkce:\n		- ",
 			"file": "poznámky k projektu.txt",
-			"file_size": 1673,
-			"file_write_time": 130641730557879629,
 			"settings":
 			{
-				"buffer_size": 1727,
+				"buffer_size": 2273,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "Zkratky: {\n	ctrl+d			=	zdvoj řádek\n	ctrl+shift+d	=	smaž řádek\n	shift+enter		=	nový řádek odkudkoliv\n	ctrl+shift+enter=	nový řádek nad kurzor odkudkoliv  ### Není v CodeBlocks\n	ctrl+{}			=	odsadí aktuálně zaměřený řádek ### Není v CodeBlocks\n	ctrl+shift+↑	=	přesune řádek ↑\n	ctrl+shift+↓	=	přesune řádek ↓\n\n	pro sublime: {\n		alt+číslo	=	přehodí zaměření na jiný tab\n	}\n\n	pro VS10: {\n\n	}\n\n	pro CodeBlocks: {\n		ctrl+e 		=	vybere další vyskytlý prvek\n		F1			=	zkompiluj soubor\n		F2			= 	log\n		F3			=	najdi dalsi\n		F4			=	bez ke kurzoru\n		F7			=  	dalsi radek\n		F8			= 	build\n		F9			= 	build a spust\n		F10			= 	rebuild\n		F11			=	prehod hlavicku/zdrojak\n		F12			= 	prehod aktualni blok\n		alt+x		= 	vyjmi radek\n		alt+c 		= 	zkopiruj radek\n		alt+v 		=	vloz pred aktualni radek\n		ctrl+num-	=	zabal vse\n		ctrl+num+	=	rozbal vse\n		ctrl+k		=	naformatuj vyber \n		ctrl+r      =	reparsuje projekt\n		alt+n  		= 	prejmenuj symbol\n		class ctrl+j\n		do\n		for\n		forb\n		guard\n		if\n		ifb\n		ife\n		ifei\n		now\n		nowl\n		nowlu\n		nowu\n		struct\n		switch\n		tday\n		tdayu\n		today\n		todayu\n		wdu\n		while\n		whileb\n\n		fungují na:\n		C3 CodeBlocks\n	}\n\n	pro UnrealCommander: {\n		windows + backspace = globalni volani\n		F8 					= symlink\n	}\n}\n",
-			"file": "zkratky",
-			"file_size": 1254,
-			"file_write_time": 130641853248807149,
+			"file": "/H/local new/programování/CB/struktury stromu/tdmTreegen/tdmTreegen.cbp",
 			"settings":
 			{
-				"buffer_size": 1203,
+				"buffer_size": 2941,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/H/local new/programování/CB/struktury stromu/Treegen/.gitignore",
+			"settings":
+			{
+				"buffer_size": 123,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/H/odeBlocks/MinGW/README-gcc-tdm.txt",
+			"settings":
+			{
+				"buffer_size": 16020,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "zkratky",
+			"settings":
+			{
+				"buffer_size": 1705,
 				"line_ending": "Windows"
 			}
 		},
@@ -53,15 +71,7 @@
 			"file": "/H/local new/programování/CB/struktury stromu/Treegen/README.md",
 			"settings":
 			{
-				"buffer_size": 1096,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/H/local new/programování/CB/struktury stromu/Treegen VS/Treegen VS.vcxproj",
-			"settings":
-			{
-				"buffer_size": 4819,
+				"buffer_size": 1431,
 				"line_ending": "Windows"
 			}
 		}
@@ -98,6 +108,20 @@
 	},
 	"file_history":
 	[
+		"/H/local new/programování/CB/struktury stromu/Treegen VS/Treegen VS.vcxproj",
+		"/H/local new/programování/CB/multithreading template/cygwin prikaz.txt",
+		"/H/VSCppCompiler/2013standaloneVCppCompiler/setEnvironmentVariablesToPath.bat",
+		"/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.cbp",
+		"/H/local new/programování/CB/struktury stromu/Treegen/.idea/workspace.xml",
+		"/H/local new/programování/CB/struktury stromu/tdmTreegen/tdmTreegen.depend",
+		"/H/local new/programování/CB/struktury stromu/Treegen/CMakeLists.txt",
+		"/H/odeBlocks/share/CodeBlocks/compilers/compiler_sdcc.xml",
+		"/H/odeBlocks/share/CodeBlocks/compilers/options_msvc10.xml",
+		"/H/odeBlocks/share/CodeBlocks/compilers/options_tricore-gcc.xml",
+		"/H/odeBlocks/share/CodeBlocks/compilers/options_common_warnings-msvc.xml",
+		"/H/odeBlocks/share/CodeBlocks/tips.txt",
+		"/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.pdb",
+		"/H/local new/programování/CB/codeBlockWorkspace/64bittest/64bittest.depend",
 		"/H/local new/programování/CB/codeBlockWorkspace/keys/zaznam.txt",
 		"/H/local new/programování/CB/codeBlockWorkspace/Countdown/void.o",
 		"/H/local new/schola/algoritmy/7. 10/Lisak.java",
@@ -206,7 +230,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -214,15 +238,15 @@
 					"file": "poznámky k projektu.txt",
 					"settings":
 					{
-						"buffer_size": 1727,
+						"buffer_size": 2273,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1046,
-								1037
+								2273,
+								2273
 							]
 						],
 						"settings":
@@ -231,25 +255,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 39.0,
+						"translation.y": 520.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "zkratky",
+					"file": "/H/local new/programování/CB/struktury stromu/tdmTreegen/tdmTreegen.cbp",
 					"settings":
 					{
-						"buffer_size": 1203,
+						"buffer_size": 2941,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								912,
-								912
+								0,
+								2941
 							]
 						],
 						"settings":
@@ -258,30 +282,30 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 182.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/H/local new/programování/CB/struktury stromu/Treegen/README.md",
+					"file": "/H/local new/programování/CB/struktury stromu/Treegen/.gitignore",
 					"settings":
 					{
-						"buffer_size": 1096,
+						"buffer_size": 123,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								130,
-								130
+								40,
+								40
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -291,28 +315,81 @@
 				},
 				{
 					"buffer": 3,
-					"file": "/H/local new/programování/CB/struktury stromu/Treegen VS/Treegen VS.vcxproj",
+					"file": "/H/odeBlocks/MinGW/README-gcc-tdm.txt",
 					"settings":
 					{
-						"buffer_size": 4819,
+						"buffer_size": 16020,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								519,
-								519
+								7041,
+								7041
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/XML/XML.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 5,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 2639.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "zkratky",
+					"settings":
+					{
+						"buffer_size": 1705,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1563,
+								1563
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/H/local new/programování/CB/struktury stromu/Treegen/README.md",
+					"settings":
+					{
+						"buffer_size": 1431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1162,
+								1162
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 78.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
