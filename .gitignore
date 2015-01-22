@@ -1,6 +1,6 @@
+globals.*
 DocasnyTreegen.exe
 DocasnyTreegen.layout
-globals.hpp
 .objs/
 bin/Debug/
 obj/
