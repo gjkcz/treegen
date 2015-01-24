@@ -12,6 +12,7 @@ Zkratky: {
 	}
 
 	pro git: {
+		git update-index --assume-unchanged path/to/file.txt
 		git mergetool	=	spustí vimdiff2
 		git config	
 		ve vimdiffu musis dat :, pro zadani prikazu
@@ -20,7 +21,7 @@ Zkratky: {
 		do				=	vezme zmeny z jineho okna
 		dp				=	da zmeny z aktivniho okna jinam
 		]c 				=	skoc na dalsi zmenu
-		[c 				=	--- na predchozi
+		[c 				=	--.-- na predchozi
 		d 				=	smaze radek
 		:wq				= 	write and quit
 	}
@@ -31,6 +32,7 @@ Zkratky: {
 			-fsyntax-only=	check code for syntax errors only, neudela vubec nic vic, ani objekty
 			-Wall		=	all warnings on
 			-std=c++11	=	povoli podporu c++11
+			-std=gnu++1y=	--.--		   c++14
 	}
 
 	pro VS10: {
@@ -40,9 +42,9 @@ Zkratky: {
 	pro CodeBlocks: {
 		ctrl+e 		=	vybere další vyskytlý prvek
 		F1			=	zkompiluj soubor
+		F4			=	spusť
 		F2			= 	log
 		F3			=	najdi dalsi
-		F4			=	bez ke kurzoru
 		F7			=  	dalsi radek
 		F8			= 	build
 		F9			= 	build a spust
@@ -55,6 +57,9 @@ Zkratky: {
 		ctrl+num-	=	zabal vse
 		ctrl+num+	=	rozbal vse
 		ctrl+k		=	naformatuj vyber 
+		ctrl+.      =	radkovy comment
+		ctrl+\		= 	cppcheck
+		ctrl+shift+b=	blok komentar
 
 		class ctrl+j
 		do

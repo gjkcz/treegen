@@ -2,12 +2,12 @@
 namespace se
 {
 
+
 typedef std::chrono::high_resolution_clock stopky;
 typedef stopky::time_point Okamzik;
 typedef stopky::duration Doba;
 
-
-Engine::Engine(const sw::Okno& _okno) : okno(_okno), iInput(okno.hWnd)
+Engine::Engine(const sw::Okno& _okno) : okno(_okno), iKontroler3d(okno.hWnd)
 {
 //    std::cout << "Engine uniform initialized.";
     Okamzik zacatek = stopky::now();
@@ -29,6 +29,9 @@ Engine::Engine(const sw::Okno& _okno) : okno(_okno), iInput(okno.hWnd)
     generator.seed(seminko);
     int r = kostka();
 
+
+    fFOV = D3DX_PI/3;
+    D3DXMatrixRotationX(&mRotateW, -3.14159265358979323846/2);
 
 }
 
@@ -129,7 +132,7 @@ void Engine::pripravGeometrii()
     treeMatrix = new D3DXMATRIX[iObsah];   // array of matrices to hold the rotation and position of each tree
     treeVertexBuffers = new LPDIRECT3DVERTEXBUFFER9[iObsah]; // array of Buffers to hold vertices
     aPocetVrcholuStromu = new int[iObsah];
-    fDalka=950000.f;
+    fDalka=950'000.f;
 
     int vPocet, iPocetV=0;
     CUSTOMVERTEX* g_Vertices;
@@ -182,7 +185,7 @@ void Engine::pripravGeometrii()
             std::cout << NULL;
         }
 
-        Tvertices = UnpackTree();
+        Tvertices = getTree();
         if( FAILED( treeVertexBuffers[i]->Lock( 0, 0, ( void** )&g_Vertices, 0 ) ) )
             std::cout << NULL; //pozor do pole nejde e_fail
         int tempColor;
@@ -226,13 +229,56 @@ void Engine::pripravGeometrii()
     std::cout << "Cas generovani: " << casVteriny << "ms\n";
 }
 
-void Engine::prectiVstup()
+void Engine::prectiVstupAUpravKameru()
 {
-    stav = iInput.prectiStavVstupu();
+    stav = iKontroler3d.prectiVstupAUpravKameru();
 }
 
 void Engine::render3d()
 {
+
+    // Clear the backbuffer to a black color
+    if( bbClearColor==1 )
+        g_pd3dDevice->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 255, 255, 255 ), 1.0f, 0 );
+    else
+        g_pd3dDevice->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 );
+    // Begin the scene
+    if( SUCCEEDED( g_pd3dDevice->BeginScene() ) )
+    {
+        g_pd3dDevice->SetFVF( D3DFVF_CUSTOMVERTEX );
+
+//        g_View = translate * mRotateVZ * mRotateVY * mRotateVX;
+
+        D3DXMatrixPerspectiveFovLH( &maticeProjekce, fFOV, width / (FLOAT)height, 1.0f, 102000000.0f );
+
+        g_pd3dDevice->SetTransform( D3DTS_VIEW, iKontroler3d.vemView() );
+
+        g_pd3dDevice->SetTransform( D3DTS_PROJECTION, &maticeProjekce );
+
+        D3DXMatrixScaling(&mScale, 0.5f, 0.5f, 0.5f );
+
+        for(int i = 0; i < iObsah; i++)
+        {
+            // Setup the world, view, and projection Matrices
+            //SetupMatrices(i);
+            D3DXMATRIX g_World1 = treeMatrix[i] * mScale * mRotateW;
+            g_pd3dDevice->SetTransform( D3DTS_WORLD, &g_World1 );
+
+
+            // Render the vertex buffer contents
+            g_pd3dDevice->SetStreamSource( 0, treeVertexBuffers[i], 0, sizeof( CUSTOMVERTEX ) );
+
+            g_pd3dDevice->DrawPrimitive(
+                D3DPT_POINTLIST, 0, aPocetVrcholuStromu[i] );
+
+        }
+        // End the scene
+        g_pd3dDevice->EndScene();
+    }
+
+    // Present the backbuffer contents to the display
+    g_pd3dDevice->Present( NULL, NULL, NULL, NULL );
+
 
 }
 

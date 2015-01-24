@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1421953801 source:h:\local new\programování\cb\struktury stromu\treegen\engine.cpp
+1422132554 source:h:\local new\programování\cb\struktury stromu\treegen\engine.cpp
 	"Engine.hpp"
 
-1421706044 h:\local new\programování\cb\struktury stromu\treegen\engine.hpp
+1422133924 h:\local new\programování\cb\struktury stromu\treegen\engine.hpp
 	<string>
 	<functional>
 	<random>
@@ -13,7 +13,7 @@
 	<d3dx9.h>
 	"SWU/Okno.hpp"
 	"SWU/Konzole.hpp"
-	"Input.hpp"
+	"Kontroler3d.hpp"
 	"CustomVertex.hpp"
 	"JednoduchyVertex.hpp"
 	"TreeType.hpp"
@@ -109,7 +109,7 @@
 1421954300 h:\local new\programování\cb\struktury stromu\treegen\helper.hpp
 	<windows.h>
 
-1421694144 h:\local new\programování\cb\struktury stromu\treegen\tree.hpp
+1422118514 h:\local new\programování\cb\struktury stromu\treegen\tree.hpp
 	<fstream>
 	<iosfwd>
 	<windows.h>
@@ -120,7 +120,7 @@
 
 1421832994 h:\local new\programování\cb\struktury stromu\treegen\globals.hpp
 
-1421961654 source:h:\local new\programování\cb\struktury stromu\treegen\helper.cpp
+1422118514 source:h:\local new\programování\cb\struktury stromu\treegen\helper.cpp
 	"Helper.hpp"
 	<iostream>
 	<chrono>
@@ -129,13 +129,13 @@
 1421702164 source:h:\local new\programování\cb\struktury stromu\treegen\input.cpp
 	"Input.hpp"
 
-1421961050 source:h:\local new\programování\cb\struktury stromu\treegen\main.cpp
+1422131833 source:h:\local new\programování\cb\struktury stromu\treegen\main.cpp
 	<windows.h>
 	"Engine.hpp"
 	"view.hpp"
 	"globals.hpp"
 
-1421961726 h:\local new\programování\cb\struktury stromu\treegen\view.hpp
+1422102891 h:\local new\programování\cb\struktury stromu\treegen\view.hpp
 	<iostream>
 	<windows.h>
 	<d3dx9.h>
@@ -152,10 +152,10 @@
 1421702071 source:h:\local new\programování\cb\struktury stromu\treegen\swu\okno.cpp
 	"Okno.hpp"
 
-1421953801 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
+1422118514 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
 	"Tree.hpp"
 
-1421961726 source:h:\local new\programování\cb\struktury stromu\treegen\view.cpp
+1422122073 source:h:\local new\programování\cb\struktury stromu\treegen\view.cpp
 	"view.hpp"
 
 1422024847 source:c:\new\programování\treegen\engine.cpp
@@ -316,4 +316,19 @@
 
 1422024847 source:c:\new\programování\treegen\view.cpp
 	"view.hpp"
+
+1422133685 h:\local new\programování\cb\struktury stromu\treegen\kontroler3d.hpp
+	<windows.h>
+	"Input.hpp"
+	"Kamera.hpp"
+
+1422133855 h:\local new\programování\cb\struktury stromu\treegen\kamera.hpp
+	<d3dx9.h>
+	"globals.hpp"
+
+1422133855 source:h:\local new\programování\cb\struktury stromu\treegen\kamera.cpp
+	"Kamera.hpp"
+
+1422133679 source:h:\local new\programování\cb\struktury stromu\treegen\kontroler3d.cpp
+	"Kontroler3d.hpp"
 

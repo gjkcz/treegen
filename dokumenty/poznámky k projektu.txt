@@ -87,7 +87,17 @@ engine:
 		- 
 
 19.1.015
+<<<<<<< HEAD
 - sekne se, kdyz zavres mysitkem a fokus mas na konzoli
 
 23.1.015
 - MojeTajnePripojeni
+
+- nakonec se mi povedlo překonat nějaký osobní mýtus, že D3D nefunguje s mingw a po dlouhym snažení sem to zprovoznil. Teda alespoň D3D9, takže zůstávám rozhodně u codeblocks
+- sekne se, kdyz zavres mysitkem a fokus mas na konzoli
+
+= nakonec, proč dělat realistické stromy?
+	vždy|ť i pojetí stromu je čistě subjektivní záležitost, měl bych podle toho tvořit i program, třeba zákazník nechce realismus, ale zaujmout extravagancí
+
+¨zatím ještě víc zjednoduš, musím postupovat výstavbovým principem
+chci jeden strom, objekt, který se alokuje a dealokuje, to znamená i řešení Memory overflow problemu, aby nezpusobil pad
