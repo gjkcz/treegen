@@ -88,3 +88,6 @@ engine:
 
 19.1.015
 - sekne se, kdyz zavres mysitkem a fokus mas na konzoli
+
+23.1.015
+- MojeTajnePripojeni

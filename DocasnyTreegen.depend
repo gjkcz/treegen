@@ -158,10 +158,10 @@
 1421961726 source:h:\local new\programování\cb\struktury stromu\treegen\view.cpp
 	"view.hpp"
 
-1421781277 source:c:\new\programování\treegen\engine.cpp
+1422024847 source:c:\new\programování\treegen\engine.cpp
 	"Engine.hpp"
 
-1421774355 c:\new\programování\treegen\engine.hpp
+1422025863 c:\new\programování\treegen\engine.hpp
 	<string>
 	<functional>
 	<random>
@@ -265,7 +265,7 @@
 
 1421167121 c:\new\programování\treegen\treetype.hpp
 
-1421167121 c:\new\programování\treegen\helper.hpp
+1422024847 c:\new\programování\treegen\helper.hpp
 	<windows.h>
 
 1421776166 c:\new\programování\treegen\tree.hpp
@@ -277,10 +277,13 @@
 	"TreeType.hpp"
 	"Helper.hpp"
 
-1421781724 c:\new\programování\treegen\globals.hpp
+1422027273 c:\new\programování\treegen\globals.hpp
 
-1421774355 source:c:\new\programování\treegen\helper.cpp
+1422024847 source:c:\new\programování\treegen\helper.cpp
 	"Helper.hpp"
+	<iostream>
+	<chrono>
+	<thread>
 
 1421774355 source:c:\new\programování\treegen\input.cpp
 	"Input.hpp"
@@ -291,12 +294,13 @@
 	"view.hpp"
 	"globals.hpp"
 
-1421776166 c:\new\programování\treegen\view.hpp
+1422024847 c:\new\programování\treegen\view.hpp
 	<iostream>
 	<windows.h>
 	<d3dx9.h>
 	<dinput.h>
 	"globals.hpp"
+	"helper.hpp"
 
 1421774355 source:c:\new\programování\treegen\msgproc.cpp
 	"msgProc.hpp"
@@ -307,9 +311,9 @@
 1421774355 source:c:\new\programování\treegen\swu\okno.cpp
 	"Okno.hpp"
 
-1421774355 source:c:\new\programování\treegen\tree.cpp
+1422024847 source:c:\new\programování\treegen\tree.cpp
 	"Tree.hpp"
 
-1421774355 source:c:\new\programování\treegen\view.cpp
+1422024847 source:c:\new\programování\treegen\view.cpp
 	"view.hpp"
 
