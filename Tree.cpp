@@ -550,7 +550,7 @@ int GenerateTree(int iPater,tType _tType)
 
     return iVx;
 }
-SimpleVertex* UnpackTree()
+SimpleVertex* getTree()
 {
     return Tvertices;
 }
