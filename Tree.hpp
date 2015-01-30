@@ -39,4 +39,23 @@ float random();
 int helper::zaokrouhli(float _f);
 int integratePower(int _zakl, float _doMocniny);
 
+
+class Tree
+{
+public:
+    Tree();
+    ~Tree();
+protected:
+private:
+    SimpleVertex* vrcholy;
+    UINT* indicie;
+    Vetev* vetve;
+    void generujVetve();
+    void generujKmen();
+    void generujListy();
+    void spoctiVertexy();
+    void generujPlosky();
+};
+
+
 #endif // __TREE_H__

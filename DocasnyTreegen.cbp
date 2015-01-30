@@ -99,11 +99,15 @@
 		<Unit filename="Tree.cpp" />
 		<Unit filename="Tree.hpp" />
 		<Unit filename="TreeType.hpp" />
+		<Unit filename="Vetev.hpp" />
 		<Unit filename="globals.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="msgProc.cpp" />
 		<Unit filename="msgProc.hpp" />
-		<Unit filename="view.cpp" />
+		<Unit filename="view.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="view.hpp" />
 		<Extensions>
 			<code_completion />
