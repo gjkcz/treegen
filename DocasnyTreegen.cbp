@@ -123,6 +123,7 @@
 		<Unit filename="Tree.cpp" />
 		<Unit filename="Tree.hpp" />
 		<Unit filename="TreeType.hpp" />
+		<Unit filename="Vetev.hpp" />
 		<Unit filename="globals.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="msgProc.cpp" />

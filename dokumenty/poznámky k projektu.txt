@@ -87,6 +87,12 @@ engine:
 		- 
 
 19.1.015
+<<<<<<< HEAD
+- sekne se, kdyz zavres mysitkem a fokus mas na konzoli
+
+23.1.015
+- MojeTajnePripojeni
+
 - nakonec se mi povedlo překonat nějaký osobní mýtus, že D3D nefunguje s mingw a po dlouhym snažení sem to zprovoznil. Teda alespoň D3D9, takže zůstávám rozhodně u codeblocks
 - sekne se, kdyz zavres mysitkem a fokus mas na konzoli
 
