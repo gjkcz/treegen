@@ -3,6 +3,8 @@
 
 
 #include <d3dx9math.h>
+// Our custom FVF, which describes our custom vertex structure
+#define D3DFVF_SIMPLEVERTEX (D3DFVF_XYZ|D3DFVF_DIFFUSE)// DX9 NEMA odpovidajici
 
 struct SimpleVertex
 {

@@ -76,6 +76,7 @@
 				<Option projectLibDirsRelation="1" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="H:/local new/programování/CB/struktury stromu/Treegen/devpaks/boost_1_57_0" />
 				</Compiler>
 				<Linker>
 					<Add library="d3d9" />
@@ -122,6 +123,11 @@
 		<Unit filename="SimpleVertex.hpp" />
 		<Unit filename="Tree.cpp" />
 		<Unit filename="Tree.hpp" />
+		<Unit filename="TreeOld.cpp">
+			<Option compile="1" />
+			<Option link="1" />
+		</Unit>
+		<Unit filename="TreeOld.hpp" />
 		<Unit filename="TreeType.hpp" />
 		<Unit filename="Vetev.hpp" />
 		<Unit filename="globals.hpp" />

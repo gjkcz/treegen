@@ -15,7 +15,7 @@ namespace sk
 
 using namespace std;
 
-Konzole::Konzole()
+Konzole::Konzole() : soucasnaBarva(0xF)
 {
     sablony["ok"] = Sablona(bmodra, "ok");
 //    presmerujIODoKonzole();     // Presmeruj IO do nasi nove konzole

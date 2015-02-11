@@ -13,8 +13,14 @@ Input::Input(HWND _hWnd)
     axX = 0;
     axY = 0;
     axZ = 0;
+    nmX = 0.f;
+    nmY = 0.f;
     Keys = new byte[256];
     axs = new float[4];
+    for (bool& b : Buttons)
+    {
+        b = false;
+    }
     hWnd = _hWnd;
 //    std::cout << "Volam fci prepareInputDevices.\n";
     prepareInputDevices();
@@ -23,8 +29,8 @@ Input::Input(HWND _hWnd)
 void Input::prepareInputDevices()
 {
     HRESULT hr;
-    for (int i = 8; i < 8; i++)
-        Buttons[i] = false;
+//    for (int i = 8; i < 8; i++)
+//        Buttons[i] = false;
     if (FAILED(hr=DirectInput8Create(GetModuleHandle(NULL), 0x0800, IID_IDirectInput8, ( VOID** )&diiDI, NULL )))
         std::cout << hr;
     if (FAILED (hr=diiDI->CreateDevice(GUID_SysMouse,&diMouse, NULL)))
@@ -59,8 +65,9 @@ void Input::reset()
 
 Input::~Input()
 {
-    delete Keys;
-    delete axs;
+    delete[] Keys;
+    delete[] axs;
+//    delete[] Buttons;
 }
 
 HRESULT Input::prectiStavVstupu()

@@ -101,3 +101,15 @@ engine:
 
 ¨zatím ještě víc zjednoduš, musím postupovat výstavbovým principem
 chci jeden strom, objekt, který se alokuje a dealokuje, to znamená i řešení Memory overflow problemu, aby nezpusobil pad
+
+5. 2. 015
+- checkout Boost
+- zeptej se Pavla na zprovozneni 64x bitu
+- zeptej se na include a predefinice
+- pridavam boost
+- dej si pozor na searchdirs v c::b, neumi /cokoliv/, musi byt /cokoliv
+- pri instalaci boostu je potreba zmenit znakova stranka chcp 1250
+- nezkompilovalo to nic
+- aha, chyba bude asi v tom, ze je musim nejdriv uzamknout, potom vytvorit, nebo upravit, nebo cokoli a pak odemknout..
+- srovnej dva stromy po staru atd
+- ty tecky jsou stromy, ktery jsou spatne zkopirovany pri rozsirovani vectoru

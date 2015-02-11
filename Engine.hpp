@@ -4,8 +4,9 @@
 #include <string>
 #include <functional>   // aby fungoval bind
 #include <random>       // Generatory
-#include <chrono>       // Casove fce
-#include <thread>
+#include <thread>       // Multithreading
+#include <vector>       // Dynamicke containery
+#include <exception>
 #include <windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -37,22 +38,20 @@ public:
 private:
     sw::Okno okno;
     sktrl::Kontroler3d iKontroler3d;
-    sk::Konzole iKonzole;
-    LPDIRECT3DDEVICE9 g_pd3dDevice; // Our rendering device, lp= neco pointer
+    sk::Konzole iKonzole;   // abych mohl konzoli pouzivat vsude, to nejde
+    LPDIRECT3DDEVICE9 pd3dZarizeni; // Our rendering device, lp= neco pointer
     LPDIRECT3D9 g_pD3D; // Used to create the D3DDevice
     void pripravView();
     void pripravGeometrii();
 
     int bbClearColor = 1;
     float fFOV;
-    D3DXMATRIX mScale, mRotateW;
     D3DXMATRIX maticeProjekce;
 
-    static const bool bRust=false;
+    std::vector<t::Tree> stromy;
+    t::Tree stromSpecimen;
+//    static const bool bRust=false;
     float fDalka; //0
-    int* aPocetVrcholuStromu;
-    D3DXMATRIX* treeMatrix;
-    LPDIRECT3DVERTEXBUFFER9* treeVertexBuffers;
 };
 
 

@@ -1,52 +1,21 @@
 #include "Engine.hpp"
 namespace se
 {
-
-
-typedef std::chrono::high_resolution_clock stopky;
-typedef stopky::time_point Okamzik;
-typedef stopky::duration Doba;
+namespace h=helper;
 
 Engine::Engine(const sw::Okno& _okno) : okno(_okno), iKontroler3d(okno.hWnd)
 {
+    h::zapniStopky();
 //    std::cout << "Engine uniform initialized.";
-    Okamzik zacatek = stopky::now();
-
-
-
-
-    // obtain a seed from the timer
-    Doba d = stopky::now() - zacatek;
-    unsigned seminko = d.count();
-
-    std::minstd_rand0 generator (seminko);
-    std::uniform_int_distribution<int> distribution(50,255);
-    auto kostka = std::bind ( distribution, generator );
-    int i = kostka();
-
-    d = stopky::now() - zacatek;
-    seminko = d.count();
-    generator.seed(seminko);
-    int r = kostka();
-
-
     fFOV = D3DX_PI/3;
-    D3DXMatrixRotationX(&mRotateW, -3.14159265358979323846/2);
-
+//    stromy = {};
+//    D3DXMatrixRotationX(&mRotateW, -3.14159265358979323846/2);
 }
 
 Engine::~Engine()
 {
-    for(int i = 0; i < iObsah; i++)
-    {
-        if( treeVertexBuffers[i] != NULL )
-            treeVertexBuffers[i]->Release();
-    }
-    if( g_pd3dDevice != NULL )
-        g_pd3dDevice->Release();
-    delete treeMatrix;
-    delete treeVertexBuffers;
-    delete aPocetVrcholuStromu;
+    if( pd3dZarizeni != NULL )
+        pd3dZarizeni->Release();
     std::cout << "Engine destruktor dokoncil uvolnovani pameti alokovane jeho instanci iEngine.\n";
 //    system("pause");
 }
@@ -55,14 +24,35 @@ void Engine::priprav()
 {
     iKonzole.nastavBarvuPisma(sk::Barva::fbila);
     iKonzole.vytiskniSablonu((std::string)"ok");
-    iKonzole.nastavBarvuPisma(sk::Barva::fbila);
 //    iKonzole.zjistiSoucasnouBarvu();
+    iKonzole.nastavBarvuPisma(sk::Barva::fbila);
     std::cout << "Pripravuji D3D" << '\n';
     pripravView();
     std::cout << "Ok" << '\n';
     std::cout << "Generuji stromy" << '\n';
     pripravGeometrii();
-    std::cout << "Ok" << '\n';
+    std::cout << "Ok, pocet stromu je: " << t::Tree::pocetInstanciStromu << '\n';
+    std::cout << "Hledi je ve smeru -x" << std::endl;
+
+
+//    iKonzole.nastavBarvuPisma(sk::Barva::fcervena);
+//    helper::Okamzik zacatek = helper::stopky::now();
+//    helper::nahodneCislo();
+//    helper::Okamzik konec = helper::stopky::now();
+//    h::Doba dobaGenerovani = (konec - zacatek);
+//    float casGenerovaniVteriny = dobaGenerovani.count() / 1000000000.f;
+//    std::cout << "Jedno nahodne cislo zabere: " << casGenerovaniVteriny << " s\n";
+//
+//    iKonzole.nastavBarvuPisma(sk::Barva::fzelenozluta);
+//    zacatek = helper::stopky::now();
+//    for(int y = 0; y != 100; ++y)
+//        std::cout << "Randomness test: " << helper::random() << std::endl;
+//    konec = helper::stopky::now();
+//    dobaGenerovani = (konec - zacatek);
+//    casGenerovaniVteriny = dobaGenerovani.count() / 1000000000.f;
+//    iKonzole.nastavBarvuPisma(sk::Barva::fcervena);
+//    std::cout << "Sto nahodnych cisel zabere: " << casGenerovaniVteriny << " s\n";
+
 //    oInput.prepareInputDevices(okno.hWnd);
 }
 
@@ -79,33 +69,27 @@ void Engine::pripravView()
     d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
     d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
 
-    g_pd3dDevice = NULL;
+    pd3dZarizeni = NULL;
     // Create the D3DDevice
     if( FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, this->okno.hWnd,
                                      D3DCREATE_HARDWARE_VERTEXPROCESSING,
-                                     &d3dpp, &g_pd3dDevice ) ) )
-    {
+                                     &d3dpp, &pd3dZarizeni ) ) ) {
 //        std::cout << E_FAIL;
         if(FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, this->okno.hWnd,
                                         D3DCREATE_SOFTWARE_VERTEXPROCESSING,
-                                        &d3dpp, &g_pd3dDevice )))
-        {
+                                        &d3dpp, &pd3dZarizeni ))) {
             if(FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, this->okno.hWnd,
                                             D3DCREATE_HARDWARE_VERTEXPROCESSING,
-                                            &d3dpp, &g_pd3dDevice )))
-            {
+                                            &d3dpp, &pd3dZarizeni ))) {
                 if( FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, this->okno.hWnd,
                                                  D3DCREATE_HARDWARE_VERTEXPROCESSING,
-                                                 &d3dpp, &g_pd3dDevice ) ) )
-                {
+                                                 &d3dpp, &pd3dZarizeni ) ) ) {
                     if(FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, this->okno.hWnd,
                                                     D3DCREATE_HARDWARE_VERTEXPROCESSING,
-                                                    &d3dpp, &g_pd3dDevice )))
-                    {
+                                                    &d3dpp, &pd3dZarizeni ))) {
                         if(FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_FORCE_DWORD, this->okno.hWnd,
                                                         D3DCREATE_HARDWARE_VERTEXPROCESSING,
-                                                        &d3dpp, &g_pd3dDevice )))
-                        {
+                                                        &d3dpp, &pd3dZarizeni ))) {
 
                         }
                     }
@@ -116,10 +100,10 @@ void Engine::pripravView()
 
 
     // Turn off culling, so we see the front and back of the triangle
-    g_pd3dDevice->SetRenderState( D3DRS_CULLMODE, D3DCULL_CCW );
+    pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
 
     // Turn off D3D lighting, since we are providing our own vertex colors
-    g_pd3dDevice->SetRenderState( D3DRS_LIGHTING, FALSE );
+    pd3dZarizeni->SetRenderState( D3DRS_LIGHTING, FALSE );
 
     //TMatX = new D3DXMATRIX[iObsah];
 
@@ -129,104 +113,136 @@ void Engine::pripravView()
 
 void Engine::pripravGeometrii()
 {
-    treeMatrix = new D3DXMATRIX[iObsah];   // array of matrices to hold the rotation and position of each tree
-    treeVertexBuffers = new LPDIRECT3DVERTEXBUFFER9[iObsah]; // array of Buffers to hold vertices
-    aPocetVrcholuStromu = new int[iObsah];
-    fDalka=950'000.f;
+    //
+    //      NEW PART
+    //
+    t::DruhStromu druhStromu;
+    druhStromu._iDType = 3;
+    druhStromu._iRType = 4;
+    druhStromu._iSType = 0;
+    druhStromu.barva = t::azurova;
+    druhStromu.barveni = t::g;      // d
+//    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);
 
-    int vPocet, iPocetV=0;
-    CUSTOMVERTEX* g_Vertices;
+    D3DXMATRIX pocatek;
+//    treeMatrix = new D3DXMATRIX[iObsah];   // array of matrices to hold the rotation and position of each tree
+//    treeVertexBuffers = new LPDIRECT3DVERTEXBUFFER9[iObsah]; // array of Buffers to hold vertices
+//    aPocetVrcholuStromu = new int[iObsah];
+    fDalka = 950000.f; // ' nova fitura kazi formatovani
+
+//    int vPocet, iPocetV=0;
+//    CUSTOMVERTEX* g_Vertices;
     float xoffset = -2*fDalka;
     float yoffset = -2*fDalka;
-    SimpleVertex* Tvertices;
-    Okamzik zacatek = stopky::now();
-//    UINT uiTime=0;
-//    uiTime = timeGetTime();
-    for(int i = 0; i<iObsah; i++)
-    {
-        xoffset = (i/sqrt((float)iObsah)) * fDalka-(sqrt((float)iObsah)/2)*fDalka+helper::random()*fDalka-fDalka*0.5;
-        yoffset = (i-(i/(int)sqrt((float)iObsah)*(int)sqrt((float)iObsah)))* fDalka-(sqrt((float)iObsah)/2)*fDalka+helper::random()*fDalka-fDalka*0.5;
-        D3DXMatrixTranslation(&treeMatrix[i], xoffset, yoffset, 0.f);
-        int iTypu=8;
-        int iTyp=0;
-        bool bIAm = false;
-        int l = 0;
-        tType type;
-        for(int c=0; c<3; c++)
-        {
-            while(!bIAm)
-            {
-                if (i%iTypu==l)
-                {
-                    bIAm=true;
-                    iTyp=l;
+    float zoffset = 0.f;
+//    SimpleVertex* Tvertices;
+    h::Okamzik zacatek = h::stopky::now();
+
+    xoffset = -fDalka;
+    yoffset = 0.f;
+    D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
+    stromSpecimen = t::Tree {druhStromu, pocatek, &pd3dZarizeni};   // move assignment
+    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+
+    druhStromu._iDType = 3;
+    druhStromu._iRType = 4;
+    druhStromu._iSType = 0;
+    try {
+        int pocetStromu = 19'600;
+        float vyska = 0.f;
+        for(int o = 0; o < pocetStromu; ++o) {
+            xoffset = (o/sqrt((float)pocetStromu)) * fDalka-(sqrt((float)pocetStromu)/2)*fDalka+helper::random()*fDalka-fDalka*0.5;
+            yoffset = (o-(o/(int)sqrt((float)pocetStromu)*(int)sqrt((float)pocetStromu)))* fDalka-(sqrt((float)pocetStromu)/2)*fDalka+helper::random()*fDalka-fDalka*0.5;
+            xoffset = 0;
+            yoffset = 0;
+            zoffset += fDalka/10.f;
+            D3DXMatrixTranslation(&pocatek, xoffset, yoffset, zoffset);
+
+            int iTypu=8;
+            int iTyp=0;
+            bool bIAm = false;
+            int l = 0;
+            t::DruhStromu type = druhStromu;
+            for(int c=0; c<3; c++) {
+                while(!bIAm) {
+                    if (o%iTypu==l) {
+                        bIAm=true;
+                        iTyp=l;
+                    }
+                    l++;
                 }
-                l++;
+                (c==0)?(type._iSType=iTyp):((c==1)?(type._iRType=iTyp):(type._iDType=iTyp));
+                iTypu=(c==0)?5:3;
+                l = 0;
+                bIAm = false;
             }
-            (c==0)?(type._iSType=iTyp):((c==1)?(type._iRType=iTyp):(type._iDType=iTyp));
-            iTypu=(c==0)?5:3;
-            l = 0;
-            bIAm = false;
-        }
 //        type._iRType=5;
 //        type._iDType=4;
-
-        vPocet = GenerateTree(iPatra, type);
-        //iPatra+=bRust?1:0;    nejde s makro konstantou
-        iPocetV+=vPocet;
-        aPocetVrcholuStromu[i] = vPocet;
-        g_Vertices = new CUSTOMVERTEX[vPocet];
-
-        // Create the vertex buffer.
-        if( FAILED( g_pd3dDevice->CreateVertexBuffer( vPocet * sizeof( CUSTOMVERTEX ),
-                    0, D3DFVF_CUSTOMVERTEX,
-                    D3DPOOL_DEFAULT, &treeVertexBuffers[i], NULL ) ) )
-        {
-            std::cout << NULL;
+            stromy.emplace_back(type, pocatek, &pd3dZarizeni);     // Vytvori strom a prida ho na konec naseho vektoru stromu
         }
-
-        Tvertices = getTree();
-        if( FAILED( treeVertexBuffers[i]->Lock( 0, 0, ( void** )&g_Vertices, 0 ) ) )
-            std::cout << NULL; //pozor do pole nejde e_fail
-        int tempColor;
-        float colorK;
-        for(int x=0; x<vPocet; x++)         // konverze barev
-        {
-            g_Vertices[x].x = Tvertices[x].Pos.x;
-            g_Vertices[x].y = Tvertices[x].Pos.y;
-            g_Vertices[x].z = Tvertices[x].Pos.z;
-//			g_Vertices[x].color = 0xF000000;
-            for(int b = 0; b<3; b++)
-            {
-                switch(b)
-                {
-                case 0:
-                {
-                    colorK = Tvertices[x].Color.z;
-                    break;
-                }
-                case 1:
-                {
-                    colorK = Tvertices[x].Color.y;
-                    break;
-                }
-                case 2:
-                {
-                    colorK = Tvertices[x].Color.x;
-                    break;
-                }
-                }
-                tempColor=(colorK * 255);
-                g_Vertices[x].color += DWORD(tempColor*(pow(float(16),b*2)));
-//                tempColor=(colorK * 255)-(int)(colorK * 255/16)*16;
-            }
-        }
-        treeVertexBuffers[i]->Unlock();
+    } catch (std::exception& e) {
+        std::cout << "Standard exception: " << e.what() << std::endl;
     }
-//    uiTime=timeGetTime()-uiTime;
-    Doba dobaGenerovani = (stopky::now() - zacatek);
-    int casVteriny = dobaGenerovani.count() / 1000;
+//    t::Tree stromSpecimen2 = t::Tree{druhStromu, pocatek, &pd3dZarizeni};
+//    t::Tree* piStrom = new t::Tree(druhStromu, pocatek, pd3dZarizeni);      // toto je mozne
+//    std::cout << "aleale" << std::endl;
+//    std::cout << "Pocet vrcholu:" << stromSpecimen.pocetVrcholu << std::endl;
+//    std::cout << "Nahodny vrchol c. 7 po assign barva: " << stromSpecimen.cstmvtxVrcholy[7].color << std::endl;
+//    std::cout << "Nahodny vrchol c. 7 po assign x: " << stromSpecimen.cstmvtxVrcholy[7].x << std::endl;
+//    for (int g=0; g < stromSpecimen.pocetVrcholu; ++g)
+//        std::cout << "Nahodny vrchol pro srovnani z enginu c."<<g<<" x pozice barva: " << stromSpecimen.cstmvtxVrcholy[g].color << std::endl;
+//    stromSpecimen.odemkniVrcholyProCteni();
+//    t::Tree iStrom = *piStrom;
+//    std::cout << "poceasdfasdfa: "<< iStrom.pocetVrcholu << std::endl;
+//    stromy.push_back(strom);
+//    stromy.emplace_back(druhStromu, pocatek, pd3dZarizeni);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+    //
+    //          OLD PART TreeOld
+    //
+//    int vPocet, iPocetV=0;
+//    CUSTOMVERTEX* g_Vertices;
+//    float xoffset = -2*fDalka;
+//    float yoffset = -2*fDalka;
+//    SimpleVertex* Tvertices;
+//    h::Okamzik zacatek = h::stopky::now();
+//    for(int i = 0; i<iObsah; i++)
+//    {
+//        xoffset = (i/sqrt((float)iObsah)) * fDalka-(sqrt((float)iObsah)/2)*fDalka+helper::random()*fDalka-fDalka*0.5;
+//        yoffset = (i-(i/(int)sqrt((float)iObsah)*(int)sqrt((float)iObsah)))* fDalka-(sqrt((float)iObsah)/2)*fDalka+helper::random()*fDalka-fDalka*0.5;
+//        D3DXMatrixTranslation(&treeMatrix[i], xoffset, yoffset, 0.f);
+////        D3DXMatrixTranslation(&stromSpecimen.matice, xoffset, yoffset, 0.f);
+////pocatek = treeMatrix[i];
+//
+//        int iTypu=8;
+//        int iTyp=0;
+//        bool bIAm = false;
+//        int l = 0;
+//        t::DruhStromu type;
+//        for(int c=0; c<3; c++)
+//        {
+//            while(!bIAm)
+//            {
+//                if (i%iTypu==l)
+//                {
+//                    bIAm=true;
+//                    iTyp=l;
+//                }
+//                l++;
+//            }
+//            (c==0)?(type._iSType=iTyp):((c==1)?(type._iRType=iTyp):(type._iDType=iTyp));
+//            iTypu=(c==0)?5:3;
+//            l = 0;
+//            bIAm = false;
+//        }
+////        type._iRType=5;
+////        type._iDType=4;
+//
+////stromy.emplace_back(type, pocatek, pd3dZarizeni);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+//        vPocet = GenerateTree(iPatra, type);
+    h::Doba dobaGenerovani = (h::stopky::now() - zacatek);
+    float casVteriny = dobaGenerovani.count() / 1e6;
     std::cout << "Cas generovani: " << casVteriny << "ms\n";
+    std::cout << "Generovani zabere: " << casVteriny/1e3 << " s\n";
 }
 
 void Engine::prectiVstupAUpravKameru()
@@ -236,50 +252,32 @@ void Engine::prectiVstupAUpravKameru()
 
 void Engine::render3d()
 {
-
     // Clear the backbuffer to a black color
     if( bbClearColor==1 )
-        g_pd3dDevice->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 255, 255, 255 ), 1.0f, 0 );
+        pd3dZarizeni->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 255, 255, 255 ), 1.0f, 0 );
     else
-        g_pd3dDevice->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 );
+        pd3dZarizeni->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 );
     // Begin the scene
-    if( SUCCEEDED( g_pd3dDevice->BeginScene() ) )
-    {
-        g_pd3dDevice->SetFVF( D3DFVF_CUSTOMVERTEX );
+    if( SUCCEEDED( pd3dZarizeni->BeginScene() ) ) {
+        pd3dZarizeni->SetFVF( D3DFVF_CUSTOMVERTEX );
+        D3DXMatrixPerspectiveFovLH( &maticeProjekce, fFOV, windowWidth / (FLOAT)windowHeight, 1.0f, 102000000.0f );
+        pd3dZarizeni->SetTransform( D3DTS_VIEW, iKontroler3d.vemView() );
+        pd3dZarizeni->SetTransform( D3DTS_PROJECTION, &maticeProjekce );
 
-//        g_View = translate * mRotateVZ * mRotateVY * mRotateVX;
+        stromSpecimen.aktualizujMatici();
+        stromSpecimen.vykresli();
 
-        D3DXMatrixPerspectiveFovLH( &maticeProjekce, fFOV, width / (FLOAT)height, 1.0f, 102000000.0f );
-
-        g_pd3dDevice->SetTransform( D3DTS_VIEW, iKontroler3d.vemView() );
-
-        g_pd3dDevice->SetTransform( D3DTS_PROJECTION, &maticeProjekce );
-
-        D3DXMatrixScaling(&mScale, 0.5f, 0.5f, 0.5f );
-
-        for(int i = 0; i < iObsah; i++)
-        {
-            // Setup the world, view, and projection Matrices
-            //SetupMatrices(i);
-            D3DXMATRIX g_World1 = treeMatrix[i] * mScale * mRotateW;
-            g_pd3dDevice->SetTransform( D3DTS_WORLD, &g_World1 );
-
-
-            // Render the vertex buffer contents
-            g_pd3dDevice->SetStreamSource( 0, treeVertexBuffers[i], 0, sizeof( CUSTOMVERTEX ) );
-
-            g_pd3dDevice->DrawPrimitive(
-                D3DPT_POINTLIST, 0, aPocetVrcholuStromu[i] );
-
+        for (auto &iTree : stromy) {      // Vykresli obsah vectoru stromu
+            iTree.aktualizujMatici();
+            iTree.vykresli();
         }
         // End the scene
-        g_pd3dDevice->EndScene();
+        pd3dZarizeni->EndScene();
+    } else {
+        std::cout << "Err rendering" << std::endl;
     }
-
     // Present the backbuffer contents to the display
-    g_pd3dDevice->Present( NULL, NULL, NULL, NULL );
-
-
+    pd3dZarizeni->Present( NULL, NULL, NULL, NULL );
 }
 
 

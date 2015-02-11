@@ -7,7 +7,7 @@ Okno::Okno()
 //        std::cout << "";
 }
 
-Okno::Okno(const Pozice& P, const Rozmery& R, LPCSTR jmeno = "Default")
+Okno::Okno(const Pozice& P, const Rozmery& R, LPCSTR jmeno = "Default") : otevreno(false)
 {
 //    std::cout << "Okno constructor called\n";
     this->nazev = (LPCSTR)jmeno;
