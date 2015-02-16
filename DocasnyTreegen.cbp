@@ -124,8 +124,8 @@
 		<Unit filename="Tree.cpp" />
 		<Unit filename="Tree.hpp" />
 		<Unit filename="TreeOld.cpp">
-			<Option compile="1" />
-			<Option link="1" />
+			<Option compile="0" />
+			<Option link="0" />
 		</Unit>
 		<Unit filename="TreeOld.hpp" />
 		<Unit filename="TreeType.hpp" />

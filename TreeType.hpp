@@ -40,10 +40,18 @@ enum Barveni
     a, b, c, d, e, f, g, y, nebarvit
 };
 
+enum Element
+{
+    bod=0, usecka, kuzel, testUsecka
+};
+
 struct DruhStromu
 {
+    Element element;
     D3DCOLOR barva;
     Barveni barveni;
+    int urovenRozvetveni;
+    int pravdepodobnostRozvetveni;
     int _iSType; //0-11
     int _iRType; //0-5
     int _iDType; //6.1.2.3.4.deflt
