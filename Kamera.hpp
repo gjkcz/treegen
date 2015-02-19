@@ -25,6 +25,7 @@ public:
     void upravRotaciKamery(float * aOsy);
     void posunKameru(Smer kam);
     void posunKameru(Smer kam, float jakMoc);   // nasobitel
+    void nastavRychlost(float rychlost) { fVel = rychlost; }
     D3DXMATRIX g_View;
 protected:
 private:

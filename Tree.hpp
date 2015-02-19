@@ -38,10 +38,13 @@ struct VlastnostiVetve {
     objRust r;
     objRust rT;
     bool k;
+    bool suda;
     float d;
     float aR;
     float m;
     float de;
+    int posledniVrcholPredchoziVetve;
+    VlastnostiVetve* rodicka;
 };
 //paramsVetve* gpVs;
 
@@ -70,8 +73,8 @@ public:
 
     Tree();
 //    Tree(DruhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9& _pzarizeni);
-    Tree(DruhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni);
-    Tree(DruhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni, float zRot);
+    Tree(DruhStromu&, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni);
+    Tree(DruhStromu&, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni, float zRot);
     Tree(Tree&& tmp);                       // move ctor
     Tree& operator= (Tree&&);             // move assignment
     ~Tree();
@@ -111,10 +114,10 @@ private:
     D3DXMATRIX maticeRotaceStromuX;
     D3DXMATRIX maticeRotaceStromuZ;
     LPDIRECT3DDEVICE9 pzarizeni;
-    VlastnostiVetve generujVlastnostiVetve(VlastnostiVetve parent, int strana, DruhStromu _tType);
-    D3DXVECTOR4 Barva;
+    D3DXVECTOR4 barvaStromu;
     int citacVrcholu;                            // MOZNA POTREBA VETSIHO MISTA
     int citacIndicii;
+//    int posledniVrcholPredchoziVetve;
     float per, gonx; //, height;
     int sum;
     int countEm;
@@ -122,6 +125,7 @@ private:
 
     bool generujKmen();
     bool generujVlastnostiVetvi();
+    VlastnostiVetve& generujVlastnostiVetve( VlastnostiVetve& parent, int strana, DruhStromu& _tType);
     int spoctiElementy();
     int spoctiVrcholy();           // Potreba pred vytvarenim buffru, potrebuje vygenerovat vlastnosti vetvi
     bool alokujMistoProVrcholyAindicie();
@@ -129,11 +133,12 @@ private:
     bool vytvorBufferIndicii();
     bool uzamkniPoleDoBuffru();       // musi existovat buffer a cstmvtxVrcholy musi byt nejprve vytvoreny,
     bool generujVykreslovaciDataVetvi();     // Musi znat pocet vrcholu
-    bool generujElementyVetve(VlastnostiVetve);
+    bool generujElementyVetve( VlastnostiVetve& );
     void generujVrcholElementu( Element e );
-    void generujVrcholElementu( Element e, float, float, float );
-    void generujVrcholElementu(float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ);
+    void generujVrcholElementu( Element e, float, float, float, Barva );
+    void generujVrcholElementu(float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ);   // melo by brat pole referenci za param
     void generujIndexyElementu( Element e, int );
+    void generujIndexyElementu( Element e, int, int );
     bool generujListy();
     bool generujPlosky();
     bool odemkniVrcholyProCteni();

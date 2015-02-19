@@ -12,6 +12,8 @@
 #include <windows.h>
 #include <dinput.h>
 #include <iostream>
+#include <sstream>
+#include <string>
 
 namespace si
 {

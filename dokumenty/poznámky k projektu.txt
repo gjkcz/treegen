@@ -65,7 +65,7 @@ dell inspiron 9400
 
 27.11.014
 - měl bych udělat multithreading
-- musím zabalit stávající balast do objektu, třeba objekt engine?
+v musím zabalit stávající balast do objektu, třeba objekt engine?
  - engine je nad všemi ostatními?
 
 gdi32
@@ -87,7 +87,6 @@ engine:
 		- 
 
 19.1.015
-<<<<<<< HEAD
 - sekne se, kdyz zavres mysitkem a fokus mas na konzoli
 
 23.1.015
@@ -100,16 +99,22 @@ engine:
 	vždy|ť i pojetí stromu je čistě subjektivní záležitost, měl bych podle toho tvořit i program, třeba zákazník nechce realismus, ale zaujmout extravagancí
 
 ¨zatím ještě víc zjednoduš, musím postupovat výstavbovým principem
-chci jeden strom, objekt, který se alokuje a dealokuje, to znamená i řešení Memory overflow problemu, aby nezpusobil pad
+v chci jeden strom, objekt, který se alokuje a dealokuje, to znamená i řešení Memory overflow problemu, aby nezpusobil pad
 
 5. 2. 015
-- checkout Boost
+v checkout Boost
 - zeptej se Pavla na zprovozneni 64x bitu
 - zeptej se na include a predefinice
 - pridavam boost
 - dej si pozor na searchdirs v c::b, neumi /cokoliv/, musi byt /cokoliv
 - pri instalaci boostu je potreba zmenit znakova stranka chcp 1250
 - nezkompilovalo to nic
-- aha, chyba bude asi v tom, ze je musim nejdriv uzamknout, potom vytvorit, nebo upravit, nebo cokoli a pak odemknout..
-- srovnej dva stromy po staru atd
-- ty tecky jsou stromy, ktery jsou spatne zkopirovany pri rozsirovani vectoru
+v aha, chyba bude asi v tom, ze je musim nejdriv uzamknout, potom vytvorit, nebo upravit, nebo cokoli a pak odemknout..
+v srovnej dva stromy po staru atd
+v ty tecky jsou stromy, ktery jsou spatne zkopirovany pri rozsirovani vectoru
+
+16.2
+v u kazde vetve spoj koncovy a pocatecni
+- POSOUVAM SE PRAVYM MYSITKEM
+- mazu ctrl backspace
+- nejprve si spoj casti trojuhelniku pomoci usecek

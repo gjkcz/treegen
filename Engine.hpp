@@ -34,7 +34,10 @@ public:
     void priprav();
     void prectiVstupAUpravKameru();
     void render3d();
-    void dejKonzoli(const sk::Konzole& x){iKonzole = x;}
+    void dejKonzoli(const sk::Konzole& x){
+        iKonzole = x;
+        iKontroler3d.dejKonzoli(x);
+    }
 private:
     sw::Okno okno;
     sktrl::Kontroler3d iKontroler3d;

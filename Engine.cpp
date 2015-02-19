@@ -122,15 +122,15 @@ void Engine::pripravView()
 void Engine::pripravGeometrii()
 {
     t::DruhStromu druhStromu;
-    druhStromu.urovenRozvetveni = 6;
-    druhStromu.pravdepodobnostRozvetveni = 91;
+    druhStromu.urovenRozvetveni = 12;
+    druhStromu.pravdepodobnostRozvetveni = 85;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
 
 //    druhStromu.barva = t::zluta;
     druhStromu.element = t::usecka;
-    druhStromu.barva = t::zelena;
+    druhStromu.barva = t::azurova;
 //    druhStromu.barva = t::azurova;
     druhStromu.barveni = t::g;      // d
 //    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);
@@ -147,22 +147,23 @@ void Engine::pripravGeometrii()
     yoffset = 0.f;
     xoffset = -1*fDalka;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
-    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.009f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+//    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.00f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
 //    stromSpecimen = t::Tree {druhStromu, pocatek, &pd3dZarizeni};   // move assignment
 
     // DRUHY
     xoffset = -3*fDalka;
     druhStromu.element = t::bod;
-    druhStromu.barva = t::azurova;
+//    druhStromu.barva = t::azurova;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
-    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.009f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+//    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.009f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
 //    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni);     // Vytvori strom a prida ho na konec naseho vektoru stromu
 
     #ifdef STACK
+    druhStromu.element = t::usecka;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 0;
-    int pocetStacku = 0;  // 1000
+    int pocetStacku = 100;  // 1000
     int pocetStromuStacku = 1; //15
     try
     {

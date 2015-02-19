@@ -48,7 +48,7 @@ enum Element
 struct DruhStromu
 {
     Element element;
-    D3DCOLOR barva;
+    Barva barva;
     Barveni barveni;
     int urovenRozvetveni;
     int pravdepodobnostRozvetveni;

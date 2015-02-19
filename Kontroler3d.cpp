@@ -29,8 +29,19 @@ HRESULT Kontroler3d::prectiVstupAUpravKameru()
     stav = iInput.prectiStavVstupu();
     if (stav != WM_QUIT)        // protoze se input nedocte..zpusobil by pad
     {
-
-        iKamera.upravRotaciKamery(iInput.axs);
+        if (iInput.Keys[DIK_SPACE] & 0x80)
+        {
+            std::string tmpStr;
+            float tmpRychlost;
+            iKonzole.nastavBarvuPisma(sk::ffialova);
+            std::cout << "Zadej pozadovanou rychlost pohybu: " << std::endl;
+            std::getline(std::cin, tmpStr);
+            std::stringstream(tmpStr) >> tmpRychlost;
+            iKamera.nastavRychlost(tmpRychlost);
+            iInput.reset();
+        }
+        else
+            iKamera.upravRotaciKamery(iInput.axs);
 
         if (iInput.Keys[DIK_W] & 0x80)
         {
@@ -59,6 +70,7 @@ HRESULT Kontroler3d::prectiVstupAUpravKameru()
             iKamera.posunKameru(skam::doprava);
 
         }
+
     }
     return stav;
 }
