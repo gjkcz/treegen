@@ -13,8 +13,10 @@ Zkratky: {
 	}
 
 	pro git: {
-		git update-index --assume-unchanged path/to/file.txt
+		git update-index --[no-]assume-unchanged path/to/file.txt
 		git mergetool	=	spustí vimdiff2
+		git stash		= 	ulozi nekomitle veci
+		git checkout -b =	nova vetev s prepnutim
 		git config	
 		ve vimdiffu musis dat :, pro zadani prikazu
 		:qa				=	odejde, selze se zmenami 
