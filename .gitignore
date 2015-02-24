@@ -1,7 +1,7 @@
 CppCheckResults.xml
 DocasnyTreegen.cscope_file_list
 dokumenty/cppcheckProjekt.cppcheck
-globals.*
+#globals.*
 mingwTreegen.exe
 DocasnyTreegen.exe
 DocasnyTreegen.layout
