@@ -1,18 +1,28 @@
-#include "msgProc.h"
+#include "msgProc.hpp"
+
+namespace sw
+{
 
 //-----------------------------------------------------------------------------
 // Name: MsgProc()
 // Desc: The window's message handler
 //-----------------------------------------------------------------------------
-LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
+LRESULT CALLBACK WindowProcedure( HWND hWnd, UINT messages, WPARAM wParam, LPARAM lParam )
 {
-    switch( msg )
-    {
-    case WM_DESTROY:
-        Cleanup();
-        PostQuitMessage( 0 );
+    switch( messages ) {
+    case WM_DESTROY: {
+        //Cleanup();
+//        std::cout << "Okno zavirano" << std::endl;
+        PostQuitMessage( 0 );               // post quit message
         return 0;
     }
+    break;
+    default:
+        return DefWindowProc( hWnd, messages, wParam, lParam );
+        break;
+    }
 
-    return DefWindowProc( hWnd, msg, wParam, lParam );
+}
+
+
 }

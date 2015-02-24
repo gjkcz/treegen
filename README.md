@@ -4,15 +4,16 @@
 ### What is this repository for? ###
 
 * Zde bude se upravovati a k závěru se odebéře můj finální projekt.
-* Verze 0.1
+* Verze 0.2
 
 ### Ovladani: ###
 
 * w, s, a, d - dopredu, dozadu, doleva, doprava
 * q, e - nahoru, dolu
-* ↑, ↓ - pohled nahoru, dolu
+* ^, ˇ - pohled nahoru, dolu
 * 1, 2 - přidat auto otáčení
 * 3, 4 - otočit
+* myš
 
 ### Changelog: ###
 
@@ -50,3 +51,13 @@
 **8.12.2014>>**
 
 * Jetbrains CLion IDE
+
+**5.1.2015>>**
+
+* Řešení problému s CodeBlocks a VC++2013
+
+* Úprava struktury programu
+
+**12.1.2015>>**
+
+* Sem se zaseknul. Nejde mi rozchodit kompilátor VC++, který potřebuju kvůli podpoře knihoven DirectX. Kód se normálně zkompiluje, ale po chvíli se zaseknou Codeblocks. Vůbec nevim proč. Clion IDE nepodporuje VC++ zatim. 

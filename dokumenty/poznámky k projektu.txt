@@ -1,26 +1,44 @@
-objekty:
+*objekty:
 	model
+		- tree
 	view
 		- to bude okno, 
 	controler:
 		- to bude myš, klávesnice
 
-- asi bych oddělil main od ostatního
+v asi bych oddělil main od ostatního
 - inits budou init geometry, init input, init D3D
-	x to je spatny koncept, mel bych mit objekt controler, ktery se inituje sam 
+	x to je spatny koncept, mel bych mit objekt controler, ktery se inituje sam
 
 - Tmatx jsou taky ve vice souborech globalne pouzivany
-- g_pd3dDevice musi byt predavana pointrem
+v g_pd3dDevice musi byt predavana pointrem
 - pole musel sem inicializovat v main
 
 -blur je vazne peknej, uvodni obrazovka by mela byt blurem
-- chtelo by to konzoli s vystupem
-- pozor, nefunguje win32 debug, ani release > to bude asi nejaka include
-- tak nejaky problem je v readInputState
+v chtelo by to konzoli s vystupem	OK
+	a vstupem
+v pozor, nefunguje win32 debug, ani release > to bude asi nejaka include
+v tak nejaky problem je v readInputState
 	> mel jsem v main axs = new long[2]; pritom v controler.cpp pouzivam ten ptr pro pristup k 4em. Divny je, ze VS mi to vzalo
 - jestli nejde zapisovat do exe, podivej se do jinyho compu, zda-li neni tam zapnut, git divni
 - limit nevim #define iObsah 5000
 		#define iPatra 7 zabira 1.5gb ram
+
+Novy compiler Visual C++13
+	-W 1 	.....	warning level 1(severe warnings)
+	{http://msdn.microsoft.com/en-us/library/thxezb7y.aspx}
+	-W4 -EHsc
+
+	H:\VSCppCompiler\2013standaloneVCppCompiler\VC\lib\amd64
+	H:\VSCppCompiler\2013standaloneVCppCompiler\lib\x64
+
+	H:\VSCppCompiler\2013standaloneVCppCompiler\include
+	H:\VSCppCompiler\2013standaloneVCppCompiler\VC\include
+
+	H:\VSCppCompiler\2013standaloneVCppCompiler\bin\x64
+	H:\VSCppCompiler\2013standaloneVCppCompiler\VC\bin\x86_amd64
+	H:\VSCppCompiler\2013standaloneVCppCompiler\VC\bin\amd64	
+	H:\VSCppCompiler\2013standaloneVCppCompiler\VC\bin
 
 Project build options
 - linkerSettings>
@@ -43,3 +61,65 @@ Project build options
 	$(DXSDK_DIR)Lib\x86
 
 - místo nové isic bych si mohl pujčit něčí
+dell inspiron 9400
+
+27.11.014
+- měl bych udělat multithreading
+v musím zabalit stávající balast do objektu, třeba objekt engine?
+ - engine je nad všemi ostatními?
+
+gdi32
+user32
+kernel32
+comctl32
+
+engine:
+	public proměnné: engine.props
+	private proměnné: d3dxdevice
+	engine funkce:
+		- prep()
+		- set...
+		- start()
+		- spawn()
+		- reset()
+		- clean()
+	engine private funkce:
+		- 
+
+19.1.015
+- sekne se, kdyz zavres mysitkem a fokus mas na konzoli
+
+23.1.015
+- MojeTajnePripojeni
+
+- nakonec se mi povedlo překonat nějaký osobní mýtus, že D3D nefunguje s mingw a po dlouhym snažení sem to zprovoznil. Teda alespoň D3D9, takže zůstávám rozhodně u codeblocks
+- sekne se, kdyz zavres mysitkem a fokus mas na konzoli
+
+= nakonec, proč dělat realistické stromy?
+	vždy|ť i pojetí stromu je čistě subjektivní záležitost, měl bych podle toho tvořit i program, třeba zákazník nechce realismus, ale zaujmout extravagancí
+
+¨zatím ještě víc zjednoduš, musím postupovat výstavbovým principem
+v chci jeden strom, objekt, který se alokuje a dealokuje, to znamená i řešení Memory overflow problemu, aby nezpusobil pad
+
+5. 2. 015
+v checkout Boost
+- zeptej se Pavla na zprovozneni 64x bitu
+- zeptej se na include a predefinice
+- pridavam boost
+- dej si pozor na searchdirs v c::b, neumi /cokoliv/, musi byt /cokoliv
+- pri instalaci boostu je potreba zmenit znakova stranka chcp 1250
+- nezkompilovalo to nic
+v aha, chyba bude asi v tom, ze je musim nejdriv uzamknout, potom vytvorit, nebo upravit, nebo cokoli a pak odemknout..
+v srovnej dva stromy po staru atd
+v ty tecky jsou stromy, ktery jsou spatne zkopirovany pri rozsirovani vectoru
+
+16.2
+v u kazde vetve spoj koncovy a pocatecni
+- POSOUVAM SE PRAVYM MYSITKEM
+- mazu ctrl backspace
+- nejprve si spoj casti trojuhelniku pomoci usecek
+- substringy jsou trochu nesikovne, sikovnejsi kdyz nenajdes zde, hledej jinde
+v vyresit problemy s dealokaci!! mazal sem v destruktoru kontroleru matrixView, ktery ovsem patril kamere, zmatlo me ze jsem ho alokoval v konstruktoru pomoci new, musel jsem nejdriv dat nullptr
+- 
+
+- az tohle dodelam, musim udelat program, krery bude derivovat fce..
