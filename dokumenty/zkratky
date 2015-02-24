@@ -63,6 +63,7 @@ Zkratky: {
 		ctrl+shift+b=	blok komentar
 
 		class ctrl+j
+		cout
 		do
 		for
 		forb
@@ -77,6 +78,7 @@ Zkratky: {
 		nowu
 		struct
 		switch
+		try
 		tday
 		tdayu
 		today
