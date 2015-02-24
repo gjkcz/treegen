@@ -9,6 +9,8 @@
 //#include <fstream>
 #include <string>
 #include <map>
+#define _WIN32_WINNT 0x0500 // Abych mohl pouzit GetConsoleWindow
+
 namespace sk
 {
 
@@ -47,17 +49,20 @@ class Sablona
 class Konzole
 {
 public:
-    std::map<std::string, Sablona> sablony;
+//    std::map<std::string, Sablona> sablony;
     Konzole();
+    void nastavDoPopredi();
     void nastavBarvuPisma(Barva);
     void nastavBarvuPisma(WORD);
     void vytiskniSablonu(std::string klic);
     void vytiskniXEnteru(int x);
 protected:
 private:
-    void zjistiSoucasnouBarvu();
+    std::string nazevKonzole;
     WORD soucasnaBarva;
     static const WORD MAX_CONSOLE_LINES = 500;
+    const std::string& zjistiNazevKonzole();
+    void zjistiSoucasnouBarvu();
 //    void presmerujIODoKonzole();
 };
 

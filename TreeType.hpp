@@ -23,6 +23,8 @@ enum Barva
     zluta = D3DCOLOR_RGBA(255, 255, 0, 255),
     purpurova = D3DCOLOR_RGBA(255, 0, 255, 255),
     azurova = D3DCOLOR_RGBA(0, 255, 255, 255),
+    zlutozelena = D3DCOLOR_RGBA(171, 233, 7, 226),
+    oranzova = D3DCOLOR_RGBA(255, 128, 0, 240),
 
     fbila=0xF, fseda=8, fcerna=0x0,
     fmodra=0x9, ftyrkysova=0xB, ftmavemodra=1, ffialova=13,

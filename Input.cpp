@@ -8,7 +8,7 @@ namespace si
 //    axs = new long[4];
 //}
 
-Input::Input(HWND _hWnd)
+Input::Input(HWND& _hWnd)
 {
     axX = 0;
     axY = 0;
@@ -61,16 +61,52 @@ void Input::reset()
     axs[2] = 0.f;
     axs[3] = 0.f;
     axs[4] = 0.f;
+    for ( int i = 0; i < 256; ++i)
+    {
+        Keys[i] = 0;
+    }
+}
+
+void Input::releaseDin()
+{
+    if(diKeybrd != NULL){
+        diKeybrd->Release();
+        diKeybrd = NULL;
+    }
+    if(diMouse != NULL){
+        diMouse->Release();
+        diMouse = NULL;
+    }
+    if(diiDI != NULL){
+        diiDI->Release();
+        diiDI = NULL;
+    }
 }
 
 Input::~Input()
 {
+#ifdef DESTRUCTORVERBOSE
+    std::cout << "Destructor Inputu." << std::endl;
+#endif // DESTRUCTORVERBOSE
+#ifdef DESTRUCTORVERBOSE
+    std::cout << "delete[] keys." << std::endl;
+#endif // DESTRUCTORVERBOSE
     delete[] Keys;
+#ifdef DESTRUCTORVERBOSE
+    std::cout << "delete[] axs." << std::endl;
+#endif // DESTRUCTORVERBOSE
     delete[] axs;
+#ifdef DESTRUCTORVERBOSE
+    std::cout << "release dins." << std::endl;
+#endif // DESTRUCTORVERBOSE
+    releaseDin();
+#ifdef DESTRUCTORVERBOSE
+    std::cout << "ok." << std::endl;
+#endif // DESTRUCTORVERBOSE
 //    delete[] Buttons;
 }
 
-HRESULT Input::prectiStavVstupu()
+std::string& Input::prectiStavVstupu()
 {
 //        axs = new long[4];
 //            Keys = new byte[256];
@@ -82,7 +118,8 @@ HRESULT Input::prectiStavVstupu()
         hr = diMouse->Acquire();
         while(hr == DIERR_INPUTLOST)
             hr = diMouse->Acquire();
-        return S_OK;
+        vysledek = "nic";
+        return vysledek;
     }
     diMouse->GetDeviceState(sizeof(DIMOUSESTATE2), &ms);
 
@@ -97,9 +134,15 @@ HRESULT Input::prectiStavVstupu()
         axY -= (ms.lY);//*PI/180;
         axZ += ms.lZ;
     }
-    if(Buttons[1]) {    //melo odejit
-        return WM_QUIT;
+    if(Buttons[1]) {    // odejit
+        vysledek = "odejdi";
+        return vysledek;
     }
+    if(Buttons[0]){
+        vysledek = "gener";
+    }
+    else
+        vysledek = "nic";
 //    nmX+=ms.lX;
 //    nmY+=ms.lY;
     //axX += ms.lX;
@@ -115,10 +158,13 @@ HRESULT Input::prectiStavVstupu()
         hr = diKeybrd->Acquire();
         while(hr == DIERR_INPUTLOST)
             hr = diKeybrd->Acquire();
-        return S_OK;
+        vysledek = "nic";
+        return vysledek;
     }
     diKeybrd->GetDeviceState( 256, Keys );
-    return S_OK;
+//    vysledek = "nic";
+    return vysledek;
 }
+
 
 }

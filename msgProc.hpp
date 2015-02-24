@@ -1,5 +1,7 @@
 #include "windows.h"
 #include <iostream>
-
-LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
+namespace sw
+{
+LRESULT CALLBACK WindowProcedure( HWND hWnd, UINT messages, WPARAM wParam, LPARAM lParam );
 //VOID Cleanup();
+}

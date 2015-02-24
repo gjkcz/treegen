@@ -28,11 +28,12 @@ class Input
 public:
     byte* Keys;     // array holding status of each keyboard key
     float* axs;      // aray to hold values of each mouse axis
-    Input(HWND hWnd);
+    Input(HWND& hWnd);
     ~Input();
-    HRESULT prectiStavVstupu();
+    std::string& prectiStavVstupu();
     void reset();
 private:
+    std::string vysledek;
     HWND hWnd;
     bool Buttons[8];
     LPDIRECTINPUT8 diiDI;            // DirectInput interface
@@ -40,6 +41,7 @@ private:
     LPDIRECTINPUTDEVICE8 diKeybrd;   // keyboard device interface
     float axX, axY, axZ, nmX, nmY;
     void prepareInputDevices();
+    void releaseDin();
 };
 
 

@@ -1,6 +1,7 @@
 #include "Tree.hpp"
 namespace t
 {
+#define PROBLEMATICAL
 
 
 Tree::Tree()
@@ -9,10 +10,12 @@ Tree::Tree()
     cstmvtxVrcholy = nullptr;
     vlastnostiVetvi = nullptr;
     bufferVrcholu = nullptr;
+    bufferIndicii = nullptr;
+    indicie = nullptr;
     ++pocetInstanciStromu;
 }
 
-Tree::Tree(Tree&& tmp): cstmvtxVrcholy {tmp.cstmvtxVrcholy}, vlastnostiVetvi {tmp.vlastnostiVetvi} {
+Tree::Tree(Tree&& tmp) {
     // move ctor, constructs itself with the temporary
 #ifdef TREEVERBOSE
     std::cout << "Calling trees move ctor" << std::endl;
@@ -52,46 +55,61 @@ Tree::Tree(Tree&& tmp): cstmvtxVrcholy {tmp.cstmvtxVrcholy}, vlastnostiVetvi {tm
     tmp.bufferVrcholu = nullptr;
     tmp.cstmvtxVrcholy = nullptr;
     tmp.vlastnostiVetvi = nullptr;
+    tmp.bufferIndicii = nullptr;
+    tmp.indicie = nullptr;
     ++pocetInstanciStromu;
 }
 
 Tree& Tree::operator=(Tree&& tmp)       // move assignment
 {
-    if(cstmvtxVrcholy != nullptr)
-        delete[] cstmvtxVrcholy;
-    if(vlastnostiVetvi != nullptr)
-        delete[] vlastnostiVetvi;
-    if(bufferVrcholu != nullptr)
-        (*bufferVrcholu)->Release();
+    std::cout << "Pozor move assign chce ssmazat buffr" << std::endl;
+    znicBuffery();
+//    znicOstatniPointry();
+//    if(cstmvtxVrcholy != nullptr)
+//        delete[] cstmvtxVrcholy;
+//    if(vlastnostiVetvi != nullptr)
+//        delete[] vlastnostiVetvi;
+//        std::cout << "stalo se" << std::endl;
     cstmvtxVrcholy =  tmp.cstmvtxVrcholy;
+    indicie = tmp.indicie;
     vlastnostiVetvi = tmp.vlastnostiVetvi;
     pocetVrcholu = tmp.pocetVrcholu;
+    pocetElementu = tmp.pocetElementu;
     pzarizeni = tmp.pzarizeni;
 //    if(!vytvorBuffer())
 //        throw StromVyjimka("Nepodarilo se vytvorit buffer pri move assign.");
 //    if(!zkopirujVrcholyDoBuffru(tmp.cstmvtxVrcholy, tmp.pocetVrcholu))
 //        throw StromVyjimka("Nejde zkopirovat vrcholy do buffru");
     bufferVrcholu = tmp.bufferVrcholu;
+    bufferIndicii = tmp.bufferIndicii;
+
     matice = tmp.matice;
     druhStromu = tmp.druhStromu;
     pocetVetvi = tmp.pocetVetvi;
-    druhStromu.urovenRozvetveni = tmp.druhStromu.urovenRozvetveni;
+
+//    druhStromu.urovenRozvetveni = tmp.druhStromu.urovenRozvetveni;
     maticeSkalovani = tmp.maticeSkalovani;
     maticeRotaceStromuX = tmp.maticeRotaceStromuX;
+    maticeRotaceStromuZ = tmp.maticeRotaceStromuZ;
     barvaStromu = tmp.barvaStromu;
     citacVrcholu = tmp.citacVrcholu;
+    citacIndicii = tmp.citacIndicii;
     per = tmp.per;
     gonx = tmp.gonx;
     sum = tmp.sum;
     countEm = tmp.countEm;
     bVlnit = tmp.bVlnit;
+    zmenaRotace = tmp.zmenaRotace;
 
     tmp.bufferVrcholu = nullptr;
     tmp.cstmvtxVrcholy = nullptr;
     tmp.vlastnostiVetvi = nullptr;
+    tmp.bufferIndicii = nullptr;
+    tmp.indicie = nullptr;
+
 #ifdef TREEVERBOSE
-#endif // defined
     std::cout << "Presouvani pomoci move assignment fce uspesne dokonceno." << std::endl;
+#endif // defined
     return *this;
 }
 
@@ -131,6 +149,7 @@ Tree& Tree::operator=(Tree&& tmp)       // move assignment
 
 Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni) : druhStromu(_druhStromu), pzarizeni(*_pzarizeni)
 {
+    std::cout << "Using old CTOR" << std::endl;
     cstmvtxVrcholy = nullptr;
     vlastnostiVetvi = nullptr;
     bufferVrcholu = nullptr;
@@ -192,6 +211,8 @@ Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pza
     cstmvtxVrcholy = nullptr;
     vlastnostiVetvi = nullptr;
     bufferVrcholu = nullptr;
+    bufferIndicii = nullptr;
+    indicie = nullptr;
     D3DXMatrixRotationX(&maticeRotaceStromuX, -3.14159265358979323846/2);     // Otoci strom o -Pi kolem x
     D3DXMatrixScaling(&maticeSkalovani, 0.5f, 0.5f, 0.5f );                 // Zmensi strom na 1/2
 //    matice = pocatek * maticeSkalovani * maticeRotaceSveta;
@@ -223,7 +244,7 @@ Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pza
 //        std::cout << "Generuji vrcholy stromu..." << std::endl;
         std::cout << "Vyhrazuji misto pro vrcholy...";
 #endif // defined
-        if(!alokujMistoProVrcholyAindicie()) throw StromVyjimka("Nelze vyhradit dostatek mista pro vrcholy!");
+//        if(!alokujMistoProVrcholyAindicie()) throw StromVyjimka("Nelze vyhradit dostatek mista pro vrcholy!");
 #ifdef TREEVERBOSE
         std::cout << "Ok\n";
 #endif
@@ -251,22 +272,100 @@ Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pza
     ++pocetInstanciStromu;
 }
 
+void Tree::znicBuffery()
+{
+#ifdef TREEVERBOSE
+    std::cout << "Releasing (*bufferIndicii)" << std::endl;
+#endif // TREEVERBOSE
+    if( (bufferIndicii) != nullptr ){
+        (*bufferIndicii)->Release();
+        (*bufferIndicii) = NULL;
+        delete bufferIndicii;           // release the memory that had been used for holding pointerToBuffer o_|, ta prostredni se alokuje dyn
+#ifdef TREEVERBOSE
+        std::cout << "Ok" << std::endl;
+#endif // defined
+    }
+    else
+#ifdef TREEVERBOSE
+        std::cout << "NO bufferIndicii=nullptr" << std::endl;
+#endif // defined
+
+#ifdef TREEVERBOSE
+    std::cout << "Releasing (*bufferVrcholu)" << std::endl;
+#endif // defined
+    if( bufferVrcholu != nullptr ){
+        (*bufferVrcholu)->Release();
+        (*bufferVrcholu) = NULL;
+        delete bufferVrcholu;
+#ifdef TREEVERBOSE
+        std::cout << "Ok" << std::endl;
+#endif // defined
+    }
+    else
+#ifdef TREEVERBOSE
+        std::cout << "NO bufferVrcholu=nullptr" << std::endl;
+#endif // defined
+}
+
+void Tree::znicOstatniPointry()
+{
+#ifdef TREEVERBOSE
+std::cout << "Mazu porade indicie, vrcholy, vlastnosti" << std::endl;
+#endif // TREEVERBOSE
+//    float* ptr = new float[50];
+//    delete[] ptr;
+    if(indicie != nullptr){
+//            std::cout << "ind:"<<indicie[50] << std::endl;
+//        delete[] indicie;
+//        indicie = nullptr;
+#ifdef TREEVERBOSE
+std::cout << "ok" << std::endl;
+#endif // TREEVERBOSE
+    }
+    else
+#ifdef TREEVERBOSE
+std::cout << "NO, nullptr" << std::endl;
+#endif // TREEVERBOSE
+    if(cstmvtxVrcholy != nullptr){
+//        delete[] cstmvtxVrcholy;
+//        cstmvtxVrcholy = nullptr;
+#ifdef TREEVERBOSE
+std::cout << "ok" << std::endl;
+#endif // TREEVERBOSE
+    }
+    else
+#ifdef TREEVERBOSE
+std::cout << "NO, nullptr" << std::endl;
+#endif // TREEVERBOSE
+    if(vlastnostiVetvi != nullptr){
+        delete[] vlastnostiVetvi;
+        vlastnostiVetvi = nullptr;
+#ifdef TREEVERBOSE
+std::cout << "ok" << std::endl;
+#endif // TREEVERBOSE
+    }
+    else
+#ifdef TREEVERBOSE
+std::cout << "NO, nullptr" << std::endl;
+#endif // TREEVERBOSE
+}
+
 Tree::~Tree()
 {
-//    std::cout << "Strom being destroyed" << std::endl;
-//    delete[] vrcholy;
-    if(cstmvtxVrcholy != nullptr)
-        delete[] cstmvtxVrcholy;
-    if(bufferVrcholu != nullptr) {
 #ifdef TREEVERBOSE
-        std::cout << "pozor volam release buffru" << std::endl;
+    std::cout << "Strom being destroyed!" << std::endl;
+
 #endif // defined
-        (*bufferVrcholu)->Release();
-    }
+    znicOstatniPointry();
+    znicBuffery();
+//    delete[] vrcholy;
+//    if(bufferVrcholu != nullptr) {
+//        (*bufferVrcholu)->Release();
+//    }
+//    if(bufferIndicii != nullptr)
+//        (*bufferIndicii)->Release();
 //    delete[] indicie;
 //    delete[] vetve;
-    if(vlastnostiVetvi != nullptr)
-        delete[] vlastnostiVetvi;
     --pocetInstanciStromu;
 }
 
@@ -349,9 +448,12 @@ bool Tree::generujKmen()
     //opakuj kolikrat chces rozdvojit
     return true;
 }
-
+/*Vytvori predkonfiguraci vetvi(klic), spocte pocet koncovych a ostatnich vetvi(rozdvojenych), vytvori vlastnosti kmene, generuje vlastnostiVetvi*/
 bool Tree::generujVlastnostiVetvi()
 {
+    #ifdef DEBUG
+    kontrolniPocetVetvi = 0;
+    #endif // DEBUG
     int n = 1;
     //GenerateRndm(4,4);
     int pocetV = 0;         // iterator parametru vetvi
@@ -458,6 +560,8 @@ bool Tree::generujVlastnostiVetvi()
             o++;
     }
     pocetVetvi = p+o;
+    pocetKoncovychVetvi = o;
+    pocetRozdvojujicichseVetvi = p;
     vlastnostiVetvi = new VlastnostiVetve[pocetVetvi];
     for(int x = 0; x < pocetVetvi; x++) {    // inicializace parametru vetve
         vlastnostiVetvi[x].k = false;
@@ -470,7 +574,7 @@ bool Tree::generujVlastnostiVetvi()
     vlastnostiVetvi[0].r.rotace= 0;
     vlastnostiVetvi[0].aR = 0;//rotace;
     vlastnostiVetvi[0].r.sklon = PI/2;//-89*PI/180;
-    vlastnostiVetvi[0].rT.rotace= 0;
+    vlastnostiVetvi[0].rT.rotace = 0;
     vlastnostiVetvi[0].rT.sklon = PI/2;//+1*PI/180;//-89*PI/180;
     //gpVs[0].d = GenerateRndm(77*iPater,77*iPater)/1.f; //177max delka *pocet pater=maximalni vyska koruny
     vlastnostiVetvi[0].d = helper::random()*(100000+1111*druhStromu.urovenRozvetveni)+11111*druhStromu.urovenRozvetveni;
@@ -481,25 +585,52 @@ bool Tree::generujVlastnostiVetvi()
     vlastnostiVetvi[0].de =  50.f* PI/180;
 //    gfDensity=gpVs[0].de;
 //    gfDensityR= gpVs[0].r.r;
-    if ( druhStromu.element == usecka)
-    vlastnostiVetvi[0].m =  1000.f;//(2*PI*gpVs[0].r.r)/(360/(gpVs[0].de/(PI/180)));
-    else
-    vlastnostiVetvi[0].m =  1100.5f;//(2*PI*gpVs[0].r.r)/(360/(gpVs[0].de/(PI/180)));
-    vlastnostiVetvi[0].m = vlastnostiVetvi[0].d/4.f;
 
-//    per = 2*PI/40*gpVs[0].m;
+//    if ( druhStromu.element == usecka)
+//    vlastnostiVetvi[0].m =  1000.f;//(2*PI*gpVs[0].r.r)/(360/(gpVs[0].de/(PI/180)));
+//    else
+//    vlastnostiVetvi[0].m =  1100.5f;//(2*PI*gpVs[0].r.r)/(360/(gpVs[0].de/(PI/180)));
+//    vlastnostiVetvi[0].m = vlastnostiVetvi[0].d/4.f;
+
+    #ifdef PROBLEMATICAL
     vlastnostiVetvi[0].x.x = 0.0f;
     vlastnostiVetvi[0].x.y = 0.0f;
     vlastnostiVetvi[0].x.z = 0.0f;
+    if ( druhStromu.element == usecka ){
+//    vlastnostiVetvi[0].d = 100000.f;
+    vlastnostiVetvi[0].rT.sklon = PI/2;
+    vlastnostiVetvi[0].r.sklon = vlastnostiVetvi[0].rT.sklon;
+    vlastnostiVetvi[0].rT.rotace = 0;
+    }
+    #endif // PROBLEMATICAL
+
+    #ifndef PROBLEMATICAL
+    if ( druhStromu.element == usecka )
+        vlastnostiVetvi[0].m = vlastnostiVetvi[0].d/2.f;
+//    vlastnostiVetvi[0].m =  1000.f;//(2*PI*gpVs[0].r.r)/(360/(gpVs[0].de/(PI/180)));
+    else
+        vlastnostiVetvi[0].m =  1100.5f;//(2*PI*gpVs[0].r.r)/(360/(gpVs[0].de/(PI/180)));
+    #else
+    if ( druhStromu.element == usecka){
+    vlastnostiVetvi[0].m = vlastnostiVetvi[0].d/2.f;
+//        vlastnostiVetvi[0].m =  1000.f;//(2*PI*gpVs[0].r.r)/(360/(gpVs[0].de/(PI/180)));
+    }
+    else
+        vlastnostiVetvi[0].m =  1100.5f;//(2*PI*gpVs[0].r.r)/(360/(gpVs[0].de/(PI/180)));
+    #endif // PROBLEMATICAL
+
+//    per = 2*PI/40*gpVs[0].m;
     vlastnostiVetvi[0].posledniVrcholPredchoziVetve = 0;
     vlastnostiVetvi[0].rodicka = &vlastnostiVetvi[0];
 
-
+#ifdef DEBUG
+    kontrolniPocetVetvi++;
+#endif // DEBUG
     pocetV++;
     //
     //      Nastaveni parametru vetvi podle klice + generuje zbyle parametry
     //
-    for(int z = 0; z<druhStromu.urovenRozvetveni; z++) {	//opakuj pro každou z øad ps>od jedné pøeskoèí nultou
+    for(int z = 0; z<druhStromu.urovenRozvetveni; z++) {	//opakuj pro každou z øad ps>od jedné pøeskoèí nultou(kmen)
         n=pow(float(2), z);
         for(int x = 0; x<n; x++) { // opakuj pro každou z jednotlivých vìtví
             if(klic[h::integratePower(2,z)+x] == 0x0000) { //když bude koncová, nebo z poslední øady, a zároveò její parent není k
@@ -525,13 +656,24 @@ bool Tree::generujVlastnostiVetvi()
         }
     }
 
-
+#ifdef TREEVERBOSE
+#ifdef DEBUG
+    if(kontrolniPocetVetvi == pocetVetvi)
+        std::cout << "..Ok\nPocet vetvi odpovida odhadu.";
+    else{
+        std::cout << "Pocet vetvi neodpovida odhadu!" << std::endl;
+        std::cout << "Je jich: " << kontrolniPocetVetvi << std::endl;
+    }
+#endif // DEBUG
+#endif // defined
     return true;
 }
 
-VlastnostiVetve& Tree::generujVlastnostiVetve( VlastnostiVetve& parent, int strana, DruhStromu& _tType)
+VlastnostiVetve Tree::generujVlastnostiVetve( VlastnostiVetve& parent, int strana, DruhStromu& _tType)
 {
-
+    #ifdef DEBUG
+    ++kontrolniPocetVetvi;
+    #endif // DEBUG
 //    float PI = 3.14159265358979323846;
     float ample = 1.f;
     float OrigoX, OrigoY, OrigoZ, afterY;
@@ -548,8 +690,22 @@ VlastnostiVetve& Tree::generujVlastnostiVetve( VlastnostiVetve& parent, int stra
     pVs.x.z = posunZ;
     pVs.x.y = posunY;
     pVs.x.x = posunX;
+    #ifdef PROBLEMATICAL
+    if ( druhStromu.element == usecka ){
+//    pVs.d = 1000.;
+
+    float preponaSklonu = parent.d;
+    float prilehlaSklonu = cos(parent.rT.sklon)*preponaSklonu;
+    float protilehlaSklonu = sin(parent.rT.sklon)*preponaSklonu;
+    float prilehlaRotace = cos(parent.rT.rotace)*prilehlaSklonu;
+    float protilehlaRotace = sin(parent.rT.rotace)*prilehlaSklonu;
+    pVs.x={parent.x.x + protilehlaRotace, parent.x.y + prilehlaRotace, parent.x.z + protilehlaSklonu};
+    }
+    else
+    pVs.x={posunX, posunY, posunZ};
+    #endif // PROBLEMATICAL
     pVs.k = false;
-//    pVs.m = parent.m;
+    pVs.m = parent.m;
     pVs.suda = (strana%2==0)? true : false;
     pVs.posledniVrcholPredchoziVetve = 0;
     if(parent.posledniVrcholPredchoziVetve == 0)
@@ -615,6 +771,7 @@ VlastnostiVetve& Tree::generujVlastnostiVetve( VlastnostiVetve& parent, int stra
     }
     break;
     }
+//    pVs.r.sklon = PI/4;
     pVs.rT.sklon = pVs.r.sklon;
 
 
@@ -661,6 +818,7 @@ VlastnostiVetve& Tree::generujVlastnostiVetve( VlastnostiVetve& parent, int stra
     }
     break;
     }
+//    pVs.r.rotace = helper::random()*(PI);
     pVs.rT.rotace = pVs.r.rotace;
 
     switch(_tType._iDType) {
@@ -691,10 +849,17 @@ VlastnostiVetve& Tree::generujVlastnostiVetve( VlastnostiVetve& parent, int stra
     }
     break;
     }
-    if(pVs.d<=pVs.m)			//this MUSTNT happen!!!
-        pVs.d=2*pVs.m;
 
-    pVs.m = pVs.d/2.f;
+//    if(pVs.d<=pVs.m)			//this MUSTNT happen!!!
+//        pVs.d=2*pVs.m;
+//    pVs.d /= 1.f;
+    #ifdef PROBLEMATICAL
+/*minimalne pulka a maximalne stejna delka jako rodicka*/
+    if ( druhStromu.element == usecka ){
+    pVs.d =(helper::random()/2.+1/2.)*parent.d;
+    pVs.m = pVs.d;///2.f;
+    }
+    #endif // PROBLEMATICAL
 
 
     /*if(strana%2 == 0)				//když je sudá
@@ -757,7 +922,7 @@ void Tree::generujVrcholElementu(float r, float radiusZ, float sklony, float skl
     cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
 #ifdef TREEVERBOSE
 #ifdef DEBUG
-    ++kontrolniPocetVrcholu;
+    ++citacVrcholu;
 #endif // DEBUG
 #endif // TREEVERBOSE
     int tempColor;
@@ -829,9 +994,6 @@ void Tree::generujVrcholElementu(Element e, float x, float y, float z, Barva bar
     }
 
         citacVrcholu++;
-#ifdef DEBUG
-    ++kontrolniPocetVrcholu;
-#endif // DEBUG
         break;
     case kuzel:
         break;
@@ -960,7 +1122,27 @@ bool Tree::generujElementyVetve(VlastnostiVetve& pV)
         pV.rT.r = 0.01f;
 
     switch (druhStromu.element) {
-    case bod:
+    case bod:{
+            #ifdef PROBLEMATICAL
+            // na zacatku spojim kazdy pocatecni vrchol s vrcholem rodicky
+//            if ( pV.rodicka->posledniVrcholPredchoziVetve != 0)
+//            generujIndexyElementu(druhStromu.element, pV.rodicka->posledniVrcholPredchoziVetve, citacVrcholu);
+            TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
+            TempRust.rotace += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
+            TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
+            sklony = TempRust.sklon-PI/2;
+            sklonz = -TempRust.rotace;
+            OrigoZ+=pV.m;
+            OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
+            OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
+            afterY=cos(TempRust.sklon)*OrigoZ;
+            posunZ=pV.x.z;
+            posunY=pV.x.y;
+            posunX=pV.x.x;
+//            generujIndexyElementu( druhStromu.element, citacVrcholu );
+            generujVrcholElementu(usecka, posunX, posunY, posunZ, (pV.suda)?cervena:zelena);
+            pV.posledniVrcholPredchoziVetve = citacVrcholu-1;
+            #else
         for (float x = 0.f; x+1.f< pV.d/pV.m; x+=1.f) {
             //mezera = (2*PI*TemppV.r.r)/90; //360...obvod 1 stupne..
             TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
@@ -1049,9 +1231,38 @@ bool Tree::generujElementyVetve(VlastnostiVetve& pV)
             }
         }
 //    std::cout << "Clanky vetve dogenerovany." << std::endl;
+            #endif // PROBLEMATICAL
+
         break;
-    case usecka:
-        {
+        }
+    case usecka:{
+            #ifdef PROBLEMATICAL
+            float koeficientBarvy = 9.0f;
+            // na zacatku spojim kazdy pocatecni vrchol s vrcholem rodicky
+            if ( citacVrcholu != 0/* pV.rodicka->posledniVrcholPredchoziVetve != 0*/)
+            generujIndexyElementu(druhStromu.element, pV.rodicka->posledniVrcholPredchoziVetve, citacVrcholu);
+//            else
+//            std::cout << "Rodicka je kmen" << std::endl;
+            TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
+            TempRust.rotace += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
+            TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
+            sklony = TempRust.sklon-PI/2;
+            sklonz = -TempRust.rotace;
+            OrigoZ+=pV.m;
+            OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
+            OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
+            afterY=cos(TempRust.sklon)*OrigoZ;
+            posunZ=pV.x.z;
+            posunY=pV.x.y;
+            posunX=pV.x.x;
+//            generujIndexyElementu( druhStromu.element, citacVrcholu );
+            #ifdef DEBUG
+            generujVrcholElementu(usecka, posunX, posunY, posunZ, (pV.suda)?cervena:zelena);
+            #else
+            generujVrcholElementu(usecka, posunX, posunY, posunZ, druhStromu.barva);
+            #endif // DEBUG
+            pV.posledniVrcholPredchoziVetve = citacVrcholu-1;
+#else
         float koeficientBarvy = 9.0f;
         // na zacatku spojim kazdy pocatecni vrchol s vrcholem rodicky
         if ( pV.rodicka->posledniVrcholPredchoziVetve != 0)
@@ -1090,7 +1301,7 @@ bool Tree::generujElementyVetve(VlastnostiVetve& pV)
 
 
             countEm=citacVrcholu;
-                    if(x+2.f >= pV.d/pV.m)             // konec vetve
+            if(x+2.f >= pV.d/pV.m)             // konec vetve
             {
 //                generujIndexyElementu( druhStromu.element, citacVrcholu );
                 generujVrcholElementu( druhStromu.element, posunX, posunY, posunZ, druhStromu.barva );
@@ -1132,6 +1343,8 @@ bool Tree::generujElementyVetve(VlastnostiVetve& pV)
 //                generujVrcholElementu( druhStromu.element, posunX, posunY, posunZ, zelena );
 //            }
 
+        }
+#endif // PROBLEMATICAL
             switch(sum) {
             case 0: {
                 barvaStromu.x+=0.01*koeficientBarvy;
@@ -1181,13 +1394,13 @@ bool Tree::generujElementyVetve(VlastnostiVetve& pV)
                 break;
             }
             }
-        }
-        }
         break;
-    case testUsecka:
+        }
+    case testUsecka: {
         generujVrcholElementu( druhStromu.element );
         generujIndexyElementu( druhStromu.element, 0 );
         break;
+    }
     default:
         break;
     }
@@ -1230,8 +1443,16 @@ bool Tree::generujElementyVetve(VlastnostiVetve& pV)
 bool Tree::generujVykreslovaciDataVetvi()
 {
 #ifdef DEBUG
-    kontrolniPocetVrcholu = 0;
+//    kontrolniPocetVrcholu = 0;
+    kontrolniPocetIndicii = 0;
 #endif // DEBUG
+//            float posunX, posunY, posunZ;
+//            posunZ=vlastnostiVetvi[0].x.z;
+//            posunY=vlastnostiVetvi[0].x.y;
+//            posunX=vlastnostiVetvi[0].x.x;
+////            generujIndexyElementu( druhStromu.element, citacVrcholu );
+//            generujVrcholElementu(usecka, posunX, posunY, posunZ, (vlastnostiVetvi[0].suda)?cervena:zelena);
+
     for(int f = 0; f<pocetVetvi; f++) {
 //        std::cout << "rost vetev c> " << f << " uspesne." << std::endl;
         generujElementyVetve(vlastnostiVetvi[f]);
@@ -1243,10 +1464,30 @@ bool Tree::generujVykreslovaciDataVetvi()
     }
 #ifdef TREEVERBOSE
 #ifdef DEBUG
-    if(kontrolniPocetVrcholu == pocetVrcholu)
+    if(citacVrcholu == pocetVrcholu)
         std::cout << "..Ok\nPocet vrcholu odpovida odhadu." << std::endl;
-    else
+    else{
         std::cout << "Pocet vrcholu neodpovida odhadu!" << std::endl;
+        std::cout << "Je jich: " << citacVrcholu << std::endl;
+    }
+    if(citacIndicii == pocetElementu*2)
+        std::cout << "..Ok\nPocet indicii odpovida odhadu." << std::endl;
+    else{
+        std::cout << "Pocet indicii neodpovida odhadu!" << std::endl;
+        std::cout << "Je jich: " << citacIndicii << std::endl;
+    }
+    if(pocetElementu == citacIndicii/2)
+        std::cout << "..Ok\nPocet elementu odpovida odhadu." << std::endl;
+    else{
+        std::cout << "Pocet elementu neodpovida odhadu!" << std::endl;
+        std::cout << "Je jich: " << citacIndicii/2 << std::endl;
+    }
+//    if(kontrolniPocetVetvi == pocetVetvi)
+//        std::cout << "..Ok\nPocet vetvi odpovida odhadu." << std::endl;
+//    else{
+//        std::cout << "Pocet vetvi neodpovida odhadu!" << std::endl;
+//        std::cout << "Je jich: " << kontrolniPocetVetvi << std::endl;
+//    }
     cstmvtxVrcholy[0].color = D3DCOLOR_XRGB(255,0,0);
     cstmvtxVrcholy[pocetVrcholu-1].color = D3DCOLOR_XRGB(255,0,0);
 #endif // DEBUG
@@ -1282,7 +1523,15 @@ int Tree::spoctiVrcholy()
     }
 
     //iVx=1000000;
+#ifdef PROBLEMATICAL
+    if ( druhStromu.element == usecka ){
+    return pocetVetvi;//+2;
+    }
+    else
     return iVx;
+#else
+    return iVx;
+#endif // PROBLEMATICAL
 }
 
 int Tree::spoctiElementy()
@@ -1292,24 +1541,28 @@ int Tree::spoctiElementy()
 
     switch ( druhStromu.element )
     {
-    case testUsecka:
+    case testUsecka:{
         pocetElementu = 3;
         pocetVrcholu = 4;
         return 3;
         break;
-    case usecka:
-        {
-    int iVx = 0;
-    for(int m = 0; m < pocetVetvi; m++) {
-        if(vlastnostiVetvi[m].k == false) {
-            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);//++++++
-        } else {
-            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);
-        }
     }
-    return (iVx-1);
-        }
+    case usecka:{
+//    int iVx = 0;
+//    for(int m = 0; m < pocetVetvi; m++) {
+//        if(vlastnostiVetvi[m].k == false) {
+//            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);//++++++
+//        } else {
+//            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);
+//        }
+//    }
+#ifdef PROBLEMATICAL
+        return pocetVetvi-1;        /*Az na kmen je ke kazdemu vrcholu jedna primka.*/
+#else
+        return (pocetVrcholu-1);
+#endif // PROBLEMATICAL
         break;
+        }
     default:
         return pocetVrcholu;
         break;
@@ -1447,6 +1700,7 @@ bool Tree::vytvorBufferVrcholu()
     } catch (std::exception& e) {
         std::cout << "Standard exception: " << e.what() << std::endl;
     }
+    try {
     if( FAILED( pzarizeni->CreateVertexBuffer( pocetVrcholu * sizeof( CUSTOMVERTEX ),
                 0, D3DFVF_CUSTOMVERTEX,
                 D3DPOOL_DEFAULT, bufferVrcholu, NULL ) ) ) {
@@ -1459,6 +1713,10 @@ bool Tree::vytvorBufferVrcholu()
 //        std::cout << "Alokace buffru Ok." << std::endl;
 #endif // defined
     }
+    } catch (std::exception& e) {
+        std::cout << "Std exception: " << e.what() << std::endl;
+    }
+
     return vysledek;
 }
 
@@ -1470,7 +1728,7 @@ bool Tree::vytvorBufferIndicii()
     case testUsecka:
     case usecka:
         try {
-            bufferIndicii = new LPDIRECT3DINDEXBUFFER9;
+            bufferIndicii = new LPDIRECT3DINDEXBUFFER9;     // dyn alc pointer
         } catch (std::exception& e) {
             vysledek = false;
             std::cout << "Heap allocation exception: " << e.what() << std::endl;
@@ -1601,7 +1859,7 @@ Vetev::Vetev()
 
 Vetev::~Vetev()
 {
-    delete[] vrcholy;
+//    delete[] vrcholy;
 }
 
 

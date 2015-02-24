@@ -46,8 +46,6 @@ struct VlastnostiVetve {
     int posledniVrcholPredchoziVetve;
     VlastnostiVetve* rodicka;
 };
-//paramsVetve* gpVs;
-
 
 struct tuplParamsVetve {
     VlastnostiVetve p_0;
@@ -61,8 +59,8 @@ public:
     Vetev();
     ~Vetev();
 protected:
-    SimpleVertex* vrcholy;
-    CUSTOMVERTEX* cstmvtxVrcholy;
+//    SimpleVertex* vrcholy;
+//    CUSTOMVERTEX* cstmvtxVrcholy;
 private:
 };
 
@@ -83,6 +81,12 @@ public:
     void vykresli() const;
     void testVykresli() const;
     void nastavRotaci(float _f) {zmenaRotace = _f;}
+    void nastavVykreslovaciElement(Element _f) {
+        druhStromu.element = _f;
+    }
+    DruhStromu& vemDruhStromu() {
+        return druhStromu;
+    }
 //    LPDIRECT3DVERTEXBUFFER9* bufferVrcholu;
 //    D3DXMATRIX matice;
 //    CUSTOMVERTEX* cstmvtxVrcholy;
@@ -102,8 +106,13 @@ private:
     int pocetVrcholu;
     int pocetElementu;
     int pocetVetvi;
+    int pocetRozdvojujicichseVetvi;
+    int pocetKoncovychVetvi;
     #ifdef DEBUG
-    int kontrolniPocetVrcholu;
+//    int kontrolniPocetVrcholu;
+    int kontrolniPocetIndicii;
+    int kontrolniPocetVetvi;
+    int kontrolniPocetElementu;
     #endif // DEBUG
 //    UINT* indicie;
 //    Vetev* vetve;
@@ -125,12 +134,14 @@ private:
 
     bool generujKmen();
     bool generujVlastnostiVetvi();
-    VlastnostiVetve& generujVlastnostiVetve( VlastnostiVetve& parent, int strana, DruhStromu& _tType);
+    VlastnostiVetve generujVlastnostiVetve( VlastnostiVetve& parent, int strana, DruhStromu& _tType);
     int spoctiElementy();
     int spoctiVrcholy();           // Potreba pred vytvarenim buffru, potrebuje vygenerovat vlastnosti vetvi
     bool alokujMistoProVrcholyAindicie();
     bool vytvorBufferVrcholu();            // Je treba jiz znat pocet vrcholu
     bool vytvorBufferIndicii();
+    void znicBuffery();
+    void znicOstatniPointry();
     bool uzamkniPoleDoBuffru();       // musi existovat buffer a cstmvtxVrcholy musi byt nejprve vytvoreny,
     bool generujVykreslovaciDataVetvi();     // Musi znat pocet vrcholu
     bool generujElementyVetve( VlastnostiVetve& );

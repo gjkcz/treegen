@@ -17,7 +17,7 @@ using namespace std;
 
 Konzole::Konzole() : soucasnaBarva(0xF)
 {
-    sablony["ok"] = Sablona(bmodra, "ok");
+//    sablony["ok"] = Sablona(bmodra, "ok");
 //    presmerujIODoKonzole();     // Presmeruj IO do nasi nove konzole
 }
 
@@ -101,12 +101,35 @@ Konzole::Konzole() : soucasnaBarva(0xF)
 //
 //}
 
+const string& Konzole::zjistiNazevKonzole()
+{
+    char * str = new char[100];
+    LPTSTR pStr = str;
+    GetConsoleTitle(str, 100);
+    string* nazev = new string(str);
+    delete[] str;
+    return nazev[0];
+}
+
+void Konzole::nastavDoPopredi()
+{
+//    this->nazevKonzole = zjistiNazevKonzole();
+//    std::cout << "\nNazev: "<< nazevKonzole << std::endl;
+//    HWND hWnd = ::FindWindow(NULL, nazevKonzole.c_str());
+    HWND hWnd = GetConsoleWindow();
+    if (hWnd) {
+        // move to foreground
+        SetForegroundWindow(hWnd);
+    }
+}
+
 void Konzole::nastavBarvuPisma(Barva eiBarva)
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
 
     SetConsoleTextAttribute( hstdout, eiBarva );
 }
+
 void Konzole::nastavBarvuPisma(WORD wBarva)
 {
     HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
@@ -116,9 +139,9 @@ void Konzole::nastavBarvuPisma(WORD wBarva)
 void Konzole::vytiskniSablonu(std::string klic)
 {
     zjistiSoucasnouBarvu();
-    nastavBarvuPisma(sablony[klic].barva);
+//    nastavBarvuPisma(sablony[klic].barva);
     vytiskniXEnteru(3);
-    cout << sablony[klic].text << "\n";
+//    cout << sablony[klic].text << "\n";
     nastavBarvuPisma(soucasnaBarva);
 }
 

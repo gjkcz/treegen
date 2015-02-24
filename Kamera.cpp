@@ -20,14 +20,49 @@ Kamera::Kamera()
     CamRotVel = 0.0f;
     fVel = iObsah * 50.8; //5000
 
+    nasobitelKoeficientu = 2;
+    koeficienRotaceOs[0] = nasobitelKoeficientu*0.0005f;
+    koeficienRotaceOs[1] = nasobitelKoeficientu*D3DX_PI/11520;
+    koeficienRotaceOs[2] = 3.;
+
 }
 
 Kamera::~Kamera()
 {
+#ifdef DESTRUCTORVERBOSE
+    std::cout << "Kamera destructor." << std::endl;
+#endif // DESTRUCTORVERBOSE
     delete At;
     delete Eye;
     delete Up;
+#ifdef DESTRUCTORVERBOSE
+    std::cout << "delete 3 comma separ." << std::endl;
+#endif // DESTRUCTORVERBOSE
     delete vTranslace, vZaxis, vKolmice;
+#ifdef DESTRUCTORVERBOSE
+    std::cout << "ok." << std::endl;
+#endif // DESTRUCTORVERBOSE
+}
+
+
+void Kamera::otocKameru(Smer kam)
+{
+    if ( kam == nahoru )
+    {
+        rotaceKolemOs[0] += PI;//*koeficienRotaceOs[2];
+    }
+    if ( kam == dolu)
+    {
+        rotaceKolemOs[0] -= PI;//*koeficienRotaceOs[2];
+    }
+    if ( kam == doleva )
+    {
+        rotaceKolemOs[1] -= PI*5./6.;//*koeficienRotaceOs[2];
+    }
+    if ( kam == doprava )
+    {
+        rotaceKolemOs[1] += PI*5./6.;//*koeficienRotaceOs[2];
+    }
 }
 
 void Kamera::upravRotaciKamery(float * aOsy)
@@ -36,7 +71,7 @@ void Kamera::upravRotaciKamery(float * aOsy)
     // Rotate the view
 //        axY+= D3DX_PI/180;
 //        D3DXMatrixRotationX(&mRotateVX,RotUp);
-    D3DXMatrixRotationX(&mRotateVX, aOsy[1] * 0.0005f); //mys nahoru dolu
+    D3DXMatrixRotationX(&mRotateVX, (rotaceKolemOs[0] + (aOsy[1]* koeficienRotaceOs[0])*200.) * koeficienRotaceOs[0]); //mys nahoru dolu
 //        D3DXMatrixRotationX(&mRotateVX,aOsy[0] * 0.001f);
 
     D3DXMatrixRotationZ(&mRotateVZ, aOsy[2] *0.001f); //mys okolo
@@ -49,7 +84,7 @@ void Kamera::upravRotaciKamery(float * aOsy)
     else
         CamRot = 0.f;
 
-    D3DXMatrixRotationY(&mRotateVY, -3.14159265358979323846/2 + CamRot + aOsy[0] * D3DX_PI/11520);
+    D3DXMatrixRotationY(&mRotateVY, -3.14159265358979323846/2 + CamRot + (-rotaceKolemOs[1] + (aOsy[0]* koeficienRotaceOs[1])*200.) * koeficienRotaceOs[1]);
     //CamRot = 3.14159265358979323846/2;
 //    D3DXMATRIX mRotateW;
 //    D3DXMatrixRotationX(&mRotateW, -3.14159265358979323846/2);
@@ -66,7 +101,8 @@ void Kamera::upravRotaciKamery(float * aOsy)
 //        D3DXMATRIX posun;
 //        D3DXMatrixTranslation(&posun, , , );
 //    D3DXVECTOR3* Up = new D3DXVECTOR3( 1.0f, 0.0f, 0.0f);
-    D3DXMatrixLookAtLH( &g_View, Eye, At, Up );
+
+//D3DXMatrixLookAtLH( &g_View, Eye, At, Up );
 
 
 
@@ -103,9 +139,10 @@ void Kamera::posunKameru(Smer kam, float jakMoc = 1.f)
 //        cout << "x: " << g_View._13 << "\n";            // base
 //        cout << "y: " << g_View._23 << "\n";
 //        cout << "z: " << g_View._33 << "\n";            // base
-        vZaxis->x = g_View._13;
-        vZaxis->y = g_View._23;
-        vZaxis->z = g_View._33; // toto je presne smer, kterym hledim
+//        vZaxis->x = g_View._13;
+//        vZaxis->y = g_View._23;
+//        vZaxis->z = g_View._33; // toto je presne smer, kterym hledim
+        obnovSmerHledi();
         //i.e.: zaxis = normal(Eye - At)
         (*vTranslace) += (*vZaxis) * -fVel * jakMoc;
 //            std::cout << "&g_View = " << g_View << "\n";
@@ -118,9 +155,10 @@ void Kamera::posunKameru(Smer kam, float jakMoc = 1.f)
 //        cout << "y: " << g_View._23 << "\n";
 //        cout << "z: " << g_View._33 << "\n";            // base
 //            CamRotRad += fVel;
-        vZaxis->x = g_View._13;
-        vZaxis->y = g_View._23;
-        vZaxis->z = g_View._33; // toto je presne smer, kterym hledim
+//        vZaxis->x = g_View._13;
+//        vZaxis->y = g_View._23;
+//        vZaxis->z = g_View._33; // toto je presne smer, kterym hledim
+        obnovSmerHledi();
         //i.e.: zaxis = normal(Eye - At)
         (*vTranslace) += (*vZaxis) * fVel * jakMoc;
 

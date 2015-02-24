@@ -31,14 +31,18 @@ class Okno
 public:
     HWND hWnd;
     Okno();
-    Okno(const Pozice& x,const Rozmery& y, LPCSTR);
+    Okno(const Pozice& x,const Rozmery& y, LPCSTR, HINSTANCE);
     ~Okno();
     void ukaz();
+    void zavri();
+    int vemRozmerX() {return rozmer.x;}
+    int vemRozmerY() {return rozmer.y;}
+    void nastavDoPopredi();
     bool jeOtevrene() const
     {
         return otevreno;
     }
-    void postarejSeOZpravy();
+    bool postarejSeOZpravy();
 protected:
 private:
     bool otevreno;
@@ -47,7 +51,7 @@ private:
     Rozmery rozmer;
     LPCSTR nazev;
     HRESULT bQuit;
-    MSG msg;
+    MSG messages;
 };
 
 }
