@@ -16,6 +16,7 @@ Zkratky: {
 		git update-index --[no-]assume-unchanged path/to/file.txt
 		git mergetool	=	spustí vimdiff2
 		git stash		= 	ulozi nekomitle veci
+		git stash apply stash@{2}, cim vetsi cislo tim starsi
 		git checkout -b =	nova vetev s prepnutim
 		git config	
 		ve vimdiffu musis dat :, pro zadani prikazu

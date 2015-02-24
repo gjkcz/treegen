@@ -123,11 +123,6 @@
 		<Unit filename="SimpleVertex.hpp" />
 		<Unit filename="Tree.cpp" />
 		<Unit filename="Tree.hpp" />
-		<Unit filename="TreeOld.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="TreeOld.hpp" />
 		<Unit filename="TreeType.hpp" />
 		<Unit filename="Vetev.hpp" />
 		<Unit filename="globals.hpp" />

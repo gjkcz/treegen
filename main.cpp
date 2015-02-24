@@ -12,8 +12,6 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     sk::Konzole iKonzole;
     sw::Pozice iPozice {screenX, screenY};
     sw::Rozmery iRozmery {windowWidth, windowHeight};
-//    sw::Pozice iPozice {0, 0};
-//    sw::Rozmery iRozmery {1024, 600};
     sw::Okno iOkno(iPozice, iRozmery, "Tree", hThisInstance);    //vytvor okno
 //        sw::Okno iOkno(sw::Pozice(0.f, screenY), sw::Rozmery(1024, 726), "Tree");    //vytvor okno pro acer
     se::Engine iEngine(&iOkno);
@@ -21,7 +19,6 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     iEngine.priprav();  //vytvori si d3d a z nej g_pd3dDevice a pak geometrii
     iOkno.ukaz();
     while ( iOkno.jeOtevrene() ) {              // main loop
-//    iKonzole.nastavBarvuPisma(sk::Barva::foranzova);
         iEngine.prectiVstupAUpravKameru();
         if(!iOkno.postarejSeOZpravy()){                     // krizek
             std::cout << "want to quit by X" << std::endl;

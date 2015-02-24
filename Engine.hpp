@@ -70,8 +70,6 @@ private:
 
     MapaFunkciEnginu mapaFci;
     std::vector<t::Tree> stromy;
-//    t::Tree stromSpecimen;
-//    static const bool bRust=false;
     float fDalka; //0
 
     void pripravView();
