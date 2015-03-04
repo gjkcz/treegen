@@ -121,9 +121,12 @@
 		<Unit filename="SWU/Okno.cpp" />
 		<Unit filename="SWU/Okno.hpp" />
 		<Unit filename="SimpleVertex.hpp" />
+		<Unit filename="Svetlo.hpp" />
 		<Unit filename="Tree.cpp" />
 		<Unit filename="Tree.hpp" />
 		<Unit filename="TreeType.hpp" />
+		<Unit filename="Usecka.cpp" />
+		<Unit filename="Usecka.hpp" />
 		<Unit filename="Vetev.hpp" />
 		<Unit filename="globals.hpp" />
 		<Unit filename="main.cpp" />

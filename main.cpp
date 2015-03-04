@@ -3,6 +3,7 @@
 #include "globals.hpp"
 
 int t::Tree::pocetInstanciStromu = 0;
+int se::Svetlo::pocetInstanciSvetla = 0;
 
 int WINAPI WinMain (HINSTANCE hThisInstance,
                     HINSTANCE hPrevInstance,
@@ -13,7 +14,7 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     sw::Pozice iPozice {screenX, screenY};
     sw::Rozmery iRozmery {windowWidth, windowHeight};
     sw::Okno iOkno(iPozice, iRozmery, "Tree", hThisInstance);    //vytvor okno
-//        sw::Okno iOkno(sw::Pozice(0.f, screenY), sw::Rozmery(1024, 726), "Tree");    //vytvor okno pro acer
+//        sw::Okno iOkno(sw::Pozice(0.f, screenY), sw::Rozmery(230, 480), "Tree", hThisInstance);    //vytvor okno pro acer
     se::Engine iEngine(&iOkno);
     iEngine.dejKonzoli(iKonzole);
     iEngine.priprav();  //vytvori si d3d a z nej g_pd3dDevice a pak geometrii

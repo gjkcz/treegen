@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1424805770 source:h:\local new\programování\cb\struktury stromu\treegen\engine.cpp
+1425489564 source:h:\local new\programování\cb\struktury stromu\treegen\engine.cpp
 	"Engine.hpp"
 
-1424801402 h:\local new\programování\cb\struktury stromu\treegen\engine.hpp
+1425477469 h:\local new\programování\cb\struktury stromu\treegen\engine.hpp
 	<string>
 	<functional>
 	<random>
@@ -20,6 +20,8 @@
 	"TreeType.hpp"
 	"Helper.hpp"
 	"Tree.hpp"
+	"Usecka.hpp"
+	"Svetlo.hpp"
 	"globals.hpp"
 
 1274305017 h:\microsoft directx sdk (june 2010)\include\d3d9.h
@@ -87,7 +89,7 @@
 	"windows.h"
 	<iostream>
 
-1424801402 h:\local new\programování\cb\struktury stromu\treegen\swu\konzole.hpp
+1425453740 h:\local new\programování\cb\struktury stromu\treegen\swu\konzole.hpp
 	<windows.h>
 	<iostream>
 	<string>
@@ -103,12 +105,12 @@
 1274305018 h:\microsoft directx sdk (june 2010)\include\dinput.h
 	<objbase.h>
 
-1424801402 h:\local new\programování\cb\struktury stromu\treegen\customvertex.hpp
+1425472982 h:\local new\programování\cb\struktury stromu\treegen\customvertex.hpp
 
 1424801402 h:\local new\programování\cb\struktury stromu\treegen\jednoduchyvertex.hpp
 	<d3dx9math.h>
 
-1424801402 h:\local new\programování\cb\struktury stromu\treegen\treetype.hpp
+1425482564 h:\local new\programování\cb\struktury stromu\treegen\treetype.hpp
 
 1424801402 h:\local new\programování\cb\struktury stromu\treegen\helper.hpp
 	"boost/random/taus88.hpp"
@@ -119,7 +121,7 @@
 	<thread>
 	<windows.h>
 
-1424801402 h:\local new\programování\cb\struktury stromu\treegen\tree.hpp
+1425481840 h:\local new\programování\cb\struktury stromu\treegen\tree.hpp
 	<iostream>
 	<exception>
 	"globals.hpp"
@@ -127,8 +129,9 @@
 	"JednoduchyVertex.hpp"
 	"CustomVertex.hpp"
 	"TreeType.hpp"
+	"Usecka.hpp"
 
-1424801402 h:\local new\programování\cb\struktury stromu\treegen\globals.hpp
+1425313731 h:\local new\programování\cb\struktury stromu\treegen\globals.hpp
 
 1424801402 source:h:\local new\programování\cb\struktury stromu\treegen\helper.cpp
 	"Helper.hpp"
@@ -136,7 +139,7 @@
 1424801402 source:h:\local new\programování\cb\struktury stromu\treegen\input.cpp
 	"Input.hpp"
 
-1424805770 source:h:\local new\programování\cb\struktury stromu\treegen\main.cpp
+1425479633 source:h:\local new\programování\cb\struktury stromu\treegen\main.cpp
 	<windows.h>
 	"Engine.hpp"
 	"globals.hpp"
@@ -158,7 +161,7 @@
 1424801402 source:h:\local new\programování\cb\struktury stromu\treegen\swu\okno.cpp
 	"Okno.hpp"
 
-1424805486 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
+1425489799 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
 	"Tree.hpp"
 
 1422122073 source:h:\local new\programování\cb\struktury stromu\treegen\view.cpp
@@ -1879,4 +1882,15 @@
 	<boost/config.hpp>
 
 1395648354 h:\local new\programování\cb\struktury stromu\treegen\devpaks\boost_1_57_0\boost\random\detail\generator_seed_seq.hpp
+
+1425471072 source:h:\local new\programování\cb\struktury stromu\treegen\usecka.cpp
+	"Usecka.hpp"
+
+1425474576 h:\local new\programování\cb\struktury stromu\treegen\usecka.hpp
+	"JednoduchyVertex.hpp"
+	"CustomVertex.hpp"
+	"TreeType.hpp"
+	<exception>
+
+1425481407 h:\local new\programování\cb\struktury stromu\treegen\svetlo.hpp
 

@@ -8,6 +8,7 @@
 #include "JednoduchyVertex.hpp"
 #include "CustomVertex.hpp"
 #include "TreeType.hpp"
+#include "Usecka.hpp"
 
 namespace t
 {
@@ -87,19 +88,13 @@ public:
     DruhStromu& vemDruhStromu() {
         return druhStromu;
     }
-//    LPDIRECT3DVERTEXBUFFER9* bufferVrcholu;
-//    D3DXMATRIX matice;
-//    CUSTOMVERTEX* cstmvtxVrcholy;
-//    int pocetVrcholu;
-//    bool odemkniVrcholyProCteni();
-//    bool generujVrcholyVetvi();     // Musi znat pocet vrcholu
 
 private:
+    D3DMATERIAL9 material;
     DruhStromu druhStromu;
     VlastnostiVetve* vlastnostiVetvi;       // Parametry vetvi, pozor dynAlc!
-//    int iPater;
-//    SimpleVertex* vrcholy;
-    CUSTOMVERTEX* cstmvtxVrcholy;
+    std::vector<se::Usecka> kolmice;     // pomocne kolmice
+    VrcholBK* cstmvtxVrcholy;
     long* indicie;
     LPDIRECT3DVERTEXBUFFER9* bufferVrcholu;
     LPDIRECT3DINDEXBUFFER9* bufferIndicii;
@@ -114,8 +109,6 @@ private:
     int kontrolniPocetVetvi;
     int kontrolniPocetElementu;
     #endif // DEBUG
-//    UINT* indicie;
-//    Vetev* vetve;
     D3DXMATRIX matice;
     D3DXMATRIX world;
     float rotace, zmenaRotace;
@@ -131,7 +124,6 @@ private:
     int sum;
     int countEm;
     bool bVlnit;
-
     bool generujKmen();
     bool generujVlastnostiVetvi();
     VlastnostiVetve generujVlastnostiVetve( VlastnostiVetve& parent, int strana, DruhStromu& _tType);
@@ -150,10 +142,13 @@ private:
     void generujVrcholElementu(float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ);   // melo by brat pole referenci za param
     void generujIndexyElementu( Element e, int );
     void generujIndexyElementu( Element e, int, int );
+    void pridejNormaluVrcholu( int pozice, D3DXVECTOR3 kolmice );
+    D3DXVECTOR3 spocitejNormaluVrcholu( int a, int b, int c );
+    D3DXVECTOR3 spocitejNormaluVrcholu( int a );
     bool generujListy();
     bool generujPlosky();
     bool odemkniVrcholyProCteni();
-    bool zkopirujVrcholyDoBuffru(CUSTOMVERTEX* vrcholy, int pocet);   // Vola vytvorBuffer
+    bool zkopirujVrcholyDoBuffru(VrcholBK* vrcholy, int pocet);   // Vola vytvorBuffer
 };
 
 

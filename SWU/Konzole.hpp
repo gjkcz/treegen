@@ -9,7 +9,7 @@
 //#include <fstream>
 #include <string>
 #include <map>
-#define _WIN32_WINNT 0x0500 // Abych mohl pouzit GetConsoleWindow
+//#define _WIN32_WINNT 0x0500 // Abych mohl pouzit GetConsoleWindow redefined
 
 namespace sk
 {

@@ -17,6 +17,7 @@ Zkratky: {
 		git mergetool	=	spustí vimdiff2
 		git stash		= 	ulozi nekomitle veci
 		git stash apply stash@{2}, cim vetsi cislo tim starsi
+		git stash pop ... apply a odeber
 		git checkout -b =	nova vetev s prepnutim
 		git config	
 		ve vimdiffu musis dat :, pro zadani prikazu

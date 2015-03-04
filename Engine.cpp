@@ -75,7 +75,7 @@ void Engine::priprav()              // vola porade: pripravView, pripravGeometri
     iKonzole.nastavBarvuPisma(sk::Barva::fzluta);
     std::cout << "Generuji stromy" << '\n';
     pripravGeometrii();
-    iKontroler3d.nastavRychlost(50000.);
+    iKontroler3d.nastavRychlost(5000.);
     std::cout << "Ok, pocet stromu je: " << t::Tree::pocetInstanciStromu << '\n';
     iKonzole.nastavBarvuPisma(sk::Barva::fbila);
     std::cout << "Hledi je ve smeru -x" << std::endl;
@@ -93,7 +93,10 @@ void Engine::pripravView()
     ZeroMemory( &d3dpp, sizeof( d3dpp ) );
     d3dpp.Windowed = true;
     d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
+//    d3dpp.EnableAutoDepthStencil = TRUE;
+//    d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
     d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
+    d3dpp.BackBufferFormat = D3DFMT_UNKNOWN;
 
     // Create the D3DDevice
     if (pd3dZarizeni == NULL)
@@ -126,10 +129,27 @@ void Engine::pripravView()
 
 
     // Turn off culling, so we see the front and back of the triangle
-    pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
+    pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_CCW );
+    // Turn on the zbuffer
+//    pd3dZarizeni->SetRenderState( D3DRS_ZENABLE, TRUE );
 
     // Turn off D3D lighting, since we are providing our own vertex colors
-    pd3dZarizeni->SetRenderState( D3DRS_LIGHTING, FALSE );
+//    pd3dZarizeni->SetRenderState( D3DRS_LIGHTING, true );
+//    pd3dZarizeni->SetRenderState( D3DRS_SHADEMODE, D3DSHADE_FLAT );
+    // create material
+
+
+    Svetlo::priprav(pd3dZarizeni);
+    D3DXVECTOR3 smer = {0.f, 0.f, -1.};
+    D3DCOLORVALUE barva = {0.1f, 0.1f, 0.1f};
+    Svetlo denniSvetlo = {pd3dZarizeni, barva, se::smerove, smer};
+    svetla.push_back(denniSvetlo);
+//    svetla.emplace_back(pd3dZarizeni);
+
+    barva = {0.4, 0.4, 0.5};
+    svetla.emplace_back(pd3dZarizeni, barva);
+
+//    pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_WIREFRAME );
 }
 
 void Engine::pripravGeometrii()
@@ -140,8 +160,9 @@ void Engine::pripravGeometrii()
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
-    druhStromu.element = t::usecka;
-    druhStromu.barva = t::cervena;
+    druhStromu.element = t::testValec;
+    druhStromu.rozliseni = 3;
+    druhStromu.barva = t::bila;
     druhStromu.barveni = t::g;      // d
 //    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);
     D3DXMATRIX pocatek;
@@ -154,7 +175,14 @@ void Engine::pripravGeometrii()
     yoffset = 0.f;
     xoffset = -1*fDalka;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
-    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.0019f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.005f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+    D3DXVECTOR3 pocatecniBod = {10000000., 0., 0.};
+    D3DXVECTOR3 koncovyBod = {5000., 40000., 100000.};
+//    usecky.emplace_back(pocatek, koncovyBod, &pd3dZarizeni);
+    yoffset = 10000.f;
+    xoffset = -1*fDalka;
+    D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
+//    usecky.emplace_back(pocatek, pocatecniBod , koncovyBod, &pd3dZarizeni);
     // DRUHY
     xoffset = -3*fDalka;
     druhStromu.element = t::bod;
@@ -168,7 +196,7 @@ void Engine::pripravGeometrii()
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 0;
-    int pocetStacku = 100;  // 1000
+    int pocetStacku = 0;  // 1000
     int pocetStromuStacku = 1; //15
     try {
         float vyska = 0.f;
@@ -246,13 +274,27 @@ void Engine::render3d()
         pd3dZarizeni->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 );
     // Begin the scene
     if( SUCCEEDED( pd3dZarizeni->BeginScene() ) ) {
-        pd3dZarizeni->SetFVF( D3DFVF_CUSTOMVERTEX );
+//        pd3dZarizeni->SetFVF( D3DFVF_VrcholBK );
         D3DXMatrixPerspectiveFovLH( &maticeProjekce, fFOV, iOkno->vemRozmerX() / (FLOAT)(iOkno->vemRozmerY()), 1.0f, 102000000.0f );
         pd3dZarizeni->SetTransform( D3DTS_VIEW, iKontroler3d.vemView() );
         pd3dZarizeni->SetTransform( D3DTS_PROJECTION, &maticeProjekce );
+
+        svetla[se::Svetlo::pocetInstanciSvetla - 1].svit(iKontroler3d.vemSmerHledi());  /*baterka*/
+        for (auto &iSvetlo : svetla){
+            iSvetlo.svit();
+        }
+
         for (auto &iTree : stromy) {      // Vykresli obsah vectoru stromu
             iTree.aktualizujMatici();
             iTree.vykresli();
+        }
+
+
+        pd3dZarizeni->SetFVF( D3DFVF_VrcholB );
+        pd3dZarizeni->SetRenderState( D3DRS_LIGHTING, false );
+        for (auto &iUsecka : usecky) {
+            iUsecka.aktualizujMatici();
+            iUsecka.vykresli();
         }
         // End the scene
         pd3dZarizeni->EndScene();
@@ -377,6 +419,7 @@ void Engine::pridejStrom(float)
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::usecka;
+    druhStromu.rozliseni = 360;
     druhStromu.barva = t::zelena;
     druhStromu.barveni = t::g;      // d
 //    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);

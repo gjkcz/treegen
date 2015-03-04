@@ -44,7 +44,7 @@ enum Barveni
 
 enum Element
 {
-    bod=0, usecka, kuzel, testUsecka
+    bod=0, kruhBodu=1, usecka, kuzel, testUsecka, testValec
 };
 
 struct DruhStromu
@@ -52,6 +52,7 @@ struct DruhStromu
     Element element;
     Barva barva;
     Barveni barveni;
+    int rozliseni;  /*Pocet vrcholu na element.*/
     int urovenRozvetveni;
     int pravdepodobnostRozvetveni;
     int _iSType; //0-11

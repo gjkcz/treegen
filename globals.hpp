@@ -9,7 +9,7 @@
 #define PI 3.14159265358979323846
 #define TREEVERBOSE
 //#define DESTRUCTORVERBOSE
-//#define DEBUG
+#define DEBUG
 #define STACK
 //#define PROBLEMATICAL
 //#define OLDPROBABILITY

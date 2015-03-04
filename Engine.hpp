@@ -19,6 +19,8 @@
 #include "TreeType.hpp"
 #include "Helper.hpp"
 #include "Tree.hpp"
+#include "Usecka.hpp"
+#include "Svetlo.hpp"
 #include "globals.hpp"
 
 namespace se
@@ -64,12 +66,14 @@ private:
     LPDIRECT3D9 g_pD3D; // Used to create the D3DDevice
     LPDIRECT3DDEVICE9 pd3dZarizeni; // Our rendering device, lp= neco pointer, je to jenom typedef typedef struct IDirect3DDevice9 *LPDIRECT3DDEVICE9;
 
-    bool bbClearColor = true;
+    bool bbClearColor = false;
     float fFOV;
     D3DXMATRIX maticeProjekce;
 
     MapaFunkciEnginu mapaFci;
     std::vector<t::Tree> stromy;
+    std::vector<se::Usecka> usecky;
+    std::vector<se::Svetlo> svetla;
     float fDalka; //0
 
     void pripravView();
@@ -123,8 +127,10 @@ private:
         {
             if(elem==0.)
             i->nastavVykreslovaciElement(t::Element::bod);
-            if(elem==1. && (i->vemDruhStromu()).element == t::Element::bod)
+            if(elem==1. && ( (i->vemDruhStromu()).element == t::Element::bod || (i->vemDruhStromu()).element == t::Element::testValec) )
             i->nastavVykreslovaciElement(t::Element::usecka);
+            if(elem==2. && (i->vemDruhStromu()).element == t::Element::usecka)
+            i->nastavVykreslovaciElement(t::Element::testValec);
         }
     }
     void switchClearColor(float){
