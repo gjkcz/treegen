@@ -19,6 +19,7 @@ Zkratky: {
 		git stash apply stash@{2}, cim vetsi cislo tim starsi
 		git stash pop ... apply a odeber
 		git checkout -b =	nova vetev s prepnutim
+		git branch -d branchname
 		git config	
 		ve vimdiffu musis dat :, pro zadani prikazu
 		:qa				=	odejde, selze se zmenami 
