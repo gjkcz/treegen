@@ -11,5 +11,5 @@
 //#define DESTRUCTORVERBOSE
 #define DEBUG
 #define STACK
-//#define PROBLEMATICAL
+#define PROBLEMATICAL
 //#define OLDPROBABILITY

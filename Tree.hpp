@@ -82,7 +82,11 @@ public:
     void aktualizujMatici();
     void vykresli(bool osvetlovat) const;
     void testVykresli() const;
-    void nastavRotaci(float _f) {zmenaRotace = _f;}
+    void nastavRotaci(float _f) {
+        for (auto& iKolmice : kolmice)
+            iKolmice.nastavRotaci(_f);
+        zmenaRotace = _f;
+    }
     void nastavKonzoli(sk::Konzole& k) {iKonzole = k;}
     void nastavVykreslovaciElement(Element _f) {
         druhStromu.element = _f;

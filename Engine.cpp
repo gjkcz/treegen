@@ -23,6 +23,7 @@ Engine::Engine(sw::Okno* _okno) : iOkno(_okno), iKontroler3d(iOkno->hWnd)
     mapaFci["citli"] = &Engine::dejCitlivost;
     mapaFci["wiref"] = &Engine::switchWireframe;
     mapaFci["osvet"] = &Engine::switchOsvetlovat;
+    mapaFci["nerot"] = &Engine::nerotuj;
     std::string* prikazy = new std::string[mapaFci.size()];
     int c = 0;
     for (auto i = mapaFci.begin(); i != mapaFci.end(); ++i, ++c) {
@@ -152,7 +153,7 @@ void Engine::pripravGeometrii()
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
-    druhStromu.rozliseni = 60;
+    druhStromu.rozliseni = 30;
     druhStromu.barva = t::bila;
     druhStromu.barveni = t::g;      // dasdASdASd
     D3DXMATRIX pocatek;
@@ -165,7 +166,7 @@ void Engine::pripravGeometrii()
     yoffset = 0.f;
     xoffset = -1*fDalka;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
-    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.005f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.05f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
     stromy[0].nastavKonzoli(iKonzole);
 
     D3DXVECTOR3 pocatecniBod = {10000000., 0., 0.};
@@ -321,7 +322,7 @@ void Engine::odeberStromy(float)
 //    stromy.erase(stromy.begin(), stromy.end());
 }
 
-void Engine::regenerujStromy(float)
+void Engine::regenerujStromy(float kolikrat)
 {
     t::DruhStromu druhStromu;
     druhStromu.urovenRozvetveni = 12;
@@ -346,7 +347,7 @@ void Engine::regenerujStromy(float)
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 0;
-    int pocetStacku = 10;  // 1000
+    int pocetStacku = 10*((int)kolikrat+1);  // 1000
     int pocetStromuStacku = 1; //15
     try {
         float vyska = 0.f;

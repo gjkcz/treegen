@@ -21,6 +21,13 @@ Tree::Tree(Tree&& tmp)
 #ifdef TREEVERBOSE
     std::cout << "Calling trees move ctor" << std::endl;
 #endif // defined
+    pocetIndicii = tmp.pocetIndicii;
+    pocetElementu = tmp.pocetElementu;
+    pocetClanku = tmp.pocetClanku;
+    citacVrcholu = tmp.citacVrcholu;
+    citacIndicii = tmp.citacIndicii;
+    citacElementu = tmp.citacElementu;
+    citacClanku = tmp.citacClanku;
     material = tmp.material;
     kolmice = std::move(tmp.kolmice);
     rotace = tmp.rotace;
@@ -46,8 +53,6 @@ Tree::Tree(Tree&& tmp)
     maticeRotaceStromuX = tmp.maticeRotaceStromuX;
     maticeRotaceStromuZ = tmp.maticeRotaceStromuZ;
     barvaStromu = tmp.barvaStromu;
-    citacVrcholu = tmp.citacVrcholu;
-    citacIndicii = tmp.citacIndicii;
     per = tmp.per;
     gonx = tmp.gonx;
     sum = tmp.sum;
@@ -215,7 +220,9 @@ Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pza
         std::cout << "Pravdepodobnost rozvetveni: " << druhStromu.pravdepodobnostRozvetveni<<"%" << std::endl;
         std::cout << "Pocet urovni koruny: " << druhStromu.urovenRozvetveni << std::endl;
         std::cout << "Pocet vetvi bude: " << pocetVetvi<< std::endl;
+        std::cout << "Pocet clanku bude: " << pocetClanku << std::endl;
         std::cout << "Pocet elementu bude: " << pocetElementu << std::endl;
+        std::cout << "Pocet indicii bude: " << pocetIndicii << std::endl;
         std::cout << "Pocet vrcholu bude: " << pocetVrcholu << std::endl;
         std::cout << "Vyhrazuji misto pro vrcholy...";
 #endif // defined
@@ -1119,7 +1126,7 @@ bool Tree::generujElementyVetve(VlastnostiVetve& pV)
 
     switch (druhStromu.element) {
     case testValec: {
-            generujVrcholElementu(druhStromu.element);
+        generujVrcholElementu(druhStromu.element);
         for(int i = 0; i < pocetClanku; ++i) {
             ///*degenerovany trojuhelnik*/
 //        generujIndexyElementu(testValec, druhStromu.rozliseni-1);
@@ -1447,8 +1454,8 @@ bool Tree::generujVykreslovaciDataVetvi()
     int pocetIndiciiNaClanek;
     switch (druhStromu.element) {
     case testValec: {
-        pocetIndiciiNaClanek = pocetClanku*(druhStromu.rozliseni*2 + 2);
-        iKonzole.vytiskniIndicie((const int*)indicie, citacIndicii, pocetIndiciiNaClanek);
+        pocetIndiciiNaClanek = /*pocetClanku**/(druhStromu.rozliseni*2 + 2);
+//        iKonzole.vytiskniIndicie((const int*)indicie, citacIndicii, pocetIndiciiNaClanek);
         break;
     }
     case usecka: {
@@ -1534,7 +1541,7 @@ int Tree::spoctiElementy()
         break;
     }
     case testValec: {
-        pocetClanku = 10;
+        pocetClanku = 15;
         pocetElementu = pocetClanku*druhStromu.rozliseni*2+0;
 //        pocetElementu = 2;
         pocetVrcholu = (pocetClanku+1)*druhStromu.rozliseni;
@@ -1642,7 +1649,7 @@ void Tree::vykresli(bool osvetlovat) const         // const fcion, so it cant ch
                                          0,                  // MinIndex
                                          pocetVrcholu,                  // NumVertices
                                          0,                  // StartIndex
-                                         pocetElementu+2*(pocetClanku-1) );                // PrimitiveCount
+                                         pocetElementu+2*(pocetClanku-1)/*(nulovy obsah mezi clanky, napr03a36=033,363)*//*+4*(pocetClanku-1)*/ );                // PrimitiveCount
         break;
     }
     case kruhBodu:

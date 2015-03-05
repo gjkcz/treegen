@@ -59,6 +59,7 @@ public:
         return *this;
     }
     void aktualizujMatici();
+    void nastavRotaci(float rot) {zmenaRotace = rot;}
     void vykresli() const;
 protected:
 private:

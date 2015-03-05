@@ -148,6 +148,10 @@ private:
     void switchOsvetlovat(float){
         bosvetlovat = !bosvetlovat;
     }
+    void nerotuj(float){
+        for (auto& iTree : stromy)
+            iTree.nastavRotaci(0.);
+    }
 };
 
 
