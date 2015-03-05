@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1425489564 source:h:\local new\programování\cb\struktury stromu\treegen\engine.cpp
+1425512345 source:h:\local new\programování\cb\struktury stromu\treegen\engine.cpp
 	"Engine.hpp"
 
-1425477469 h:\local new\programování\cb\struktury stromu\treegen\engine.hpp
+1425507937 h:\local new\programování\cb\struktury stromu\treegen\engine.hpp
 	<string>
 	<functional>
 	<random>
@@ -89,11 +89,12 @@
 	"windows.h"
 	<iostream>
 
-1425453740 h:\local new\programování\cb\struktury stromu\treegen\swu\konzole.hpp
+1425512085 h:\local new\programování\cb\struktury stromu\treegen\swu\konzole.hpp
 	<windows.h>
 	<iostream>
 	<string>
 	<map>
+	"../Helper.hpp"
 
 1424801402 h:\local new\programování\cb\struktury stromu\treegen\input.hpp
 	<windows.h>
@@ -112,7 +113,7 @@
 
 1425482564 h:\local new\programování\cb\struktury stromu\treegen\treetype.hpp
 
-1424801402 h:\local new\programování\cb\struktury stromu\treegen\helper.hpp
+1425502485 h:\local new\programování\cb\struktury stromu\treegen\helper.hpp
 	"boost/random/taus88.hpp"
 	<boost/random/mersenne_twister.hpp>
 	<chrono>
@@ -121,7 +122,7 @@
 	<thread>
 	<windows.h>
 
-1425481840 h:\local new\programování\cb\struktury stromu\treegen\tree.hpp
+1425551050 h:\local new\programování\cb\struktury stromu\treegen\tree.hpp
 	<iostream>
 	<exception>
 	"globals.hpp"
@@ -130,10 +131,11 @@
 	"CustomVertex.hpp"
 	"TreeType.hpp"
 	"Usecka.hpp"
+	"SWU/Konzole.hpp"
 
 1425313731 h:\local new\programování\cb\struktury stromu\treegen\globals.hpp
 
-1424801402 source:h:\local new\programování\cb\struktury stromu\treegen\helper.cpp
+1425510268 source:h:\local new\programování\cb\struktury stromu\treegen\helper.cpp
 	"Helper.hpp"
 
 1424801402 source:h:\local new\programování\cb\struktury stromu\treegen\input.cpp
@@ -155,13 +157,13 @@
 1424801402 source:h:\local new\programování\cb\struktury stromu\treegen\msgproc.cpp
 	"msgProc.hpp"
 
-1424801402 source:h:\local new\programování\cb\struktury stromu\treegen\swu\konzole.cpp
+1425512195 source:h:\local new\programování\cb\struktury stromu\treegen\swu\konzole.cpp
 	"Konzole.hpp"
 
 1424801402 source:h:\local new\programování\cb\struktury stromu\treegen\swu\okno.cpp
 	"Okno.hpp"
 
-1425489799 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
+1425551773 source:h:\local new\programování\cb\struktury stromu\treegen\tree.cpp
 	"Tree.hpp"
 
 1422122073 source:h:\local new\programování\cb\struktury stromu\treegen\view.cpp

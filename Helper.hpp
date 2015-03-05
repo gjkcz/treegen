@@ -10,6 +10,7 @@
 #include <windows.h>
 namespace helper {
 
+int pocetCifer(int cislo);
 float nahodneCislo();
 float random();
 int zaokrouhli(float);

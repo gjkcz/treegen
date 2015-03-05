@@ -9,6 +9,7 @@
 #include "CustomVertex.hpp"
 #include "TreeType.hpp"
 #include "Usecka.hpp"
+#include "SWU/Konzole.hpp"
 
 namespace t
 {
@@ -79,9 +80,10 @@ public:
     ~Tree();
 
     void aktualizujMatici();
-    void vykresli() const;
+    void vykresli(bool osvetlovat) const;
     void testVykresli() const;
     void nastavRotaci(float _f) {zmenaRotace = _f;}
+    void nastavKonzoli(sk::Konzole& k) {iKonzole = k;}
     void nastavVykreslovaciElement(Element _f) {
         druhStromu.element = _f;
     }
@@ -90,6 +92,7 @@ public:
     }
 
 private:
+    sk::Konzole iKonzole;
     D3DMATERIAL9 material;
     DruhStromu druhStromu;
     VlastnostiVetve* vlastnostiVetvi;       // Parametry vetvi, pozor dynAlc!
@@ -99,10 +102,16 @@ private:
     LPDIRECT3DVERTEXBUFFER9* bufferVrcholu;
     LPDIRECT3DINDEXBUFFER9* bufferIndicii;
     int pocetVrcholu;
+    int pocetIndicii;
     int pocetElementu;
+    int pocetClanku;
     int pocetVetvi;
     int pocetRozdvojujicichseVetvi;
     int pocetKoncovychVetvi;
+    int citacVrcholu;                            // MOZNA POTREBA VETSIHO MISTA
+    int citacIndicii;
+    int citacElementu;
+    int citacClanku;
     #ifdef DEBUG
 //    int kontrolniPocetVrcholu;
     int kontrolniPocetIndicii;
@@ -117,8 +126,6 @@ private:
     D3DXMATRIX maticeRotaceStromuZ;
     LPDIRECT3DDEVICE9 pzarizeni;
     D3DXVECTOR4 barvaStromu;
-    int citacVrcholu;                            // MOZNA POTREBA VETSIHO MISTA
-    int citacIndicii;
 //    int posledniVrcholPredchoziVetve;
     float per, gonx; //, height;
     int sum;

@@ -16,6 +16,13 @@ Doba d, d1;
 float cislo = 0.f, predchoziCislo = 0.f;
 unsigned seminko2;
 
+int pocetCifer(int cislo){
+            double dcislo=(cislo>0)?(double)cislo:1.;
+            int cifer;
+            for(cifer = 0;dcislo/pow(10., cifer)>=1. ; ++cifer){}
+            return cifer;
+}
+
 void zapniStopky()
 {
     zacatek = stopky::now();

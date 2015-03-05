@@ -9,6 +9,7 @@
 //#include <fstream>
 #include <string>
 #include <map>
+#include "../Helper.hpp"
 //#define _WIN32_WINNT 0x0500 // Abych mohl pouzit GetConsoleWindow redefined
 
 namespace sk
@@ -56,6 +57,9 @@ public:
     void nastavBarvuPisma(WORD);
     void vytiskniSablonu(std::string klic);
     void vytiskniXEnteru(int x);
+    void vytiskniXMezer(int x);
+    void vytiskniIndicie(const int* indicie, int pocet);
+    void vytiskniIndicie(const int* indicie, int pocet, int indiciiNaClanek);
 protected:
 private:
     std::string nazevKonzole;
@@ -63,6 +67,7 @@ private:
     static const WORD MAX_CONSOLE_LINES = 500;
     const std::string& zjistiNazevKonzole();
     void zjistiSoucasnouBarvu();
+    int pocetSloupcu;
 //    void presmerujIODoKonzole();
 };
 

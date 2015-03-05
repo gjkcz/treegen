@@ -21,6 +21,8 @@ Engine::Engine(sw::Okno* _okno) : iOkno(_okno), iKontroler3d(iOkno->hWnd)
     mapaFci["reset"] = &Engine::reset;
     mapaFci["fovde"] = &Engine::dejFov;
     mapaFci["citli"] = &Engine::dejCitlivost;
+    mapaFci["wiref"] = &Engine::switchWireframe;
+    mapaFci["osvet"] = &Engine::switchOsvetlovat;
     std::string* prikazy = new std::string[mapaFci.size()];
     int c = 0;
     for (auto i = mapaFci.begin(); i != mapaFci.end(); ++i, ++c) {
@@ -83,12 +85,10 @@ void Engine::priprav()              // vola porade: pripravView, pripravGeometri
 
 void Engine::pripravView()
 {
-    // Create the D3D object.
     if(g_pD3D == NULL)
     if( NULL == ( g_pD3D = Direct3DCreate9( D3D_SDK_VERSION ) ) )
         std::cout << "FAILED to create d3d object";
 
-    // Set up the structure used to create the D3DDevice
     D3DPRESENT_PARAMETERS d3dpp;
     ZeroMemory( &d3dpp, sizeof( d3dpp ) );
     d3dpp.Windowed = true;
@@ -98,7 +98,6 @@ void Engine::pripravView()
     d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
     d3dpp.BackBufferFormat = D3DFMT_UNKNOWN;
 
-    // Create the D3DDevice
     if (pd3dZarizeni == NULL)
     if( FAILED(g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, this->iOkno->hWnd,
                                      D3DCREATE_HARDWARE_VERTEXPROCESSING,
@@ -128,28 +127,20 @@ void Engine::pripravView()
     }
 
 
-    // Turn off culling, so we see the front and back of the triangle
     pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_CCW );
+//    pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_WIREFRAME );
+//    bwireframe = true;
     // Turn on the zbuffer
 //    pd3dZarizeni->SetRenderState( D3DRS_ZENABLE, TRUE );
-
-    // Turn off D3D lighting, since we are providing our own vertex colors
-//    pd3dZarizeni->SetRenderState( D3DRS_LIGHTING, true );
-//    pd3dZarizeni->SetRenderState( D3DRS_SHADEMODE, D3DSHADE_FLAT );
-    // create material
-
 
     Svetlo::priprav(pd3dZarizeni);
     D3DXVECTOR3 smer = {0.f, 0.f, -1.};
     D3DCOLORVALUE barva = {0.1f, 0.1f, 0.1f};
     Svetlo denniSvetlo = {pd3dZarizeni, barva, se::smerove, smer};
     svetla.push_back(denniSvetlo);
-//    svetla.emplace_back(pd3dZarizeni);
-
+    /*baterka*/
     barva = {0.4, 0.4, 0.5};
     svetla.emplace_back(pd3dZarizeni, barva);
-
-//    pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_WIREFRAME );
 }
 
 void Engine::pripravGeometrii()
@@ -161,10 +152,9 @@ void Engine::pripravGeometrii()
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
-    druhStromu.rozliseni = 3;
+    druhStromu.rozliseni = 60;
     druhStromu.barva = t::bila;
-    druhStromu.barveni = t::g;      // d
-//    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);
+    druhStromu.barveni = t::g;      // dasdASdASd
     D3DXMATRIX pocatek;
     fDalka = 950000.f; // ' nova fitura kazi formatovani
     float xoffset = -2*fDalka;
@@ -176,20 +166,19 @@ void Engine::pripravGeometrii()
     xoffset = -1*fDalka;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
     stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.005f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+    stromy[0].nastavKonzoli(iKonzole);
+
     D3DXVECTOR3 pocatecniBod = {10000000., 0., 0.};
     D3DXVECTOR3 koncovyBod = {5000., 40000., 100000.};
-//    usecky.emplace_back(pocatek, koncovyBod, &pd3dZarizeni);
     yoffset = 10000.f;
     xoffset = -1*fDalka;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
-//    usecky.emplace_back(pocatek, pocatecniBod , koncovyBod, &pd3dZarizeni);
     // DRUHY
     xoffset = -3*fDalka;
     druhStromu.element = t::bod;
     druhStromu.barva = t::zlutozelena;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
 //    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.009f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
-//    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni);     // Vytvori strom a prida ho na konec naseho vektoru stromu
 
 #ifdef STACK
     druhStromu.element = t::usecka;
@@ -267,18 +256,15 @@ void Engine::prectiVstupAUpravKameru(float& arg)
 
 void Engine::render3d()
 {
-    // Clear the backbuffer to a black color
     if( bbClearColor )
         pd3dZarizeni->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 255, 255, 255 ), 1.0f, 0 );
     else
         pd3dZarizeni->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 );
     // Begin the scene
     if( SUCCEEDED( pd3dZarizeni->BeginScene() ) ) {
-//        pd3dZarizeni->SetFVF( D3DFVF_VrcholBK );
         D3DXMatrixPerspectiveFovLH( &maticeProjekce, fFOV, iOkno->vemRozmerX() / (FLOAT)(iOkno->vemRozmerY()), 1.0f, 102000000.0f );
         pd3dZarizeni->SetTransform( D3DTS_VIEW, iKontroler3d.vemView() );
         pd3dZarizeni->SetTransform( D3DTS_PROJECTION, &maticeProjekce );
-
         svetla[se::Svetlo::pocetInstanciSvetla - 1].svit(iKontroler3d.vemSmerHledi());  /*baterka*/
         for (auto &iSvetlo : svetla){
             iSvetlo.svit();
@@ -286,7 +272,7 @@ void Engine::render3d()
 
         for (auto &iTree : stromy) {      // Vykresli obsah vectoru stromu
             iTree.aktualizujMatici();
-            iTree.vykresli();
+            iTree.vykresli(bosvetlovat);
         }
 
 
@@ -301,7 +287,6 @@ void Engine::render3d()
     } else {
         std::cout << "Err rendering" << std::endl;
     }
-    // Present the backbuffer contents to the display
     pd3dZarizeni->Present( NULL, NULL, NULL, NULL );
 }
 

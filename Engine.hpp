@@ -67,6 +67,8 @@ private:
     LPDIRECT3DDEVICE9 pd3dZarizeni; // Our rendering device, lp= neco pointer, je to jenom typedef typedef struct IDirect3DDevice9 *LPDIRECT3DDEVICE9;
 
     bool bbClearColor = false;
+    bool bwireframe = false;
+    bool bosvetlovat = true;
     float fFOV;
     D3DXMATRIX maticeProjekce;
 
@@ -135,6 +137,16 @@ private:
     }
     void switchClearColor(float){
         bbClearColor = !bbClearColor;
+    }
+    void switchWireframe(float){
+        bwireframe = !bwireframe;
+        if (bwireframe)
+            pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_WIREFRAME );
+        else
+            pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_SOLID );
+    }
+    void switchOsvetlovat(float){
+        bosvetlovat = !bosvetlovat;
     }
 };
 

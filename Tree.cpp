@@ -68,8 +68,8 @@ Tree& Tree::operator=(Tree&& tmp)       // move assignment
     material = tmp.material;
     rotace = tmp.rotace;
     kolmice = std::move(tmp.kolmice);
-        for (int i = 0; i < pocetVrcholu; ++i)
-            pridejNormaluVrcholu(i, spocitejNormaluVrcholu(i));
+    for (int i = 0; i < pocetVrcholu; ++i)
+        pridejNormaluVrcholu(i, spocitejNormaluVrcholu(i));
     std::cout << "Pozor move assign chce ssmazat buffr" << std::endl;
     znicBuffery();
 //    znicOstatniPointry();
@@ -859,11 +859,11 @@ void Tree::generujVrcholElementu(Element e)
         float Zkoord = 0.;
         float sklonz = PI/2;
         float sklony = 0.;
-        float posunZ =0.;
+        float posunZ = 0.;
         float r = 200000.;
         if(citacVrcholu>=druhStromu.rozliseni) {
-            posunZ = 100000.;
-            r = 100000.;
+            posunZ = citacClanku*100000.;
+            r -= citacClanku*10000.;
         }
         float radiusZ = 50000.;
         for (float a = 2*PI; a >= Dens; a-=Dens) {																			//kruh
@@ -886,10 +886,13 @@ void Tree::generujVrcholElementu(Element e)
             else if(citacVrcholu+druhStromu.rozliseni < pocetVrcholu)
                 generujIndexyElementu(testValec, citacVrcholu, citacVrcholu + druhStromu.rozliseni);
 
+
             citacVrcholu++;
         }
+        citacClanku++;
 //        cstmvtxVrcholy[0].color = zelena;
 //        cstmvtxVrcholy[citacVrcholu].color = azurova;
+
         break;
     }
     case kruhBodu: {
@@ -1007,6 +1010,7 @@ void Tree::generujIndexyElementu(Element e, int pocatecniIndex, int koncovyIndex
         ++citacIndicii;
         indicie[citacIndicii] = koncovyIndex;
         ++citacIndicii;
+        citacElementu+=2;
         break;
     case kuzel:
         break;
@@ -1115,24 +1119,39 @@ bool Tree::generujElementyVetve(VlastnostiVetve& pV)
 
     switch (druhStromu.element) {
     case testValec: {
-        generujVrcholElementu(druhStromu.element);
-        generujVrcholElementu(druhStromu.element);
-//        generujIndexyElementu(testValec, 5);
-//        generujIndexyElementu(testValec, 5+druhStromu.rozliseni);
-//degenerovany trojuhelnik
-        generujIndexyElementu(testValec, 0);
-        generujIndexyElementu(testValec, 0+druhStromu.rozliseni);
+            generujVrcholElementu(druhStromu.element);
+        for(int i = 0; i < pocetClanku; ++i) {
+            ///*degenerovany trojuhelnik*/
+//        generujIndexyElementu(testValec, druhStromu.rozliseni-1);
+//        generujIndexyElementu(testValec, 2*druhStromu.rozliseni-1);
+//        generujIndexyElementu(testValec, 2*druhStromu.rozliseni-1);
+//        generujIndexyElementu(testValec, 3*druhStromu.rozliseni-1);
+            ///*koncove spojovaci indexy*/
+            generujIndexyElementu(testValec, 0+i*druhStromu.rozliseni);
+            generujIndexyElementu(testValec, 0+(i+1)*druhStromu.rozliseni);
+//        generujIndexyElementu(testValec, 0);
+//        generujIndexyElementu(testValec, 0+druhStromu.rozliseni);
+            generujVrcholElementu(druhStromu.element);
+//        generujIndexyElementu(testValec, 0);
+//        generujIndexyElementu(testValec, 1);
+//            generujIndexyElementu(testValec, 0+druhStromu.rozliseni);
+//            generujIndexyElementu(testValec, 0+2*druhStromu.rozliseni);
+//////        generujIndexyElementu(testValec, 0+2*druhStromu.rozliseni);
+//            generujVrcholElementu(druhStromu.element);
+//        citacElementu /= 3;
 //        generujIndexyElementu(testValec, 0);
 //        generujIndexyElementu(testValec, 0+druhStromu.rozliseni);
 //        generujIndexyElementu(testValec, 1);
 //        generujIndexyElementu(testValec, 1+druhStromu.rozliseni);
 //        generujIndexyElementu(testValec, 2);
 //        generujIndexyElementu(testValec, 2+druhStromu.rozliseni);
+//        indicie[citacIndicii] = 0;
+//        ++citacIndicii;
+
+        }
         for (int i = 0; i < pocetVrcholu; ++i)
             pridejNormaluVrcholu(i, spocitejNormaluVrcholu(i));
 
-//        indicie[citacIndicii] = 0;
-//        ++citacIndicii;
         break;
     }
     case kruhBodu: {
@@ -1425,6 +1444,21 @@ bool Tree::generujVykreslovaciDataVetvi()
 //    default:
 //        break;
 //    }
+    int pocetIndiciiNaClanek;
+    switch (druhStromu.element) {
+    case testValec: {
+        pocetIndiciiNaClanek = pocetClanku*(druhStromu.rozliseni*2 + 2);
+        iKonzole.vytiskniIndicie((const int*)indicie, citacIndicii, pocetIndiciiNaClanek);
+        break;
+    }
+    case usecka: {
+        pocetIndiciiNaClanek = citacIndicii/8;
+        break;
+    }
+    default: {
+        break;
+    }
+    }
 
     std::cout << "done" << std::endl;
 #ifdef TREEVERBOSE
@@ -1435,17 +1469,17 @@ bool Tree::generujVykreslovaciDataVetvi()
         std::cout << "Pocet vrcholu neodpovida odhadu!" << std::endl;
         std::cout << "Je jich: " << citacVrcholu << std::endl;
     }
-    if(citacIndicii == pocetElementu*2)
+    if(citacIndicii == pocetIndicii)
         std::cout << "..Ok\nPocet indicii odpovida odhadu." << std::endl;
     else {
         std::cout << "Pocet indicii neodpovida odhadu!" << std::endl;
         std::cout << "Je jich: " << citacIndicii << std::endl;
     }
-    if(pocetElementu == citacIndicii/2)
+    if(pocetElementu == citacElementu)
         std::cout << "..Ok\nPocet elementu odpovida odhadu." << std::endl;
     else {
         std::cout << "Pocet elementu neodpovida odhadu!" << std::endl;
-        std::cout << "Je jich: " << citacIndicii/2 << std::endl;
+        std::cout << "Je jich: " << citacElementu << std::endl;
     }
     cstmvtxVrcholy[0].color = D3DCOLOR_XRGB(255,0,0);
     cstmvtxVrcholy[pocetVrcholu-1].color = D3DCOLOR_XRGB(255,0,0);
@@ -1500,9 +1534,11 @@ int Tree::spoctiElementy()
         break;
     }
     case testValec: {
-        pocetElementu = druhStromu.rozliseni*2;
+        pocetClanku = 10;
+        pocetElementu = pocetClanku*druhStromu.rozliseni*2+0;
 //        pocetElementu = 2;
-        pocetVrcholu = 1*pocetElementu;
+        pocetVrcholu = (pocetClanku+1)*druhStromu.rozliseni;
+        pocetIndicii = (pocetElementu + 2*pocetClanku);
         pocetVetvi = 1;
         return pocetElementu;
         break;
@@ -1580,7 +1616,7 @@ void Tree::aktualizujMatici()
     }
 }
 
-void Tree::vykresli() const         // const fcion, so it cant change anything in our object
+void Tree::vykresli(bool osvetlovat) const         // const fcion, so it cant change anything in our object
 {
     for (auto &iUsecka : kolmice) {
         iUsecka.vykresli();
@@ -1589,37 +1625,35 @@ void Tree::vykresli() const         // const fcion, so it cant change anything i
     pzarizeni->SetTransform( D3DTS_WORLD, &world );
     switch (druhStromu.element) {
     case testValec: {
-//        pzarizeni->SetIndices(*bufferIndicii);
-//        pzarizeni->DrawPrimitive( D3DPT_TRIANGLELIST, 0, 40);
-        pzarizeni->SetStreamSource( 0, (*bufferVrcholu), 0, sizeof( VrcholBK ) );
-        pzarizeni->SetFVF( D3DFVF_VrcholBK );
-        pzarizeni->SetRenderState( D3DRS_LIGHTING, true );
+        if(osvetlovat) {
+            pzarizeni->SetRenderState( D3DRS_LIGHTING, true );
+            pzarizeni->SetStreamSource( 0, (*bufferVrcholu), 0, sizeof( VrcholBK ) );
+            pzarizeni->SetFVF( D3DFVF_VrcholBK );
+        } else {
+            pzarizeni->SetRenderState( D3DRS_LIGHTING, false );
+            pzarizeni->SetFVF( D3DFVF_VrcholPKB );
+            pzarizeni->SetStreamSource( 0, (*bufferVrcholu), 0, sizeof( VrcholPKB ) );
+
+        }
         pzarizeni->SetMaterial(&material);
         pzarizeni->SetIndices(*bufferIndicii);
-        /*pzarizeni->DrawIndexedPrimitive( D3DPT_LINELIST, // PrimitiveType
-                                         0,                  // BaseVertexIndex
-                                         0,                  // MinIndex
-                                         pocetVrcholu,                  // NumVertices
-                                         0,                  // StartIndex
-                                         pocetElementu );                // PrimitiveCount
-        */
-
         pzarizeni->DrawIndexedPrimitive( D3DPT_TRIANGLESTRIP, // PrimitiveType
                                          0,                  // BaseVertexIndex
                                          0,                  // MinIndex
                                          pocetVrcholu,                  // NumVertices
                                          0,                  // StartIndex
-                                         pocetElementu-0 );                // PrimitiveCount
+                                         pocetElementu+2*(pocetClanku-1) );                // PrimitiveCount
         break;
     }
     case kruhBodu:
-    case bod:
+    case bod: {
         pzarizeni->SetFVF( D3DFVF_VrcholBK );
         pzarizeni->SetStreamSource( 0, (*bufferVrcholu), 0, sizeof( VrcholBK ) );
         pzarizeni->SetRenderState( D3DRS_LIGHTING, false );
         pzarizeni->DrawPrimitive(
             D3DPT_POINTLIST, 0, pocetVrcholu );
         break;
+    }
     case testUsecka:
     case usecka: {
         pzarizeni->SetRenderState( D3DRS_LIGHTING, false );
@@ -1686,7 +1720,7 @@ bool Tree::vytvorBufferIndicii()
             vysledek = false;
             std::cout << "Heap allocation exception: " << e.what() << std::endl;
         }
-        if( FAILED( pzarizeni->CreateIndexBuffer( pocetElementu * 2 * sizeof(long),
+        if( FAILED( pzarizeni->CreateIndexBuffer( pocetIndicii * sizeof(long),
                     D3DUSAGE_WRITEONLY , D3DFMT_INDEX32, D3DPOOL_DEFAULT,
                     bufferIndicii, NULL ) ) ) {
             std::cout << "Nepodarilo se vytvorit index buffer." << std::endl;
@@ -1695,7 +1729,7 @@ bool Tree::vytvorBufferIndicii()
         break;
     }
     case testUsecka:
-    case usecka:
+    case usecka: {
         try {
             bufferIndicii = new LPDIRECT3DINDEXBUFFER9;     // dyn alc pointer
         } catch (std::exception& e) {
@@ -1709,14 +1743,16 @@ bool Tree::vytvorBufferIndicii()
             vysledek = false;
         }
         break;
-    case kuzel:
-        vysledek = false;
-        break;
-    default:
+    }
+    case kuzel: {
         vysledek = false;
         break;
     }
-
+    default: {
+        vysledek = false;
+        break;
+    }
+    }
 
     return vysledek;
 }

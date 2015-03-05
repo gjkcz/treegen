@@ -17,6 +17,7 @@ using namespace std;
 
 Konzole::Konzole() : soucasnaBarva(0xF)
 {
+    pocetSloupcu = 60;
 //    sablony["ok"] = Sablona(bmodra, "ok");
 //    presmerujIODoKonzole();     // Presmeruj IO do nasi nove konzole
 }
@@ -158,5 +159,95 @@ void Konzole::vytiskniXEnteru(int x)
     for (int i=0; i<x; ++i)
         cout << "\n";
 }
+
+void Konzole::vytiskniXMezer(int x)
+{
+    for (int i=0; i<x; ++i)
+        cout << " ";
+}
+
+
+void Konzole::vytiskniIndicie(const int* indicie, int pocet)
+{
+    if(indicie!=nullptr) {
+        zjistiSoucasnouBarvu();
+        nastavBarvuPisma(Barva::fjasnezluta);
+        std::cout << "\nIndicie: \n";
+        nastavBarvuPisma(Barva::bbilafcerna);
+        if(pocet%2 != 0) {
+            std::cout << "Indicii neni sudy pocet!" << std::endl;
+        }
+        for (int o = 1; o >= 0; --o) {
+            for (int i = o; i < pocet; i+=2) {
+                std::cout << "[" << indicie[i];
+                int pocetCiferS, pocetCiferL, rozdil;
+                pocetCiferS = helper::pocetCifer(indicie[i]);
+                pocetCiferL = helper::pocetCifer(indicie[(o==0)?i+1:i-1]);
+                rozdil = pocetCiferL-pocetCiferS;
+                if(rozdil > 0)
+                    vytiskniXMezer(rozdil);
+                std::cout << "]";
+            }
+//        if(o==0)
+            std::cout << "\n";
+        }
+        nastavBarvuPisma(soucasnaBarva);
+    }
+}
+
+void Konzole::vytiskniIndicie(const int* indicie, int pocet, int indiciiNaClanek)
+{
+    if(indicie!=nullptr) {
+        zjistiSoucasnouBarvu();
+        nastavBarvuPisma(Barva::fjasnezluta);
+        std::cout << "\nIndicie: \n";
+        nastavBarvuPisma(Barva::bbilafcerna);
+        if(pocet%2 != 0) {
+            std::cout << "Indicii neni sudy pocet!" << std::endl;
+        }
+        if(pocet%indiciiNaClanek != 0) {
+            std::cout << "Chybny pocet indicii na clanek, pocitas s koncovym spojem(+2 indexy)?" << std::endl;
+            nastavBarvuPisma(soucasnaBarva);
+            vytiskniIndicie(indicie, pocet);
+            nastavBarvuPisma(Barva::fjasnezluta);
+            std::cout << "Indicie po clankach:" << std::endl;
+            nastavBarvuPisma(Barva::bbilafcerna);
+        }
+        int pocetCasti = pocet/indiciiNaClanek;
+//    pocetCasti = 2;
+
+        if(pocet>pocetSloupcu){
+            pocetCasti = pocet/pocetSloupcu;
+            indiciiNaClanek = pocetSloupcu;
+        }
+        for ( int p = 0; p < pocetCasti; ++p) {
+            for (int o = 1; o >= 0; --o) {
+                nastavBarvuPisma(Barva::fjasnezluta);
+                for (int i = o+p*(indiciiNaClanek/2); i < indiciiNaClanek/2+p*(indiciiNaClanek/2); i+=2) {
+                    std::cout << "[" << indicie[i];
+                    int pocetCiferS, pocetCiferL, rozdil;
+                    pocetCiferS = helper::pocetCifer(indicie[i]);
+                    pocetCiferL = helper::pocetCifer(indicie[(o==0)?i+1:i-1]);
+                    rozdil = pocetCiferL-pocetCiferS;
+                    if(rozdil > 0)
+                        vytiskniXMezer(rozdil);
+                    std::cout << "]";
+                    nastavBarvuPisma(Barva::bbilafcerna);
+//            if(o==1 && i%7==0)
+//            std::cout << "\n\n";
+//            else if(o==0 && i%6==0 && i!=0)
+//            std::cout << "\n\n";
+                }
+                std::cout << "\n";
+                if(o==0)
+                    std::cout << "\n";
+            }
+
+        }
+
+        nastavBarvuPisma(soucasnaBarva);
+    }
+}
+
 
 }
