@@ -66,6 +66,7 @@ Zkratky: {
 		ctrl+.      =	radkovy comment
 		ctrl+\		= 	cppcheck
 		ctrl+shift+b=	blok komentar
+		ctrl+0		=	goto matching brace
 
 		class ctrl+j
 		cout

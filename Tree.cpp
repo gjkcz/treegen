@@ -4,6 +4,14 @@ namespace t
 #define PROBLEMATICAL
 
 
+/** \brief citron
+*
+ * \param
+ * \param
+ * \return
+ *
+ */
+
 Tree::Tree()
 {
     std::cout << "defaultni ctor stromu!" << std::endl;
@@ -66,62 +74,6 @@ Tree::Tree(Tree&& tmp)
     tmp.bufferIndicii = nullptr;
     tmp.indicie = nullptr;
     ++pocetInstanciStromu;
-}
-
-Tree& Tree::operator=(Tree&& tmp)       // move assignment
-{
-    material = tmp.material;
-    rotace = tmp.rotace;
-    kolmice = std::move(tmp.kolmice);
-    for (int i = 0; i < pocetVrcholu; ++i)
-        pridejNormaluVrcholu(i, spocitejNormaluVrcholu(i));
-    std::cout << "Pozor move assign chce ssmazat buffr" << std::endl;
-    znicBuffery();
-//    znicOstatniPointry();
-//    if(cstmvtxVrcholy != nullptr)
-//        delete[] cstmvtxVrcholy;
-//    if(vlastnostiVetvi != nullptr)
-//        delete[] vlastnostiVetvi;
-//        std::cout << "stalo se" << std::endl;
-    cstmvtxVrcholy =  tmp.cstmvtxVrcholy;
-    indicie = tmp.indicie;
-    vlastnostiVetvi = tmp.vlastnostiVetvi;
-    pocetVrcholu = tmp.pocetVrcholu;
-    pocetElementu = tmp.pocetElementu;
-    pzarizeni = tmp.pzarizeni;
-//    if(!vytvorBuffer())
-//        throw StromVyjimka("Nepodarilo se vytvorit buffer pri move assign.");
-//    if(!zkopirujVrcholyDoBuffru(tmp.cstmvtxVrcholy, tmp.pocetVrcholu))
-//        throw StromVyjimka("Nejde zkopirovat vrcholy do buffru");
-    bufferVrcholu = tmp.bufferVrcholu;
-    bufferIndicii = tmp.bufferIndicii;
-
-    matice = tmp.matice;
-    druhStromu = tmp.druhStromu;
-    pocetVetvi = tmp.pocetVetvi;
-    maticeSkalovani = tmp.maticeSkalovani;
-    maticeRotaceStromuX = tmp.maticeRotaceStromuX;
-    maticeRotaceStromuZ = tmp.maticeRotaceStromuZ;
-    barvaStromu = tmp.barvaStromu;
-    citacVrcholu = tmp.citacVrcholu;
-    citacIndicii = tmp.citacIndicii;
-    per = tmp.per;
-    gonx = tmp.gonx;
-    sum = tmp.sum;
-    countEm = tmp.countEm;
-    bVlnit = tmp.bVlnit;
-    zmenaRotace = tmp.zmenaRotace;
-
-    tmp.bufferVrcholu = nullptr;
-    tmp.cstmvtxVrcholy = nullptr;
-    tmp.vlastnostiVetvi = nullptr;
-    tmp.bufferIndicii = nullptr;
-    tmp.indicie = nullptr;
-
-#ifdef TREEVERBOSE
-    std::cout << "Presouvani pomoci move assignment fce uspesne dokonceno." << std::endl;
-#endif // defined
-    return *this;
 }
 
 Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni) : druhStromu(_druhStromu), pzarizeni(*_pzarizeni)
@@ -246,6 +198,71 @@ Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pza
     ++pocetInstanciStromu;
 }
 
+
+/** \brief Move assignment
+ *
+ * \param rvalueref
+ * \return itself
+ *
+ */
+
+Tree& Tree::operator=(Tree&& tmp)       // move assignment
+{
+    material = tmp.material;
+    rotace = tmp.rotace;
+    kolmice = std::move(tmp.kolmice);
+    for (int i = 0; i < pocetVrcholu; ++i)
+        pridejNormaluVrcholu(i, spocitejNormaluVrcholu(i));
+    std::cout << "Pozor move assign chce ssmazat buffr" << std::endl;
+    znicBuffery();
+//    znicOstatniPointry();
+//    if(cstmvtxVrcholy != nullptr)
+//        delete[] cstmvtxVrcholy;
+//    if(vlastnostiVetvi != nullptr)
+//        delete[] vlastnostiVetvi;
+//        std::cout << "stalo se" << std::endl;
+    cstmvtxVrcholy =  tmp.cstmvtxVrcholy;
+    indicie = tmp.indicie;
+    vlastnostiVetvi = tmp.vlastnostiVetvi;
+    pocetVrcholu = tmp.pocetVrcholu;
+    pocetElementu = tmp.pocetElementu;
+    pzarizeni = tmp.pzarizeni;
+//    if(!vytvorBuffer())
+//        throw StromVyjimka("Nepodarilo se vytvorit buffer pri move assign.");
+//    if(!zkopirujVrcholyDoBuffru(tmp.cstmvtxVrcholy, tmp.pocetVrcholu))
+//        throw StromVyjimka("Nejde zkopirovat vrcholy do buffru");
+    bufferVrcholu = tmp.bufferVrcholu;
+    bufferIndicii = tmp.bufferIndicii;
+
+    matice = tmp.matice;
+    druhStromu = tmp.druhStromu;
+    pocetVetvi = tmp.pocetVetvi;
+    maticeSkalovani = tmp.maticeSkalovani;
+    maticeRotaceStromuX = tmp.maticeRotaceStromuX;
+    maticeRotaceStromuZ = tmp.maticeRotaceStromuZ;
+    barvaStromu = tmp.barvaStromu;
+    citacVrcholu = tmp.citacVrcholu;
+    citacIndicii = tmp.citacIndicii;
+    per = tmp.per;
+    gonx = tmp.gonx;
+    sum = tmp.sum;
+    countEm = tmp.countEm;
+    bVlnit = tmp.bVlnit;
+    zmenaRotace = tmp.zmenaRotace;
+
+    tmp.bufferVrcholu = nullptr;
+    tmp.cstmvtxVrcholy = nullptr;
+    tmp.vlastnostiVetvi = nullptr;
+    tmp.bufferIndicii = nullptr;
+    tmp.indicie = nullptr;
+
+#ifdef TREEVERBOSE
+    std::cout << "Presouvani pomoci move assignment fce uspesne dokonceno." << std::endl;
+#endif // defined
+    return *this;
+}
+
+
 void Tree::znicBuffery()
 {
 #ifdef TREEVERBOSE
@@ -318,6 +335,14 @@ void Tree::znicOstatniPointry()
 #endif // TREEVERBOSE
 }
 
+/** \brief Detonator
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+
 Tree::~Tree()
 {
 #ifdef TREEVERBOSE
@@ -328,6 +353,15 @@ Tree::~Tree()
     znicBuffery();
     --pocetInstanciStromu;
 }
+
+
+/** \brief Nastavi barvu pro primky.
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 
 bool Tree::generujKmen()
 {
@@ -391,7 +425,18 @@ bool Tree::generujKmen()
     }
     return true;
 }
-/*Vytvori predkonfiguraci vetvi(klic), spocte pocet koncovych a ostatnich vetvi(rozdvojenych), vytvori vlastnosti kmene, generuje vlastnostiVetvi*/
+
+
+/** \brief Vytvori predkonfiguraci vetvi(klic),
+ *   spocte pocet koncovych a ostatnich vetvi(rozdvojenych),
+ *   vytvori vlastnosti kmene,
+ *   generuje vlastnostiVetvi
+ * \param
+ * \param
+ * \return
+ *
+ */
+
 bool Tree::generujVlastnostiVetvi()
 {
 #ifdef DEBUG
@@ -777,6 +822,100 @@ VlastnostiVetve Tree::generujVlastnostiVetve( VlastnostiVetve& parent, int stran
     return pVs;
 }
 
+/** \brief Spocita dopredu clanky, elementy, vrcholy, indicie.
+ *         Vetve jsou spocteny uz v generujVlastnostiVetvi
+ * \param
+ * \param
+ * \return
+ *
+ */
+
+int Tree::spoctiVrcholy()
+{
+    //
+    //spocteni vrcholu
+    //
+    int iVx=0;
+    float Uzk=0;
+    float rp=0;
+    float iVxT = 0;
+    float l=0;
+    float v=0;
+    float fRpDens;
+    for(int m = 0; m < pocetVetvi; m++) {
+        if(vlastnostiVetvi[m].k == false) {
+            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);//++++++
+        } else {
+            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);
+        }
+    }
+#ifdef PROBLEMATICAL
+    if ( druhStromu.element == usecka ) {
+        return pocetVetvi;//+2;
+    } else
+        return iVx;
+#else
+    return iVx;
+#endif // PROBLEMATICAL
+}
+
+int Tree::spoctiElementy()
+{
+    switch (druhStromu.element) {
+    case kruhBodu: {
+        pocetElementu = druhStromu.rozliseniE;
+        pocetVrcholu = 2*pocetElementu;
+        pocetVetvi = 1;
+        return pocetElementu;
+        break;
+    }
+    case testValec: {
+        pocetClanku = druhStromu.rozliseniV;
+        pocetElementu = pocetClanku*druhStromu.rozliseniE*2+0;
+//        pocetElementu = 2;
+        pocetVrcholu = (pocetClanku+1)*druhStromu.rozliseniE;
+        pocetIndicii = (pocetElementu + 2*pocetClanku);
+        pocetVetvi = 1;
+        return pocetElementu;
+        break;
+    }
+    case testUsecka: {
+        pocetElementu = 3;
+        pocetVrcholu = 4;
+        return 3;
+        break;
+    }
+    case usecka: {
+//    int iVx = 0;
+//    for(int m = 0; m < pocetVetvi; m++) {
+//        if(vlastnostiVetvi[m].k == false) {
+//            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);//++++++
+//        } else {
+//            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);
+//        }
+//    }
+#ifdef PROBLEMATICAL
+        return pocetVetvi-1;        /*Az na kmen je ke kazdemu vrcholu jedna primka.*/
+#else
+        return (pocetVrcholu-1);
+#endif // PROBLEMATICAL
+        break;
+    }
+    default:
+        return pocetVrcholu;
+        break;
+    }
+}
+
+
+/** \brief Generuje vrcholy,
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+
 void Tree::generujVrcholElementu(float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ)
 {
     float Zkoord = 0.0f;
@@ -968,6 +1107,14 @@ void Tree::generujVrcholElementu(Element e)
 
 }
 
+/** \brief Generuje indexy
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+
 void Tree::generujIndexyElementu(Element e, int pocatecniIndex)
 {
     switch ( e ) {
@@ -1030,6 +1177,14 @@ void Tree::generujIndexyElementu(Element e, int pocatecniIndex, int koncovyIndex
 }
 
 /*Spocitat normalu lze az po vygenerovani pozice.*/
+/** \brief Pocitani kolmic
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+
 D3DXVECTOR3 Tree::spocitejNormaluVrcholu(int a, int b, int c)
 {
     D3DXVECTOR3 normala;
@@ -1124,6 +1279,15 @@ void Tree::pridejNormaluVrcholu(int pozice, D3DXVECTOR3 kolmice)
     else
         std::cout << "Normala uz existuje!" << std::endl;
 }
+
+
+/** \brief Vytvori vrcholy, indicie a kolmice podle parametru vetve
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 
 bool Tree::generujElementyVetve(VlastnostiVetve& pV)
 {
@@ -1518,117 +1682,14 @@ bool Tree::generujVykreslovaciDataVetvi()
     return true;
 }
 
-bool Tree::generujListy()
-{
 
-    return true;
-}
-
-int Tree::spoctiVrcholy()
-{
-    //
-    //spocteni vrcholu
-    //
-    int iVx=0;
-    float Uzk=0;
-    float rp=0;
-    float iVxT = 0;
-    float l=0;
-    float v=0;
-    float fRpDens;
-    for(int m = 0; m < pocetVetvi; m++) {
-        if(vlastnostiVetvi[m].k == false) {
-            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);//++++++
-        } else {
-            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);
-        }
-    }
-#ifdef PROBLEMATICAL
-    if ( druhStromu.element == usecka ) {
-        return pocetVetvi;//+2;
-    } else
-        return iVx;
-#else
-    return iVx;
-#endif // PROBLEMATICAL
-}
-
-int Tree::spoctiElementy()
-{
-    switch (druhStromu.element) {
-    case kruhBodu: {
-        pocetElementu = druhStromu.rozliseniE;
-        pocetVrcholu = 2*pocetElementu;
-        pocetVetvi = 1;
-        return pocetElementu;
-        break;
-    }
-    case testValec: {
-        pocetClanku = druhStromu.rozliseniV;
-        pocetElementu = pocetClanku*druhStromu.rozliseniE*2+0;
-//        pocetElementu = 2;
-        pocetVrcholu = (pocetClanku+1)*druhStromu.rozliseniE;
-        pocetIndicii = (pocetElementu + 2*pocetClanku);
-        pocetVetvi = 1;
-        return pocetElementu;
-        break;
-    }
-    case testUsecka: {
-        pocetElementu = 3;
-        pocetVrcholu = 4;
-        return 3;
-        break;
-    }
-    case usecka: {
-//    int iVx = 0;
-//    for(int m = 0; m < pocetVetvi; m++) {
-//        if(vlastnostiVetvi[m].k == false) {
-//            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);//++++++
-//        } else {
-//            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);
-//        }
-//    }
-#ifdef PROBLEMATICAL
-        return pocetVetvi-1;        /*Az na kmen je ke kazdemu vrcholu jedna primka.*/
-#else
-        return (pocetVrcholu-1);
-#endif // PROBLEMATICAL
-        break;
-    }
-    default:
-        return pocetVrcholu;
-        break;
-    }
-}
-
-bool Tree::generujPlosky()
-{
-
-    return true;
-}
-
-bool Tree::alokujMistoProVrcholyAindicie()
-{
-    try {
-        cstmvtxVrcholy = new VrcholBK[pocetVrcholu];
-        switch (druhStromu.element) {
-        case usecka:
-            indicie = new long[pocetElementu*2];
-            break;
-        case kuzel:
-            indicie = new long[pocetElementu*3];
-            break;
-        default:
-            break;
-        }
-
-    } catch (std::exception& e) {
-        std::cout << "Heap allocation vyjimka v alokujMistoVrcholu(): " << e.what() << std::endl;
-    }
-#ifdef TREEVERBOSE
-#endif // defined
-    return true;
-}
+/** \brief Provede translace a rotace matice
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 
 void Tree::aktualizujMatici()
 {
@@ -1645,6 +1706,14 @@ void Tree::aktualizujMatici()
         iUsecka.aktualizujMatici();
     }
 }
+
+/** \brief Vykresli vysledek
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 
 void Tree::vykresli(bool osvetlovat) const         // const fcion, so it cant change anything in our object
 {
@@ -1705,6 +1774,15 @@ void Tree::vykresli(bool osvetlovat) const         // const fcion, so it cant ch
         break;
     }
 }
+
+
+/** \brief Vytvori buffer vrcholu a indicii a uzamkne(vyhradi pristup pro meneni) do nich nase pole,
+ *          o alokaci se stara Zarizeni
+ * \param
+ * \param
+ * \return
+ *
+ */
 
 bool Tree::vytvorBufferVrcholu()
 {
@@ -1816,6 +1894,14 @@ bool Tree::uzamkniPoleDoBuffru()
     return vysledek;
 }
 
+/** \brief vyhradi pristup do buffru GP
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+
 bool Tree::odemkniVrcholyProCteni()
 {
     bool vysledek;
@@ -1833,6 +1919,7 @@ bool Tree::odemkniVrcholyProCteni()
             vysledek = true;
     return vysledek;
 }
+
 
 bool Tree::zkopirujVrcholyDoBuffru(VrcholBK* vrcholy, int pocet)
 {
@@ -1860,5 +1947,39 @@ Vetev::~Vetev()
 //    delete[] vrcholy;
 }
 
+bool Tree::generujPlosky()
+{
+
+    return true;
+}
+
+bool Tree::generujListy()
+{
+
+    return true;
+}
+
+bool Tree::alokujMistoProVrcholyAindicie()
+{
+    try {
+        cstmvtxVrcholy = new VrcholBK[pocetVrcholu];
+        switch (druhStromu.element) {
+        case usecka:
+            indicie = new long[pocetElementu*2];
+            break;
+        case kuzel:
+            indicie = new long[pocetElementu*3];
+            break;
+        default:
+            break;
+        }
+
+    } catch (std::exception& e) {
+        std::cout << "Heap allocation vyjimka v alokujMistoVrcholu(): " << e.what() << std::endl;
+    }
+#ifdef TREEVERBOSE
+#endif // defined
+    return true;
+}
 
 }

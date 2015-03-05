@@ -196,7 +196,7 @@ void Engine::pripravGeometrii()
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 0;
-    int pocetStacku = 100;  // 1000
+    int pocetStacku = 0;  // 1000
     int pocetStromuStacku = 1; //15
     try {
         float vyska = 0.f;

@@ -7,11 +7,11 @@
 //#define windowWidth 1920
 #define windowHeight 1080
 #define PI 3.14159265358979323846
-//#define TREEVERBOSE
+#define TREEVERBOSE
 //#define DESTRUCTORVERBOSE
-//#define DEBUG
+#define DEBUG
 #define STACK
 #define PROBLEMATICAL
-#define NAPOVEDA
+//#define NAPOVEDA
 //#define ZOBRAZ_NORMALY
 //#define OLDPROBABILITY
