@@ -135,8 +135,8 @@ void Engine::pripravView()
     }
 
 
-    pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_CCW );
-    bcull = true;
+    pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
+    bcull = false;
     pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_WIREFRAME );
     bwireframe = true;
     // Turn on the zbuffer
@@ -418,10 +418,10 @@ void Engine::pridejStrom(float)
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
-//    druhStromu.rozliseniV = 1000;
-//    druhStromu.rozliseniE = 60;
-    druhStromu.rozliseniV = 10;
-    druhStromu.rozliseniE = 3;
+    druhStromu.rozliseniV = 1000;
+    druhStromu.rozliseniE = 60;
+//    druhStromu.rozliseniV = 10;
+//    druhStromu.rozliseniE = 3;
     druhStromu.barva = t::zelena;
     druhStromu.barveni = t::g;      // d
 //    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);
