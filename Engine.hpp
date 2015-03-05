@@ -66,7 +66,7 @@ private:
     LPDIRECT3D9 g_pD3D; // Used to create the D3DDevice
     LPDIRECT3DDEVICE9 pd3dZarizeni; // Our rendering device, lp= neco pointer, je to jenom typedef typedef struct IDirect3DDevice9 *LPDIRECT3DDEVICE9;
 
-    bool bbClearColor = false;
+    bool bbClearColor = true;
     bool bwireframe = false;
     bool bosvetlovat = true;
     bool bcull = false;

@@ -165,8 +165,8 @@ void Engine::pripravGeometrii()
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
-    druhStromu.rozliseniE = 720;
-    druhStromu.rozliseniV = 1000;
+    druhStromu.rozliseniE = 3;
+    druhStromu.rozliseniV = 2;
     druhStromu.barva = t::bila;
     druhStromu.barveni = t::g;      // dasdASdASd
     D3DXMATRIX pocatek;
@@ -418,8 +418,10 @@ void Engine::pridejStrom(float)
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
-    druhStromu.rozliseniV = 1000;
-    druhStromu.rozliseniE = 60;
+//    druhStromu.rozliseniV = 1000;
+//    druhStromu.rozliseniE = 60;
+    druhStromu.rozliseniV = 10;
+    druhStromu.rozliseniE = 3;
     druhStromu.barva = t::zelena;
     druhStromu.barveni = t::g;      // d
 //    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);

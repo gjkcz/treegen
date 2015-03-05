@@ -15,7 +15,7 @@ public:
     Usecka();
     Usecka(Usecka&& tmp){                   // move citron
         cstmvtxVrcholy =  tmp.cstmvtxVrcholy;
-        indicie = tmp.indicie;
+        paIndicie = tmp.paIndicie;
         pzarizeni = tmp.pzarizeni;
         maticeSkalovani = tmp.maticeSkalovani;
         maticeRotaceStromuX = tmp.maticeRotaceStromuX;
@@ -31,7 +31,7 @@ public:
         tmp.bufferVrcholu = nullptr;
         tmp.cstmvtxVrcholy = nullptr;
         tmp.bufferIndicii = nullptr;
-        tmp.indicie = nullptr;
+        tmp.paIndicie = nullptr;
     }
     Usecka(D3DXMATRIX& pocatek, D3DXVECTOR3& x, D3DXVECTOR3& y, t::Barva, LPDIRECT3DDEVICE9* _pzarizeni);
     Usecka(D3DXMATRIX& pocatek, D3DXVECTOR3& x, D3DXVECTOR3& y, t::Barva, LPDIRECT3DDEVICE9* _pzarizeni, float zRot);
@@ -40,7 +40,7 @@ public:
 //        znicBuffery();
 //        znicOstatniPointry();
         cstmvtxVrcholy =  tmp.cstmvtxVrcholy;
-        indicie = tmp.indicie;
+        paIndicie = tmp.paIndicie;
         pzarizeni = tmp.pzarizeni;
         maticeSkalovani = tmp.maticeSkalovani;
         maticeRotaceStromuX = tmp.maticeRotaceStromuX;
@@ -55,7 +55,7 @@ public:
         tmp.bufferVrcholu = nullptr;
         tmp.cstmvtxVrcholy = nullptr;
         tmp.bufferIndicii = nullptr;
-        tmp.indicie = nullptr;
+        tmp.paIndicie = nullptr;
         return *this;
     }
     void aktualizujMatici();
@@ -70,7 +70,7 @@ private:
     D3DXMATRIX maticeRotaceStromuX;
     D3DXMATRIX maticeRotaceStromuZ;
     VrcholB* cstmvtxVrcholy;
-    long* indicie;
+    long* paIndicie;
     LPDIRECT3DVERTEXBUFFER9* bufferVrcholu;
     LPDIRECT3DINDEXBUFFER9* bufferIndicii;
     LPDIRECT3DDEVICE9 pzarizeni;

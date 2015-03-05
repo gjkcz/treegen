@@ -167,9 +167,9 @@ void Konzole::vytiskniXMezer(int x)
 }
 
 
-void Konzole::vytiskniIndicie(const int* indicie, int pocet)
+void Konzole::vytiskniIndicie(const int* paIndicie, int pocet)
 {
-    if(indicie!=nullptr) {
+    if(paIndicie!=nullptr) {
         zjistiSoucasnouBarvu();
         nastavBarvuPisma(Barva::fjasnezluta);
         std::cout << "\nIndicie: \n";
@@ -179,10 +179,10 @@ void Konzole::vytiskniIndicie(const int* indicie, int pocet)
         }
         for (int o = 1; o >= 0; --o) {
             for (int i = o; i < pocet; i+=2) {
-                std::cout << "[" << indicie[i];
+                std::cout << "[" << paIndicie[i];
                 int pocetCiferS, pocetCiferL, rozdil;
-                pocetCiferS = helper::pocetCifer(indicie[i]);
-                pocetCiferL = helper::pocetCifer(indicie[(o==0)?i+1:i-1]);
+                pocetCiferS = helper::pocetCifer(paIndicie[i]);
+                pocetCiferL = helper::pocetCifer(paIndicie[(o==0)?i+1:i-1]);
                 rozdil = pocetCiferL-pocetCiferS;
                 if(rozdil > 0)
                     vytiskniXMezer(rozdil);
@@ -195,9 +195,9 @@ void Konzole::vytiskniIndicie(const int* indicie, int pocet)
     }
 }
 
-void Konzole::vytiskniIndicie(const int* indicie, int pocet, int indiciiNaClanek)
+void Konzole::vytiskniIndicie(const int* paIndicie, int pocet, int indiciiNaClanek)
 {
-    if(indicie!=nullptr) {
+    if(paIndicie!=nullptr) {
         zjistiSoucasnouBarvu();
         nastavBarvuPisma(Barva::fjasnezluta);
         std::cout << "\nIndicie po "<<indiciiNaClanek<<": \n";
@@ -208,7 +208,7 @@ void Konzole::vytiskniIndicie(const int* indicie, int pocet, int indiciiNaClanek
         if(pocet%indiciiNaClanek != 0) {
             std::cout << "Chybny pocet indicii na clanek, pocitas s koncovym spojem(+2 indexy)?" << std::endl;
             nastavBarvuPisma(soucasnaBarva);
-            vytiskniIndicie(indicie, pocet);
+            vytiskniIndicie(paIndicie, pocet);
             nastavBarvuPisma(Barva::fjasnezluta);
             std::cout << "Indicie po clankach:" << std::endl;
             nastavBarvuPisma(Barva::bbilafcerna);
@@ -224,10 +224,10 @@ void Konzole::vytiskniIndicie(const int* indicie, int pocet, int indiciiNaClanek
             for (int o = 1; o >= 0; --o) {
                 nastavBarvuPisma(Barva::fjasnezluta);
                 for (int i = o+p*(indiciiNaClanek); i < indiciiNaClanek+p*(indiciiNaClanek); i+=2) {
-                    std::cout << "[" << indicie[i];
+                    std::cout << "[" << paIndicie[i];
                     int pocetCiferS, pocetCiferL, rozdil;
-                    pocetCiferS = helper::pocetCifer(indicie[i]);
-                    pocetCiferL = helper::pocetCifer(indicie[(o==0)?i+1:i-1]);
+                    pocetCiferS = helper::pocetCifer(paIndicie[i]);
+                    pocetCiferL = helper::pocetCifer(paIndicie[(o==0)?i+1:i-1]);
                     rozdil = pocetCiferL-pocetCiferS;
                     if(rozdil > 0)
                         vytiskniXMezer(rozdil);

@@ -58,8 +58,8 @@ public:
     void vytiskniSablonu(std::string klic);
     void vytiskniXEnteru(int x);
     void vytiskniXMezer(int x);
-    void vytiskniIndicie(const int* indicie, int pocet);
-    void vytiskniIndicie(const int* indicie, int pocet, int indiciiNaClanek);
+    void vytiskniIndicie(const int* paIndicie, int pocet);
+    void vytiskniIndicie(const int* paIndicie, int pocet, int indiciiNaClanek);
 protected:
 private:
     std::string nazevKonzole;

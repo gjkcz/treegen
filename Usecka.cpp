@@ -8,7 +8,7 @@ Usecka::Usecka()
     cstmvtxVrcholy = nullptr;
     bufferVrcholu = nullptr;
     bufferIndicii = nullptr;
-    indicie = nullptr;
+    paIndicie = nullptr;
 }
 
 Usecka::Usecka(D3DXMATRIX& pocatek, D3DXVECTOR3& x, D3DXVECTOR3& y, t::Barva barva, LPDIRECT3DDEVICE9* _pzarizeni) :  pzarizeni(*_pzarizeni)
@@ -16,7 +16,7 @@ Usecka::Usecka(D3DXMATRIX& pocatek, D3DXVECTOR3& x, D3DXVECTOR3& y, t::Barva bar
     cstmvtxVrcholy = nullptr;
     bufferVrcholu = nullptr;
     bufferIndicii = nullptr;
-    indicie = nullptr;
+    paIndicie = nullptr;
     D3DXMatrixRotationX(&maticeRotaceStromuX, -3.14159265358979323846/2);     // Otoci strom o -Pi kolem x
     D3DXMatrixScaling(&maticeSkalovani, 0.5f, 0.5f, 0.5f );                 // Zmensi strom na 1/2
     matice = pocatek;
@@ -38,7 +38,7 @@ Usecka::Usecka(D3DXMATRIX& pocatek, D3DXVECTOR3& x, D3DXVECTOR3& y, t::Barva bar
     cstmvtxVrcholy = nullptr;
     bufferVrcholu = nullptr;
     bufferIndicii = nullptr;
-    indicie = nullptr;
+    paIndicie = nullptr;
     D3DXMatrixRotationX(&maticeRotaceStromuX, -3.14159265358979323846/2);     // Otoci strom o -Pi kolem x
     D3DXMatrixScaling(&maticeSkalovani, 0.5f, 0.5f, 0.5f );                 // Zmensi strom na 1/2
     matice = pocatek;
@@ -73,8 +73,8 @@ void Usecka::generujVrcholy(D3DXVECTOR3& x, D3DXVECTOR3& y)
 
 void Usecka::generujIndexy(int a, int b)
 {
-    indicie[0] = a;
-    indicie[1] = b;
+    paIndicie[0] = a;
+    paIndicie[1] = b;
 }
 
 void Usecka::znicBuffery()
@@ -96,7 +96,7 @@ void Usecka::znicOstatniPointry()
 #ifdef TREEVERBOSE
     std::cout << "Mazu porade indicie, vrcholy, vlastnosti" << std::endl;
 #endif // TREEVERBOSE
-    if(indicie != nullptr) {
+    if(paIndicie != nullptr) {
 //            std::cout << "ind:"<<indicie[50] << std::endl;
 //        delete[] indicie;
 //        indicie = nullptr;
@@ -220,7 +220,7 @@ bool Usecka::uzamkniPoleDoBuffru()
     }
     // Create index buffer.
         if( vytvorBufferIndicii() )
-            if( FAILED( (*bufferIndicii)->Lock(0, 0, ( void** )&indicie, 0) ) ) {
+            if( FAILED( (*bufferIndicii)->Lock(0, 0, ( void** )&paIndicie, 0) ) ) {
                 vysledek = false;
             } else
                 vysledek = true;

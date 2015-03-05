@@ -102,7 +102,9 @@ private:
     VlastnostiVetve* vlastnostiVetvi;       // Parametry vetvi, pozor dynAlc!
     std::vector<se::Usecka> kolmice;     // pomocne kolmice
     VrcholBK* cstmvtxVrcholy;
-    long* indicie;
+    long* paIndicie;
+    std::vector<VrcholBK> vrcholy;
+    std::vector<long> indicie;
     LPDIRECT3DVERTEXBUFFER9* bufferVrcholu;
     LPDIRECT3DINDEXBUFFER9* bufferIndicii;
     int pocetVrcholu;
@@ -138,6 +140,8 @@ private:
     bool generujKmen();
     bool generujVlastnostiVetvi();
     VlastnostiVetve generujVlastnostiVetve( VlastnostiVetve& parent, int strana, DruhStromu& _tType);
+    int spoctiClanky();
+//    int spoctiIndicie();
     int spoctiElementy();
     int spoctiVrcholy();           // Potreba pred vytvarenim buffru, potrebuje vygenerovat vlastnosti vetvi
     bool alokujMistoProVrcholyAindicie();
@@ -161,7 +165,8 @@ private:
     bool generujListy();
     bool generujPlosky();
     bool odemkniVrcholyProCteni();
-    bool zkopirujVrcholyDoBuffru(VrcholBK* vrcholy, int pocet);   // Vola vytvorBuffer
+    bool zkopirujVrcholyDoBuffru(const std::vector<VrcholBK>& _vrcholy);   // Vola vytvorBuffer
+    bool zkopirujIndicieDoBuffru(const std::vector<long>& _indicie);   // Vola vytvorBuffer
 };
 
 

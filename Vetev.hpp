@@ -9,7 +9,7 @@ public:
 protected:
 private:
     SimpleVertex* vrcholy;
-    UINT* indicie;
+    UINT* paIndicie;
     D3DXVECTOR3* kolmice;
 };
 
