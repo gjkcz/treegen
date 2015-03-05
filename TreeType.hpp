@@ -52,7 +52,8 @@ struct DruhStromu
     Element element;
     Barva barva;
     Barveni barveni;
-    int rozliseni;  /*Pocet vrcholu na element.*/
+    int rozliseniE;  /*Pocet vrcholu na element/2.*/
+    int rozliseniV;  /*Pocet elementu na vetev.*/
     int urovenRozvetveni;
     int pravdepodobnostRozvetveni;
     int _iSType; //0-11

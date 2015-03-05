@@ -24,12 +24,17 @@ Engine::Engine(sw::Okno* _okno) : iOkno(_okno), iKontroler3d(iOkno->hWnd)
     mapaFci["wiref"] = &Engine::switchWireframe;
     mapaFci["osvet"] = &Engine::switchOsvetlovat;
     mapaFci["nerot"] = &Engine::nerotuj;
+    mapaFci["zhasn"] = &Engine::zhasniSvitilnu;
+    mapaFci["rozzn"] = &Engine::rozzniSvitilnu;
     std::string* prikazy = new std::string[mapaFci.size()];
     int c = 0;
     for (auto i = mapaFci.begin(); i != mapaFci.end(); ++i, ++c) {
         prikazy[c] = i->first;
     }
     iKontroler3d.dejMoznePrikazy(prikazy, mapaFci.size());
+    #ifdef NAPOVEDA
+    std::cout << "Pro zadani prikazu stiskni mezernik+prikaz[+mezera+argument]+enter. Pro odchod ESC. \nPohyb wsad+sipky+mys. Leve tlacitko mysi prida strom, prave ukonci program. "<< std::endl;
+    #endif // NAPOVEDA
     fFOV = PI/3.6;
     dejCitlivost(3);
     pd3dZarizeni = NULL;
@@ -69,7 +74,7 @@ Engine::~Engine()
 void Engine::priprav()              // vola porade: pripravView, pripravGeometrii,
 {
     iKonzole.nastavBarvuPisma(sk::Barva::fbila);
-    iKonzole.vytiskniSablonu((std::string)"ok");
+//    iKonzole.vytiskniSablonu((std::string)"ok");
 //    iKonzole.zjistiSoucasnouBarvu();
     iKonzole.nastavBarvuPisma(sk::Barva::fbila);
     std::cout << "Pripravuji D3D" << '\n';
@@ -129,8 +134,8 @@ void Engine::pripravView()
 
 
     pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_CCW );
-//    pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_WIREFRAME );
-//    bwireframe = true;
+    pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_WIREFRAME );
+    bwireframe = true;
     // Turn on the zbuffer
 //    pd3dZarizeni->SetRenderState( D3DRS_ZENABLE, TRUE );
 
@@ -139,7 +144,11 @@ void Engine::pripravView()
     D3DCOLORVALUE barva = {0.1f, 0.1f, 0.1f};
     Svetlo denniSvetlo = {pd3dZarizeni, barva, se::smerove, smer};
     svetla.push_back(denniSvetlo);
-    /*baterka*/
+
+    barva = {0.1, 0.1, 0.0};
+    smer = {0.f, 0.05f, -1.};
+    svetla.emplace_back(pd3dZarizeni, barva, se::smerove, smer);
+    /*baterka musi byt posledni*/
     barva = {0.4, 0.4, 0.5};
     svetla.emplace_back(pd3dZarizeni, barva);
 }
@@ -153,7 +162,8 @@ void Engine::pripravGeometrii()
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
-    druhStromu.rozliseni = 30;
+    druhStromu.rozliseniE = 720;
+    druhStromu.rozliseniV = 1000;
     druhStromu.barva = t::bila;
     druhStromu.barveni = t::g;      // dasdASdASd
     D3DXMATRIX pocatek;
@@ -166,7 +176,7 @@ void Engine::pripravGeometrii()
     yoffset = 0.f;
     xoffset = -1*fDalka;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
-    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.05f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.005f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
     stromy[0].nastavKonzoli(iKonzole);
 
     D3DXVECTOR3 pocatecniBod = {10000000., 0., 0.};
@@ -186,7 +196,7 @@ void Engine::pripravGeometrii()
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 0;
-    int pocetStacku = 0;  // 1000
+    int pocetStacku = 100;  // 1000
     int pocetStromuStacku = 1; //15
     try {
         float vyska = 0.f;
@@ -405,7 +415,7 @@ void Engine::pridejStrom(float)
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::usecka;
-    druhStromu.rozliseni = 360;
+    druhStromu.rozliseniE = 360;
     druhStromu.barva = t::zelena;
     druhStromu.barveni = t::g;      // d
 //    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);

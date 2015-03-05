@@ -152,6 +152,12 @@ private:
         for (auto& iTree : stromy)
             iTree.nastavRotaci(0.);
     }
+    void zhasniSvitilnu(float){
+        (--svetla.end())->zhasni();
+    }
+    void rozzniSvitilnu(float){
+        (--svetla.end())->rozsvit();
+    }
 };
 
 

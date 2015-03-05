@@ -51,7 +51,7 @@ void Input::prepareInputDevices()
 //        axs = new long[4];
 //            Keys = new byte[256];
 
-    std::cout << S_OK;
+//    std::cout << S_OK;
 }
 
 void Input::reset()
