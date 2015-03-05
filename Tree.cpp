@@ -144,11 +144,6 @@ Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pza
     matice = pocatek;
     barvaStromu = D3DXVECTOR4(0.f,0.f,0.f,0.f);
     material = *(new D3DMATERIAL9());
-//ZeroMemory(&mtrl, sizeof(mtrl));
-//    material.Ambient.r = 0.75f;
-//    material.Ambient.g = 1.0f;
-//    material.Ambient.b = 0.0f;
-//    material.Ambient.a = 1.0f;
     D3DXCOLOR b = (D3DXCOLOR) druhStromu.barva;
     material.Diffuse = material.Ambient = (D3DCOLORVALUE)b;
 
@@ -159,6 +154,7 @@ Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pza
     gonx = 0.f;
     sum = 0;
     countEm = 0;
+
     try {
         generujKmen();  // nastavi barvu stromu
 #ifdef TREEVERBOSE
