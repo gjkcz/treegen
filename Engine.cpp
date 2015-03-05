@@ -26,6 +26,8 @@ Engine::Engine(sw::Okno* _okno) : iOkno(_okno), iKontroler3d(iOkno->hWnd)
     mapaFci["nerot"] = &Engine::nerotuj;
     mapaFci["zhasn"] = &Engine::zhasniSvitilnu;
     mapaFci["rozzn"] = &Engine::rozzniSvitilnu;
+    mapaFci["culli"] = &Engine::switchCulling;
+    mapaFci["pride"] = &Engine::pridejStrom;
     std::string* prikazy = new std::string[mapaFci.size()];
     int c = 0;
     for (auto i = mapaFci.begin(); i != mapaFci.end(); ++i, ++c) {
@@ -134,6 +136,7 @@ void Engine::pripravView()
 
 
     pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_CCW );
+    bcull = true;
     pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_WIREFRAME );
     bwireframe = true;
     // Turn on the zbuffer
@@ -414,13 +417,14 @@ void Engine::pridejStrom(float)
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
-    druhStromu.element = t::usecka;
-    druhStromu.rozliseniE = 360;
+    druhStromu.element = t::testValec;
+    druhStromu.rozliseniV = 1000;
+    druhStromu.rozliseniE = 60;
     druhStromu.barva = t::zelena;
     druhStromu.barveni = t::g;      // d
 //    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);
     D3DXMATRIX pocatek;
-    float vzdalenostOdKamery = 7000000.;
+    float vzdalenostOdKamery = 1000000.;
     float xoffset = -2.*iKontroler3d.vemUmisteni().x + iKontroler3d.vemSmerHledi().x*vzdalenostOdKamery;
     float yoffset = 2.*iKontroler3d.vemUmisteni().z + iKontroler3d.vemSmerHledi().z*-vzdalenostOdKamery;
     float zoffset = -2.*iKontroler3d.vemUmisteni().y + iKontroler3d.vemSmerHledi().y*vzdalenostOdKamery;

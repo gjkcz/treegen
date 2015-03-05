@@ -13,6 +13,10 @@ Zkratky: {
 	}
 
 	pro git: {
+		git init
+		git remote add https://xmegapopcornz@bitbucket.org/xmegapopcornz/treegen.git
+		git fetch tOrigin && git checkout kmen = stahne lokalne
+		git rm = odebere soubor z pracovniho stromu a indexu
 		git update-index --[no-]assume-unchanged path/to/file.txt
 		git mergetool	=	spustí vimdiff2
 		git stash		= 	ulozi nekomitle veci

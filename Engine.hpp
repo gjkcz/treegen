@@ -69,6 +69,7 @@ private:
     bool bbClearColor = false;
     bool bwireframe = false;
     bool bosvetlovat = true;
+    bool bcull = false;
     float fFOV;
     D3DXMATRIX maticeProjekce;
 
@@ -137,6 +138,13 @@ private:
     }
     void switchClearColor(float){
         bbClearColor = !bbClearColor;
+    }
+    void switchCulling(float){
+        bcull = !bcull;
+        if(bcull)
+        pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_CCW );
+        else
+        pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
     }
     void switchWireframe(float){
         bwireframe = !bwireframe;
