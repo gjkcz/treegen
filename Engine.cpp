@@ -87,6 +87,7 @@ void Engine::priprav()              // vola porade: pripravView, pripravGeometri
     std::cout << "Generuji stromy" << '\n';
     pripravGeometrii();
     iKontroler3d.nastavRychlost(5000.);
+    iKontroler3d.nastavCitlivost(10.);
     std::cout << "Ok, pocet stromu je: " << t::Tree::pocetInstanciStromu << '\n';
     iKonzole.nastavBarvuPisma(sk::Barva::fbila);
     std::cout << "Hledi je ve smeru -x" << std::endl;

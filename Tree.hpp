@@ -158,7 +158,9 @@ private:
     void generujVrcholyIndicieKruhu( const D3DXVECTOR3& pocatek );
     void generujVrcholyKruhu( const D3DXVECTOR3& pocatek );
     void generujIndicieRozdeleni();
-    void generujIndicieClanku( int );
+    void generujIndicieClanku( int cislo );
+    void generujIndicieClanku( int cislo, int preskocit );
+    void generujIndicieClankuXY( int x, int y );
     void generujVrcholElementu( Element e );
     void generujVrcholElementu( Element e, float, float, float, Barva );
     void generujVrcholElementu( float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ );   // melo by brat pole referenci za param

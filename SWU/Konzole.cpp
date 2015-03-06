@@ -169,6 +169,7 @@ void Konzole::vytiskniXMezer(int x)
 
 void Konzole::vytiskniIndicie(const int* paIndicie, int pocet)
 {
+    int pocetIndiciiNaElement = 4;
     if(paIndicie!=nullptr) {
         zjistiSoucasnouBarvu();
         nastavBarvuPisma(Barva::fjasnezluta);
@@ -177,8 +178,12 @@ void Konzole::vytiskniIndicie(const int* paIndicie, int pocet)
         if(pocet%2 != 0) {
             std::cout << "Indicii neni sudy pocet!" << std::endl;
         }
+
         for (int o = 1; o >= 0; --o) {
             for (int i = o; i < pocet; i+=2) {
+                if( ( (i-o)/2 )%(pocetIndiciiNaElement)==0){
+                    nastavBarvuPisma(Barva::fjasnezluta);
+                }
                 std::cout << "[" << paIndicie[i];
                 int pocetCiferS, pocetCiferL, rozdil;
                 pocetCiferS = helper::pocetCifer(paIndicie[i]);
@@ -187,7 +192,11 @@ void Konzole::vytiskniIndicie(const int* paIndicie, int pocet)
                 if(rozdil > 0)
                     vytiskniXMezer(rozdil);
                 std::cout << "]";
-            }
+                if( ( (i-o)/2 )%(pocetIndiciiNaElement)==0){
+                    nastavBarvuPisma(Barva::bbilafcerna);
+                }
+
+                }
 //        if(o==0)
             std::cout << "\n";
         }
