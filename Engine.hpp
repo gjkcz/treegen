@@ -70,6 +70,7 @@ private:
     bool bwireframe = false;
     bool bosvetlovat = true;
     bool bcull = false;
+    bool bflatShading = false;
     float fFOV;
     D3DXMATRIX maticeProjekce;
 
@@ -155,6 +156,13 @@ private:
     }
     void switchOsvetlovat(float){
         bosvetlovat = !bosvetlovat;
+    }
+    void switchShading(float){
+        bflatShading = !bflatShading;
+        if(bflatShading)
+            pd3dZarizeni->SetRenderState( D3DRS_SHADEMODE, D3DSHADE_FLAT );
+        else
+            pd3dZarizeni->SetRenderState( D3DRS_SHADEMODE, D3DSHADE_GOURAUD );
     }
     void nerotuj(float){
         for (auto& iTree : stromy)

@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"repl",
+				"replacementP"
+			],
+			[
+				"rep",
+				"replacementL"
+			],
+			[
+				"tmp",
+				"tmp"
+			],
+			[
+				"re",
+				"replacement"
+			],
+			[
+				"preg",
+				"preg_match"
+			],
+			[
 				"var",
 				"var_dump"
 			],
@@ -31,31 +51,7 @@
 			"file": "poznámky k projektu.txt",
 			"settings":
 			{
-				"buffer_size": 2273,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/H/local new/programování/CB/struktury stromu/tdmTreegen/tdmTreegen.cbp",
-			"settings":
-			{
-				"buffer_size": 2941,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/H/local new/programování/CB/struktury stromu/Treegen/.gitignore",
-			"settings":
-			{
-				"buffer_size": 123,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/H/odeBlocks/MinGW/README-gcc-tdm.txt",
-			"settings":
-			{
-				"buffer_size": 16020,
+				"buffer_size": 4071,
 				"line_ending": "Windows"
 			}
 		},
@@ -63,7 +59,47 @@
 			"file": "zkratky",
 			"settings":
 			{
-				"buffer_size": 1705,
+				"buffer_size": 2387,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/H/TDM-GCC-64/README-gcc-tdm64.txt",
+			"settings":
+			{
+				"buffer_size": 16673,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.cbp",
+			"settings":
+			{
+				"buffer_size": 4425,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/H/local new/schola/algoritmy/27.1.015/27.1.015 poznamky alg.txt",
+			"settings":
+			{
+				"buffer_size": 258,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tracklistClusteru.txt",
+			"settings":
+			{
+				"buffer_size": 806,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/H/local new/programování/CB/struktury stromu/Treegen/.gitignore",
+			"settings":
+			{
+				"buffer_size": 226,
 				"line_ending": "Windows"
 			}
 		},
@@ -108,10 +144,23 @@
 	},
 	"file_history":
 	[
+		"/H/local new/zálohy/Datkarty/2.3. 2015/data/aplikace/Funkcnost.php",
+		"/H/local new/zálohy/Datkarty/2.3. 2015/data/aplikace/Controler.php",
+		"/H/local new/zálohy/Datkarty/2.3. 2015/data/aplikace/Uceni.php",
+		"/H/local new/zálohy/Datkarty/2.3. 2015/data/aplikace/Rozcestnik.php",
+		"/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.cbp",
+		"/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.depend",
+		"/H/local new/programování/CB/struktury stromu/Treegen/devpaks/boost_1_57_0/rst.css",
+		"/H/local new/programování/CB/struktury stromu/Treegen/devpaks/boost_1_57_0/boost-build.jam",
+		"/H/local new/programování/CB/struktury stromu/Treegen/devpaks/boost_1_57_0/status/expected_results.xml",
+		"/H/local new/programování/CB/struktury stromu/Treegen/devpaks/boost_1_57_0/INSTALL",
+		"/H/local new/programování/CB/struktury stromu/Treegen/CppCheckInput.txt",
+		"/H/TDM-GCC-64/README-gcc-tdm64.txt",
+		"/H/odeBlocks/MinGW/README-gcc-tdm.txt",
+		"/H/local new/programování/CB/struktury stromu/tdmTreegen/tdmTreegen.cbp",
 		"/H/local new/programování/CB/struktury stromu/Treegen VS/Treegen VS.vcxproj",
 		"/H/local new/programování/CB/multithreading template/cygwin prikaz.txt",
 		"/H/VSCppCompiler/2013standaloneVCppCompiler/setEnvironmentVariablesToPath.bat",
-		"/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.cbp",
 		"/H/local new/programování/CB/struktury stromu/Treegen/.idea/workspace.xml",
 		"/H/local new/programování/CB/struktury stromu/tdmTreegen/tdmTreegen.depend",
 		"/H/local new/programování/CB/struktury stromu/Treegen/CMakeLists.txt",
@@ -133,7 +182,6 @@
 		"/H/local new/schola/prg/poznamky 23.9.",
 		"/H/local new/schola/prg/poznamky 14.10.txt",
 		"/A/Projects/Logo/dobre logo.txt",
-		"/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.depend",
 		"/H/local new/programování/CB/struktury stromu/Treegen/.git/config",
 		"/H/local new/programování/CB/struktury stromu/Treegen/.git/description",
 		"/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.layout",
@@ -208,6 +256,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$a[p]",
+			"$a[l]",
+			"$antiAtom",
+			"$atom",
+			"atom",
+			"pridejParBalicku",
 			"spravnost=false",
 			"spravnost=true",
 			"ctrl+d"
@@ -218,6 +272,12 @@
 		"regex": false,
 		"replace_history":
 		[
+			"$a['p']",
+			"$a['l']",
+			"$a[p]",
+			"$a[l]",
+			"a[l]",
+			"$a[l]",
 			"spravnost=0",
 			"spravnost=1"
 		],
@@ -230,7 +290,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -238,15 +298,15 @@
 					"file": "poznámky k projektu.txt",
 					"settings":
 					{
-						"buffer_size": 2273,
+						"buffer_size": 4071,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2273,
-								2273
+								3984,
+								3984
 							]
 						],
 						"settings":
@@ -255,31 +315,59 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 520.0,
+						"translation.y": 1134.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/H/local new/programování/CB/struktury stromu/tdmTreegen/tdmTreegen.cbp",
+					"file": "zkratky",
 					"settings":
 					{
-						"buffer_size": 2941,
+						"buffer_size": 2387,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								2941
+								2082,
+								2082
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/RestructuredText/reStructuredText.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 553.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/H/TDM-GCC-64/README-gcc-tdm64.txt",
+					"settings":
+					{
+						"buffer_size": 16673,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								71,
+								57
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 5,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -288,19 +376,46 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/H/local new/programování/CB/struktury stromu/Treegen/.gitignore",
+					"buffer": 3,
+					"file": "/H/local new/programování/CB/struktury stromu/Treegen/DocasnyTreegen.cbp",
 					"settings":
 					{
-						"buffer_size": 123,
+						"buffer_size": 4425,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								40,
-								40
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1386.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/H/local new/schola/algoritmy/27.1.015/27.1.015 poznamky alg.txt",
+					"settings":
+					{
+						"buffer_size": 258,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								131,
+								131
 							]
 						],
 						"settings":
@@ -314,53 +429,24 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "/H/odeBlocks/MinGW/README-gcc-tdm.txt",
+					"buffer": 5,
+					"file": "tracklistClusteru.txt",
 					"settings":
 					{
-						"buffer_size": 16020,
+						"buffer_size": 806,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7041,
-								7041
+								806,
+								806
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 5,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2639.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "zkratky",
-					"settings":
-					{
-						"buffer_size": 1705,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1563,
-								1563
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -369,7 +455,33 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
+					"file": "/H/local new/programování/CB/struktury stromu/Treegen/.gitignore",
+					"settings":
+					{
+						"buffer_size": 226,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								162,
+								162
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": "/H/local new/programování/CB/struktury stromu/Treegen/README.md",
 					"settings":
 					{

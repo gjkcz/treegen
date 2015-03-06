@@ -120,6 +120,8 @@ v u kazde vetve spoj koncovy a pocatecni
 - nejprve si spoj casti trojuhelniku pomoci usecek
 - substringy jsou trochu nesikovne, sikovnejsi kdyz nenajdes zde, hledej jinde
 v vyresit problemy s dealokaci!! mazal sem v destruktoru kontroleru matrixView, ktery ovsem patril kamere, zmatlo me ze jsem ho alokoval v konstruktoru pomoci new, musel jsem nejdriv dat nullptr
-- 
+- cerne tecky jsou prazdne alokovane vrcholy
 
 - az tohle dodelam, musim udelat program, krery bude derivovat fce..
+
+- ve zkutecnosti je vlastne nepotrebuju odpojit, jenom nektere, protoze budou navazovat

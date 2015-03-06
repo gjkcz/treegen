@@ -26,6 +26,7 @@ Engine::Engine(sw::Okno* _okno) : iOkno(_okno), iKontroler3d(iOkno->hWnd)
     mapaFci["nerot"] = &Engine::nerotuj;
     mapaFci["zhasn"] = &Engine::zhasniSvitilnu;
     mapaFci["rozzn"] = &Engine::rozzniSvitilnu;
+    mapaFci["shadi"] = &Engine::switchShading;
     mapaFci["culli"] = &Engine::switchCulling;
     mapaFci["pride"] = &Engine::pridejStrom;
     std::string* prikazy = new std::string[mapaFci.size()];
@@ -181,7 +182,7 @@ void Engine::pripravGeometrii()
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
     stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.005f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
     stromy[0].nastavKonzoli(iKonzole);
-
+    switchOsvetlovat(0.);
     D3DXVECTOR3 pocatecniBod = {10000000., 0., 0.};
     D3DXVECTOR3 koncovyBod = {5000., 40000., 100000.};
     yoffset = 10000.f;
@@ -418,7 +419,7 @@ void Engine::pridejStrom(float)
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
-    druhStromu.rozliseniV = 1000;
+    druhStromu.rozliseniV = 15;
     druhStromu.rozliseniE = 60;
 //    druhStromu.rozliseniV = 10;
 //    druhStromu.rozliseniE = 3;

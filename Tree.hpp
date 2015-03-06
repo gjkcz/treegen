@@ -152,9 +152,10 @@ private:
     bool uzamkniPoleDoBuffru();       // musi existovat buffer a cstmvtxVrcholy musi byt nejprve vytvoreny,
     bool generujVykreslovaciDataVetvi();     // Musi znat pocet vrcholu
     bool generujElementyVetve( VlastnostiVetve& );
-    void generujVrcholyIndicieVetve(const D3DXVECTOR3& pocatek);
+    void generujVrcholyIndicieVetve(const D3DXVECTOR3& pocatek, bool zakoncit, bool navazat);
     void generujVrcholyIndicieKruhu(const D3DXVECTOR3& pocatek);
     void generujVrcholyKruhu(const D3DXVECTOR3& pocatek);
+    void generujIndicieRozdeleni();
     void generujVrcholElementu( Element e );
     void generujVrcholElementu( Element e, float, float, float, Barva );
     void generujVrcholElementu(float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ);   // melo by brat pole referenci za param
