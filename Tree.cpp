@@ -1446,9 +1446,8 @@ void Tree::generujIndicieClanku(int cislo, int preskocit)
  *
  */
 
-void Tree::generujIndicieOdpojeniClanku(int x)
+void Tree::generujIndicieOdpojeniClanku(int x, int pocetClankuVetve)
 {
-    int pocetClankuVetve = 3;
     int zacatek = x*druhStromu.rozliseniE;
     int indicie;
     for (int i = 0; i < pocetClankuVetve; ++i)
@@ -1458,56 +1457,42 @@ void Tree::generujIndicieOdpojeniClanku(int x)
     }
 }
 
+/** \brief Indicie rozdeleni je treba vytvorit po indiciich prvni vetve, dalsi vetvi je treba rict, kde navazat
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 
 void Tree::generujIndicieRozdeleni()
 {
-//    generujVrcholyKruhu( -_pocatek );//1 zavisla na navazujici vetvi
+    // ↓
     int citac = 0;
     generujIndexyElementu(testValec, 0+(pocetClanku)*druhStromu.rozliseniE);//1 konec-zacate
     generujIndexyElementu(testValec, 0+(pocetClanku+1)*druhStromu.rozliseniE);//1konec-zacate
-    citac+=2;//1 konec-zacate
-    D3DXVECTOR3 pocatek = {0., 00000., 0000.};
-//    generujIndicieClanku(3);
-    generujIndicieClanku(pocetClanku+(1)); //1.1
-    generujIndicieClanku(pocetClanku+(2)); //1.1
-    generujIndicieOdpojeniClanku(pocetClanku+(2)); // rozdel
-//    generujIndexyElementu(testValec, 9, 9);
-//    generujIndexyElementu(testValec, 6, 6);
 
+    for (int u = 0; u < pocetClanku - 1; ++u)
+        generujIndicieClanku(pocetClanku+(1+u)); //1.vse
+
+//    generujIndicieClanku(pocetClanku+(1)); //1.1
+//    generujIndicieClanku(pocetClanku+(2)); //1.2
+    // to pujde pryc ↑, vsimni si, ze jeden clanek je jiz vygenerovany, neni to spatne pro prehlednost?
+
+    generujIndicieOdpojeniClanku(pocetClanku+(pocetClanku-1), pocetClanku); // rozdel
+
+    // ↓
     int zacatek = 0;
     int cisloElementuRozdvojeni = pocetClanku+zacatek;
 
-//    generujIndexyElementu(testValec, 0+(pocetClanku)*druhStromu.rozliseniE);//deg mezi 1, 2 odpojit
-//    generujIndexyElementu(testValec, 0+(pocetClanku)*druhStromu.rozliseniE);
-    citac+=2;//deg mezi 1, 2 odpojit
-
-    generujIndicieClanku(cisloElementuRozdvojeni, pocetClanku);
-//    for(int i = 0; i < druhStromu.rozliseniE; ++i) {
-//        generujIndexyElementu(testValec, i+(pocetClanku)*druhStromu.rozliseniE); //2
-//        generujIndexyElementu(testValec, i+(pocetClanku+2)*druhStromu.rozliseniE); //2
-//    }
-
-//    if(0+(pocetClanku)*druhStromu.rozliseniE != indicie[citac]) std::cout << "Chyba deg. odpojovaciho troj." << std::endl;
-    citac+=2*druhStromu.rozliseniE;
-//    generujIndexyElementu(testValec, 0+(pocetClanku)*druhStromu.rozliseniE);//2
-//    generujIndexyElementu(testValec, 0+(pocetClanku+2)*druhStromu.rozliseniE);
-    citac+=2;//2
+    generujIndicieClanku(cisloElementuRozdvojeni, pocetClanku); // 2 prvni clanek musi spojit element rozdvojeni a prvni element druhe vetve,
 
     int cisloNavazujicihoClanku = cisloElementuRozdvojeni + pocetClanku + 1;
-    generujIndicieClanku(cisloNavazujicihoClanku);
-    generujIndicieClanku(cisloNavazujicihoClanku + 1);
-//    for(int i = 0; i < druhStromu.rozliseniE; ++i) {
-//        generujIndexyElementu(testValec, i+(pocetClanku+2)*druhStromu.rozliseniE); //2.1
-//        generujIndexyElementu(testValec, i+(pocetClanku+3)*druhStromu.rozliseniE); //2.1
-//    }
-//    generujIndexyElementu(testValec, 0+(pocetClanku+2)*druhStromu.rozliseniE);//2
-//    generujIndexyElementu(testValec, 0+(pocetClanku+3)*druhStromu.rozliseniE);
-
-//    generujIndexyElementu(testValec, 12);
-//    generujIndexyElementu(testValec, 12);
-//    generujIndexyElementu(testValec, 9);
-//    generujIndexyElementu(testValec, 9);
-//    generujIndicieClanku(3, druhStromu.rozliseniV);    //1.1
+    for (int u = 0; u < pocetClanku - 1; ++u)
+        generujIndicieClanku(cisloNavazujicihoClanku+(u)); //2.vse
+//    generujIndicieClanku(cisloNavazujicihoClanku);  //2.1
+//    generujIndicieClanku(cisloNavazujicihoClanku + 1);  //2.2
+    // ↑ pujde pryc taky
 }
 
 /** \brief Generuje vrcholy a indicie vetve, Musi znat pocet clanku dopredu.
@@ -1520,16 +1505,12 @@ void Tree::generujIndicieRozdeleni()
 
 void Tree::generujVrcholyIndicieVetve(const D3DXVECTOR3& _pocatek, bool zakoncit, bool navazat)
 {
+    ///* Vzdy u liche vetve zavolam generuj indicie odpojeni a u sude generuj indicie navazani */
     int citac=0;
     if( !navazat )
         generujVrcholyIndicieKruhu( _pocatek );
     citac+=2*druhStromu.rozliseniE;//0
     for(int i = 0; i < pocetClanku; ++i) {
-        ///*degenerovany trojuhelnik*/
-//        generujIndexyElementu(testValec, druhStromu.rozliseni-1);
-//        generujIndexyElementu(testValec, 2*druhStromu.rozliseni-1);
-//        generujIndexyElementu(testValec, 2*druhStromu.rozliseni-1);
-//        generujIndexyElementu(testValec, 3*druhStromu.rozliseni-1);
         ///*koncove spojovaci indexy*/
         generujIndexyElementu(testValec, 0+i*druhStromu.rozliseniE); //0konec-zacate
         generujIndexyElementu(testValec, 0+(i+1)*druhStromu.rozliseniE); //0konec-zacate
@@ -1542,19 +1523,23 @@ void Tree::generujVrcholyIndicieVetve(const D3DXVECTOR3& _pocatek, bool zakoncit
     }
     if( !zakoncit ) {
         D3DXVECTOR3 pocatek = {0., 00000., 0000.};
+        generujIndicieRozdeleni();
 
-        pocatek = {10000., 100000., 10000.};
-        generujVrcholyKruhu( -_pocatek ); //....1
-        pocatek = {10000., 100000., 40000.};
-        generujVrcholyKruhu( -_pocatek ); //1.1
-        generujVrcholyKruhu( -2*_pocatek ); //1.2
-
-        generujVrcholyKruhu( 3*pocatek ); //2
+        for (int o = 1; o < pocetClanku+1; ++o)
+            generujVrcholyKruhu( -o*_pocatek);
+//        pocatek = {10000., 100000., 10000.};
+//        generujVrcholyKruhu( -_pocatek ); //....1
+//        pocatek = {10000., 100000., 40000.};
+//        generujVrcholyKruhu( -_pocatek ); //1.1
+//        generujVrcholyKruhu( -2*_pocatek ); //1.2
 
         pocatek = {10000., 100000., 100000.};
-        generujVrcholyKruhu( 3*pocatek ); //2.1
-        generujVrcholyKruhu( 4*pocatek ); //2.2
-        generujIndicieRozdeleni();
+        for (int o = 1; o < pocetClanku+1; ++o)
+            generujVrcholyKruhu( o*pocatek);
+//        generujVrcholyKruhu( 3*pocatek ); //2
+//        pocatek = {10000., 100000., 100000.};
+//        generujVrcholyKruhu( 3*pocatek ); //2.1
+//        generujVrcholyKruhu( 4*pocatek ); //2.2
     }
 }
 

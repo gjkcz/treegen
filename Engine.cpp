@@ -167,8 +167,8 @@ void Engine::pripravGeometrii()
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
-    druhStromu.rozliseniE = 5;
-    druhStromu.rozliseniV = 3;
+    druhStromu.rozliseniE = 3;
+    druhStromu.rozliseniV = 4;
     druhStromu.barva = t::bila;
     druhStromu.barveni = t::g;      // dasdASdASd
     D3DXMATRIX pocatek;

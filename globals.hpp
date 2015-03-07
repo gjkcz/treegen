@@ -13,5 +13,5 @@
 #define STACK
 #define PROBLEMATICAL
 //#define NAPOVEDA
-#define ZOBRAZ_NORMALY
+//#define ZOBRAZ_NORMALY
 //#define OLDPROBABILITY
