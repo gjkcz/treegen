@@ -109,6 +109,7 @@ private:
     std::vector<long> indicie;
     LPDIRECT3DVERTEXBUFFER9* bufferVrcholu;
     LPDIRECT3DINDEXBUFFER9* bufferIndicii;
+    bool btriangleList;
     int pocetVrcholu;
     int pocetIndicii;
     int pocetElementu;
@@ -160,6 +161,7 @@ private:
     void generujIndicieRozdeleni();
     void generujIndicieClanku( int cislo );
     void generujIndicieClanku( int cislo, int preskocit );
+    int generujIndicieVetve( int cislo, int kolikClanku );
     void generujIndicieClankuXY( int x, int y );
     int generujIndicieOdpojeniClanku( int x, int pocetClankuVetve, bool suda );
     void generujVrcholElementu( Element e );
