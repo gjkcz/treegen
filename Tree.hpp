@@ -161,6 +161,7 @@ private:
     void generujIndicieRozdeleni();
     void generujIndicieClanku( int cislo );
     void generujIndicieClanku( int cislo, int preskocit );
+    void generujVrcholyVetve( const D3DXVECTOR3& pocatek, int kolikClanku );
     int generujIndicieVetve( int cislo, int kolikClanku );
     void generujIndicieClankuXY( int x, int y );
     int generujIndicieOdpojeniClanku( int x, int pocetClankuVetve, bool suda );
