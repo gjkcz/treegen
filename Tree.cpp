@@ -828,7 +828,7 @@ VlastnostiVetve Tree::generujVlastnostiVetve( VlastnostiVetve& parent, int stran
     return pVs;
 }
 
-/** \brief Spocita dopredu clanky, elementy, vrcholy, indicie.
+/** \brief Spocita clanky, elementy, vrcholy, indicie.
  *         Vetve jsou spocteny uz v generujVlastnostiVetvi
  * \param
  * \param
@@ -1442,19 +1442,24 @@ void Tree::generujIndicieClanku(int cislo, int preskocit)
  *
  * \param
  * \param
- * \return
+ * \return vraci cislo rozdvojovaciho clanku
  *
  */
 
-void Tree::generujIndicieOdpojeniClanku(int x, int pocetClankuVetve)
+int Tree::generujIndicieOdpojeniClanku(int x, int pocetClankuVetve, bool suda)
 {
+    int pocetClankuLicheVetve = pocetClankuVetve;           // Risk of potencial errors
     int zacatek = x*druhStromu.rozliseniE;
     int indicie;
-    for (int i = 0; i < pocetClankuVetve; ++i)
-    {
+    for (int i = 0; i < pocetClankuVetve-suda?1:0; ++i) {
         indicie = zacatek-i*(druhStromu.rozliseniE);
         generujIndexyElementu(testValec, indicie, indicie);
     }
+    if ( suda ) {
+        indicie = (x-pocetClankuVetve-pocetClankuLicheVetve+1)*druhStromu.rozliseniE;
+        generujIndexyElementu(testValec, indicie, indicie);
+    }
+    return (x-pocetClankuVetve);
 }
 
 /** \brief Indicie rozdeleni je treba vytvorit po indiciich prvni vetve, dalsi vetvi je treba rict, kde navazat
@@ -1479,7 +1484,7 @@ void Tree::generujIndicieRozdeleni()
 //    generujIndicieClanku(pocetClanku+(2)); //1.2
     // to pujde pryc ↑, vsimni si, ze jeden clanek je jiz vygenerovany, neni to spatne pro prehlednost?
 
-    generujIndicieOdpojeniClanku(pocetClanku+(pocetClanku-1), pocetClanku); // rozdel
+    generujIndicieOdpojeniClanku(pocetClanku+(pocetClanku-1), pocetClanku, false); // rozdel
 
     // ↓
     int zacatek = 0;
@@ -1503,22 +1508,45 @@ void Tree::generujIndicieRozdeleni()
  *
  */
 
-void Tree::generujVrcholyIndicieVetve(const D3DXVECTOR3& _pocatek, bool zakoncit, bool navazat)
+void Tree::generujVrcholyIndicieVetve(const D3DXVECTOR3& _pocatek, bool zakoncit, bool navazat, int pocatecniElement=0, bool suda=0, int kolikPreskocit=0)
 {
     ///* Vzdy u liche vetve zavolam generuj indicie odpojeni a u sude generuj indicie navazani */
     int citac=0;
-    if( !navazat )
-        generujVrcholyIndicieKruhu( _pocatek );
+    if( !navazat ){
+//        generujVrcholyIndicieKruhu( _pocatek );
+        generujVrcholyKruhu( _pocatek );
+        generujIndicieClanku(citacClanku-1);
+    }
+    else if( navazat && !suda )
+        generujIndicieClanku(citacClanku-1); // prida zavereecne
+    else if ( navazat && suda ) {
+        int zacatek = pocatecniElement;
+        int cisloElementuRozdvojeni = pocatecniElement+1;
+        generujVrcholyKruhu(_pocatek);
+        generujIndicieClanku(cisloElementuRozdvojeni, pocetClanku*kolikPreskocit); // 2 prvni clanek musi spojit element rozdvojeni a prvni element druhe vetve,
+
+        int cisloNavazujicihoClanku = cisloElementuRozdvojeni + pocetClanku*kolikPreskocit + 1;
+        for (int u = 0; u < pocetClanku - 1; ++u){
+            generujIndicieClanku(cisloNavazujicihoClanku+(u)); //2.vse
+        generujVrcholyKruhu(_pocatek);
+        }
+    }
+
+    if(!suda){
     citac+=2*druhStromu.rozliseniE;//0
-    for(int i = 0; i < pocetClanku; ++i) {
-        ///*koncove spojovaci indexy*/
-        generujIndexyElementu(testValec, 0+i*druhStromu.rozliseniE); //0konec-zacate
-        generujIndexyElementu(testValec, 0+(i+1)*druhStromu.rozliseniE); //0konec-zacate
+    for(int i = (!suda)?0:1; i < pocetClanku; ++i) {
         citac+=2;//0konec-zacate
         if(zakoncit && i == pocetClanku-1)
             generujVrcholyKruhu( _pocatek );
-        else
-            generujVrcholyIndicieKruhu( _pocatek );
+        else{
+        generujVrcholyKruhu( _pocatek );
+        generujIndicieClanku(citacClanku-1);
+
+//            generujVrcholyIndicieKruhu( _pocatek );
+        ///*koncove spojovaci indexy*/
+//        generujIndexyElementu(testValec, pocatecniElement*druhStromu.rozliseniE+i*druhStromu.rozliseniE); //0konec-zacate
+//        generujIndexyElementu(testValec, pocatecniElement*druhStromu.rozliseniE+(i+1)*druhStromu.rozliseniE); //0konec-zacate
+        }
         citac+=2*druhStromu.rozliseniE;//1
     }
     if( !zakoncit ) {
@@ -1540,6 +1568,9 @@ void Tree::generujVrcholyIndicieVetve(const D3DXVECTOR3& _pocatek, bool zakoncit
 //        pocatek = {10000., 100000., 100000.};
 //        generujVrcholyKruhu( 3*pocatek ); //2.1
 //        generujVrcholyKruhu( 4*pocatek ); //2.2
+    }
+//    if( navazat && !suda )
+//        generujIndicieOdpojeniClanku(citacClanku-2, pocetClanku); // rozdel
     }
 }
 
@@ -1578,8 +1609,35 @@ bool Tree::generujElementyVetve(VlastnostiVetve& pV)
     switch (druhStromu.element) {
     case testValec: {
         D3DXVECTOR3 pocatek = {10000., 100000., 0.};
-        generujVrcholyIndicieVetve( pocatek, false, false );
-        pocatek = {10000., 100000., 10000.};
+        generujVrcholyIndicieVetve( pocatek, true, false, 0 , false );
+        std::cout << "\ncitac clanku> " << citacClanku << std::endl;
+        generujVrcholyIndicieVetve( pocatek, true, true/*, citacClanku-1*/, false );
+        pocatek = {10000., 900000., 80000.};
+        generujVrcholyIndicieVetve( pocatek, true, true/*, citacClanku-1*/, false );
+        int cisloClankuRozdvojeni = generujIndicieOdpojeniClanku(citacClanku-2, 1*pocetClanku, false); // rozdel
+        generujVrcholyIndicieVetve( -1*pocatek, true, true, cisloClankuRozdvojeni, true, 1);
+
+        cisloClankuRozdvojeni = generujIndicieOdpojeniClanku(citacClanku-2, pocetClanku, true); // rozdel
+        pocatek = {100000., 600000., 00.};
+        generujVrcholyKruhu( pocatek );
+        std::cout << "\ncislo clanku rozdvojnei: "<< cisloClankuRozdvojeni << std::endl;
+        generujIndicieClankuXY(cisloClankuRozdvojeni-pocetClanku, citacClanku-1);
+
+        pocatek = {300000., 900000., 80000.};
+        generujVrcholyIndicieVetve( pocatek, true, true/*, citacClanku-1*/, false );
+        cisloClankuRozdvojeni = generujIndicieOdpojeniClanku(citacClanku-2, 1*pocetClanku, false); // rozdel
+        pocatek.x = -pocatek.x;
+        generujVrcholyIndicieVetve( pocatek, true, true, cisloClankuRozdvojeni, true, 1);
+
+//        generujVrcholyIndicieVetve( pocatek, true, true, cisloClankuRozdvojeni-1, true, 3);
+//        generujVrcholyIndicieVetve( -2*pocatek, true, true, cisloClankuRozdvojeni, true, 3);
+//        generujVrcholyIndicieVetve( pocatek, true, true, citacClanku-1, false );
+//        cisloClankuRozdvojeni = generujIndicieOdpojeniClanku(citacClanku-2, 1*pocetClanku, false);
+//        generujVrcholyIndicieVetve( -2*pocatek, true, true, cisloClankuRozdvojeni, true, 1);
+
+//        generujVrcholyIndicieVetve( pocatek, true, true, citacClanku-1, false );
+//        generujVrcholyIndicieVetve( 3*pocatek, true, true, citacClanku-1, false );
+//        generujIndicieOdpojeniClanku(pocetClanku+(pocetClanku-1), pocetClanku); // rozdel
 //        generujVrcholyIndicieVetve( pocatek, true, true );
 //        pocatek = {0., -100000., 0.};
 //        generujVrcholyIndicieVetve( pocatek );
