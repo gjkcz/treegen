@@ -48,6 +48,7 @@ struct VlastnostiVetve {
     int rozliseniV;  /*Pocet elementu na vetev.*/
     float de;
     int posledniVrcholPredchoziVetve;
+    int citacClankuVetve;
     VlastnostiVetve* rodicka;
 };
 
@@ -120,7 +121,7 @@ private:
     int citacVrcholu;                            // MOZNA POTREBA VETSIHO MISTA
     int citacIndicii;
     int citacElementu;
-    int citacClanku;
+    long citacClanku;
     int citacVetvi;
     #ifdef DEBUG
 //    int kontrolniPocetVrcholu;
@@ -143,7 +144,7 @@ private:
     bool bVlnit;
     bool generujKmen();
     bool generujVlastnostiVetvi();
-    VlastnostiVetve generujVlastnostiVetve( VlastnostiVetve& parent, int strana, DruhStromu& _tType );
+    VlastnostiVetve generujVlastnostiVetve( const VlastnostiVetve& parent, int strana, DruhStromu& _tType );
     int spoctiClanky();
 //    int spoctiIndicie();
     int spoctiElementy();
@@ -158,11 +159,13 @@ private:
     bool generujElementyVetve( VlastnostiVetve& );
     void generujVrcholyIndicieVetve( const D3DXVECTOR3& pocatek, bool zakoncit, bool navazat, int pocatecniElement, bool suda, int kolikPreskocit );
     void generujVrcholyIndicieKruhu( const D3DXVECTOR3& pocatek );
+    void generujVrcholyKruhu( const D3DXVECTOR3& pocatek, VlastnostiVetve& pV );
     void generujVrcholyKruhu( const D3DXVECTOR3& pocatek );
     void generujIndicieRozdeleni();
     void generujIndicieClanku( int cislo );
     void generujIndicieClanku( int cislo, int preskocit );
     void generujVrcholyVetve( const D3DXVECTOR3& pocatek, int kolikClanku );
+    void generujVrcholyVetve( const D3DXVECTOR3& pocatek, int kolikClanku, VlastnostiVetve& pV );
     int generujIndicieVetve( int cislo, int kolikClanku );
     void generujIndicieClankuXY( int x, int y );
     void generujIndicieKruhuXY( int x, int y );

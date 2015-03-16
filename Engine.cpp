@@ -87,7 +87,8 @@ void Engine::priprav()              // vola porade: pripravView, pripravGeometri
     std::cout << "Generuji stromy" << '\n';
     pripravGeometrii();
     iKontroler3d.nastavRychlost(5000.);
-    iKontroler3d.nastavCitlivost(10.);
+//    iKontroler3d.nastavCitlivost(10.);
+//    iKontroler3d.nastavCitlivost(10.);
     std::cout << "Ok, pocet stromu je: " << t::Tree::pocetInstanciStromu << '\n';
     iKonzole.nastavBarvuPisma(sk::Barva::fbila);
     std::cout << "Hledi je ve smeru -x" << std::endl;
@@ -103,9 +104,9 @@ void Engine::pripravView()
     ZeroMemory( &d3dpp, sizeof( d3dpp ) );
     d3dpp.Windowed = true;
     d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
-//    d3dpp.EnableAutoDepthStencil = TRUE;
-//    d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
-    d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
+    d3dpp.EnableAutoDepthStencil = TRUE;
+    d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
+//    d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
     d3dpp.BackBufferFormat = D3DFMT_UNKNOWN;
 
     if (pd3dZarizeni == NULL)
@@ -137,12 +138,17 @@ void Engine::pripravView()
     }
 
 
-    pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
-    bcull = false;
+    if(bcull)
+    pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_CCW );
+    else
+    pd3dZarizeni->SetRenderState( D3DRS_CULLMODE, D3DCULL_CCW );
+
+    if(bwireframe)
     pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_WIREFRAME );
-    bwireframe = true;
+    else
+    pd3dZarizeni->SetRenderState( D3DRS_FILLMODE , D3DFILL_SOLID );
     // Turn on the zbuffer
-//    pd3dZarizeni->SetRenderState( D3DRS_ZENABLE, TRUE );
+    pd3dZarizeni->SetRenderState( D3DRS_ZENABLE, TRUE );
 
     Svetlo::priprav(pd3dZarizeni);
     D3DXVECTOR3 smer = {0.f, 0.f, -1.};
@@ -161,14 +167,14 @@ void Engine::pripravView()
 void Engine::pripravGeometrii()
 {
     t::DruhStromu druhStromu;
-    druhStromu.urovenRozvetveni = 5;
+    druhStromu.urovenRozvetveni = 4;
     druhStromu.pravdepodobnostRozvetveni = 91;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
-    druhStromu.rozliseniE = 5;
-    druhStromu.rozliseniV = 10;
+    druhStromu.rozliseniE = 60;
+    druhStromu.rozliseniV = 68;//170
     druhStromu.barva = t::bila;
     druhStromu.barveni = t::g;      // dasdASdASd
     D3DXMATRIX pocatek;
@@ -183,7 +189,6 @@ void Engine::pripravGeometrii()
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
     stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.00f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
     stromy[0].nastavKonzoli(iKonzole);
-    switchOsvetlovat(0.);
     D3DXVECTOR3 pocatecniBod = {10000000., 0., 0.};
     D3DXVECTOR3 koncovyBod = {5000., 40000., 100000.};
     yoffset = 10000.f;
@@ -273,12 +278,12 @@ void Engine::prectiVstupAUpravKameru(float& arg)
 void Engine::render3d()
 {
     if( bbClearColor )
-        pd3dZarizeni->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 255, 255, 255 ), 1.0f, 0 );
+        pd3dZarizeni->Clear( 0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 255, 255, 255 ), 1.0f, 0 );
     else
-        pd3dZarizeni->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 );
+        pd3dZarizeni->Clear( 0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 );
     // Begin the scene
     if( SUCCEEDED( pd3dZarizeni->BeginScene() ) ) {
-        D3DXMatrixPerspectiveFovLH( &maticeProjekce, fFOV, iOkno->vemRozmerX() / (FLOAT)(iOkno->vemRozmerY()), 1.0f, 102000000.0f );
+        D3DXMatrixPerspectiveFovLH( &maticeProjekce, fFOV, iOkno->vemRozmerX() / (FLOAT)(iOkno->vemRozmerY()), 10000.0f, 9000000.0f );
         pd3dZarizeni->SetTransform( D3DTS_VIEW, iKontroler3d.vemView() );
         pd3dZarizeni->SetTransform( D3DTS_PROJECTION, &maticeProjekce );
         svetla[se::Svetlo::pocetInstanciSvetla - 1].svit(iKontroler3d.vemSmerHledi());  /*baterka*/
@@ -290,7 +295,6 @@ void Engine::render3d()
             iTree.aktualizujMatici();
             iTree.vykresli(bosvetlovat);
         }
-
 
         pd3dZarizeni->SetFVF( D3DFVF_VrcholB );
         pd3dZarizeni->SetRenderState( D3DRS_LIGHTING, false );

@@ -67,9 +67,9 @@ private:
     LPDIRECT3DDEVICE9 pd3dZarizeni; // Our rendering device, lp= neco pointer, je to jenom typedef typedef struct IDirect3DDevice9 *LPDIRECT3DDEVICE9;
 
     bool bbClearColor = false;
-    bool bwireframe = false;
+    bool bwireframe = true;
     bool bosvetlovat = true;
-    bool bcull = false;
+    bool bcull = true;
     bool bflatShading = false;
     float fFOV;
     D3DXMATRIX maticeProjekce;
