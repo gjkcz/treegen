@@ -121,6 +121,7 @@ private:
     int citacIndicii;
     int citacElementu;
     int citacClanku;
+    int citacVetvi;
     #ifdef DEBUG
 //    int kontrolniPocetVrcholu;
     int kontrolniPocetIndicii;
@@ -164,6 +165,7 @@ private:
     void generujVrcholyVetve( const D3DXVECTOR3& pocatek, int kolikClanku );
     int generujIndicieVetve( int cislo, int kolikClanku );
     void generujIndicieClankuXY( int x, int y );
+    void generujIndicieKruhuXY( int x, int y );
     int generujIndicieOdpojeniClanku( int x, int pocetClankuVetve, bool suda );
     void generujVrcholElementu( Element e );
     void generujVrcholElementu( Element e, float, float, float, Barva );

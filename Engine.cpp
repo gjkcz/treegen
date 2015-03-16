@@ -161,14 +161,14 @@ void Engine::pripravView()
 void Engine::pripravGeometrii()
 {
     t::DruhStromu druhStromu;
-    druhStromu.urovenRozvetveni = 12;
+    druhStromu.urovenRozvetveni = 5;
     druhStromu.pravdepodobnostRozvetveni = 91;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
     druhStromu.rozliseniE = 5;
-    druhStromu.rozliseniV = 1;
+    druhStromu.rozliseniV = 10;
     druhStromu.barva = t::bila;
     druhStromu.barveni = t::g;      // dasdASdASd
     D3DXMATRIX pocatek;
@@ -181,7 +181,7 @@ void Engine::pripravGeometrii()
     yoffset = 0.f;
     xoffset = -1*fDalka;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
-    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.005f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.00f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
     stromy[0].nastavKonzoli(iKonzole);
     switchOsvetlovat(0.);
     D3DXVECTOR3 pocatecniBod = {10000000., 0., 0.};
