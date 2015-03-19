@@ -159,6 +159,7 @@ private:
     bool generujElementyVetve( VlastnostiVetve& );
     void generujVrcholyIndicieVetve( const D3DXVECTOR3& pocatek, bool zakoncit, bool navazat, int pocatecniElement, bool suda, int kolikPreskocit );
     void generujVrcholyIndicieKruhu( const D3DXVECTOR3& pocatek );
+    void generujVrcholyKruhu( const D3DXVECTOR3& pocatek, VlastnostiVetve& pV, float r, float radiusZ, float sklony, float sklonz, float Dens );
     void generujVrcholyKruhu( const D3DXVECTOR3& pocatek, VlastnostiVetve& pV );
     void generujVrcholyKruhu( const D3DXVECTOR3& pocatek );
     void generujIndicieRozdeleni();

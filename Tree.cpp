@@ -1414,7 +1414,7 @@ void Tree::generujVrcholyKruhu(const D3DXVECTOR3& pocatek, VlastnostiVetve& pV)
     float Zkoord = 0.;
     float sklonz = PI/2;
     float sklony = 0.;
-    float rMod = sin(pV.citacClankuVetve*5*PI/180)*1000. +10000.;
+    float rMod = sin(pV.citacClankuVetve*5*PI/180)*1. +10000.;//65000
     float r = rMod;
     posunZ = /*citacClanku*(1000000./druhStromu.rozliseniV)*/ + pocatek.z;
     if(citacVrcholu>=druhStromu.rozliseniE) {
@@ -1423,11 +1423,76 @@ void Tree::generujVrcholyKruhu(const D3DXVECTOR3& pocatek, VlastnostiVetve& pV)
     float radiusZ = 50000.;
     for (float a = 2*PI; a >= Dens; a-=Dens) {																			//kruh
         r = rMod+sin(a*4)*500.;
-        OrigoX=cos((float)a-sklonz) * r + radiusZ;
-        OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r;
+        OrigoX=cos((float)a-sklonz) * r + radiusZ + sin(pV.citacClankuVetve*5*PI/180)*4700.;
+        OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r + sin(pV.citacClankuVetve*5*PI/180)*2700.;
         if(OrigoX==0) {
             posX=0.;
             posY=0.;
+        } else {
+            posX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunX;
+            posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ posunY;
+        }
+        posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + posunZ;
+//        cstmvtxVrcholy[citacVrcholu].x = posX;
+//        cstmvtxVrcholy[citacVrcholu].y = posY;
+//        cstmvtxVrcholy[citacVrcholu].z = posZ;
+//        cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
+        VrcholBK tmp = {posX, posY, posZ, D3DXVECTOR3(0., 0., 0.), druhStromu.barva};
+        vrcholy.push_back(tmp);
+        citacVrcholu++;
+    }
+    citacClanku++;
+    pV.citacClankuVetve++;
+}
+
+void Tree::generujVrcholyKruhu(const D3DXVECTOR3& pocatek, VlastnostiVetve& pV, float r, float radiusZ, float sklony, float sklonz, float Dens)
+{
+//    float Zkoord = 0.0f;
+    float OrigoX=0., OrigoY=0.,
+          posX=0., posY=0., posZ=0.,
+          posunX=pocatek.x, posunY=pocatek.y, posunZ=0.;
+	float iVx = 0;int reality=0;
+	iVx=2*PI/Dens;
+
+//	for (float a = 2*PI; a> Dens; a-=Dens)																				//kruh
+//	{
+//		reality++;
+//		OrigoX=cos((float)a-sklonz) * r + radiusZ;
+//		OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r;
+//		if(OrigoX==0)
+//		{
+////			Barva.x=0.f;//MANUAL OVERRIDE but this never happens
+////			Barva.y=1.f;
+////			Barva.z=0.f;
+//			posX=posunX;
+//			posY=posunY;
+//		}
+//		else{
+//			posX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + pocatek.x;
+//			posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ pocatek.y;
+//		}
+//		posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + pocatek.z;
+//		vPoradi++;
+//	}
+    /*float*/ Dens = 2.* PI/druhStromu.rozliseniE;
+    float Zkoord = 0.;
+//    float sklonz = PI/2;
+//    float sklony = 0.;
+    float rMod = sin(pV.citacClankuVetve*5*PI/180)*1. +10000.;//65000
+    /*float*/ r = rMod+r;
+    posunZ = /*citacClanku*(1000000./druhStromu.rozliseniV)*/ + pocatek.z;
+    if(citacVrcholu>=druhStromu.rozliseniE) {
+//            r -= citacClanku*10000.;
+    }
+//    float radiusZ = 50000.;
+    for (float a = 2*PI; a >= Dens; a-=Dens) {																			//kruh
+        r = rMod+sin(a*4)*500.;
+        OrigoX=cos((float)a-sklonz) * r + radiusZ + sin(pV.citacClankuVetve*5*PI/180)*4700.;
+        OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r + sin(pV.citacClankuVetve*5*PI/180)*2700.;
+        if(OrigoX==0.f) {
+                std::cout << "nula origoX" << std::endl;
+            posX=posunX;
+            posY=posunY;
         } else {
             posX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunX;
             posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ posunY;
@@ -1584,6 +1649,78 @@ void Tree::generujVrcholyVetve(const D3DXVECTOR3& pocatek, int kolikClanku)
 
 void Tree::generujVrcholyVetve(const D3DXVECTOR3& pocatek, int kolikClanku, VlastnostiVetve& pV)
 {
+
+	/*float ample;//, per; //radius krouceniaa
+	float sklony = 0.f; //=uhel v rad, sklonx
+	float radiusZ = 0;
+	float sklonz = 0;
+	float posunX, posunY, posunZ;
+	posunX = 0.f;
+	posunY = 0.f;
+	posunZ = 0.f;
+	float Zkoord = 0.0f;
+	ample= 1.f;
+	sklonz = 0;
+	float OrigoY = 0.f;
+	float afterY = 0.f;
+	float OrigoX = 0.f;
+	float OrigoZ = 0.f;
+	float Rorigin = pV.r.r;
+	objRust TempRust = pV.r;
+	float xAmp=1, yAmp=0;
+	if(pV.k)
+		pV.rT.r = 0.01f;
+	else
+	{
+	}
+	for (float x = 0.f; x+1.f< pV.d/pV.m; x+=1.f)
+	{
+		//mezera = (2*PI*TemppV.r.r)/90; //360...obvod 1 stupne..
+		TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
+		TempRust.rotace += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
+		TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
+
+		//TempRust.sklon = PI/4+sin(3*OrigoZ*PI/180)/10;
+		//TempRust.rotace = PI/4;
+		sklony =TempRust.sklon-PI/2;
+		sklonz =  -TempRust.rotace;
+
+		//sklony = PI/2 +TempRust.sklon;
+		//sklonz = PI/2 -TempRust.rotace;
+		OrigoZ+=pV.m;
+
+		//OrigoX = (2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp;  // to je ten problem>kedysin nabude0tak se nasledujici vyrazy z nejakeho duvodu nevyhodnoti
+		//OrigoY = (2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp;
+
+		OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
+		OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
+		//Barva.x=abs((OrigoX-(2*xAmp+1))/xAmp)+1-abs((OrigoX-(2*xAmp+1))/xAmp);//MANUAL OVERRIDE
+		//Barva.y=abs((OrigoX-(2*xAmp+1))/xAmp);
+		//Barva.z=0.f;
+
+			afterY=cos(TempRust.sklon)*OrigoZ;
+			posunZ=pV.x.z+sin(TempRust.sklon)*OrigoZ;
+			posunY=pV.x.y+cos(TempRust.rotace)*afterY;
+			posunX=pV.x.x+sin(TempRust.rotace)*afterY;
+			//Barva.x =0.f;//MANUAL OVERRIDE
+			//Barva.y=1.f;
+			//Barva.z=0.f;
+
+
+		countEm=vPoradi;
+
+		RostClanek(TempRust.r, radiusZ, sklony, sklonz, pV.de, posunX, posunY, posunZ);
+
+	afterY=cos(TempRust.sklon)*OrigoZ;
+	posunZ=pV.x.z+sin(TempRust.sklon)*OrigoZ;
+	posunY=pV.x.y+cos(TempRust.rotace)*afterY;
+	posunX=pV.x.x+sin(TempRust.rotace)*afterY;
+	pV.x.x = posunX;
+	pV.x.y = posunY;
+	pV.x.z = posunZ;
+	}*/
+
+
 //    if(pV.k)
 //        pV.rT.r = 0.01f;
     D3DXVECTOR3 _poc = pocatek;
@@ -1599,13 +1736,23 @@ void Tree::generujVrcholyVetve(const D3DXVECTOR3& pocatek, int kolikClanku, Vlas
     float rMod = sin(citacClanku*PI/180)*5000. + pV.rodicka->r.r;
     float r = rMod;
     posunZ = citacClanku*(1000000./druhStromu.rozliseniV);
-    generujVrcholyKruhu( _poc, pV );
-    for (float x = 0.f; x < kolikClanku; x += 1.f) {
-        TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
-        TempRust.rotace += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
-        TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
+    float radiusZ = 0.f;
+    if ( citacClanku != 0){
+        pV.r = pV.rodicka->rT;
+//        r = TempRust.r;
+//        sklony = TempRust.sklon;
+//        sklonz = TempRust.rotace;
+    }
+        _poc = pV./*rodicka->*/x;
+        TempRust = pV.r;
+//    generujVrcholyKruhu( _poc, pV, r, radiusZ, sklony, sklonz, Dens );
+    for (float x = 0.f; x <= kolikClanku; x += 1.f) {
+        TempRust.r += (pV.rT.r - pV.r.r)/kolikClanku;
+        TempRust.rotace += (pV.rT.rotace - pV.r.rotace)/kolikClanku;
+        TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/kolikClanku;
         sklony = TempRust.sklon-PI/2;
-        sklonz =  -TempRust.rotace;
+//        sklonz = -TempRust.rotace;
+        sklonz = -TempRust.rotace;
         OrigoZ+=pV.m;
         OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
         OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
@@ -1615,7 +1762,7 @@ void Tree::generujVrcholyVetve(const D3DXVECTOR3& pocatek, int kolikClanku, Vlas
         posunX=pV.x.x+sin(TempRust.rotace)*afterY;
         countEm=citacVrcholu;
         _poc = {posunX, posunY, posunZ};
-        generujVrcholyKruhu( _poc, pV );
+        generujVrcholyKruhu( _poc, pV, r, radiusZ, sklony, sklonz, Dens );
     }
     ++citacVetvi;
 }
@@ -1837,23 +1984,23 @@ bool Tree::generujElementyVetve( VlastnostiVetve& pV)
         {
 ///* Triangle list */
             D3DXVECTOR3 pocatek = {10000., 100000., 0.};
-            float koeficientBarvy = 9.0f;
+//            float koeficientBarvy = 9.0f;
             int soucasnyKruh;
             int soucasnyClanek = citacClanku-1-1*(citacVetvi-1);
-            int budouciClanek = soucasnyClanek+1;
-            TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
-            TempRust.rotace  += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
-            TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
-            sklony = TempRust.sklon-PI/2;
-            sklonz = -TempRust.rotace;
-            OrigoZ += pV.m;
-            OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
-            OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
-            afterY = cos(TempRust.sklon)*OrigoZ;
-            posunZ = pV.x.z;
-            posunY = pV.x.y;
-            posunX = pV.x.x;
-            pocatek = {posunX, posunY, posunZ};
+//            int budouciClanek = soucasnyClanek+1;
+//            TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
+//            TempRust.rotace  += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
+//            TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
+//            sklony = TempRust.sklon-PI/2;
+//            sklonz = -TempRust.rotace;
+//            OrigoZ += pV.m;
+//            OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
+//            OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
+//            afterY = cos(TempRust.sklon)*OrigoZ;
+//            posunZ = pV.x.z;
+//            posunY = pV.x.y;
+//            posunX = pV.x.x;
+//            pocatek = {posunX, posunY, posunZ};
             if ( citacClanku != 0/* pV.rodicka->posledniVrcholPredchoziVetve != 0*/) {
                 generujIndicieKruhuXY(pV.rodicka->posledniVrcholPredchoziVetve, citacClanku+1); // beru jako posledni clanek rodicky
             }
