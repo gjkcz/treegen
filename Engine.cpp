@@ -167,15 +167,15 @@ void Engine::pripravView()
 void Engine::pripravGeometrii()
 {
     t::DruhStromu druhStromu;
-    druhStromu.urovenRozvetveni = 4;
+    druhStromu.urovenRozvetveni = 10;
     druhStromu.pravdepodobnostRozvetveni = 91;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t::testValec;
-    druhStromu.rozliseniE = 360;
-    druhStromu.rozliseniV = 69;//170
-    druhStromu.barva = t::bila;
+    druhStromu.rozliseniE = 3;
+    druhStromu.rozliseniV = 100;//170
+    druhStromu.barva = t::cervena;
     druhStromu.barveni = t::g;      // dasdASdASd
     D3DXMATRIX pocatek;
     fDalka = 950000.f; // ' nova fitura kazi formatovani
@@ -202,7 +202,7 @@ void Engine::pripravGeometrii()
 //    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.009f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
 
 #ifdef STACK
-    druhStromu.element = t::usecka;
+    druhStromu.element = t::testValec;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 0;

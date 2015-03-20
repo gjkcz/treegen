@@ -555,7 +555,7 @@ bool Tree::generujVlastnostiVetvi()
     pocetKoncovychVetvi = o;
     pocetRozdvojujicichseVetvi = p;
     vlastnostiVetvi = new VlastnostiVetve[pocetVetvi];
-    for(int x = 0; x < pocetVetvi; x++) {    // inicializace parametru vetve
+    for(int x = 0; x < pocetVetvi; x++) {    // inicializace parametru vetve, pozor je prepsana pri generovani, az na prvni vetev
         vlastnostiVetvi[x].k = false;
         vlastnostiVetvi[x].rozliseniE = druhStromu.rozliseniE;
         vlastnostiVetvi[x].rozliseniV = druhStromu.rozliseniV;
@@ -572,8 +572,8 @@ bool Tree::generujVlastnostiVetvi()
     vlastnostiVetvi[0].rT.rotace = 0;
     vlastnostiVetvi[0].rT.sklon = PI/2;//+1*PI/180;//-89*PI/180;
     vlastnostiVetvi[0].d = helper::random()*(100000+1111*druhStromu.urovenRozvetveni)+11111*druhStromu.urovenRozvetveni;
-    vlastnostiVetvi[0].r.r = 0.999*(druhStromu.urovenRozvetveni-1)+555;
-    vlastnostiVetvi[0].rT.r = vlastnostiVetvi[0].r.r *  (helper::random()*1+0.5)/10.f;
+    vlastnostiVetvi[0].r.r = 0.999*(druhStromu.urovenRozvetveni-1)+29555.;
+    vlastnostiVetvi[0].rT.r = vlastnostiVetvi[0].r.r *  (helper::random()*1+0.5)/1.f;
     vlastnostiVetvi[0].de =  50.f* PI/180;
 #ifdef PROBLEMATICAL
     vlastnostiVetvi[0].x.x = 0.0f;
@@ -680,9 +680,12 @@ VlastnostiVetve Tree::generujVlastnostiVetve( const VlastnostiVetve& parent, int
     pVs.m = parent.m;
     pVs.suda = (strana%2==0)? true : false;
     pVs.posledniVrcholPredchoziVetve = 0;
+    pVs.rozliseniE = druhStromu.rozliseniE;
+    pVs.citacClankuVetve = 0;
     if(parent.posledniVrcholPredchoziVetve == 0)
         pVs.rodicka = (VlastnostiVetve*)&parent;
-
+    pVs.r.r = pVs.rodicka->rT.r;
+    pVs.rT.r = pVs.rodicka->rT.r*0.85;
 
     switch(_tType._iSType) {
     case 0: {
@@ -821,6 +824,7 @@ VlastnostiVetve Tree::generujVlastnostiVetve( const VlastnostiVetve& parent, int
     }
     break;
     }
+    pVs.rozliseniV = druhStromu.rozliseniV/**(pVs.d/vlastnostiVetvi[0].d)*/;
 #ifdef PROBLEMATICAL
     /*minimalne pulka a maximalne stejna delka jako rodicka*/
     if ( druhStromu.element == usecka ) {
@@ -1478,8 +1482,8 @@ void Tree::generujVrcholyKruhu(const D3DXVECTOR3& pocatek, VlastnostiVetve& pV, 
     float Zkoord = 0.;
 //    float sklonz = PI/2;
 //    float sklony = 0.;
-    float rMod = sin(pV.citacClankuVetve*5*PI/180)*1. +10000.;//65000
-    /*float*/ r = rMod+r;
+    float rMod = sin(pV.citacClankuVetve*25*PI/180)*(1/7.)*r +r;//65000
+    /*float*/ r = rMod;
     posunZ = /*citacClanku*(1000000./druhStromu.rozliseniV)*/ + pocatek.z;
     if(citacVrcholu>=druhStromu.rozliseniE) {
 //            r -= citacClanku*10000.;
@@ -1487,15 +1491,15 @@ void Tree::generujVrcholyKruhu(const D3DXVECTOR3& pocatek, VlastnostiVetve& pV, 
 //    float radiusZ = 50000.;
     for (float a = 2*PI; a >= Dens; a-=Dens) {																			//kruh
         r = rMod+sin(a*4)*500.;
-        OrigoX=cos((float)a-sklonz) * r + radiusZ + sin(pV.citacClankuVetve*5*PI/180)*4700.;
-        OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r + sin(pV.citacClankuVetve*5*PI/180)*2700.;
+        OrigoX=cos((float)a-sklonz) * r + radiusZ /*+sin(pV.citacClankuVetve*15*PI/180)*45700.*/;
+        OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r/* + sin(pV.citacClankuVetve*25*PI/180)*27500.*/;
         if(OrigoX==0.f) {
                 std::cout << "nula origoX" << std::endl;
             posX=posunX;
             posY=posunY;
         } else {
             posX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunX;
-            posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ posunY;
+            posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunY;
         }
         posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + posunZ;
 //        cstmvtxVrcholy[citacVrcholu].x = posX;
@@ -1750,10 +1754,52 @@ void Tree::generujVrcholyVetve(const D3DXVECTOR3& pocatek, int kolikClanku, Vlas
         TempRust.r += (pV.rT.r - pV.r.r)/kolikClanku;
         TempRust.rotace += (pV.rT.rotace - pV.r.rotace)/kolikClanku;
         TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/kolikClanku;
+
+        TempRust.r = pV.r.r + log(x*(_E-1.)/kolikClanku+1.)*(pV.rT.r-pV.r.r);
+        TempRust.rotace = pV.r.rotace + log(x*(_E-1.)/kolikClanku+1.)*(pV.rT.rotace-pV.r.rotace);
+        TempRust.sklon = pV.r.sklon + log(x*(_E-1.)/kolikClanku+1.)*(pV.rT.sklon-pV.r.sklon);
+
+        TempRust.r = pV.r.r + pow(x/kolikClanku, 1/4.)*(pV.rT.r-pV.r.r);
+        TempRust.rotace = pV.r.rotace + pow(x/kolikClanku, 1/4.)*(pV.rT.rotace-pV.r.rotace);
+        TempRust.sklon = pV.r.sklon + pow(x/kolikClanku, 1/4.)*(pV.rT.sklon-pV.r.sklon);
+
+        double d = 4.,
+                f = 1.2,
+                p = kolikClanku,
+                g = 100000000.00,
+                R0 = pV.r.r,
+                R1 = pV.rT.r,
+                y = (x*d*f+p*f-p)*pow(x*d+p, -1.);
+        TempRust.r = R0 + y*(R1-R0);
+                R0 = pV.r.rotace,
+                R1 = pV.rT.rotace;
+        TempRust.rotace = R0 + y*(R1-R0);
+                R0 = pV.r.sklon,
+                R1 = pV.rT.sklon;
+        TempRust.sklon = R0 + y*(R1-R0);
+
+        // pred upravami :D
+//                d = 0.01,
+//                f = 1.06,
+//                p = kolikClanku-20,
+//                g = 999.00,
+//                R0 = pV.r.r,
+//                R1 = pV.rT.r,
+//                y = f-(1.)/(d*(x*(g/p)+1./d));
+//        TempRust.r = R0 + y*(R1-R0);
+//                R0 = pV.r.rotace,
+//                R1 = pV.rT.rotace;
+//        TempRust.rotace = R0 + y*(R1-R0);
+//                R0 = pV.r.sklon,
+//                R1 = pV.rT.sklon;
+//        TempRust.sklon = R0 + y*(R1-R0);
+
         sklony = TempRust.sklon-PI/2;
 //        sklonz = -TempRust.rotace;
         sklonz = -TempRust.rotace;
-        OrigoZ+=pV.m;
+//        OrigoZ += pV.m;
+        OrigoZ += pV.d*1./kolikClanku;
+
         OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
         OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
         afterY=cos(TempRust.sklon)*OrigoZ;
@@ -1762,7 +1808,7 @@ void Tree::generujVrcholyVetve(const D3DXVECTOR3& pocatek, int kolikClanku, Vlas
         posunX=pV.x.x+sin(TempRust.rotace)*afterY;
         countEm=citacVrcholu;
         _poc = {posunX, posunY, posunZ};
-        generujVrcholyKruhu( _poc, pV, r, radiusZ, sklony, sklonz, Dens );
+        generujVrcholyKruhu( _poc, pV, TempRust.r, radiusZ, sklony, sklonz, Dens );
     }
     ++citacVetvi;
 }
@@ -2005,8 +2051,8 @@ bool Tree::generujElementyVetve( VlastnostiVetve& pV)
                 generujIndicieKruhuXY(pV.rodicka->posledniVrcholPredchoziVetve, citacClanku+1); // beru jako posledni clanek rodicky
             }
             soucasnyClanek = citacClanku+1-1*(citacVetvi-1);
-            generujVrcholyVetve( pocatek, druhStromu.rozliseniV, pV );      // pridava dva clanky 3 kruhy
-            generujIndicieVetve( citacVetvi, druhStromu.rozliseniV );
+            generujVrcholyVetve( pocatek, pV.rozliseniV, pV );      // pridava dva clanky 3 kruhy
+            generujIndicieVetve( citacVetvi, pV.rozliseniV );
             soucasnyKruh = citacClanku;//-prazdny clanek  na pomezi
             pV.posledniVrcholPredchoziVetve = soucasnyKruh;
         }

@@ -7,6 +7,7 @@
 //#define windowWidth 1920
 #define windowHeight 1080
 #define PI 3.14159265358979323846
+#define _E 2.718281828459045235360287471352
 #define TREEVERBOSE
 //#define DESTRUCTORVERBOSE
 #define DEBUG
