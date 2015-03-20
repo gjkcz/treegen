@@ -19,6 +19,7 @@
 #include "TreeType.hpp"
 #include "Helper.hpp"
 #include "Tree.hpp"
+#include "Tree3.hpp"
 #include "Usecka.hpp"
 #include "Svetlo.hpp"
 #include "globals.hpp"
@@ -76,6 +77,7 @@ private:
 
     MapaFunkciEnginu mapaFci;
     std::vector<t::Tree> stromy;
+    std::vector<t3::Tree3> stromy3D;
     std::vector<se::Usecka> usecky;
     std::vector<se::Svetlo> svetla;
     float fDalka; //0

@@ -47,6 +47,7 @@ Engine::Engine(sw::Okno* _okno) : iOkno(_okno), iKontroler3d(iOkno->hWnd)
 void Engine::releaseD3d()
 {
     stromy.clear();
+    stromy3D.clear();
 #ifdef DESTRUCTORVERBOSE
     std::cout << "Engine release.\nPocet stromu: " << t::Tree::pocetInstanciStromu << std::endl;
     std::cout << "Releasing zarizeni" << std::endl;
@@ -166,17 +167,17 @@ void Engine::pripravView()
 
 void Engine::pripravGeometrii()
 {
-    t::DruhStromu druhStromu;
+    t3::DruhStromu druhStromu;
     druhStromu.urovenRozvetveni = 10;
     druhStromu.pravdepodobnostRozvetveni = 91;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
-    druhStromu.element = t::testValec;
+    druhStromu.element = t3::testValec;
     druhStromu.rozliseniE = 3;
     druhStromu.rozliseniV = 100;//170
-    druhStromu.barva = t::cervena;
-    druhStromu.barveni = t::g;      // dasdASdASd
+    druhStromu.barva = t3::cervena;
+    druhStromu.barveni = t3::g;      // dasdASdASd
     D3DXMATRIX pocatek;
     fDalka = 950000.f; // ' nova fitura kazi formatovani
     float xoffset = -2*fDalka;
@@ -187,8 +188,8 @@ void Engine::pripravGeometrii()
     yoffset = 0.f;
     xoffset = -1*fDalka;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
-    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.00f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
-    stromy[0].nastavKonzoli(iKonzole);
+    stromy3D.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.00f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+    stromy3D[0].nastavKonzoli(iKonzole);
     D3DXVECTOR3 pocatecniBod = {10000000., 0., 0.};
     D3DXVECTOR3 koncovyBod = {5000., 40000., 100000.};
     yoffset = 10000.f;
@@ -196,17 +197,17 @@ void Engine::pripravGeometrii()
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
     // DRUHY
     xoffset = -3*fDalka;
-    druhStromu.element = t::bod;
-    druhStromu.barva = t::zlutozelena;
+    druhStromu.element = t3::bod;
+    druhStromu.barva = t3::zlutozelena;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
-//    stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.009f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+//    stromy3D.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.009f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
 
 #ifdef STACK
-    druhStromu.element = t::testValec;
+    druhStromu.element = t3::testValec;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 0;
-    int pocetStacku = 0;  // 1000
+    int pocetStacku = 18;  // 1000
     int pocetStromuStacku = 1; //15
     try {
         float vyska = 0.f;
@@ -223,7 +224,7 @@ void Engine::pripravGeometrii()
                 int iTyp=0;
                 bool bIAm = false;
                 int l = 0;
-                t::DruhStromu type = druhStromu;
+                t3::DruhStromu type = druhStromu;
                 for(int c=0; c<3; c++) {
                     while(!bIAm) {
                         if (o%iTypu==l) {
@@ -239,7 +240,7 @@ void Engine::pripravGeometrii()
                 }
 //        type._iRType=5;
 //        type._iDType=4;
-                stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.00f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+                stromy3D.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.00f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
             }
             zoffset = 0.f;
         }
@@ -292,6 +293,11 @@ void Engine::render3d()
         }
 
         for (auto &iTree : stromy) {      // Vykresli obsah vectoru stromu
+            iTree.aktualizujMatici();
+            iTree.vykresli(bosvetlovat);
+        }
+
+        for (auto &iTree : stromy3D) {      // Vykresli obsah vectoru stromu3D
             iTree.aktualizujMatici();
             iTree.vykresli(bosvetlovat);
         }
@@ -349,7 +355,7 @@ void Engine::regenerujStromy(float kolikrat)
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
-    druhStromu.element = t::usecka;
+    druhStromu.element = t::testValec;
     druhStromu.barva = t::zelena;
     druhStromu.barveni = t::g;      // d
 //    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);
@@ -423,7 +429,7 @@ void Engine::pridejStrom(float)
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
-    druhStromu.element = t::testValec;
+    druhStromu.element = t::usecka;
     druhStromu.rozliseniV = 15;
     druhStromu.rozliseniE = 60;
 //    druhStromu.rozliseniV = 10;

@@ -3,6 +3,7 @@
 #include "globals.hpp"
 
 int t::Tree::pocetInstanciStromu = 0;
+int t3::Tree3::pocetInstanciStromu = 0;
 int se::Svetlo::pocetInstanciSvetla = 0;
 
 int WINAPI WinMain (HINSTANCE hThisInstance,
