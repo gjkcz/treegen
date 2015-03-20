@@ -123,12 +123,6 @@ private:
     int citacElementu;
     long citacClanku;
     int citacVetvi;
-    #ifdef DEBUG
-//    int kontrolniPocetVrcholu;
-    int kontrolniPocetIndicii;
-    int kontrolniPocetVetvi;
-    int kontrolniPocetElementu;
-    #endif // DEBUG
     D3DXMATRIX matice;
     D3DXMATRIX world;
     float rotace, zmenaRotace;
@@ -137,7 +131,6 @@ private:
     D3DXMATRIX maticeRotaceStromuZ;
     LPDIRECT3DDEVICE9 pzarizeni;
     D3DXVECTOR4 barvaStromu;
-//    int posledniVrcholPredchoziVetve;
     float per, gonx; //, height;
     int sum;
     int countEm;
@@ -146,10 +139,8 @@ private:
     bool generujVlastnostiVetvi();
     VlastnostiVetve generujVlastnostiVetve( const VlastnostiVetve& parent, int strana, DruhStromu& _tType );
     int spoctiClanky();
-//    int spoctiIndicie();
     int spoctiElementy();
     int spoctiVrcholy();           // Potreba pred vytvarenim buffru, potrebuje vygenerovat vlastnosti vetvi
-    bool alokujMistoProVrcholyAindicie();
     bool vytvorBufferVrcholu();            // Je treba jiz znat pocet vrcholu
     bool vytvorBufferIndicii();
     void znicBuffery();
@@ -157,30 +148,16 @@ private:
     bool uzamkniPoleDoBuffru();       // musi existovat buffer a cstmvtxVrcholy musi byt nejprve vytvoreny,
     bool generujVykreslovaciDataVetvi();     // Musi znat pocet vrcholu
     bool generujElementyVetve( VlastnostiVetve& );
-    void generujVrcholyIndicieVetve( const D3DXVECTOR3& pocatek, bool zakoncit, bool navazat, int pocatecniElement, bool suda, int kolikPreskocit );
-    void generujVrcholyIndicieKruhu( const D3DXVECTOR3& pocatek );
     void generujVrcholyKruhu( const D3DXVECTOR3& pocatek, VlastnostiVetve& pV, float r, float radiusZ, float sklony, float sklonz, float Dens );
-    void generujVrcholyKruhu( const D3DXVECTOR3& pocatek, VlastnostiVetve& pV );
-    void generujVrcholyKruhu( const D3DXVECTOR3& pocatek );
-    void generujIndicieRozdeleni();
-    void generujIndicieClanku( int cislo );
-    void generujIndicieClanku( int cislo, int preskocit );
-    void generujVrcholyVetve( const D3DXVECTOR3& pocatek, int kolikClanku );
     void generujVrcholyVetve( const D3DXVECTOR3& pocatek, int kolikClanku, VlastnostiVetve& pV );
     int generujIndicieVetve( int cislo, int kolikClanku );
-    void generujIndicieClankuXY( int x, int y );
     void generujIndicieKruhuXY( int x, int y );
-    int generujIndicieOdpojeniClanku( int x, int pocetClankuVetve, bool suda );
-    void generujVrcholElementu( Element e );
-    void generujVrcholElementu( Element e, float, float, float, Barva );
     void generujVrcholElementu( float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ );   // melo by brat pole referenci za param
-    void generujIndexyElementu( Element e, int );
-    void generujIndexyElementu( Element e, int, int );
+    void generujIndicieElementu( Element e, int );
+    void generujIndicieElementu( Element e, int, int );
     void pridejNormaluVrcholu( int pozice, D3DXVECTOR3 kolmice );
     D3DXVECTOR3 spocitejNormaluVrcholu( int a, int b, int c );
     D3DXVECTOR3 spocitejNormaluVrcholu( int a );
-    bool generujListy();
-    bool generujPlosky();
     bool odemkniVrcholyProCteni();
     bool zkopirujVrcholyDoBuffru( const std::vector<VrcholBK>& _vrcholy );   // Vola vytvorBuffer
     bool zkopirujIndicieDoBuffru( const std::vector<long>& _indicie );   // Vola vytvorBuffer

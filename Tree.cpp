@@ -29,6 +29,8 @@ Tree::Tree(Tree&& tmp)
 #ifdef TREEVERBOSE
     std::cout << "Calling trees move ctor" << std::endl;
 #endif // defined
+    btriangleList = tmp.btriangleList;
+
     pocetIndicii = tmp.pocetIndicii;
     pocetElementu = tmp.pocetElementu;
     pocetClanku = tmp.pocetClanku;
@@ -78,62 +80,6 @@ Tree::Tree(Tree&& tmp)
     ++pocetInstanciStromu;
 }
 
-Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni) : druhStromu(_druhStromu), pzarizeni(*_pzarizeni)
-{
-    zmenaRotace = 0.f;
-    cstmvtxVrcholy = nullptr;
-    vlastnostiVetvi = nullptr;
-    bufferVrcholu = nullptr;
-    bufferIndicii = nullptr;
-    paIndicie = nullptr;
-    D3DXMatrixRotationX(&maticeRotaceStromuX, -3.14159265358979323846/2);     // Otoci strom o -Pi kolem x
-    D3DXMatrixScaling(&maticeSkalovani, 0.5f, 0.5f, 0.5f );                 // Zmensi strom na 1/2
-    matice = pocatek;
-    barvaStromu = D3DXVECTOR4(0.f,0.f,0.f,0.f);
-    bVlnit = true;
-    citacVrcholu = 0;
-    citacIndicii = 0;
-    per = 0.f;
-    gonx = 0.f;
-    sum = 0;
-    countEm = 0;
-    try {
-        generujKmen();  // nastavi barvu stromu
-#ifdef TREEVERBOSE
-        std::cout << "\nGeneruji vlastnosti vetvi...";
-#endif // defined
-        if(!generujVlastnostiVetvi()) throw StromVyjimka("Nepodarilo se vygenerovat vlastnosti vetvi.");   // nastavi take pocet vetvi
-        pocetVrcholu = spoctiVrcholy();
-        pocetElementu = spoctiElementy();
-#ifdef TREEVERBOSE
-        std::cout << "Ok\n";
-        std::cout << "Pravdepodobnost rozvetveni: " << druhStromu.pravdepodobnostRozvetveni<<"%" << std::endl;
-        std::cout << "Pocet urovni koruny: " << druhStromu.urovenRozvetveni << std::endl;
-        std::cout << "Pocet vetvi bude: " << pocetVetvi<< std::endl;
-        std::cout << "Pocet elementu bude: " << pocetElementu << std::endl;
-        std::cout << "Pocet vrcholu bude: " << pocetVrcholu << std::endl;
-        std::cout << "Vyhrazuji misto pro vrcholy...";
-#endif // defined
-//        if(!alokujMistoProVrcholyAindicie()) throw StromVyjimka("Nelze vyhradit dostatek mista pro vrcholy!");
-#ifdef TREEVERBOSE
-        std::cout << "Ok\n";
-#endif
-        if(!uzamkniPoleDoBuffru()) throw StromVyjimka("Nepodarilo se pridat vrcholy do buffru.");
-#ifdef TREEVERBOSE
-        std::cout << "Generuji vrcholy...";
-#endif // defined
-        if(!generujVykreslovaciDataVetvi()) throw StromVyjimka("Nepodarilo se vygenerovat vrcholy vetvi.");      // zavola generujVetev->generujClanek
-        if(!odemkniVrcholyProCteni()) throw StromVyjimka("nepodarilo se odemknout vrcholy pro cteni.");
-#ifdef TREEVERBOSE
-        std::cout << "Strom uspesne vygenerovan a pripraven ke kresleni.\n" << std::endl;
-#endif // defined
-    } catch (std::exception& e) {
-        std::cout << "Standard exception: " << e.what() << std::endl;
-    }
-
-    ++pocetInstanciStromu;
-}
-
 Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni, float zRot) : druhStromu(_druhStromu), pzarizeni(*_pzarizeni), zmenaRotace(zRot)
 {
     cstmvtxVrcholy = nullptr;
@@ -167,7 +113,6 @@ Tree::Tree(DruhStromu& _druhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pza
         std::cout << "\nGeneruji vlastnosti vetvi...";
 #endif // defined
         if(!generujVlastnostiVetvi()) throw StromVyjimka("Nepodarilo se vygenerovat vlastnosti vetvi.");   // nastavi take pocet vetvi
-//        if(!alokujMistoProVrcholyAindicie()) throw StromVyjimka("Nelze vyhradit dostatek mista pro vrcholy!");
 #ifdef TREEVERBOSE
         std::cout << "Ok\n";
 #endif
@@ -445,9 +390,6 @@ bool Tree::generujKmen()
 
 bool Tree::generujVlastnostiVetvi()
 {
-#ifdef DEBUG
-    kontrolniPocetVetvi = 0;
-#endif // DEBUG
     int n = 1;
     int pocetV = 0;         // iterator parametru vetvi
     int pocetVKT = 0;       // pocet vetvi ktere nejsou
@@ -600,9 +542,6 @@ bool Tree::generujVlastnostiVetvi()
 #endif // PROBLEMATICAL
     vlastnostiVetvi[0].posledniVrcholPredchoziVetve = 0;
     vlastnostiVetvi[0].rodicka = &vlastnostiVetvi[0];
-#ifdef DEBUG
-    kontrolniPocetVetvi++;
-#endif // DEBUG
     pocetV++;
     //
     //      Nastaveni parametru vetvi podle klice + generuje zbyle parametry
@@ -634,23 +573,12 @@ bool Tree::generujVlastnostiVetvi()
     }
 
 #ifdef TREEVERBOSE
-#ifdef DEBUG
-    if(kontrolniPocetVetvi == pocetVetvi)
-        std::cout << "..Ok\nPocet vetvi odpovida odhadu.";
-    else {
-        std::cout << "Pocet vetvi neodpovida odhadu!" << std::endl;
-        std::cout << "Je jich: " << kontrolniPocetVetvi << std::endl;
-    }
-#endif // DEBUG
 #endif // defined
     return true;
 }
 
 VlastnostiVetve Tree::generujVlastnostiVetve( const VlastnostiVetve& parent, int strana, DruhStromu& _tType)
 {
-#ifdef DEBUG
-    ++kontrolniPocetVetvi;
-#endif // DEBUG
     float ample = 1.f;
     float OrigoX, OrigoY, OrigoZ, afterY;
     float posunX, posunY, posunZ;
@@ -685,7 +613,10 @@ VlastnostiVetve Tree::generujVlastnostiVetve( const VlastnostiVetve& parent, int
     if(parent.posledniVrcholPredchoziVetve == 0)
         pVs.rodicka = (VlastnostiVetve*)&parent;
     pVs.r.r = pVs.rodicka->rT.r;
-    pVs.rT.r = pVs.rodicka->rT.r*0.85;
+    if(pVs.k)
+        pVs.rT.r = 2000.01f;
+    else
+        pVs.rT.r = pVs.rodicka->rT.r*0.85;
 
     switch(_tType._iSType) {
     case 0: {
@@ -845,32 +776,7 @@ VlastnostiVetve Tree::generujVlastnostiVetve( const VlastnostiVetve& parent, int
 
 int Tree::spoctiVrcholy()
 {
-    //
-    //spocteni vrcholu
-    //
-    int iVx=0;
-    float Uzk=0;
-    float rp=0;
-    float iVxT = 0;
-    float l=0;
-    float v=0;
-    float fRpDens;
-    for(int m = 0; m < pocetVetvi; m++) {
-        if(vlastnostiVetvi[m].k == false) {
-            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);//++++++
-        } else {
-            iVx += (1) * int(vlastnostiVetvi[m].d/vlastnostiVetvi[m].m);
-        }
-    }
-#ifdef PROBLEMATICAL
     return vrcholy.size();
-//    if ( druhStromu.element == usecka ) {
-//        return pocetVetvi;//+2;
-//    } else
-//        return iVx;
-#else
-    return iVx;
-#endif // PROBLEMATICAL
 }
 
 int Tree::spoctiClanky()
@@ -888,44 +794,9 @@ int Tree::spoctiClanky()
 
 int Tree::spoctiElementy()
 {
-    switch (druhStromu.element) {
-    case kruhBodu: {
-        pocetElementu = druhStromu.rozliseniE;
-        pocetVrcholu = 2*pocetElementu;
-        pocetVetvi = 1;
-        return pocetElementu;
-        break;
-    }
-    case testValec: {
-        int pocet = 1;
-//        pocetClanku = pocet*druhStromu.rozliseniV;
         pocetElementu = pocetClanku*druhStromu.rozliseniE*2+0;
-//        pocetElementu = 2;
-//        pocetVrcholu = (pocetClanku+1*pocet)*druhStromu.rozliseniE;
-//        pocetIndicii = (pocetElementu + 2*pocetClanku);
         pocetIndicii = indicie.size();
-//        pocetVrcholu = vrcholy.size();
         return pocetElementu;
-        break;
-    }
-    case testUsecka: {
-        pocetElementu = 3;
-        pocetVrcholu = 4;
-        return 3;
-        break;
-    }
-    case usecka: {
-#ifdef PROBLEMATICAL
-        return pocetVetvi-1;        /*Az na kmen je ke kazdemu vrcholu jedna primka.*/
-#else
-        return (pocetVrcholu-1);
-#endif // PROBLEMATICAL
-        break;
-    }
-    default:
-        return pocetVrcholu;
-        break;
-    }
 }
 
 /** \brief Generuje indexy
@@ -936,74 +807,19 @@ int Tree::spoctiElementy()
  *
  */
 
-void Tree::generujIndexyElementu(Element e, int pocatecniIndex)
+void Tree::generujIndicieElementu(Element e, int pocatecniIndex)
 {
-    switch ( e ) {
-    case testValec: {
-//        paIndicie[citacIndicii] = pocatecniIndex;
         indicie.push_back(pocatecniIndex);
         ++citacIndicii;
-        break;
-    }
-    case testUsecka: {
-        paIndicie[0] = 0;
-        paIndicie[1] = 1;
-
-        paIndicie[2] = 1;
-        paIndicie[3] = 2;
-
-        paIndicie[4] = 1;
-        paIndicie[5] = 3;
-        break;
-    }
-    case usecka: {
-        paIndicie[citacIndicii] = pocatecniIndex;
-        ++citacIndicii;
-        paIndicie[citacIndicii] = pocatecniIndex+1;
-        ++citacIndicii;
-        break;
-    }
-    case kuzel: {
-        break;
-    }
-    default: {
-        break;
-    }
-    }
 }
 
-void Tree::generujIndexyElementu(Element e, int pocatecniIndex, int koncovyIndex)
+void Tree::generujIndicieElementu(Element e, int pocatecniIndex, int koncovyIndex)
 {
-    switch ( e ) {
-    case testUsecka: {
-        paIndicie[0] = 0;
-        paIndicie[1] = 1;
-
-        paIndicie[2] = 1;
-        paIndicie[3] = 2;
-
-        paIndicie[4] = 1;
-        paIndicie[5] = 3;
-        break;
-    }
-    case testValec:
-    case usecka: {
-//        paIndicie[citacIndicii] = pocatecniIndex;
         indicie.push_back(pocatecniIndex);
         ++citacIndicii;
-//        paIndicie[citacIndicii] = koncovyIndex;
         indicie.push_back(koncovyIndex);
         ++citacIndicii;
         citacElementu+=2;
-        break;
-    }
-    case kuzel: {
-        break;
-    }
-    default: {
-        break;
-    }
-    }
 }
 
 /*Spocitat normalu lze az po vygenerovani pozice.*/
@@ -1125,8 +941,6 @@ void Tree::pridejNormaluVrcholu(int pozice, D3DXVECTOR3 kolmice)
         std::cout << "Normala uz existuje!" << std::endl;
 }
 
-
-
 /** \brief Generuje vrcholy,
  *
  * \param
@@ -1134,361 +948,21 @@ void Tree::pridejNormaluVrcholu(int pozice, D3DXVECTOR3 kolmice)
  * \return
  *
  */
-
-void Tree::generujVrcholElementu(float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ)
-{
-    float Zkoord = 0.0f;
-    float OrigoX, OrigoY, posX, posY, posZ;
-    posX=posunX;
-    posY=posunY;
-    posZ=posunZ;
-    cstmvtxVrcholy[citacVrcholu].x = posX;
-    cstmvtxVrcholy[citacVrcholu].y = posY;
-    cstmvtxVrcholy[citacVrcholu].z = posZ;
-    cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
-#ifdef TREEVERBOSE
-#ifdef DEBUG
-    ++citacVrcholu;
-#endif // DEBUG
-#endif // TREEVERBOSE
-    int tempColor;
-    float colorK;
-// konverze barev
-//
-//
-    for(int b = 0; b<3; b++) {
-        switch(b) {
-        case 0: {
-            colorK = barvaStromu.z;
-            break;
-        }
-        case 1: {
-            colorK = barvaStromu.y;
-            break;
-        }
-        case 2: {
-            colorK = barvaStromu.x;
-            break;
-        }
-        }
-        tempColor=(colorK * 255);
-        cstmvtxVrcholy[citacVrcholu].color += DWORD(tempColor*(pow(float(16),b*2)));
-    }
-    citacVrcholu++;
-}
-
-void Tree::generujVrcholElementu(Element e, float x, float y, float z, Barva barva)
-{
-    switch ( e ) {
-    case usecka:
-        cstmvtxVrcholy[citacVrcholu].x = x;
-        cstmvtxVrcholy[citacVrcholu].y = y;
-        cstmvtxVrcholy[citacVrcholu].z = z;
-        cstmvtxVrcholy[citacVrcholu].color = barva;
-        int tempColor;
-        float colorK;
-        for(int b = 0; b<3; b++) {
-            switch(b) {
-            case 0: {
-                colorK = barvaStromu.z;
-                break;
-            }
-            case 1: {
-                colorK = barvaStromu.y;
-                break;
-            }
-            case 2: {
-                colorK = barvaStromu.x;
-                break;
-            }
-            }
-            tempColor=(colorK * 255);
-            cstmvtxVrcholy[citacVrcholu].color += DWORD(tempColor*(pow(float(16),b*2)));
-        }
-
-        citacVrcholu++;
-        break;
-    case kuzel:
-        break;
-    default:
-        break;
-    }
-
-}
-
-void Tree::generujVrcholElementu(Element e)
-{
-    switch ( e ) {
-    case testValec: {
-        float Dens = 2.* PI/druhStromu.rozliseniE;
-        float OrigoX=0., OrigoY=0., posX=0., posY=0., posZ=0., posunX=0., posunY=0.;
-        float Zkoord = 0.;
-        float sklonz = PI/2;
-        float sklony = 0.;
-        float posunZ = 0.;
-        float rMod = sin(citacClanku*PI/180)*5000. +100000.;
-        float r = rMod;
-        posunZ = citacClanku*(1000000./druhStromu.rozliseniV);
-        if(citacVrcholu>=druhStromu.rozliseniE) {
-//            r -= citacClanku*10000.;
-        }
-        float radiusZ = 50000.;
-        for (float a = 2*PI; a >= Dens; a-=Dens) {																			//kruh
-            r = rMod+sin(a*20)*5000.;
-            OrigoX=cos((float)a-sklonz) * r + radiusZ;
-            OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r;
-            if(OrigoX==0) {
-                posX=0.;
-                posY=0.;
-            } else {
-                posX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunX;
-                posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ posunY;
-            }
-            posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + posunZ;
-            cstmvtxVrcholy[citacVrcholu].x = posX;
-            cstmvtxVrcholy[citacVrcholu].y = posY;
-            cstmvtxVrcholy[citacVrcholu].z = posZ;
-            cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
-
-            if(citacVrcholu+druhStromu.rozliseniE == pocetVrcholu) {}
-            else if(citacVrcholu+druhStromu.rozliseniE < pocetVrcholu)
-                generujIndexyElementu(testValec, citacVrcholu, citacVrcholu + druhStromu.rozliseniE);
-
-
-            citacVrcholu++;
-        }
-        citacClanku++;
-//        cstmvtxVrcholy[0].color = zelena;
-//        cstmvtxVrcholy[citacVrcholu].color = azurova;
-        break;
-    }
-    case kruhBodu: {
-        float Dens = 2.* PI/druhStromu.rozliseniE;
-        float OrigoX=0., OrigoY=0., posX=0., posY=0., posZ=0., posunX=0., posunY=0.;
-        float Zkoord = 0.;
-        float sklonz = PI/2;
-        float sklony = 0.;
-        float posunZ = 1000.*citacVrcholu;
-        float radiusZ = 50000.;
-        float r = 200000.;
-        for (float a = 2*PI; a >= Dens; a-=Dens) {																			//kruh
-            OrigoX=cos((float)a-sklonz) * r + radiusZ;
-            OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r;
-            if(OrigoX==0) {
-                posX=0.;
-                posY=0.;
-            } else {
-                posX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunX;
-                posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ posunY;
-            }
-            posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + posunZ;
-            cstmvtxVrcholy[citacVrcholu].x = posX;
-            cstmvtxVrcholy[citacVrcholu].y = posY;
-            cstmvtxVrcholy[citacVrcholu].z = posZ;
-            cstmvtxVrcholy[citacVrcholu].color = cervena;
-            citacVrcholu++;
-        }
-        std::cout << "\nhoVrtochy: " << citacVrcholu << std::endl;
-        break;
-    }
-    case testUsecka: {
-        cstmvtxVrcholy[citacVrcholu].x = 0.f;
-        cstmvtxVrcholy[citacVrcholu].y = 0.f;
-        cstmvtxVrcholy[citacVrcholu].z = 0.f;
-        cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
-        citacVrcholu++;
-
-        cstmvtxVrcholy[citacVrcholu].x = 0.f;
-        cstmvtxVrcholy[citacVrcholu].y = 0.f;
-        cstmvtxVrcholy[citacVrcholu].z = 100000.f;
-        cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
-        citacVrcholu++;
-
-        cstmvtxVrcholy[citacVrcholu].x = 0.f;
-        cstmvtxVrcholy[citacVrcholu].y = 10000.f;
-        cstmvtxVrcholy[citacVrcholu].z = 200000.f;
-        cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
-        citacVrcholu++;
-
-        cstmvtxVrcholy[citacVrcholu].x = 0.f;
-        cstmvtxVrcholy[citacVrcholu].y = -100000.f;
-        cstmvtxVrcholy[citacVrcholu].z = 200000.f;
-        cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
-        citacVrcholu++;
-        break;
-    }
-    case kuzel: {
-        break;
-    }
-    default: {
-        break;
-    }
-    }
-}
-
-
-void Tree::generujVrcholyIndicieKruhu(const D3DXVECTOR3& pocatek)
-{
-    float Dens = 2.* PI/druhStromu.rozliseniE;
-    float OrigoX=0., OrigoY=0.,
-          posX=0., posY=0., posZ=0.,
-          posunX=pocatek.x, posunY=pocatek.y, posunZ=0.;
-    float Zkoord = 0.;
-    float sklonz = PI/2;
-    float sklony = 0.;
-    float rMod = sin(citacClanku*PI/180)*5000. +100000.;
-    float r = rMod;
-    posunZ = citacClanku*(1000000./druhStromu.rozliseniV) + pocatek.z;
-    if(citacVrcholu>=druhStromu.rozliseniE) {
-//            r -= citacClanku*10000.;
-    }
-    float radiusZ = 50000.;
-    for (float a = 2*PI; a >= Dens; a-=Dens) {																			//kruh
-        r = rMod+sin(a*20)*5000.;
-        OrigoX=cos((float)a-sklonz) * r + radiusZ;
-        OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r;
-        if(OrigoX==0) {
-            posX=0.;
-            posY=0.;
-        } else {
-            posX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunX;
-            posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ posunY;
-        }
-        posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + posunZ;
-//        cstmvtxVrcholy[citacVrcholu].x = posX;
-//        cstmvtxVrcholy[citacVrcholu].y = posY;
-//        cstmvtxVrcholy[citacVrcholu].z = posZ;
-//        cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
-        VrcholBK tmp = {posX, posY, posZ, D3DXVECTOR3(0., 0., 0.), druhStromu.barva};
-        vrcholy.push_back(tmp);
-//        vrcholy.emplace_back(posX, posY, posZ, D3DXVECTOR3(0., 0., 0.), druhStromu.barva);
-//        if(citacVrcholu+druhStromu.rozliseniE == (pocetClanku+1)*druhStromu.rozliseniE) {}
-//        else if(citacVrcholu+druhStromu.rozliseniE < (pocetClanku+1)*druhStromu.rozliseniE)
-        generujIndexyElementu(testValec, citacVrcholu, citacVrcholu + druhStromu.rozliseniE);
-        citacVrcholu++;
-    }
-    citacClanku++;
-}
-
-void Tree::generujVrcholyKruhu(const D3DXVECTOR3& pocatek)
-{
-    float Dens = 2.* PI/druhStromu.rozliseniE;
-    float OrigoX=0., OrigoY=0.,
-          posX=0., posY=0., posZ=0.,
-          posunX=pocatek.x, posunY=pocatek.y, posunZ=0.;
-    float Zkoord = 0.;
-    float sklonz = PI/2;
-    float sklony = 0.;
-    float rMod = sin(citacClanku*5*PI/180)*5000. +10000.;
-    float r = rMod;
-    posunZ = /*citacClanku*(1000000./druhStromu.rozliseniV)*/ + pocatek.z;
-    if(citacVrcholu>=druhStromu.rozliseniE) {
-//            r -= citacClanku*10000.;
-    }
-    float radiusZ = 50000.;
-    for (float a = 2*PI; a >= Dens; a-=Dens) {																			//kruh
-        r = rMod+sin(a*7)*500.;
-        OrigoX=cos((float)a-sklonz) * r + radiusZ;
-        OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r;
-        if(OrigoX==0) {
-            posX=0.;
-            posY=0.;
-        } else {
-            posX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunX;
-            posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ posunY;
-        }
-        posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + posunZ;
-//        cstmvtxVrcholy[citacVrcholu].x = posX;
-//        cstmvtxVrcholy[citacVrcholu].y = posY;
-//        cstmvtxVrcholy[citacVrcholu].z = posZ;
-//        cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
-        VrcholBK tmp = {posX, posY, posZ, D3DXVECTOR3(0., 0., 0.), druhStromu.barva};
-        vrcholy.push_back(tmp);
-        citacVrcholu++;
-    }
-    citacClanku++;
-}
-
-void Tree::generujVrcholyKruhu(const D3DXVECTOR3& pocatek, VlastnostiVetve& pV)
-{
-    float Dens = 2.* PI/druhStromu.rozliseniE;
-    float OrigoX=0., OrigoY=0.,
-          posX=0., posY=0., posZ=0.,
-          posunX=pocatek.x, posunY=pocatek.y, posunZ=0.;
-    float Zkoord = 0.;
-    float sklonz = PI/2;
-    float sklony = 0.;
-    float rMod = sin(pV.citacClankuVetve*5*PI/180)*1. +10000.;//65000
-    float r = rMod;
-    posunZ = /*citacClanku*(1000000./druhStromu.rozliseniV)*/ + pocatek.z;
-    if(citacVrcholu>=druhStromu.rozliseniE) {
-//            r -= citacClanku*10000.;
-    }
-    float radiusZ = 50000.;
-    for (float a = 2*PI; a >= Dens; a-=Dens) {																			//kruh
-        r = rMod+sin(a*4)*500.;
-        OrigoX=cos((float)a-sklonz) * r + radiusZ + sin(pV.citacClankuVetve*5*PI/180)*4700.;
-        OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r + sin(pV.citacClankuVetve*5*PI/180)*2700.;
-        if(OrigoX==0) {
-            posX=0.;
-            posY=0.;
-        } else {
-            posX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunX;
-            posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ posunY;
-        }
-        posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + posunZ;
-//        cstmvtxVrcholy[citacVrcholu].x = posX;
-//        cstmvtxVrcholy[citacVrcholu].y = posY;
-//        cstmvtxVrcholy[citacVrcholu].z = posZ;
-//        cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
-        VrcholBK tmp = {posX, posY, posZ, D3DXVECTOR3(0., 0., 0.), druhStromu.barva};
-        vrcholy.push_back(tmp);
-        citacVrcholu++;
-    }
-    citacClanku++;
-    pV.citacClankuVetve++;
-}
-
 void Tree::generujVrcholyKruhu(const D3DXVECTOR3& pocatek, VlastnostiVetve& pV, float r, float radiusZ, float sklony, float sklonz, float Dens)
 {
-//    float Zkoord = 0.0f;
     float OrigoX=0., OrigoY=0.,
           posX=0., posY=0., posZ=0.,
           posunX=pocatek.x, posunY=pocatek.y, posunZ=0.;
 	float iVx = 0;int reality=0;
 	iVx=2*PI/Dens;
-
-//	for (float a = 2*PI; a> Dens; a-=Dens)																				//kruh
-//	{
-//		reality++;
-//		OrigoX=cos((float)a-sklonz) * r + radiusZ;
-//		OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r;
-//		if(OrigoX==0)
-//		{
-////			Barva.x=0.f;//MANUAL OVERRIDE but this never happens
-////			Barva.y=1.f;
-////			Barva.z=0.f;
-//			posX=posunX;
-//			posY=posunY;
-//		}
-//		else{
-//			posX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + pocatek.x;
-//			posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ pocatek.y;
-//		}
-//		posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + pocatek.z;
-//		vPoradi++;
-//	}
     /*float*/ Dens = 2.* PI/druhStromu.rozliseniE;
     float Zkoord = 0.;
-//    float sklonz = PI/2;
-//    float sklony = 0.;
-    float rMod = sin(pV.citacClankuVetve*25*PI/180)*(1/7.)*r +r;//65000
+    float rMod = sin(pV.citacClankuVetve*5*PI/180)*(1/7.)*r +r;//65000
     /*float*/ r = rMod;
     posunZ = /*citacClanku*(1000000./druhStromu.rozliseniV)*/ + pocatek.z;
     if(citacVrcholu>=druhStromu.rozliseniE) {
 //            r -= citacClanku*10000.;
     }
-//    float radiusZ = 50000.;
     for (float a = 2*PI; a >= Dens; a-=Dens) {																			//kruh
         r = rMod+sin(a*4)*500.;
         OrigoX=cos((float)a-sklonz) * r + radiusZ /*+sin(pV.citacClankuVetve*15*PI/180)*45700.*/;
@@ -1502,73 +976,12 @@ void Tree::generujVrcholyKruhu(const D3DXVECTOR3& pocatek, VlastnostiVetve& pV, 
             posY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunY;
         }
         posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + posunZ;
-//        cstmvtxVrcholy[citacVrcholu].x = posX;
-//        cstmvtxVrcholy[citacVrcholu].y = posY;
-//        cstmvtxVrcholy[citacVrcholu].z = posZ;
-//        cstmvtxVrcholy[citacVrcholu].color = druhStromu.barva;
         VrcholBK tmp = {posX, posY, posZ, D3DXVECTOR3(0., 0., 0.), druhStromu.barva};
         vrcholy.push_back(tmp);
         citacVrcholu++;
     }
     citacClanku++;
     pV.citacClankuVetve++;
-}
-
-void Tree::generujIndicieClanku(int cislo)
-{
-    int zacatek = cislo*druhStromu.rozliseniE;
-    for(int i = 0; i < druhStromu.rozliseniE; ++i) {
-        generujIndexyElementu(testValec, i+zacatek); //2.1
-        generujIndexyElementu(testValec, i+zacatek+(1)*druhStromu.rozliseniE); //2.1
-    }
-    generujIndexyElementu(testValec, 0+zacatek);//2
-    generujIndexyElementu(testValec, 0+zacatek+1*druhStromu.rozliseniE);
-}
-
-/** \brief spoji element x s elementem y
- *          cislovani od 0
- * \param
- * \param
- * \return
- *
- */
-void Tree::generujIndicieClankuXY(int x, int y)
-{
-    if(!btriangleList) {
-        int zacatek = x*druhStromu.rozliseniE;
-        int konec = y*druhStromu.rozliseniE;
-        for(int i = 0; i < druhStromu.rozliseniE; ++i) {
-            generujIndexyElementu(testValec, i+zacatek); //2.1
-            generujIndexyElementu(testValec, i+konec); //2.1
-        }
-        generujIndexyElementu(testValec, 0+zacatek);//2
-        generujIndexyElementu(testValec, 0+konec);
-    } else {
-        int pocetClankuKIndexovani = 1;
-        int zacitOdclanku = x;
-        for(int l = zacitOdclanku; l < pocetClankuKIndexovani+zacitOdclanku; ++l) {
-            int pocatecniClanek = l;
-            int koncovyClanek = y;
-            int pocatecniIndexX = (pocatecniClanek)*druhStromu.rozliseniE;
-            int pocatecniIndexY = (koncovyClanek-1)*druhStromu.rozliseniE;
-            for(int i = pocatecniIndexX, n = pocatecniIndexY; i < pocatecniIndexX+druhStromu.rozliseniE-1; ++i, ++n) {
-                generujIndexyElementu(testValec, 0+i, n);
-                generujIndexyElementu(testValec, 1+i);
-
-                generujIndexyElementu(testValec, n);
-                generujIndexyElementu(testValec, n+1,  1+i);
-            }
-            int n = pocatecniIndexY+druhStromu.rozliseniE-1;
-//        std::cout << "n je : "<<n << std::endl;
-            int i = pocatecniIndexX+druhStromu.rozliseniE-1;
-            generujIndexyElementu(testValec, 0+i, n);
-            generujIndexyElementu(testValec, pocatecniIndexX);
-
-            generujIndexyElementu(testValec, n);
-            generujIndexyElementu(testValec, pocatecniIndexY, pocatecniIndexX);
-        }
-        int konecnyClanek = y;
-    }
 }
 
 /** \brief spoji kruh x s kruhem y
@@ -1584,11 +997,11 @@ void Tree::generujIndicieKruhuXY(int x, int y)
         int zacatek = (x-1)*druhStromu.rozliseniE;
         int konec = (y)*druhStromu.rozliseniE;
         for(int i = 0; i < druhStromu.rozliseniE; ++i) {
-            generujIndexyElementu(testValec, i+zacatek); //2.1
-            generujIndexyElementu(testValec, i+konec); //2.1
+            generujIndicieElementu(testValec, i+zacatek); //2.1
+            generujIndicieElementu(testValec, i+konec); //2.1
         }
-        generujIndexyElementu(testValec, 0+zacatek);//2
-        generujIndexyElementu(testValec, 0+konec);
+        generujIndicieElementu(testValec, 0+zacatek);//2
+        generujIndicieElementu(testValec, 0+konec);
     } else {
         int pocetClankuKIndexovani = 1;
         int zacitOdclanku = x;
@@ -1598,135 +1011,30 @@ void Tree::generujIndicieKruhuXY(int x, int y)
             int pocatecniIndexX = (pocatecniClanek)*druhStromu.rozliseniE;
             int pocatecniIndexY = (koncovyClanek-1)*druhStromu.rozliseniE;
             for(int i = pocatecniIndexX, n = pocatecniIndexY; i < pocatecniIndexX+druhStromu.rozliseniE-1; ++i, ++n) {
-                generujIndexyElementu(testValec, 0+i, n);
-                generujIndexyElementu(testValec, 1+i);
+                generujIndicieElementu(testValec, 0+i, n);
+                generujIndicieElementu(testValec, 1+i);
 
-                generujIndexyElementu(testValec, n);
-                generujIndexyElementu(testValec, n+1,  1+i);
+                generujIndicieElementu(testValec, n);
+                generujIndicieElementu(testValec, n+1,  1+i);
             }
             int n = pocatecniIndexY+druhStromu.rozliseniE-1;
 //        std::cout << "n je : "<<n << std::endl;
             int i = pocatecniIndexX+druhStromu.rozliseniE-1;
-            generujIndexyElementu(testValec, 0+i, n);
-            generujIndexyElementu(testValec, pocatecniIndexX);
+            generujIndicieElementu(testValec, 0+i, n);
+            generujIndicieElementu(testValec, pocatecniIndexX);
 
-            generujIndexyElementu(testValec, n);
-            generujIndexyElementu(testValec, pocatecniIndexY, pocatecniIndexX);
+            generujIndicieElementu(testValec, n);
+            generujIndicieElementu(testValec, pocatecniIndexY, pocatecniIndexX);
         }
         int konecnyClanek = y;
     }
 }
 
 
-/** \brief generuje indicie clanku cislo x, spoji ho s elementem x+preskocit
- *
- * \param
- * \param
- * \return
- *
- */
-
-void Tree::generujIndicieClanku(int cislo, int preskocit)
-{
-    int zacatek = cislo*druhStromu.rozliseniE;
-    for(int i = 0; i < druhStromu.rozliseniE; ++i) {
-        generujIndexyElementu(testValec, i+zacatek); //2.1
-        generujIndexyElementu(testValec, i+zacatek+(1+preskocit)*druhStromu.rozliseniE); //2.1
-    }
-    generujIndexyElementu(testValec, 0+zacatek);//2
-    generujIndexyElementu(testValec, 0+zacatek+(1+preskocit)*druhStromu.rozliseniE);
-}
-
-void Tree::generujVrcholyVetve(const D3DXVECTOR3& pocatek, int kolikClanku)
-{
-    if(kolikClanku != 0) {
-        D3DXVECTOR3 _poc = pocatek;
-        generujVrcholyKruhu( _poc );
-        _poc.z += 7000.;
-        for (int w = 0; w < kolikClanku; ++w) {
-            generujVrcholyKruhu( _poc );
-            _poc.z += 7000.;
-        }
-        ++citacVetvi;
-    }
-}
-
 void Tree::generujVrcholyVetve(const D3DXVECTOR3& pocatek, int kolikClanku, VlastnostiVetve& pV)
 {
-
-	/*float ample;//, per; //radius krouceniaa
-	float sklony = 0.f; //=uhel v rad, sklonx
-	float radiusZ = 0;
-	float sklonz = 0;
-	float posunX, posunY, posunZ;
-	posunX = 0.f;
-	posunY = 0.f;
-	posunZ = 0.f;
-	float Zkoord = 0.0f;
-	ample= 1.f;
-	sklonz = 0;
-	float OrigoY = 0.f;
-	float afterY = 0.f;
-	float OrigoX = 0.f;
-	float OrigoZ = 0.f;
-	float Rorigin = pV.r.r;
-	objRust TempRust = pV.r;
-	float xAmp=1, yAmp=0;
-	if(pV.k)
-		pV.rT.r = 0.01f;
-	else
-	{
-	}
-	for (float x = 0.f; x+1.f< pV.d/pV.m; x+=1.f)
-	{
-		//mezera = (2*PI*TemppV.r.r)/90; //360...obvod 1 stupne..
-		TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
-		TempRust.rotace += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
-		TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
-
-		//TempRust.sklon = PI/4+sin(3*OrigoZ*PI/180)/10;
-		//TempRust.rotace = PI/4;
-		sklony =TempRust.sklon-PI/2;
-		sklonz =  -TempRust.rotace;
-
-		//sklony = PI/2 +TempRust.sklon;
-		//sklonz = PI/2 -TempRust.rotace;
-		OrigoZ+=pV.m;
-
-		//OrigoX = (2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp;  // to je ten problem>kedysin nabude0tak se nasledujici vyrazy z nejakeho duvodu nevyhodnoti
-		//OrigoY = (2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp;
-
-		OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
-		OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
-		//Barva.x=abs((OrigoX-(2*xAmp+1))/xAmp)+1-abs((OrigoX-(2*xAmp+1))/xAmp);//MANUAL OVERRIDE
-		//Barva.y=abs((OrigoX-(2*xAmp+1))/xAmp);
-		//Barva.z=0.f;
-
-			afterY=cos(TempRust.sklon)*OrigoZ;
-			posunZ=pV.x.z+sin(TempRust.sklon)*OrigoZ;
-			posunY=pV.x.y+cos(TempRust.rotace)*afterY;
-			posunX=pV.x.x+sin(TempRust.rotace)*afterY;
-			//Barva.x =0.f;//MANUAL OVERRIDE
-			//Barva.y=1.f;
-			//Barva.z=0.f;
-
-
-		countEm=vPoradi;
-
-		RostClanek(TempRust.r, radiusZ, sklony, sklonz, pV.de, posunX, posunY, posunZ);
-
-	afterY=cos(TempRust.sklon)*OrigoZ;
-	posunZ=pV.x.z+sin(TempRust.sklon)*OrigoZ;
-	posunY=pV.x.y+cos(TempRust.rotace)*afterY;
-	posunX=pV.x.x+sin(TempRust.rotace)*afterY;
-	pV.x.x = posunX;
-	pV.x.y = posunY;
-	pV.x.z = posunZ;
-	}*/
-
-
-//    if(pV.k)
-//        pV.rT.r = 0.01f;
+    if(pV.k)
+        pV.rT.r = 2000.01f;
     D3DXVECTOR3 _poc = pocatek;
     pV.citacClankuVetve = pV.rodicka->citacClankuVetve;
     float ample;//, per; //radius krouceniaa
@@ -1749,7 +1057,6 @@ void Tree::generujVrcholyVetve(const D3DXVECTOR3& pocatek, int kolikClanku, Vlas
     }
         _poc = pV./*rodicka->*/x;
         TempRust = pV.r;
-//    generujVrcholyKruhu( _poc, pV, r, radiusZ, sklony, sklonz, Dens );
     for (float x = 0.f; x <= kolikClanku; x += 1.f) {
         TempRust.r += (pV.rT.r - pV.r.r)/kolikClanku;
         TempRust.rotace += (pV.rT.rotace - pV.r.rotace)/kolikClanku;
@@ -1827,226 +1134,12 @@ int Tree::generujIndicieVetve(int cislo, int kolikClanku)
     return konecnyClanek;
 }
 
-
-/** \brief odpoji celou vetev az k rozdvojeni, (vytvori postupne degenerovane trojuhelniky. 99, 66, atd)
- *
- * \param
- * \param
- * \return vraci cislo rozdvojovaciho clanku
- *
- */
-
-int Tree::generujIndicieOdpojeniClanku(int x, int pocetClankuVetve, bool suda)
-{
-    int pocetClankuLicheVetve = pocetClankuVetve;           // Risk of potencial errors
-    int zacatek = x*druhStromu.rozliseniE;
-    int indicie;
-    for (int i = 0; i < pocetClankuVetve-suda?1:0; ++i) {
-        indicie = zacatek-i*(druhStromu.rozliseniE);
-        generujIndexyElementu(testValec, indicie, indicie);
-    }
-    if ( suda ) {
-        indicie = (x-pocetClankuVetve-pocetClankuLicheVetve+1)*druhStromu.rozliseniE;
-        generujIndexyElementu(testValec, indicie, indicie);
-    }
-    return (x-pocetClankuVetve);
-}
-
-/** \brief Indicie rozdeleni je treba vytvorit po indiciich prvni vetve, dalsi vetvi je treba rict, kde navazat
- *
- * \param
- * \param
- * \return
- *
- */
-
-void Tree::generujIndicieRozdeleni()
-{
-    // ↓
-    int citac = 0;
-    generujIndexyElementu(testValec, 0+(pocetClanku)*druhStromu.rozliseniE);//1 konec-zacate
-    generujIndexyElementu(testValec, 0+(pocetClanku+1)*druhStromu.rozliseniE);//1konec-zacate
-
-    for (int u = 0; u < pocetClanku - 1; ++u)
-        generujIndicieClanku(pocetClanku+(1+u)); //1.vse
-
-//    generujIndicieClanku(pocetClanku+(1)); //1.1
-//    generujIndicieClanku(pocetClanku+(2)); //1.2
-    // to pujde pryc ↑, vsimni si, ze jeden clanek je jiz vygenerovany, neni to spatne pro prehlednost?
-
-    generujIndicieOdpojeniClanku(pocetClanku+(pocetClanku-1), pocetClanku, false); // rozdel
-
-    // ↓
-    int zacatek = 0;
-    int cisloElementuRozdvojeni = pocetClanku+zacatek;
-
-    generujIndicieClanku(cisloElementuRozdvojeni, pocetClanku); // 2 prvni clanek musi spojit element rozdvojeni a prvni element druhe vetve,
-
-    int cisloNavazujicihoClanku = cisloElementuRozdvojeni + pocetClanku + 1;
-    for (int u = 0; u < pocetClanku - 1; ++u)
-        generujIndicieClanku(cisloNavazujicihoClanku+(u)); //2.vse
-//    generujIndicieClanku(cisloNavazujicihoClanku);  //2.1
-//    generujIndicieClanku(cisloNavazujicihoClanku + 1);  //2.2
-    // ↑ pujde pryc taky
-}
-
-/** \brief Generuje vrcholy a indicie vetve, Musi znat pocet clanku dopredu.
- *
- * \param pocatek
- * \param
- * \return
- *
- */
-
-void Tree::generujVrcholyIndicieVetve(const D3DXVECTOR3& _pocatek, bool zakoncit, bool navazat, int pocatecniElement=0, bool suda=0, int kolikPreskocit=0)
-{
-    ///* Vzdy u liche vetve zavolam generuj indicie odpojeni a u sude generuj indicie navazani */
-    int citac=0;
-    if( !navazat ) {
-//        generujVrcholyIndicieKruhu( _pocatek );
-        generujVrcholyKruhu( _pocatek );
-        generujIndicieClanku(citacClanku-1);
-    } else if( navazat && !suda )
-        generujIndicieClanku(citacClanku-1); // prida zavereecne
-    else if ( navazat && suda ) {
-        int zacatek = pocatecniElement;
-        int cisloElementuRozdvojeni = pocatecniElement+1;
-        generujVrcholyKruhu(_pocatek);
-        generujIndicieClanku(cisloElementuRozdvojeni, pocetClanku*kolikPreskocit); // 2 prvni clanek musi spojit element rozdvojeni a prvni element druhe vetve,
-
-        int cisloNavazujicihoClanku = cisloElementuRozdvojeni + pocetClanku*kolikPreskocit + 1;
-        for (int u = 0; u < pocetClanku - 1; ++u) {
-            generujIndicieClanku(cisloNavazujicihoClanku+(u)); //2.vse
-            generujVrcholyKruhu(_pocatek);
-        }
-    }
-
-    if(!suda) {
-        citac+=2*druhStromu.rozliseniE;//0
-        for(int i = (!suda)?0:1; i < pocetClanku; ++i) {
-            citac+=2;//0konec-zacate
-            if(zakoncit && i == pocetClanku-1)
-                generujVrcholyKruhu( _pocatek );
-            else {
-                generujVrcholyKruhu( _pocatek );
-                generujIndicieClanku(citacClanku-1);
-
-//            generujVrcholyIndicieKruhu( _pocatek );
-                ///*koncove spojovaci indexy*/
-//        generujIndexyElementu(testValec, pocatecniElement*druhStromu.rozliseniE+i*druhStromu.rozliseniE); //0konec-zacate
-//        generujIndexyElementu(testValec, pocatecniElement*druhStromu.rozliseniE+(i+1)*druhStromu.rozliseniE); //0konec-zacate
-            }
-            citac+=2*druhStromu.rozliseniE;//1
-        }
-        if( !zakoncit ) {
-            D3DXVECTOR3 pocatek = {0., 00000., 0000.};
-            generujIndicieRozdeleni();
-
-            for (int o = 1; o < pocetClanku+1; ++o)
-                generujVrcholyKruhu( -o*_pocatek);
-//        pocatek = {10000., 100000., 10000.};
-//        generujVrcholyKruhu( -_pocatek ); //....1
-//        pocatek = {10000., 100000., 40000.};
-//        generujVrcholyKruhu( -_pocatek ); //1.1
-//        generujVrcholyKruhu( -2*_pocatek ); //1.2
-
-            pocatek = {10000., 100000., 100000.};
-            for (int o = 1; o < pocetClanku+1; ++o)
-                generujVrcholyKruhu( o*pocatek);
-//        generujVrcholyKruhu( 3*pocatek ); //2
-//        pocatek = {10000., 100000., 100000.};
-//        generujVrcholyKruhu( 3*pocatek ); //2.1
-//        generujVrcholyKruhu( 4*pocatek ); //2.2
-        }
-//    if( navazat && !suda )
-//        generujIndicieOdpojeniClanku(citacClanku-2, pocetClanku); // rozdel
-    }
-}
-
-
-/** \brief Vytvori vrcholy, indicie a kolmice podle parametru vetve
- *
- * \param
- * \param
- * \return
- *
- */
-
 bool Tree::generujElementyVetve( VlastnostiVetve& pV)
 {
-    float ample;//, per; //radius krouceniaa
-    float sklony = 0.f; //=uhel v rad, sklonx
-    float radiusZ = 0;
-    float sklonz = 0;
-    float posunX, posunY, posunZ;
-    posunX = 0.f;
-    posunY = 0.f;
-    posunZ = 0.f;
-    float Zkoord = 0.0f;
-    ample= 1.f;
-    sklonz = 0;
-    float OrigoY = 0.f;
-    float afterY = 0.f;
-    float OrigoX = 0.f;
-    float OrigoZ = 0.f;
-    float Rorigin = pV.r.r;
-    objRust TempRust = pV.r;
-    float xAmp=1, yAmp=0;
-
-    if(pV.k)
-        pV.rT.r = 0.01f;
-
-    switch (druhStromu.element) {
-    case testValec: {
-///* Triangle strip */
-        if(!btriangleList) {
-            D3DXVECTOR3 pocatek = {10000., 100000., 0.};
-            generujVrcholyIndicieVetve( pocatek, true, false, 0 , false );
-            std::cout << "\ncitac clanku> " << citacClanku << std::endl;
-            generujVrcholyIndicieVetve( pocatek, true, true/*, citacClanku-1*/, false );
-            pocatek = {10000., 900000., 80000.};
-            generujVrcholyIndicieVetve( pocatek, true, true/*, citacClanku-1*/, false );
-            int cisloClankuRozdvojeni = generujIndicieOdpojeniClanku(citacClanku-2, 1*pocetClanku, false); // rozdel
-            generujVrcholyIndicieVetve( -1*pocatek, true, true, cisloClankuRozdvojeni, true, 1);
-//
-            cisloClankuRozdvojeni = generujIndicieOdpojeniClanku(citacClanku-2, pocetClanku, true); // rozdel
-            pocatek = {100000., 600000., 00.};
-            generujVrcholyKruhu( pocatek );
-            std::cout << "\ncislo clanku rozdvojnei: "<< cisloClankuRozdvojeni << std::endl;
-            generujIndicieClankuXY(cisloClankuRozdvojeni-pocetClanku, citacClanku-1);
-
-            pocatek = {300000., 900000., 80000.};
-            generujVrcholyIndicieVetve( pocatek, true, true/*, citacClanku-1*/, false );
-            cisloClankuRozdvojeni = generujIndicieOdpojeniClanku(citacClanku-2, 1*pocetClanku, false); // rozdel
-            pocatek.x = -pocatek.x;
-            generujVrcholyIndicieVetve( pocatek, true, true, cisloClankuRozdvojeni, true, 1);
-
-//        generujVrcholyIndicieVetve( pocatek, true, true, cisloClankuRozdvojeni-1, true, 3);
-//        generujVrcholyIndicieVetve( -2*pocatek, true, true, cisloClankuRozdvojeni, true, 3);
-//        generujVrcholyIndicieVetve( pocatek, true, true, citacClanku-1, false );
-//        cisloClankuRozdvojeni = generujIndicieOdpojeniClanku(citacClanku-2, 1*pocetClanku, false);
-//        generujVrcholyIndicieVetve( -2*pocatek, true, true, cisloClankuRozdvojeni, true, 1);
-        } else
-        {
 ///* Triangle list */
             D3DXVECTOR3 pocatek = {10000., 100000., 0.};
-//            float koeficientBarvy = 9.0f;
             int soucasnyKruh;
             int soucasnyClanek = citacClanku-1-1*(citacVetvi-1);
-//            int budouciClanek = soucasnyClanek+1;
-//            TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
-//            TempRust.rotace  += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
-//            TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
-//            sklony = TempRust.sklon-PI/2;
-//            sklonz = -TempRust.rotace;
-//            OrigoZ += pV.m;
-//            OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
-//            OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
-//            afterY = cos(TempRust.sklon)*OrigoZ;
-//            posunZ = pV.x.z;
-//            posunY = pV.x.y;
-//            posunX = pV.x.x;
-//            pocatek = {posunX, posunY, posunZ};
             if ( citacClanku != 0/* pV.rodicka->posledniVrcholPredchoziVetve != 0*/) {
                 generujIndicieKruhuXY(pV.rodicka->posledniVrcholPredchoziVetve, citacClanku+1); // beru jako posledni clanek rodicky
             }
@@ -2055,325 +1148,16 @@ bool Tree::generujElementyVetve( VlastnostiVetve& pV)
             generujIndicieVetve( citacVetvi, pV.rozliseniV );
             soucasnyKruh = citacClanku;//-prazdny clanek  na pomezi
             pV.posledniVrcholPredchoziVetve = soucasnyKruh;
-        }
-        break;
-    }
-    case kruhBodu: {
-        generujVrcholElementu(druhStromu.element);
-        generujVrcholElementu(druhStromu.element);
-        /*
-        for (float a = 2*PI; a> Dens; a-=Dens)																				//kruh
-        	{
-        		reality++;
-        		OrigoX=cos((float)a-sklonz) * r + radiusZ;
-        		OrigoY=cos(sklony)* (sin((float)a-sklonz)) * r;
-        			posunX=cos(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX))) + posunX;
-        			posunY=sin(atan(OrigoY/OrigoX)+sklonz)*(OrigoX/cos(atan(OrigoY/OrigoX)))+ posunY;
-        		posZ=Zkoord + sin(sklony)*(sin((float)a-sklonz)) * r + posunZ;
-        		Tvertices[vPoradi].Pos = XMFLOAT3(posunX,posunY,posZ);
-        		//Tvertices[vPoradi].Color = XMFLOAT4(0.0f,a/5,1.0f,1.f);
-        	       generujVrcholElementu(usecka, posunX, posunY, posunZ, druhStromu.barva);
-        		Tvertices[vPoradi].Color = Barva;
-        		vPoradi++;
-        	}*/
-//	generujVrcholElementu( druhStromu.element );
-        break;
-    }
-    case bod: {
-#ifdef PROBLEMATICAL
-        // na zacatku spojim kazdy pocatecni vrchol s vrcholem rodicky
-//            if ( pV.rodicka->posledniVrcholPredchoziVetve != 0)
-//            generujIndexyElementu(druhStromu.element, pV.rodicka->posledniVrcholPredchoziVetve, citacVrcholu);
-        TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
-        TempRust.rotace += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
-        TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
-        sklony = TempRust.sklon-PI/2;
-        sklonz = -TempRust.rotace;
-        OrigoZ+=pV.m;
-        OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
-        OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
-        afterY=cos(TempRust.sklon)*OrigoZ;
-        posunZ=pV.x.z;
-        posunY=pV.x.y;
-        posunX=pV.x.x;
-        generujVrcholElementu(usecka, posunX, posunY, posunZ, (pV.suda)?cervena:zelena);
-        pV.posledniVrcholPredchoziVetve = citacVrcholu-1;
-#else
-        for (float x = 0.f; x+1.f< pV.d/pV.m; x+=1.f) {
-            TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
-            TempRust.rotace += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
-            TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
-            sklony = TempRust.sklon-PI/2;
-            sklonz =  -TempRust.rotace;
-            OrigoZ+=pV.m;
-            OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
-            OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
-            afterY=cos(TempRust.sklon)*OrigoZ;
-            posunZ=pV.x.z+sin(TempRust.sklon)*OrigoZ;
-            posunY=pV.x.y+cos(TempRust.rotace)*afterY;
-            posunX=pV.x.x+sin(TempRust.rotace)*afterY;
-            countEm=citacVrcholu;
-            generujVrcholElementu(TempRust.r, radiusZ, sklony, sklonz, pV.de, posunX, posunY, posunZ);
-            switch(sum) {
-            case 0: {
-                barvaStromu.x+=0.01;
-                barvaStromu.y+=0.01;
-                barvaStromu.z+=0.01;
-                break;
-            }
-            case 1: {
-
-                barvaStromu.y+=0.1;
-                barvaStromu.z-=0.001;
-                break;
-            }
-            case 2: {
-
-                barvaStromu.z+=0.01;
-                barvaStromu.y-=0.001;
-                break;
-            }
-            case 3: {
-
-                barvaStromu.x+=0.01;
-                barvaStromu.y-=0.001;
-                barvaStromu.z-=0.001;
-                break;
-            }
-            case 4: {
-
-                barvaStromu.x-=0.001;
-                barvaStromu.z+=0.01;
-                break;
-            }
-            case 5: {
-
-                barvaStromu.x-=0.001;
-                barvaStromu.y+=0.01;
-                break;
-            }
-            case 6: {
-                barvaStromu.y-=0.0001;
-                break;
-            }
-            case 7: {
-
-                barvaStromu.x-=0.001;
-                barvaStromu.z-=0.001;
-                break;
-            }
-            }
-        }
-#endif // PROBLEMATICAL
-
-        break;
-    }
-    case usecka: {
-#ifdef PROBLEMATICAL
-        float koeficientBarvy = 9.0f;
-        // na zacatku spojim kazdy pocatecni vrchol s vrcholem rodicky
-        if ( citacVrcholu != 0/* pV.rodicka->posledniVrcholPredchoziVetve != 0*/)
-            generujIndexyElementu(druhStromu.element, pV.rodicka->posledniVrcholPredchoziVetve, citacVrcholu);
-//            else
-//            std::cout << "Rodicka je kmen" << std::endl;
-        TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
-        TempRust.rotace += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
-        TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
-        sklony = TempRust.sklon-PI/2;
-        sklonz = -TempRust.rotace;
-        OrigoZ+=pV.m;
-        OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
-        OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
-        afterY=cos(TempRust.sklon)*OrigoZ;
-        posunZ=pV.x.z;
-        posunY=pV.x.y;
-        posunX=pV.x.x;
-#ifdef DEBUG
-        generujVrcholElementu(usecka, posunX, posunY, posunZ, (pV.suda)?cervena:zelena);
-#else
-        generujVrcholElementu(usecka, posunX, posunY, posunZ, druhStromu.barva);
-#endif // DEBUG
-        pV.posledniVrcholPredchoziVetve = citacVrcholu-1;
-
-#else
-        float koeficientBarvy = 9.0f;
-        // na zacatku spojim kazdy pocatecni vrchol s vrcholem rodicky
-        if ( pV.rodicka->posledniVrcholPredchoziVetve != 0)
-            generujIndexyElementu(druhStromu.element, pV.rodicka->posledniVrcholPredchoziVetve, citacVrcholu);
-        for (float x = 0.f; x+1.f< pV.d/pV.m; x+=1.f) {
-            TempRust.r += (pV.rT.r -pV.r.r)/floor(pV.d/pV.m);
-            TempRust.rotace += (pV.rT.rotace-pV.r.rotace)/floor(pV.d/pV.m);
-            TempRust.sklon += (pV.rT.sklon - pV.r.sklon)/floor(pV.d/pV.m);
-            sklony = TempRust.sklon-PI/2;
-            sklonz = -TempRust.rotace;
-            OrigoZ+=pV.m;
-            OrigoX = bVlnit?((2*xAmp+1)+cos(PI/20*(int)OrigoZ+PI/80)*xAmp):0;
-            OrigoY = bVlnit?((2*yAmp+1)+sin(PI/20*(int)OrigoZ)*yAmp):0;
-            afterY=cos(TempRust.sklon)*OrigoZ;
-            posunZ=pV.x.z+sin(TempRust.sklon)*OrigoZ;
-            posunY=pV.x.y+cos(TempRust.rotace)*afterY;
-            posunX=pV.x.x+sin(TempRust.rotace)*afterY;
-            countEm=citacVrcholu;
-            if(x+2.f >= pV.d/pV.m) {           // konec vetve
-                generujVrcholElementu( druhStromu.element, posunX, posunY, posunZ, druhStromu.barva );
-                pV.posledniVrcholPredchoziVetve = citacVrcholu-1;
-            } else {
-                generujIndexyElementu( druhStromu.element, citacVrcholu );
-                generujVrcholElementu( druhStromu.element, posunX, posunY, posunZ, druhStromu.barva );
-            }
-//            if( (x+2.f >= pV.d/pV.m) && (pV.k) )  // konec vetve a je v koncove rade
-//            {
-////                generujIndexyElementu( druhStromu.element, citacVrcholu );
-//                generujVrcholElementu( druhStromu.element, posunX, posunY, posunZ, zluta );
-////                pV.posledniVrcholPredchoziVetve = citacVrcholu-1;
-////            else if(x+2.f >= pV.d/pV.m && pV.suda)     // konec sude vetve, oznacen cervene
-//            }
-//            else if((x+2.f >= pV.d/pV.m)&&(pV.suda))     // konec sude vetve, oznacen cervene
-//            {
-////                generujIndexyElementu( druhStromu.element, citacVrcholu );
-//                generujVrcholElementu( druhStromu.element, posunX, posunY, posunZ, azurova );
-////                pV.posledniVrcholPredchoziVetve = citacVrcholu-1;
-//            }
-//            else if(x+2.f >= pV.d/pV.m)             // konec vetve
-//            {
-////                generujIndexyElementu( druhStromu.element, citacVrcholu );
-//                generujVrcholElementu( druhStromu.element, posunX, posunY, posunZ, azurova );
-////                pV.posledniVrcholPredchoziVetve = citacVrcholu-1;
-//            }
-//            else if(pV.suda)    // oznacim si sude vetve purpurovou
-//            {
-//                generujIndexyElementu( druhStromu.element, citacVrcholu );
-//                generujVrcholElementu( druhStromu.element, posunX, posunY, posunZ, purpurova );
-//            }
-//            else    // ani konec vrcstvy, ani vetve ani suda neni
-//            {
-//                generujIndexyElementu( druhStromu.element, citacVrcholu );
-//                generujVrcholElementu( druhStromu.element, posunX, posunY, posunZ, zelena );
-//            }
-
-        }
-#endif // PROBLEMATICAL
-        switch(sum) {
-        case 0: {
-            barvaStromu.x+=0.01*koeficientBarvy;
-            barvaStromu.y+=0.01*koeficientBarvy;
-            barvaStromu.z+=0.01*koeficientBarvy;
-            break;
-        }
-        case 1: {
-
-            barvaStromu.y+=0.1*koeficientBarvy;
-            barvaStromu.z-=0.001*koeficientBarvy;
-            break;
-        }
-        case 2: {
-
-            barvaStromu.z+=0.01*koeficientBarvy;
-            barvaStromu.y-=0.001*koeficientBarvy;
-            break;
-        }
-        case 3: {
-
-            barvaStromu.x+=0.01*koeficientBarvy;
-            barvaStromu.y-=0.001*koeficientBarvy;
-            barvaStromu.z-=0.001*koeficientBarvy;
-            break;
-        }
-        case 4: {
-
-            barvaStromu.x-=0.001*koeficientBarvy;
-            barvaStromu.z+=0.01*koeficientBarvy;
-            break;
-        }
-        case 5: {
-
-            barvaStromu.x-=0.001*koeficientBarvy;
-            barvaStromu.y+=0.01*koeficientBarvy;
-            break;
-        }
-        case 6: {
-            barvaStromu.y-=0.0001*koeficientBarvy;
-            break;
-        }
-        case 7: {
-
-            barvaStromu.x-=0.001*koeficientBarvy;
-            barvaStromu.z-=0.001*koeficientBarvy;
-            break;
-        }
-        }
-        break;
-    }
-    case testUsecka: {
-        generujVrcholElementu( druhStromu.element );
-        generujIndexyElementu( druhStromu.element, 0 );
-        break;
-    }
-    default: {
-        break;
-    }
-    }
-    afterY=cos(TempRust.sklon)*OrigoZ;
-    posunZ=pV.x.z+sin(TempRust.sklon)*OrigoZ;
-    posunY=pV.x.y+cos(TempRust.rotace)*afterY;
-    posunX=pV.x.x+sin(TempRust.rotace)*afterY;
-    pV.x.x = posunX;
-    pV.x.y = posunY;
-    pV.x.z = posunZ;
-    gonx = OrigoZ;
     return true;
 }
 
 bool Tree::generujVykreslovaciDataVetvi()
 {
-#ifdef DEBUG
-    kontrolniPocetIndicii = 0;
-#endif // DEBUG
     for(int f = 0; f<pocetVetvi; f++) {
-//        std::cout << "rost vetev c> " << f << " uspesne." << std::endl;
         generujElementyVetve(vlastnostiVetvi[f]);
     }
     for (int i = 0; i < vrcholy.size(); ++i)
         pridejNormaluVrcholu(i, spocitejNormaluVrcholu(i));
-//    switch ( druhStromu.element )
-//    {
-//    case usecka:{
-//        for( int i=0; i<pocetVrcholu-1; ++i )
-//        {
-//            D3DXVECTOR3 temp = {0., 0., 1.};
-//            D3DXVec3Normalize(&temp, &temp);
-//            pridejNormaluVrcholu(i, temp);
-//        }
-//        break;
-//    }
-//
-//    default:
-//        break;
-//    }
-#ifdef TREEVERBOSE
-#ifdef DEBUG
-    if(citacVrcholu == pocetVrcholu)
-        std::cout << "..Ok\nPocet vrcholu odpovida odhadu." << std::endl;
-    else {
-        std::cout << "Pocet vrcholu neodpovida odhadu!" << std::endl;
-        std::cout << "Je jich: " << citacVrcholu << std::endl;
-    }
-    if(citacIndicii == pocetIndicii)
-        std::cout << "..Ok\nPocet indicii odpovida odhadu." << std::endl;
-    else {
-        std::cout << "Pocet indicii neodpovida odhadu!" << std::endl;
-        std::cout << "Je jich: " << citacIndicii << std::endl;
-    }
-    if(pocetElementu == citacElementu)
-        std::cout << "..Ok\nPocet elementu odpovida odhadu." << std::endl;
-    else {
-        std::cout << "Pocet elementu neodpovida odhadu!" << std::endl;
-        std::cout << "Je jich: " << citacElementu << std::endl;
-    }
-//    cstmvtxVrcholy[0].color = D3DCOLOR_XRGB(255,0,0);
-//    cstmvtxVrcholy[pocetVrcholu-1].color = D3DCOLOR_XRGB(255,0,0);
-#endif // DEBUG
-#endif // defined
     return true;
 }
 
@@ -2516,8 +1300,6 @@ bool Tree::vytvorBufferIndicii()
 {
     bool vysledek = true;
 
-    switch (druhStromu.element) {
-    case testValec: {
         try {
             bufferIndicii = new LPDIRECT3DINDEXBUFFER9;     // dyn alc pointer
         } catch (std::exception& e) {
@@ -2530,33 +1312,6 @@ bool Tree::vytvorBufferIndicii()
             std::cout << "Nepodarilo se vytvorit index buffer." << std::endl;
             vysledek = false;
         }
-        break;
-    }
-    case testUsecka:
-    case usecka: {
-        try {
-            bufferIndicii = new LPDIRECT3DINDEXBUFFER9;     // dyn alc pointer
-        } catch (std::exception& e) {
-            vysledek = false;
-            std::cout << "Heap allocation exception: " << e.what() << std::endl;
-        }
-        if( FAILED( pzarizeni->CreateIndexBuffer( (pocetElementu * 2+2) * sizeof(long),
-                    D3DUSAGE_WRITEONLY , D3DFMT_INDEX32, D3DPOOL_DEFAULT,
-                    bufferIndicii, NULL ) ) ) {
-            std::cout << "Nepodarilo se vytvorit index buffer." << std::endl;
-            vysledek = false;
-        }
-        break;
-    }
-    case kuzel: {
-        vysledek = false;
-        break;
-    }
-    default: {
-        vysledek = false;
-        break;
-    }
-    }
 
     return vysledek;
 }
@@ -2664,53 +1419,5 @@ bool Tree::zkopirujIndicieDoBuffru(const std::vector<long>& _indicie)
 #endif // VYTISKNI_INDICIE
     return vysledek;
 }
-
-
-
-
-bool Tree::generujListy()
-{
-
-    return true;
-}
-
-bool Tree::alokujMistoProVrcholyAindicie()
-{
-    try {
-        cstmvtxVrcholy = new VrcholBK[pocetVrcholu];
-        switch (druhStromu.element) {
-        case usecka:
-            paIndicie = new long[pocetElementu*2];
-            break;
-        case kuzel:
-            paIndicie = new long[pocetElementu*3];
-            break;
-        default:
-            break;
-        }
-
-    } catch (std::exception& e) {
-        std::cout << "Heap allocation vyjimka v alokujMistoVrcholu(): " << e.what() << std::endl;
-    }
-#ifdef TREEVERBOSE
-#endif // defined
-    return true;
-}
-
-Vetev::Vetev()
-{
-
-}
-
-Vetev::~Vetev()
-{
-
-}
-
-void Tree::testVykresli() const
-{
-
-}
-
 
 }
