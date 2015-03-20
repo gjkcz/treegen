@@ -138,7 +138,17 @@ private:
             if(elem==2. && (i->vemDruhStromu()).element == t::Element::usecka)
             i->nastavVykreslovaciElement(t::Element::testValec);
         }
-    }
+
+        /*for (auto i = stromy3D.begin(); i!=stromy3D.end(); ++i)
+        {
+            if(elem==0.)
+            i->nastavVykreslovaciElement(t3::Element::bod);
+            if(elem==1. && ( (i->vemDruhStromu()).element == t3::Element::bod || (i->vemDruhStromu()).element == t3::Element::testValec) )
+            i->nastavVykreslovaciElement(t3::Element::usecka);
+            if(elem==2.)
+            i->nastavVykreslovaciElement(t3::Element::testValec);
+        }
+    */}
     void switchClearColor(float){
         bbClearColor = !bbClearColor;
     }
@@ -168,6 +178,8 @@ private:
     }
     void nerotuj(float){
         for (auto& iTree : stromy)
+            iTree.nastavRotaci(0.);
+        for (auto& iTree : stromy3D)
             iTree.nastavRotaci(0.);
     }
     void zhasniSvitilnu(float){

@@ -174,7 +174,7 @@ void Engine::pripravGeometrii()
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
     druhStromu.element = t3::testValec;
-    druhStromu.rozliseniE = 3;
+    druhStromu.rozliseniE = 6;
     druhStromu.rozliseniV = 100;//170
     druhStromu.barva = t3::cervena;
     druhStromu.barveni = t3::g;      // dasdASdASd
@@ -206,7 +206,7 @@ void Engine::pripravGeometrii()
     druhStromu.element = t3::testValec;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
-    druhStromu._iSType = 0;
+    druhStromu._iSType = 4;
     int pocetStacku = 18;  // 1000
     int pocetStromuStacku = 1; //15
     try {
@@ -233,7 +233,7 @@ void Engine::pripravGeometrii()
                         }
                         l++;
                     }
-                    (c==0)?(type._iSType=iTyp):((c==1)?(type._iRType=iTyp):(type._iDType=iTyp));
+//                    (c==0)?(type._iSType=iTyp):((c==1)?(type._iRType=iTyp):(type._iDType=iTyp));
                     iTypu=(c==0)?5:3;
                     l = 0;
                     bIAm = false;
