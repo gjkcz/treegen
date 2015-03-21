@@ -26,8 +26,8 @@
 * V souboru kompiluj.bat v adresáři projektu změňte hodnotu proměnné CESTA_KOMPILATORU na složku s instalací TDM GCC
 
 * Nyní je vše připraveno. 
-    +spusťte soubor kompiluj.bat
-    +spusťte mingwTreegen.exe
+    + spusťte soubor kompiluj.bat
+    + spusťte bin/mingwTreegen.exe
 
 ### Instalace prostředí: ###
 
@@ -87,8 +87,8 @@ Process terminated with status 0 (0 minute(s), 14 second(s))
 * w, s, a, d - dopredu, dozadu, doleva, doprava
 * q, e - nahoru, dolu
 * ↑, ↓ - pohled nahoru, dolu
-* 1, 2 - přidat auto otáčení
-* 3, 4 - otočit
+* myš
+* příkazy
 
 ### Changelog: ###
 
