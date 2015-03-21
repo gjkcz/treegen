@@ -18,12 +18,7 @@
 
 * git init
 * git remote add r0 https://xmegapopcornz@bitbucket.org/xmegapopcornz/treegen.git
-* git fetch r0
-* git checkout kmen
-
-**Instalace boostu:**
-
-* Rozbalte boost do adresáře projektu
+* git pull r0 master
 
 
 **Úprava kompiluj.bat**
@@ -38,7 +33,7 @@
 
 **Budete potřebovat:**
 
-*[Codeblocks](http://sourceforge.net/projects/codeblocks/files/Binaries/13.12/Windows/codeblocks-13.12-setup.exe/download)
+* [Codeblocks](http://sourceforge.net/projects/codeblocks/files/Binaries/13.12/Windows/codeblocks-13.12-setup.exe/download)
 * [TDM GCC 4.9 (64x)](http://tdm-gcc.tdragon.net/download)
 * [Boost 1.57.0](http://www.boost.org/users/history/version_1_57_0.html)
 * [Git](http://git-scm.com/download/win)
