@@ -451,7 +451,7 @@ void Engine::pridejStrom(float)
     } catch (std::exception& e) {
         std::cout << "exception occured in pridejStrom: " << e.what() << std::endl;
     }
-    std::cout << "Ok, pocet stromu je: " << t::Tree::pocetInstanciStromu << '\n';
+    std::cout << "Ok, pocet stromu je: " << t::Tree::pocetInstanciStromu+t3::Tree3::pocetInstanciStromu << '\n';
 }
 
 void Engine::generujJedenStrom(float arg)
