@@ -29,7 +29,7 @@ Tree::Tree(Tree&& tmp)
     citacElementu = tmp.citacElementu;
     citacClanku = tmp.citacClanku;
     material = tmp.material;
-    kolmice = std::move(tmp.kolmice);
+//    kolmice = std::move(tmp.kolmice);
     rotace = tmp.rotace;
 
     cstmvtxVrcholy =  tmp.cstmvtxVrcholy;
@@ -72,9 +72,6 @@ Tree& Tree::operator=(Tree&& tmp)       // move assignment
 {
     material = tmp.material;
     rotace = tmp.rotace;
-    kolmice = std::move(tmp.kolmice);
-    for (int i = 0; i < pocetVrcholu; ++i)
-        pridejNormaluVrcholu(i, spocitejNormaluVrcholu(i));
     std::cout << "Pozor move assign chce ssmazat buffr" << std::endl;
     znicBuffery();
 //    znicOstatniPointry();
@@ -1029,102 +1026,6 @@ void Tree::generujIndexyElementu(Element e, int pocatecniIndex, int koncovyIndex
     }
 }
 
-/*Spocitat normalu lze az po vygenerovani pozice.*/
-D3DXVECTOR3 Tree::spocitejNormaluVrcholu(int a, int b, int c)
-{
-    D3DXVECTOR3 normala;
-    D3DXVECTOR3 b0 = {cstmvtxVrcholy[a].x, cstmvtxVrcholy[a].y, cstmvtxVrcholy[a].z};
-    D3DXVECTOR3 b1 = {cstmvtxVrcholy[b].x, cstmvtxVrcholy[b].y, cstmvtxVrcholy[b].z};
-    D3DXVECTOR3 b2 = {cstmvtxVrcholy[c].x, cstmvtxVrcholy[c].y, cstmvtxVrcholy[c].z};
-    D3DXVECTOR3 u = b1-b0;
-    D3DXVECTOR3 v = b2-b0;
-    D3DXVec3Cross(&normala, &u, &v);
-    D3DXVec3Normalize(&normala, &normala);
-//    D3DXVECTOR3 konec = 100000.*normala + b0;
-//    konec = {0.,0.,0.};
-//    kolmice.emplace_back( matice, b0, konec, azurova, &pzarizeni );
-
-    return normala;
-}
-
-D3DXVECTOR3 Tree::spocitejNormaluVrcholu(int a)
-{
-    int b = a+druhStromu.rozliseniE, c = a+1;
-    D3DXVECTOR3 b0 = {cstmvtxVrcholy[a].x, cstmvtxVrcholy[a].y, cstmvtxVrcholy[a].z};
-    D3DXVECTOR3 konec, n0, n1, vyslednice;
-    if(b < pocetVrcholu && c < pocetVrcholu ) {     // spodni rada
-        n0 = spocitejNormaluVrcholu(a, b, c);
-        konec = 100000.*n0 + b0;
-        #ifdef ZOBRAZ_NORMALY
-
-        kolmice.emplace_back( matice, b0, konec, azurova, &pzarizeni, zmenaRotace );
-        #endif // ZOBRAZ_NORMALY
-        b = a+druhStromu.rozliseniE-1, c = a-1;
-        if(c < 0) {
-            c = a+druhStromu.rozliseniE;
-            n1 = spocitejNormaluVrcholu(a, b, c);
-        } else
-            n1 = spocitejNormaluVrcholu(b, a, c);
-        konec = 100000.*n1 + b0;
-//        konec = {0.,0.,0.};
-        #ifdef ZOBRAZ_NORMALY
-
-        kolmice.emplace_back( matice, b0, konec, zelena, &pzarizeni, zmenaRotace );
-        #endif // ZOBRAZ_NORMALY
-        vyslednice = n0 + n1;
-//        vyslednice = {vyslednice.x, vyslednice.y, 0.};        // jen xy slozka neni spravne
-        D3DXVec3Normalize(&vyslednice, &vyslednice);
-        konec = 100000.*vyslednice + b0;
-        #ifdef ZOBRAZ_NORMALY
-
-        kolmice.emplace_back( matice, b0, konec, modra, &pzarizeni, zmenaRotace );
-        #endif // ZOBRAZ_NORMALY
-    } else if(a<=pocetVrcholu-1) {                  // horni rada
-        b = a-druhStromu.rozliseniE;
-        if(c == pocetVrcholu) {
-            c = b + 1;
-            n0 = spocitejNormaluVrcholu(a, c, b);
-            konec = 100000.*n0 + b0;
-        #ifdef ZOBRAZ_NORMALY
-
-            kolmice.emplace_back( matice, b0, konec, cervena, &pzarizeni, zmenaRotace );
-        #endif // ZOBRAZ_NORMALY
-        } else {
-            n0 = spocitejNormaluVrcholu(a, c, b);
-            konec = 100000.*n0 + b0;
-        #ifdef ZOBRAZ_NORMALY
-
-            kolmice.emplace_back( matice, b0, konec, azurova, &pzarizeni, zmenaRotace );
-        #endif // ZOBRAZ_NORMALY
-        }
-        b = a-druhStromu.rozliseniE, c = a-1;
-        n1 = spocitejNormaluVrcholu(a, b, c);
-        konec = 100000.*n1 + b0;
-//        konec = {0.,0.,0.};
-        #ifdef ZOBRAZ_NORMALY
-
-        kolmice.emplace_back( matice, b0, konec, zelena, &pzarizeni, zmenaRotace );
-        #endif // ZOBRAZ_NORMALY
-        vyslednice = n0 + n1;
-        D3DXVec3Normalize(&vyslednice, &vyslednice);
-        konec = 100000.*vyslednice + b0;
-        #ifdef ZOBRAZ_NORMALY
-
-        kolmice.emplace_back( matice, b0, konec, purpurova, &pzarizeni, zmenaRotace );
-        #endif // ZOBRAZ_NORMALY
-
-    }
-    return vyslednice;
-}
-
-void Tree::pridejNormaluVrcholu(int pozice, D3DXVECTOR3 kolmice)
-{
-    if(cstmvtxVrcholy[pozice].kolmice == D3DXVECTOR3(0.,0.,0.))
-        cstmvtxVrcholy[pozice].kolmice = kolmice;
-    else
-        std::cout << "Normala uz existuje!" << std::endl;
-}
-
 bool Tree::generujElementyVetve(VlastnostiVetve& pV)
 {
     float ample;//, per; //radius krouceniaa
@@ -1149,42 +1050,6 @@ bool Tree::generujElementyVetve(VlastnostiVetve& pV)
         pV.rT.r = 0.01f;
 
     switch (druhStromu.element) {
-    case testValec: {
-        generujVrcholElementu(druhStromu.element);
-        for(int i = 0; i < pocetClanku; ++i) {
-            ///*degenerovany trojuhelnik*/
-//        generujIndexyElementu(testValec, druhStromu.rozliseni-1);
-//        generujIndexyElementu(testValec, 2*druhStromu.rozliseni-1);
-//        generujIndexyElementu(testValec, 2*druhStromu.rozliseni-1);
-//        generujIndexyElementu(testValec, 3*druhStromu.rozliseni-1);
-            ///*koncove spojovaci indexy*/
-            generujIndexyElementu(testValec, 0+i*druhStromu.rozliseniE);
-            generujIndexyElementu(testValec, 0+(i+1)*druhStromu.rozliseniE);
-//        generujIndexyElementu(testValec, 0);
-//        generujIndexyElementu(testValec, 0+druhStromu.rozliseni);
-            generujVrcholElementu(druhStromu.element);
-//        generujIndexyElementu(testValec, 0);
-//        generujIndexyElementu(testValec, 1);
-//            generujIndexyElementu(testValec, 0+druhStromu.rozliseni);
-//            generujIndexyElementu(testValec, 0+2*druhStromu.rozliseni);
-//////        generujIndexyElementu(testValec, 0+2*druhStromu.rozliseni);
-//            generujVrcholElementu(druhStromu.element);
-//        citacElementu /= 3;
-//        generujIndexyElementu(testValec, 0);
-//        generujIndexyElementu(testValec, 0+druhStromu.rozliseni);
-//        generujIndexyElementu(testValec, 1);
-//        generujIndexyElementu(testValec, 1+druhStromu.rozliseni);
-//        generujIndexyElementu(testValec, 2);
-//        generujIndexyElementu(testValec, 2+druhStromu.rozliseni);
-//        indicie[citacIndicii] = 0;
-//        ++citacIndicii;
-
-        }
-        for (int i = 0; i < pocetVrcholu; ++i)
-            pridejNormaluVrcholu(i, spocitejNormaluVrcholu(i));
-
-        break;
-    }
     case kruhBodu: {
         generujVrcholElementu(druhStromu.element);
         generujVrcholElementu(druhStromu.element);
@@ -1518,12 +1383,6 @@ bool Tree::generujVykreslovaciDataVetvi()
     return true;
 }
 
-bool Tree::generujListy()
-{
-
-    return true;
-}
-
 int Tree::spoctiVrcholy()
 {
     //
@@ -1601,12 +1460,6 @@ int Tree::spoctiElementy()
     }
 }
 
-bool Tree::generujPlosky()
-{
-
-    return true;
-}
-
 bool Tree::alokujMistoProVrcholyAindicie()
 {
     try {
@@ -1641,16 +1494,16 @@ void Tree::aktualizujMatici()
 
     world = maticeRotaceStromuZ * matice * maticeSkalovani * maticeRotaceStromuX;
 
-    for (auto &iUsecka : kolmice) {
-        iUsecka.aktualizujMatici();
-    }
+//    for (se::Tvar &iUsecka : kolmice) {
+//        iUsecka.aktualizujMatici();
+//    }
 }
 
 void Tree::vykresli(bool osvetlovat) const         // const fcion, so it cant change anything in our object
 {
-    for (auto &iUsecka : kolmice) {
-        iUsecka.vykresli();
-    }
+//    for (const se::Tvar &iUsecka : kolmice) {
+//        iUsecka.vykresli();
+//    }
 
     pzarizeni->SetTransform( D3DTS_WORLD, &world );
     switch (druhStromu.element) {
@@ -1848,16 +1701,6 @@ bool Tree::zkopirujVrcholyDoBuffru(VrcholBK* vrcholy, int pocet)
     }
     (*bufferVrcholu)->Unlock();
     return vysledek;
-}
-
-Vetev::Vetev()
-{
-
-}
-
-Vetev::~Vetev()
-{
-//    delete[] vrcholy;
 }
 
 

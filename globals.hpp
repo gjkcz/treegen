@@ -8,12 +8,12 @@
 #define windowHeight 1080
 #define PI 3.14159265358979323846
 #define _E 2.718281828459045235360287471352
-#define TREEVERBOSE
+//#define TREEVERBOSE
 //#define DESTRUCTORVERBOSE
-#define DEBUG
+//#define DEBUG
 #define STACK
 #define PROBLEMATICAL
-//#define NAPOVEDA
+#define NAPOVEDA
 //#define ZOBRAZ_NORMALY
 //#define VYTISKNI_INDICIE
 //#define OLDPROBABILITY

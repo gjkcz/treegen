@@ -76,8 +76,8 @@ public:
 
     Tree3();
 //    Tree3(DruhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9& _pzarizeni);
-    Tree3(DruhStromu&, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni);
-    Tree3(DruhStromu&, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni, float zRot);
+    Tree3(t::DruhStromu&, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni);
+    Tree3(t::DruhStromu&, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni, float zRot);
     Tree3(Tree3&& tmp);                       // move ctor
     Tree3& operator= (Tree3&&);             // move assignment
     ~Tree3();
@@ -86,22 +86,22 @@ public:
     void vykresli(bool osvetlovat) const;
     void testVykresli() const;
     void nastavRotaci(float _f) {
-        for (auto& iKolmice : kolmice)
+        for (se::Tvar& iKolmice : kolmice)
             iKolmice.nastavRotaci(_f);
         zmenaRotace = _f;
     }
     void nastavKonzoli(sk::Konzole& k) {iKonzole = k;}
-    void nastavVykreslovaciElement(Element _f) {
+    void nastavVykreslovaciElement(t::Element _f) {
         druhStromu.element = _f;
     }
-    DruhStromu& vemDruhStromu() {
+    t::DruhStromu& vemDruhStromu() {
         return druhStromu;
     }
 
 private:
     sk::Konzole iKonzole;
     D3DMATERIAL9 material;
-    DruhStromu druhStromu;
+    t::DruhStromu druhStromu;
     VlastnostiVetve* vlastnostiVetvi;       // Parametry vetvi, pozor dynAlc!
     std::vector<se::Usecka> kolmice;     // pomocne kolmice
     VrcholBK* cstmvtxVrcholy;
@@ -137,7 +137,7 @@ private:
     bool bVlnit;
     bool generujKmen();
     bool generujVlastnostiVetvi();
-    VlastnostiVetve generujVlastnostiVetve( const VlastnostiVetve& parent, int strana, DruhStromu& _tType );
+    VlastnostiVetve generujVlastnostiVetve( const VlastnostiVetve& parent, int strana, t::DruhStromu& _tType );
     int spoctiClanky();
     int spoctiElementy();
     int spoctiVrcholy();           // Potreba pred vytvarenim buffru, potrebuje vygenerovat vlastnosti vetvi
@@ -153,8 +153,8 @@ private:
     int generujIndicieVetve( int cislo, int kolikClanku );
     void generujIndicieKruhuXY( int x, int y );
     void generujVrcholElementu( float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ );   // melo by brat pole referenci za param
-    void generujIndicieElementu( Element e, int );
-    void generujIndicieElementu( Element e, int, int );
+    void generujIndicieElementu( t::Element e, int );
+    void generujIndicieElementu( t::Element e, int, int );
     void pridejNormaluVrcholu( int pozice, D3DXVECTOR3 kolmice );
     D3DXVECTOR3 spocitejNormaluVrcholu( int a, int b, int c );
     D3DXVECTOR3 spocitejNormaluVrcholu( int a );

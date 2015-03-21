@@ -90,7 +90,7 @@ void Engine::priprav()              // vola porade: pripravView, pripravGeometri
     iKontroler3d.nastavRychlost(5000.);
 //    iKontroler3d.nastavCitlivost(10.);
 //    iKontroler3d.nastavCitlivost(10.);
-    std::cout << "Ok, pocet stromu je: " << t::Tree::pocetInstanciStromu << '\n';
+    std::cout << "Ok, pocet stromu je: " << t::Tree::pocetInstanciStromu+t3::Tree3::pocetInstanciStromu << '\n';
     iKonzole.nastavBarvuPisma(sk::Barva::fbila);
     std::cout << "Hledi je ve smeru -x" << std::endl;
 }
@@ -167,19 +167,19 @@ void Engine::pripravView()
 
 void Engine::pripravGeometrii()
 {
-    t3::DruhStromu druhStromu;
+    t::DruhStromu druhStromu;
     druhStromu.urovenRozvetveni = 10;
     druhStromu.pravdepodobnostRozvetveni = 91;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
-    druhStromu.element = t3::testValec;
-    druhStromu.rozliseniE = 6;
-    druhStromu.rozliseniV = 100;//170
-    druhStromu.barva = t3::cervena;
-    druhStromu.barveni = t3::g;      // dasdASdASd
+    druhStromu.element = t::testValec;
+    druhStromu.rozliseniE = 7;
+    druhStromu.rozliseniV = 11;//170
+    druhStromu.barva = t::cervena;
+    druhStromu.barveni = t::g;      // dasdASdASd
     D3DXMATRIX pocatek;
-    fDalka = 950000.f; // ' nova fitura kazi formatovani
+    fDalka = 1950000.f; // ' nova fitura kazi formatovani
     float xoffset = -2*fDalka;
     float yoffset = -2*fDalka;
     float zoffset = 0.f;
@@ -197,17 +197,18 @@ void Engine::pripravGeometrii()
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
     // DRUHY
     xoffset = -3*fDalka;
-    druhStromu.element = t3::bod;
-    druhStromu.barva = t3::zlutozelena;
+    druhStromu.element = t::bod;
+    druhStromu.barva = t::zlutozelena;
+    druhStromu.barva = t::hneda;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
 //    stromy3D.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.009f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
 
 #ifdef STACK
-    druhStromu.element = t3::testValec;
+    druhStromu.element = t::testValec;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
-    int pocetStacku = 18;  // 1000
+    int pocetStacku = 102;  // 1000
     int pocetStromuStacku = 1; //15
     try {
         float vyska = 0.f;
@@ -224,7 +225,7 @@ void Engine::pripravGeometrii()
                 int iTyp=0;
                 bool bIAm = false;
                 int l = 0;
-                t3::DruhStromu type = druhStromu;
+                t::DruhStromu type = druhStromu;
                 for(int c=0; c<3; c++) {
                     while(!bIAm) {
                         if (o%iTypu==l) {
@@ -304,7 +305,7 @@ void Engine::render3d()
 
         pd3dZarizeni->SetFVF( D3DFVF_VrcholB );
         pd3dZarizeni->SetRenderState( D3DRS_LIGHTING, false );
-        for (auto &iUsecka : usecky) {
+        for (Tvar &iUsecka : usecky) {
             iUsecka.aktualizujMatici();
             iUsecka.vykresli();
         }
@@ -343,6 +344,7 @@ void Engine::odeberStrom(float)
 void Engine::odeberStromy(float)
 {
     stromy.clear();
+    stromy3D.clear();
     std::cout << "Ok, pocet stromu je: " << t::Tree::pocetInstanciStromu << '\n';
 //    stromy.erase(stromy.begin(), stromy.end());
 }
@@ -424,28 +426,28 @@ void Engine::pridejStrom(float)
 {
     iKonzole.nastavBarvuPisma(sk::fcervena);
     t::DruhStromu druhStromu;
-    druhStromu.urovenRozvetveni = 12;
+    druhStromu.urovenRozvetveni = 11;
     druhStromu.pravdepodobnostRozvetveni = 85;
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
-    druhStromu.element = t::usecka;
-    druhStromu.rozliseniV = 15;
-    druhStromu.rozliseniE = 60;
+    druhStromu.element = t::testValec;
+    druhStromu.rozliseniV = 7;
+    druhStromu.rozliseniE = 5;
 //    druhStromu.rozliseniV = 10;
 //    druhStromu.rozliseniE = 3;
-    druhStromu.barva = t::zelena;
+    druhStromu.barva = t::zlutozelena;
     druhStromu.barveni = t::g;      // d
 //    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);
     D3DXMATRIX pocatek;
-    float vzdalenostOdKamery = 1000000.;
+    float vzdalenostOdKamery = 5000000.;
     float xoffset = -2.*iKontroler3d.vemUmisteni().x + iKontroler3d.vemSmerHledi().x*vzdalenostOdKamery;
     float yoffset = 2.*iKontroler3d.vemUmisteni().z + iKontroler3d.vemSmerHledi().z*-vzdalenostOdKamery;
     float zoffset = -2.*iKontroler3d.vemUmisteni().y + iKontroler3d.vemSmerHledi().y*vzdalenostOdKamery;
     // PRVNI
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, zoffset);
     try {
-        stromy.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.0009f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
+        stromy3D.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.0009f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
     } catch (std::exception& e) {
         std::cout << "exception occured in pridejStrom: " << e.what() << std::endl;
     }

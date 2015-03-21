@@ -68,7 +68,7 @@ private:
     LPDIRECT3DDEVICE9 pd3dZarizeni; // Our rendering device, lp= neco pointer, je to jenom typedef typedef struct IDirect3DDevice9 *LPDIRECT3DDEVICE9;
 
     bool bbClearColor = true;
-    bool bwireframe = true;
+    bool bwireframe = false;
     bool bosvetlovat = true;
     bool bcull = true;
     bool bflatShading = false;
@@ -139,16 +139,16 @@ private:
             i->nastavVykreslovaciElement(t::Element::testValec);
         }
 
-        /*for (auto i = stromy3D.begin(); i!=stromy3D.end(); ++i)
+        for (auto i = stromy3D.begin(); i!=stromy3D.end(); ++i)
         {
             if(elem==0.)
-            i->nastavVykreslovaciElement(t3::Element::bod);
-            if(elem==1. && ( (i->vemDruhStromu()).element == t3::Element::bod || (i->vemDruhStromu()).element == t3::Element::testValec) )
-            i->nastavVykreslovaciElement(t3::Element::usecka);
+            i->nastavVykreslovaciElement(t::Element::bod);
+            if(elem==1. && ( (i->vemDruhStromu()).element == t::Element::bod || (i->vemDruhStromu()).element == t::Element::testValec) )
+            i->nastavVykreslovaciElement(t::Element::usecka);
             if(elem==2.)
-            i->nastavVykreslovaciElement(t3::Element::testValec);
+            i->nastavVykreslovaciElement(t::Element::testValec);
         }
-    */}
+    }
     void switchClearColor(float){
         bbClearColor = !bbClearColor;
     }

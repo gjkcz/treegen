@@ -1,15 +1,12 @@
-#ifndef __H_GUARD_INCLUDED__
-#define __H_GUARD_INCLUDED__
+#ifndef __H_USECKA_INCLUDED__
+#define __H_USECKA_INCLUDED__
 
-#include "JednoduchyVertex.hpp"
-#include "CustomVertex.hpp"
-#include "TreeType.hpp"     // barva
-#include <exception>
+#include "Tvar.hpp"
 namespace se
 {
 
 
-class Usecka
+class Usecka : public Tvar
 {
 public:
     Usecka();
@@ -58,34 +55,34 @@ public:
         tmp.paIndicie = nullptr;
         return *this;
     }
-    void aktualizujMatici();
-    void nastavRotaci(float rot) {zmenaRotace = rot;}
-    void vykresli() const;
+//    void aktualizujMatici();
+//    void nastavRotaci(float rot) {zmenaRotace = rot;}
+//    void vykresli() const;
 protected:
 private:
-    float rotace, zmenaRotace;
-    D3DXMATRIX matice;
-    D3DXMATRIX world;
-    D3DXMATRIX maticeSkalovani;
-    D3DXMATRIX maticeRotaceStromuX;
-    D3DXMATRIX maticeRotaceStromuZ;
-    VrcholB* cstmvtxVrcholy;
-    long* paIndicie;
-    LPDIRECT3DVERTEXBUFFER9* bufferVrcholu;
-    LPDIRECT3DINDEXBUFFER9* bufferIndicii;
-    LPDIRECT3DDEVICE9 pzarizeni;
-    t::Barva barvaUsecky;
-    bool vytvorBufferVrcholu();            // Je treba jiz znat pocet vrcholu
-    bool vytvorBufferIndicii();
-    void znicBuffery();
-    void znicOstatniPointry();
-    bool uzamkniPoleDoBuffru();       // musi existovat buffer a cstmvtxVrcholy musi byt nejprve vytvoreny,
-    bool odemkniVrcholyProCteni();
+//    float rotace, zmenaRotace;
+//    D3DXMATRIX matice;
+//    D3DXMATRIX world;
+//    D3DXMATRIX maticeSkalovani;
+//    D3DXMATRIX maticeRotaceStromuX;
+//    D3DXMATRIX maticeRotaceStromuZ;
+//    VrcholB* cstmvtxVrcholy;
+//    long* paIndicie;
+//    LPDIRECT3DVERTEXBUFFER9* bufferVrcholu;
+//    LPDIRECT3DINDEXBUFFER9* bufferIndicii;
+//    LPDIRECT3DDEVICE9 pzarizeni;
+//    t::Barva barvaUsecky;
+//    bool vytvorBufferVrcholu();            // Je treba jiz znat pocet vrcholu
+//    bool vytvorBufferIndicii();
+//    void znicBuffery();
+//    void znicOstatniPointry();
+//    bool uzamkniPoleDoBuffru();       // musi existovat buffer a cstmvtxVrcholy musi byt nejprve vytvoreny,
+//    bool odemkniVrcholyProCteni();
     void generujVrcholy(D3DXVECTOR3&, D3DXVECTOR3&);
     void generujIndexy(int, int);
 };
 
 
 }
-#endif // __H_GUARD_INCLUDED__
+#endif // __H_USECKA_INCLUDED__
 

@@ -54,25 +54,12 @@ struct tuplParamsVetve {
     VlastnostiVetve p_1;
 };
 
-class Vetev
-{
-    friend class Tree;
-public:
-    Vetev();
-    ~Vetev();
-protected:
-//    SimpleVertex* vrcholy;
-//    CUSTOMVERTEX* cstmvtxVrcholy;
-private:
-};
-
 class Tree
 {
 public:
     static int pocetInstanciStromu;       // pocet stromu
 
     Tree();
-//    Tree(DruhStromu, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9& _pzarizeni);
     Tree(DruhStromu&, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni);
     Tree(DruhStromu&, D3DXMATRIX& pocatek, LPDIRECT3DDEVICE9* _pzarizeni, float zRot);
     Tree(Tree&& tmp);                       // move ctor
@@ -83,8 +70,6 @@ public:
     void vykresli(bool osvetlovat) const;
     void testVykresli() const;
     void nastavRotaci(float _f) {
-        for (auto& iKolmice : kolmice)
-            iKolmice.nastavRotaci(_f);
         zmenaRotace = _f;
     }
     void nastavKonzoli(sk::Konzole& k) {iKonzole = k;}
@@ -100,7 +85,6 @@ private:
     D3DMATERIAL9 material;
     DruhStromu druhStromu;
     VlastnostiVetve* vlastnostiVetvi;       // Parametry vetvi, pozor dynAlc!
-    std::vector<se::Usecka> kolmice;     // pomocne kolmice
     VrcholBK* cstmvtxVrcholy;
     long* indicie;
     LPDIRECT3DVERTEXBUFFER9* bufferVrcholu;
@@ -153,11 +137,6 @@ private:
     void generujVrcholElementu(float r, float radiusZ, float sklony, float sklonz, float Dens, float posunX, float posunY, float posunZ);   // melo by brat pole referenci za param
     void generujIndexyElementu( Element e, int );
     void generujIndexyElementu( Element e, int, int );
-    void pridejNormaluVrcholu( int pozice, D3DXVECTOR3 kolmice );
-    D3DXVECTOR3 spocitejNormaluVrcholu( int a, int b, int c );
-    D3DXVECTOR3 spocitejNormaluVrcholu( int a );
-    bool generujListy();
-    bool generujPlosky();
     bool odemkniVrcholyProCteni();
     bool zkopirujVrcholyDoBuffru(VrcholBK* vrcholy, int pocet);   // Vola vytvorBuffer
 };
