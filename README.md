@@ -16,10 +16,10 @@
 
 **Příkazy pro git:**
 
-*git init
-*git remote add r0 https://xmegapopcornz@bitbucket.org/xmegapopcornz/treegen.git
-*git fetch r0
-*git checkout kmen
+* git init
+* git remote add r0 https://xmegapopcornz@bitbucket.org/xmegapopcornz/treegen.git
+* git fetch r0
+* git checkout kmen
 
 **Instalace boostu:**
 
