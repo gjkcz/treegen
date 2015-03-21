@@ -29,4 +29,4 @@ mkdir .objs\SWU
 
 %CESTA_KOMPILATORU%\bin\x86_64-w64-mingw32-g++.exe -g -std=gnu++1y -I"boost_1_57_0" -c "Usecka.cpp" -o .objs\Usecka.o
 
-%CESTA_KOMPILATORU%\bin\x86_64-w64-mingw32-g++.exe  -o mingwTreegen.exe .objs\Engine.o .objs\Helper.o .objs\Input.o .objs\Kamera.o .objs\Kontroler3d.o .objs\main.o .objs\msgProc.o .objs\SWU\Konzole.o .objs\SWU\Okno.o .objs\Tree.o .objs\Tree3.o .objs\Tvar.o .objs\Usecka.o   -ld3d9 -ld3dx9_43 -ldinput8 -ldxguid
+%CESTA_KOMPILATORU%\bin\x86_64-w64-mingw32-g++.exe  -o bin\mingwTreegen.exe .objs\Engine.o .objs\Helper.o .objs\Input.o .objs\Kamera.o .objs\Kontroler3d.o .objs\main.o .objs\msgProc.o .objs\SWU\Konzole.o .objs\SWU\Okno.o .objs\Tree.o .objs\Tree3.o .objs\Tvar.o .objs\Usecka.o   -ld3d9 -ld3dx9_43 -ldinput8 -ldxguid
