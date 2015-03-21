@@ -23,9 +23,10 @@
 
 **Instalace boostu:**
 
-*Rozbalte boost do adresáře projektu
+* Rozbalte boost do adresáře projektu
 
-**Uprava kompiluj.bat**
+
+**Úprava kompiluj.bat**
 
 * V souboru kompiluj.bat v adresáři projektu změňte hodnotu proměnné CESTA_KOMPILATORU na složku s instalací TDM GCC
 
