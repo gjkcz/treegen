@@ -124,7 +124,11 @@
 		<Unit filename="Svetlo.hpp" />
 		<Unit filename="Tree.cpp" />
 		<Unit filename="Tree.hpp" />
+		<Unit filename="Tree3.cpp" />
+		<Unit filename="Tree3.hpp" />
 		<Unit filename="TreeType.hpp" />
+		<Unit filename="Tvar.cpp" />
+		<Unit filename="Tvar.hpp" />
 		<Unit filename="Usecka.cpp" />
 		<Unit filename="Usecka.hpp" />
 		<Unit filename="Vetev.hpp" />
