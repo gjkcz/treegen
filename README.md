@@ -5,6 +5,7 @@
 
 * Zde bude se upravovati a k závěru se odebéře můj finální projekt.
 * Verze 0.1
+* Spustitelný soubor je v podadresáři \bin
 
 ### Kompilace projektu: ###
 
