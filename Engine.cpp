@@ -38,7 +38,7 @@ Engine::Engine(sw::Okno* _okno) : iOkno(_okno), iKontroler3d(iOkno->hWnd)
     #ifdef NAPOVEDA
     std::cout << "Pro zadani prikazu stiskni mezernik+prikaz[+mezera+argument]+enter. Pro odchod ESC. \nPohyb wsad+sipky+mys. Leve tlacitko mysi prida strom, prave ukonci program. "<< std::endl;
     #endif // NAPOVEDA
-    fFOV = PI/3.6;
+    fFOV = PI/7.;
     dejCitlivost(3);
     pd3dZarizeni = NULL;
     g_pD3D = NULL;
@@ -208,8 +208,8 @@ void Engine::pripravGeometrii()
     druhStromu._iDType = 3;
     druhStromu._iRType = 4;
     druhStromu._iSType = 4;
-    int pocetStacku = 102;  // 1000
-    int pocetStromuStacku = 1; //15
+    int pocetStacku = 2;  // 1000
+    int pocetStromuStacku = 2; //15
     try {
         float vyska = 0.f;
         for(int i = 0; i < pocetStacku; ++i) {
@@ -440,7 +440,7 @@ void Engine::pridejStrom(float)
     druhStromu.barveni = t::g;      // d
 //    druhStromu.barva = D3DCOLOR_RGBA(100, 152, 10, 255);
     D3DXMATRIX pocatek;
-    float vzdalenostOdKamery = 5000000.;
+    float vzdalenostOdKamery = 9000000.;
     float xoffset = -2.*iKontroler3d.vemUmisteni().x + iKontroler3d.vemSmerHledi().x*vzdalenostOdKamery;
     float yoffset = 2.*iKontroler3d.vemUmisteni().z + iKontroler3d.vemSmerHledi().z*-vzdalenostOdKamery;
     float zoffset = -2.*iKontroler3d.vemUmisteni().y + iKontroler3d.vemSmerHledi().y*vzdalenostOdKamery;

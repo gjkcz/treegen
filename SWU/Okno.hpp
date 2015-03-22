@@ -32,6 +32,7 @@ public:
     HWND hWnd;
     Okno();
     Okno(const Pozice& x,const Rozmery& y, LPCSTR, HINSTANCE);
+    Okno(const Pozice& x, LPCSTR, HINSTANCE);  // Tento konstruktor zjisti sam rozmery obrazovky a automaticky je nastavi jako rozmery okna
     ~Okno();
     void ukaz();
     void zavri();
