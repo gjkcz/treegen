@@ -37,6 +37,11 @@ Zkratky: {
 		:wq				= 	write and quit
 	}
 
+	pro pandoc: {
+		powershell
+		pandoc test1.md -f markdown -t html -s(standalone with header and footer) -o test1.html
+	}
+
 	pro mingw32: {
 		compiler options:
 			-w 			=	inhibits all warnings

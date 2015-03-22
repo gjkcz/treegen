@@ -88,6 +88,7 @@ void Engine::priprav()              // vola porade: pripravView, pripravGeometri
     std::cout << "Generuji stromy" << '\n';
     pripravGeometrii();
     iKontroler3d.nastavRychlost(5000.);
+    iKontroler3d.posunKameru(skam::nahoru, 57.);
 //    iKontroler3d.nastavCitlivost(10.);
 //    iKontroler3d.nastavCitlivost(10.);
     std::cout << "Ok, pocet stromu je: " << t::Tree::pocetInstanciStromu+t3::Tree3::pocetInstanciStromu << '\n';
@@ -186,7 +187,7 @@ void Engine::pripravGeometrii()
     h::Okamzik zacatek = h::stopky::now();
     // PRVNI
     yoffset = 0.f;
-    xoffset = -1*fDalka;
+    xoffset = -4*fDalka;
     D3DXMatrixTranslation(&pocatek, xoffset, yoffset, 0.f);
     stromy3D.emplace_back(druhStromu, pocatek, &pd3dZarizeni, 0.00f);     // Vytvori strom a prida ho na konec naseho vektoru stromu
     stromy3D[0].nastavKonzoli(iKonzole);

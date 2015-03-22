@@ -1,11 +1,22 @@
 ﻿# CTIME #
 
 
-### What is this repository for? ###
+### Spuštění programu ###
 
-* Zde bude se upravovati a k závěru se odebéře můj finální projekt.
-* Verze 0.1
-* Spustitelný soubor je v podadresáři \bin
+* Spuštění provedete následujícími příkazy pro git:
+
+    + git init
+    + git remote add r https://xmegapopcornz@bitbucket.org/xmegapopcornz/treegen.git
+    + git pull r master
+    + Spustitelný soubor je v podadresáři \bin, pokud máte nainstalované DírectX půjde spustit.  
+
+* Nemáte-li DirectX, program vypíše chybu jako "V počítači chybí knihovna d3dx9_43"  V tomto případě si stáhněte chybějící knihovny z branche knihovny a vložte je k binárnímu souboru.  
+    + Knihovny stáhnete pomocí následujících příkazů pro git:
+        - V adresáři projektu spusťte příkazovou řádku/powershell
+        - git init
+        - git remote add r https://xmegapopcornz@bitbucket.org/xmegapopcornz/treegen.git
+        - git fetch r
+        - git checkout knihovnyDx9
 
 ### Kompilace projektu: ###
 
@@ -14,6 +25,7 @@
 * [TDM GCC 4.9 (64x)](http://tdm-gcc.tdragon.net/download)
 * [Boost 1.57.0](http://www.boost.org/users/history/version_1_57_0.html)
 * [Git](http://git-scm.com/download/win)
+* knihovny DirectX(většinout jsou předinstalované, chybí-li návod na jejich instalaci naleznete zde na konci sekce Spuštění programu )
 
 **Příkazy pro git:**
 

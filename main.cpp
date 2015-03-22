@@ -2,11 +2,11 @@
 #include "Engine.hpp"
 #include "globals.hpp"
 
-int t::Tree::pocetInstanciStromu = 0;
-int t3::Tree3::pocetInstanciStromu = 0;
-int se::Svetlo::pocetInstanciSvetla = 0;
+int t::Tree::pocetInstanciStromu = 0;   // inicializace staticke promenne tridy Tree, slouzi k uchovani poctu strukturovych stromu. Inicializace statickych promennych je nutne provest vzdy mimo tridu.
+int t3::Tree3::pocetInstanciStromu = 0;     // inicializace staticke promenne tridy Tree3, slouzi k uchovani poctu 3D stromu
+int se::Svetlo::pocetInstanciSvetla = 0;       // inicializace staticke promenne tridy Svetlo, slouzi k uchovani poctu svetel sceny
 
-int WINAPI WinMain (HINSTANCE hThisInstance,
+int WINAPI main (HINSTANCE hThisInstance,
                     HINSTANCE hPrevInstance,
                     LPSTR lpszArgument,
                     int nCmdShow)
