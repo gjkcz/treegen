@@ -251,11 +251,9 @@ Implementoval jsem dále Mersenne twister algoritmus pro generování náhodnýc
 ## Screenshoty, obrázky
 
 Tento obrázek ukazuje graficky znázorněné normály každého vertexu modelu. Grafickou reprezentaci normál je možné zapnout v souboru globals.h odkomentováním definice konstanty ZOBRAZ_NORMALY.
-
-![Každý vrchol musí mít svoji normálu, symbolika protikladů.](https://bitbucket.org/xmegapopcornz/treegen/src/b14edb64b1c4ed8d0ebf9be15981715ce925bf8c?at=master/Normaly.png)
+![Normaly.png](https://bitbucket.org/repo/xG7A9k/images/3459264944-Normaly.png)
 
 Následující dvojice obrázků ukazuje rozdíl mezi Goraud a Flat technikou stínování.
 
-![Plynulá lineární interpolace barvy](https://bitbucket.org/xmegapopcornz/treegen/src/b14edb64b1c4ed8d0ebf9be15981715ce925bf8c?at=master/Goraud.png)
-![Bez interpolace.](https://bitbucket.org/xmegapopcornz/treegen/src/e9d27b2dc808ab9d23622102f0dba01c3ff807ec/Flat.png?at=master)
-
+![Goraud.png](https://bitbucket.org/repo/xG7A9k/images/3165361641-Goraud.png)
+![Flat.png](https://bitbucket.org/repo/xG7A9k/images/595562172-Flat.png)
