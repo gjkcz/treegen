@@ -257,4 +257,5 @@ Tento obrázek ukazuje graficky znázorněné normály každého vertexu modelu.
 Následující dvojice obrázků ukazuje rozdíl mezi Goraud a Flat technikou stínování.
 
 ![Plynulá lineární interpolace barvy](https://bitbucket.org/xmegapopcornz/treegen/src/b14edb64b1c4ed8d0ebf9be15981715ce925bf8c?at=master/Goraud.png)
-![Bez interpolace.](https://bitbucket.org/xmegapopcornz/treegen/src/b14edb64b1c4ed8d0ebf9be15981715ce925bf8c?at=master/Flat.png)
+![Bez interpolace.](https://bitbucket.org/xmegapopcornz/treegen/src/e9d27b2dc808ab9d23622102f0dba01c3ff807ec/Flat.png?at=master)
+
